@@ -114,16 +114,97 @@
     ]
   },
   {
-    "name": "Swatches",
+    "name": "Swatches + Tags",
     "settings": [
       {
-        "type": "paragraph",
-        "content": "Use with care: pair exact color titles with hex codes (including the #, please!)"
+        "type": "header",
+        "content": "Swatches"
       },
       {
-        "type": "richtext",
+        "type": "paragraph",
+        "content": "For each color variant on the store, enter a color hex code! Use with care: pair exact color titles with hex codes (including the #, please!)"
+      },
+      {
+        "type": "html",
         "id": "swatch-hexes",
         "label": "Swatch Hexes"
+      },
+      {
+        "type": "select",
+        "id": "collection_swatches",
+        "label": "Swatches in collections",
+        "info": "NOTE: only works for option exactly called 'Color'",
+        "options": [
+          {
+            "value": "disabled",
+            "label": "Disabled"
+          },
+          {
+            "value": "round",
+            "label": "Round"
+          },
+          {
+            "value": "standard",
+            "label": "Standard"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Visible Tags"
+      },
+      {
+        "type": "paragraph",
+        "content": "Enter one visible tag per line. This will make them show up as tags in the front end of the theme, on the product."
+      },
+      {
+        "type": "html",
+        "id": "visible_tags",
+        "label": "Visible Tags"
+      },
+      {
+        "type": "select",
+        "id": "tag_location",
+        "label": "Tag Location (in products)",
+        "default": "above",
+        "options": [
+          {
+            "value": "disabled",
+            "label": "Disable Tags"
+          },
+          {
+            "value": "above",
+            "label": "Above Details"
+          },
+          {
+            "value": "below",
+            "label": "Below Details"
+          },
+          {
+            "value": "top",
+            "label": "Top of image"
+          },
+          {
+            "value": "bottom",
+            "label": "Bottom Of Image"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "tag_style",
+        "label": "Tag Style",
+        "default": "simple",
+        "options": [
+          {
+            "value": "simple",
+            "label": "Simple"
+          },
+          {
+            "value": "backgrounded",
+            "label": "Backgrounded"
+          }
+        ]
       }
     ]
   },

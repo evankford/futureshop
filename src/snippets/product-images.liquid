@@ -1,6 +1,7 @@
 
 <div class="product-images__wrap {% if section.settings.zoom_enabled%} has-zoom {%endif%}" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" >
-
+  {% comment %} visible tags over image {% endcomment %}
+ {% if settings.tag_location == 'top' or settings.tag_location == 'bottom' %}{% include 'visible-tags'%}{%endif%}
 
     {%- assign current_variant = product.selected_or_first_available_variant -%}
     {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
@@ -20,12 +21,12 @@
         image_attributes: "data-product-featured-image",
         wrapper_class: wrapper_class,
         wrapper_attributes: "data-product-image-wrapper",
-        
         zoom: section.settings.zoom_enabled;
       %}
     {% endfor %}
   </div>
 
+{% comment %} thumbnails {% endcomment %}
     {% if product.images.size > 1 %}
       <ul class="product-thumbnails swiper-container" data-module="swiper-thumbs" data-swiper-type="thumbnails">
         <div class="swiper-wrapper">

@@ -5,19 +5,25 @@
   {% include 'product-images' %}
     <div class="product-details__wrap">
     
+ {% if settings.tag_location == 'above'%}{% include 'visible-tags'%}{%endif%}
 
+      {% comment %} Product title {% endcomment %}
       <h1 data-aos="fade-up" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">{{ product.title }}</h1>
       
-      
       {%include 'product-form' %}
+      
+      {% comment %} tags below form {% endcomment %}
+      {% if settings.tag_location == 'below'%}{% include 'visible-tags'%}{%endif%}
+      
+      {% comment %} product description {% endcomment %}
   {% if product.description != blank %}
       <div class="rte" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
         {{ product.description }}
       </div>
       {%endif%}
 
-    </div>
-</div>
+    </div>  {% comment %} end product-details__wrap  {% endcomment %}
+</div>{% comment %} end product-grid__wrap  {% endcomment %}
 </section>
 
 {% schema %}

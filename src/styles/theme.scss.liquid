@@ -8,7 +8,6 @@
  
  ///SWATCH COLORS
  //create object from liquid form
- 
  {% assign swatch_hexes = settings.swatch-hexes | replace: '<p>', '' | replace: '</p>' , '' | newline_to_br | split: '<br />'  %}
 
  
@@ -19,6 +18,6 @@
   {% assign hex_code = hex_info[1] | strip %}
   
   .color.swatch--{{hex_color}} label {
-    background: {{hex_code}} !important;
+    background: {{ hex_code }} !important;
   }
 {%endfor%}
