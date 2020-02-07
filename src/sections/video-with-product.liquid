@@ -1,0 +1,260 @@
+
+
+
+
+
+{% assign has_bg = false %}
+{% if section.settings.section_size == 'full-width' and section.settings.background_image != blank %}
+{% assign has_bg = true %}
+{%endif%}
+<section class="vidproduct__wrap section-outer size--{{section.settings.section_size}} spacing--{{section.settings.section_spacing}} bg-style--{{section.settings.background_style}} lazyload" id="{{section.settings.anchor_id}}" {% if has_bg == true %} data-bgset="{% include 'responsive-bg-image', image: section.settings.background_image%}" {%endif%}>
+{% if section.settings.background_color != blank or section.settings.text_color != blank %}
+  <style>
+    #shopify-section-{{section.id}} {
+      {% if section.settings.background_color != blank %}
+      background-color:  {{section.settings.background_color}};
+      {%endif%}
+      {% if section.settings.text_color != blank %}
+      color:  {{section.settings.text_color}};
+      {%endif%}
+    }
+  </style>
+{%endif%}
+  <div class="vidproduct__inner section-inner">
+   <div class="vidproduct__header section-header">
+         {% if section.settings.pre_title != blank %}
+      <h4 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 section-header__pre-title">{{ section.settings.pre_title | escape }}</h4>
+    {% endif %}
+    {% if section.settings.title != blank %}
+      <h2 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h2 section-header__title">{{ section.settings.title | escape }}</h2>
+    {% endif %}
+        {% if section.settings.content %}
+          <div class="section-header__content"  data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">{{section.settings.content}}</div>
+        {%endif%}
+          <div class="button-wrap">
+            <a href="{{product.url}}" class="button secondary">{{section.settings.button_text}}</a>
+          </div>
+      </div>
+    <div class="vidproduct__video">
+    
+      <div class="vidproduct__fallback">
+      {% if section.settings.image != blank %}
+        {% include 'responsive-image' with image: section.settings.image, max_width: 2500, max_height: 1400 %}
+      {%else %}
+        {{ 'samplebg.jpg' | asset_img_url: '1600x' | img_tag}}
+      {%endif%}
+      </div>
+      {% if section.settings.url != blank %}
+          <div class="video-player__wrap" data-module="vidbox" style="background-color: {{section.settings.background_color}}" data-player-id="player--{{section.id}}" data-video-url="{{section.settings.url}}"><div class="player-wrap "><div id="player--{{section.id}}"></div></div></div>
+      {%endif%}
+      {% if section.settings.watch_button == true %}
+        <div class="button simple" data-module="lightbox" data-lightbox-type="video" data-lightbox-target="{{section.settings.url}}">Watch Video  </div>
+      {%endif%}
+    </div>  
+    {% assign product = all_products[section.settings.featured_product] %}
+    {% assign variant = product.selected_or_first_available_variant %}
+    <a href="{{product.url}}" class="vidproduct__product">
+     
+      <div class="vidproduct__image">
+        {% if section.settings.image_override != empty and section.settings.enable_override == true%}
+          {% include 'responsive-image' with image: section.settings.image_override, max_width: 900, max_height: 800 %} 
+        {% else %}
+          {{ product.images[0] | img_url: '600x' | img_tag }}
+        {% endif%}
+      </div>  
+    </a>
+    
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name" :"Video w/ Product", 
+    "class" :"standard-section",
+    "settings" : [
+      {
+        "type" : "header",
+        "content" : "Video"
+      },
+      {
+        "type" : "text",
+        "id" : "url",
+        "label" : "Youtube URL"
+      },
+      {
+        "type" : "image_picker",
+        "id" : "image",
+        "label" : "Fallback Image"
+      }, 
+      {
+        "type" :"checkbox",
+        "id" : "watch_button",
+        "label" : "Enable watch button?",
+        "default" : true
+      },
+      {
+        "type" : "header",
+        "content" : "Product"
+      },
+      {
+        "type" : "text",
+        "id" : "pre_title",
+        "label" : "Pre-Title",
+        "default" : "As Seen in our most"
+      },
+      {
+        "type" : "text",
+        "id" : "title",
+        "label" : "Title",
+        "default" : "Recent Video"
+      },
+      {
+        "type" : "richtext",
+        "id" : "content",
+        "label" : "Content"
+      },
+      {
+        "type" : "product",
+        "id" : "featured_product",
+        "label" : "Product"
+      },
+      {
+        "type" : "text",
+        "id" : "button_text",
+        "label": "Button Text"
+      },
+      {
+        "type" : "header",
+        "content" : "settings"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "reverse",
+        "label" : "Reverse Desktop Flow?",
+        "info" : "By default, the video will show before the product. Check this to reverse the flow on large screens."
+      },
+      {
+        "type" : "checkbox",
+        "id" : "show_price",
+        "label" : "Show Price?",
+        "default" : true
+      },
+      {
+        "type" : "checkbox",
+        "id" : "enable_override",
+        "label" : "Enable Override image"
+      },
+      {
+        "type" : "image_picker",
+        "id" : "image_override",
+        "label" : "Image override!",
+        "info" : "overrides the featured image!"
+      },
+       {
+        "type" : "header",
+        "content" : "Section Settings"
+      },
+       {
+        "type" : "image_picker",
+        "id" : "background_image",
+        "label" : "Background Image",
+        "info": "Use with full-width sections, please!"
+      },
+      {
+        "type" : "color",
+        "id" : "background_color",
+        "label" : "Background Color"
+      },
+      {
+        "type" : "color",
+        "id" : "text_color",
+        "label" : "Text Color"
+      },
+      {
+        "type" : "text",
+        "label" : "ID (for anchor links)",
+        "id" : "anchor_id"
+      },
+      {
+        "type" : "select",
+        "id" : "section_size",
+        "label" : "Section size",
+        "default" : "large",
+        "options" : [
+          {
+            "value" : "full-width",
+            "label" : "Full Width"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "section_spacing",
+        "label" : "Section Spacing",
+        "default" : "medium",
+        "options" : [
+          {
+            "value" : "none",
+            "label" : "No Spacing"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          },
+          {
+            "value" : "medium",
+            "label" : "Medium"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          }
+        ]
+      },
+     
+      {
+        "type" : "select",
+        "id" : "background_style",
+        "label" : "Background Style",
+        "default" : "cover",
+        "options" : [
+          {
+            "value" : "cover",
+            "label" : "Cover"
+          },
+          {
+            "value" : "repeat-x",
+            "label" : "Horizontal Tile"
+          },
+          {
+            "value" : "repeat-y",
+            "label" : "Vertical Tile"
+          },
+          {
+            "value" : "repeat-all",
+            "label" : "Tile"
+          },
+          {
+            "value" : "rellax",
+            "label" : "Parallax"
+          }
+        ]
+      }
+    ],
+    "presets" : [
+      {
+        "name" : "Video w/ Product",
+        "category" : "Video"
+      }
+    ]
+  }
+{% endschema %}

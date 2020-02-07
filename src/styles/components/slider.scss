@@ -1,0 +1,221 @@
+.image-section {
+  .swiper-slide {
+    overflow: hidden;
+  }
+}
+
+.overlay-section {
+  width: 100%;
+  margin: auto;
+  &:not(.full-width) {
+    max-width: $grid-max-width;
+  }
+  .swiper-button-prev, .swiper-button-next{
+    background: transparent;
+    i {
+      font-size: 30px;
+      color: white;
+    } 
+  }
+  .swiper-pagination-bullet {
+    background: white;
+    width: 11px; 
+    height: 11px;
+    &.active {
+      background: white;
+    }
+  }
+  
+  .swiper-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    .mobile-image {
+      display: none;
+    }
+    @include media-query($small) {
+      .mobile-image {
+        display: block;
+        &~.desktop-image {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+
+.swiper-slide.banner-slide {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  margin-bottom: -4px;
+  img {
+    width: 100%;
+  }
+  .responsive-image__wrapper, .responsive-image__wrapper img {
+    max-width: 100% !important;
+    max-height: unset !important;
+    
+  }
+  .slide-bg.rellax-image {
+    width: 100%;
+    position: relative;
+    height: auto;
+      margin-top: -10%;
+     
+    &:before{
+      content:'';
+      display: block;
+      // padding-bottom: 84vmin;
+      // min-height: 300px;
+      // @include media-query($widescreen) {
+      //   min-height: 33vw;
+      // }
+     
+    }
+    
+    .responsive-image__wrapper {
+      &::before {
+        margin: calc(5% - 2vw);
+      }
+    }
+    
+ 
+  
+    img {
+      object-fit: cover;
+    }
+  }
+}
+.swiper-slide.video-slide, .swiper-slide.background-slide {
+  padding: 8vmin 22px;
+   min-height: 39vw;
+  @include media-query($tiny) {
+  // min-height: 60vmin;
+  }
+  @include media-query($tiny) {
+    min-height: 350px;
+  }
+  position: relative;
+  .slide-bg {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    .desktop-image, .mobile-image {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      .responsive-image__wrapper {
+        width: 100%;
+        height: 100%;
+        max-height: 100% !important;
+        max-width: 100% !important;
+        img {
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
+          max-height: 100% !important;
+          max-width: 100% !important;
+        }
+      }
+    }
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .responsive-image__wrapper {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      width: 100%;
+      img {
+        object-fit: cover;
+        object-position: 50% 50%;
+      }
+    }
+  }
+}
+
+.slideshow-slide{
+  width: 100%;
+}
+
+.slide-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top:0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  padding: 2.5vw;
+}
+
+.slide-content-inner {
+  max-width: 900px;
+  text-align: center;
+  width: 90%;
+  @include media-query($small) {
+    width: 100%;
+  }
+  margin: auto;
+  h4 {
+    text-transform: uppercase;
+    letter-spacing: 0.23em;
+    font-weight: normal;
+    
+    margin: 0.8em auto;
+  }
+  .h1 {
+    margin-bottom: 0;
+  }
+  .responsive-image__wrapper {
+    width: 100%;
+    margin: auto;
+    // max-width: 100% !important;
+    
+  }
+  &.mega-text {
+    .h1 {
+      font-size: calc(2.5rem + 3vmax);
+      @include media-query($small) {
+        font-size: calc(3rem + 1vmax);
+      }
+    }
+    h4 {
+      font-size: calc(2rem+ 2vmax);
+    }
+    p {
+      font-size: calc(1.5rem + 0.25vw);
+    }
+  }
+  &.shadow-text {
+    .h1 {
+      text-shadow: 0 0 24px rgba(0,0,0,0.4);
+    }
+    h4 {
+       text-shadow: 0 0 12px rgba(0,0,0,0.4);
+    }
+  }
+}
+
+body.header-overlay .image-section:first-child {
+  .slide-content {
+    padding-top: calc(90px + 5vw);
+    
+  }
+}

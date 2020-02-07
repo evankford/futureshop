@@ -1,0 +1,242 @@
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available when you add "Rich text" section on the Theme Editor.
+
+  Theme Store required settings
+  - Heading: title of the rich text section
+  - Text: description of the rich text section
+{%- endcomment -%}
+
+{% include 'section-starter' with section_class: 'tour-dates' %}
+<div class="section-inner tour-section__inner">
+  {% assign delay = 0 %}
+  <div class="tour-header">
+    {% include 'section-header' %}
+  </div>
+  <div class="tour-main">
+
+    
+    {% if section.settings.bit_artist %}
+    {% assign limit = section.settings.limit %}
+    {% if  section.settings.limit == 0 %} {% assign limit = "" %}{%endif%}
+    <div  data-module="tour-widget" data-limit="{{section.settings.limit}}" data-artist={{section.settings.bit-artists}}>
+      <h2 class="loader">{{section.settings.tour_loading}}</h2>
+      <div class="button-wrap center">
+        <a class="button" data-expand-bit data-more-text="{{section.settings.more_button_text}}" data-less-text="{{section.settings.less_button_text}}" href="{{section.settings.bit_button_url}}">{{section.settings.more_button_text}}</a>
+      </div>
+    {%endif%}
+    <div class="error hidden">There was an error retrieving dates. Please try again.</div>
+    <div class="fallback hidden">{{section.settings.fallback_text}}</div>
+    {% if section.blocks != empty %}
+    </a>
+
+    {%endif%}
+    {% if section.settings.bit_button_text != blank and section.settings.bit_button_url != blank %}
+    <div class="rte-links">
+      {% for block in section.blocks %}
+        <a href="{{block.settings.url}}" class="simple button">{{block.settings.text}}</a>
+      {%endfor %}
+    </div>
+    {%endif%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Tour Dates",
+    "class" : "standard-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "pre_title",
+        "label": "Pre-Heading",
+        "default": "Join Johnny"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Talk about your brand"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+      },
+       {
+        "type" : "header",
+        "content" : "Tour Settings"
+      },
+      {
+        "type" : "text",
+        "id" :"tour_loading",
+        "label" : "Tour Loading Text",
+        "default" : "Loading Tour Dates"
+      },
+      {
+        "type" :"text",
+        "id" :"more_button_text",
+        "label" : "More Dates Button Text",
+        "default" : "More Dates"
+      },
+      {
+        "type" :"text",
+        "id" :"less_button_text",
+        "label" : "Less Dates Button Text",
+        "default" : "Less Dates"
+      },
+      {
+        "type" : "text",
+        "id" : "bit_artist",
+        "label" : "Bandsintown Artist Name",
+        "default" : "Keith Urban"
+      },
+      {
+        "type" : "range",
+        "id" : "limit",
+        "label" : "Limit dates?",
+        "min"  : 0,
+        "max": 100,
+        "default": 12,
+        "step" : 1,
+        "info" : "Set to 0 to show all"
+      },
+      {
+        "type": "richtext",
+        "label" : "Fallback Text",
+        "info" : "Shows when the number of dates returned is less than the limit above",
+        "id" : "fallback_text",
+        "default" : "<p>More shows coming soon.</p><p>Want more shows in your area? <a href=\"/#contact/\">Get in touch!</a></p>"
+      },
+      {
+        "type" : "url",
+        "id" : "bit_button_url",
+        "label" : "More Dates Button url"
+      },
+       {
+        "type" : "header",
+        "content" : "Section Settings"
+      },
+       {
+        "type" : "image_picker",
+        "id" : "background_image",
+        "label" : "Background Image",
+        "info": "Use with full-width sections, please!"
+      },
+      {
+        "type" : "color",
+        "id" : "background_color",
+        "label" : "Background Color"
+      },
+      {
+        "type" : "color",
+        "id" : "text_color",
+        "label" : "Text Color"
+      },
+      {
+        "type" : "text",
+        "label" : "ID (for anchor links)",
+        "id" : "anchor_id"
+      },
+      {
+        "type" : "select",
+        "id" : "section_size",
+        "label" : "Section size",
+        "default" : "large",
+        "options" : [
+          {
+            "value" : "full-width",
+            "label" : "Full Width"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "section_spacing",
+        "label" : "Section Spacing",
+        "default" : "medium",
+        "options" : [
+          {
+            "value" : "none",
+            "label" : "No Spacing"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          },
+          {
+            "value" : "medium",
+            "label" : "Medium"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          }
+        ]
+      },
+     
+      {
+        "type" : "select",
+        "id" : "background_style",
+        "label" : "Background Style",
+        "default" : "cover",
+        "options" : [
+          {
+            "value" : "cover",
+            "label" : "Cover"
+          },
+          {
+            "value" : "repeat-x",
+            "label" : "Horizontal Tile"
+          },
+          {
+            "value" : "repeat-y",
+            "label" : "Vertical Tile"
+          },
+          {
+            "value" : "repeat-all",
+            "label" : "Tile"
+          },
+          {
+            "value" : "rellax",
+            "label" : "Parallax"
+          }
+        ]
+      }
+    ],
+    "blocks" : [
+      {
+        "type" : "link",
+        "name" : "Link",
+        "settings" : [
+          {
+            "type" :"url",
+            "id" : "url",
+            "label" : "URL"
+          },
+          {
+            "type" : "text",
+            "id" : "text",
+            "label" : "Text"
+          }
+        ]
+      }
+    ],
+    "max_blocks" : 3,
+    "presets": [{
+        "name": "Tour Dates",
+        "category": "Custom (Music)"
+    }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,17 @@
+{% assign has_bg = false %}
+{% if section.settings.section_size == 'full-width' and section.settings.background_image != blank %}
+{% assign has_bg = true %}
+{%endif%}
+<section class="{{section_class}} section-outer size--{{section.settings.section_size}} spacing--{{section.settings.section_spacing}} bg-style--{{section.settings.background_style}} lazyload" id="{{section.settings.anchor_id}}" {% if has_bg == true %} data-bgset="{% include 'responsive-bg-image', image: section.settings.background_image%}" {%endif%}>
+{% if section.settings.background_color != blank or section.settings.text_color != blank %}
+  <style>
+    #shopify-section-{{section.id}} {
+      {% if section.settings.background_color != blank %}
+      background-color:  {{section.settings.background_color}};
+      {%endif%}
+      {% if section.settings.text_color != blank %}
+    color:  {{section.settings.text_color}};
+      {%endif%}
+    }
+  </style>
+{%endif%}

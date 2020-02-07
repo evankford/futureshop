@@ -1,0 +1,123 @@
+body {
+  position: relative;
+  height: auto;
+}
+
+.shopify-section {
+  overflow-x: hidden;
+}
+
+.section-outer {
+  margin: 0;
+  .section-inner {
+    widtH: 100%;
+    margin: auto;
+  }
+  &.size--large {
+    max-width: $grid-widescreen;
+    margin-left: auto;
+    margin-right: auto;
+    width: 94%;
+  }
+  
+  &.size--small {
+    max-width: $grid-large;
+
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+  }
+  
+ 
+  &.spacing--small {
+    margin-top: calc(14px + 1vmin);
+    margin-bottom: calc(12px + 1vmin);
+  }
+  &.spacing--medium {
+    margin-top: calc(20px + 1.9vmin);
+    margin-bottom: calc(18px + 1.4vmin);
+  }
+  &.spacing--large {
+    margin-top: calc(30px + 3vmin);
+    margin-bottom: calc(24px + 2vmin);
+  }
+  
+   &.size--full-width {
+    width: 100%;
+    max-width: 100%;
+    .section-inner {
+      width: 94%;
+      max-width: $grid-max-width;
+      margin-left: auto;
+      margin-right: auto;
+      &.stretch-width {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+    margin: 0;
+    &.spacing--small {
+        padding-top: calc(14px + 1vmin);
+        padding-bottom: calc(12px + 1vmin);
+      }
+      &.spacing--medium {
+        padding-top: calc(20px + 1.9vmin);
+        padding-bottom: calc(18px + 1.4vmin);
+      }
+      &.spacing--large {
+        padding-top: calc(30px + 3vmin);
+        padding-bottom: calc(24px + 2vmin);
+      }
+  }
+  
+  
+  &.bg-style--cover {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+  &.bg-style--repeat-x {
+    background-size: auto 100%;
+    background-repeat: repeat-x;
+  }
+  &.bg-style--repeat-y {
+    background-size: 100% auto;
+    background-repeat: repeat-y;
+  }
+  &.bg-style--repeat-all {
+    background-size: auto;
+    background-repeat: repeat;
+  }
+  
+  
+  
+  .section-header {
+    max-width: $grid-medium;
+    
+    margin: calc(9px + 0.4vw) auto calc(20px + 0.96vw);
+    ::last-child {
+      margin-bottom: 0;
+    }
+     h4 {
+      // text-transform: uppercase;
+      font-weight: normal;
+      // letter-spacing: 0.3em;
+    }
+    .h2 {
+      margin: 0.35em auto 0.15em;
+    }
+  }
+  
+}
+
+body.heading-alignment--center {
+  .section-header {
+    text-align: center;
+  }
+}
+body.heading-alignment--left {
+  .section-header {
+    text-align: left;
+  }
+}
+

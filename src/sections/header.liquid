@@ -1,0 +1,759 @@
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available in the "Header" section in the theme editor.
+
+  Theme Store required settings
+  - Show announcement
+  - Text: message to announce
+  - Link: link of the announcement bar
+
+  Theme Store optional settings
+  - Home page only: only shows on the home page
+{%- endcomment -%}
+
+<style>
+  #shopify-section-header {
+   
+    {% if section.settings.top_text_color %}
+    --top-text: {{section.settings.top_text_color }};
+    {%endif %}
+   
+    {% if section.settings.text_color %}
+    --header-text: {{section.settings.text_color }};
+    {%endif %}
+    {% if section.settings.text_color_hover %}
+    --header-text-hover: {{section.settings.text_color_hover }};
+    {%endif %}
+    {% if section.settings.overlay_color %}
+    --color-overlay: {{section.settings.overlay_color }};
+    {%endif %}
+    {% if settings.texture_header == true and settings.main_background != blank %}
+        --header-bg: transparent;
+        --top-bg: transparent;
+        background-image: url('{{settings.main_background | img_url: '1600x'}}');
+        {% case settings.background_style %}
+          {% when 'repeat-all' %}
+            background-repeat: repeat;
+            background-size: auto;
+          {% when 'repeat-x' %}
+            background-repeat: repeat-x;
+            background-size: auto 100%;
+          {% when 'repeat-y' %}
+            background-repeat: repeat-y;
+            background-size: 100% auto;
+          {% when 'fit' %}
+            background-repeat: no-repeat;
+            background-size: contain;
+          {% when 'stretch' %}
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+          {% else %}
+            background-repeat: no-repeat;
+            background-size: cover;
+        {%endcase%}
+    {%else %}
+    {% if section.settings.top_bg_color %}
+      --top-bg: {{section.settings.top_bg_color }};
+    {%endif %}
+     {% if section.settings.bg_color %}
+       --header-bg: {{section.settings.bg_color }};
+    {%endif %}
+    {%endif%}
+  }
+</style>
+
+
+{% capture search_markup %} 
+{% include 'search-drawer' %}
+{%endcapture %}
+{% capture cart_markup %}
+<div class="cart-outer">
+     <a href="/cart" aria-label="{{ 'layout.cart.title' | t }}">
+      {% include 'icon-cart' %}
+      {% if section.settings.show_cart_text != blank %}
+      <span class="cart-text">{{section.settings.show_cart_text}}</span>
+      {%endif%}
+      {% if cart.item_count > 0 %}
+      <div class="cart-items">{{ cart.item_count }}</div>
+      {%endif%}
+    </a>
+    </div>
+{%endcapture%}
+
+
+{%capture header_markup %}
+  <header role="banner">
+    {% if template.name == 'index' %}
+      <h1 class="{{section.settings.header_font_size }} {% if section.settings.logo == blank and section.settings.logo_overlay == blank%} fallback{%endif%}">
+    {% else %}
+      <div class="h1 {{section.settings.header_font_size }} {% if section.settings.logo == blank and section.settings.logo_overlay == blank%} fallback{%endif%}">
+    {% endif %}
+        <a href="/" class="logo-wrap "> 
+                    {% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
+              {% if template.name == "index" and section.settings.overlay == true %}
+              <div class="overlay-logo">
+                 {% if section.settings.logo_snippet_overlay != blank %}
+                  {%include section.settings.logo_snippet_overlay %}
+                  {% elsif section.settings.logo_overlay != blank %}
+                      <img src="{{ section.settings.logo_overlay | img_url: image_size }}"
+                    sizes="50vw"
+                    srcset="{{ section.settings.logo_overlay | img_url: '200x' }} 200w, {{ section.settings.logo_overlay | img_url: '450x' }} 450w, {{ section.settings.logo_overlay | img_url: '720x' }} 720w, {{ section.settings.logo_overlay | img_url: '900x' }}  "
+                    alt="{{ section.settings.logo_overlay.alt | default: shop.name }}">
+                  {% else %}
+                    <span class="title-text">{{ shop.name }}</span>
+                  {% endif %}
+                </div>
+              {%endif%}
+              {% if section.settings.logo_snippet != blank %}
+                {%include section.settings.logo_snippet %}
+              {% elsif section.settings.logo != blank %}
+
+                   <img src="{{ section.settings.logo | img_url: image_size }}"
+                    sizes="50vw"
+                    srcset="{{ section.settings.logo | img_url: '200x' }} 200w, {{ section.settings.logo | img_url: '450x' }} 450w, {{ section.settings.logo | img_url: '720x' }} 720w, {{ section.settings.logo | img_url: '900x' }}  "
+                    alt="{{ section.settings.logo.alt | default: shop.name }}">
+
+            {% else %}
+            <span class="title-text">
+              {{ shop.name }}
+            </span>
+            {% endif %}
+        </a>
+    {% if template.name == 'index' %}
+      </h1>
+    {% else %}
+      </div>
+    {% endif %}
+  </header>
+{%endcapture %}
+
+{% if section.settings.overlay  == true and template.name == 'index'%}
+<script>
+document.body.classList.add('header-overlay');
+</script>
+{%endif%}
+
+
+<section data-section-id="{{ section.id }}" class=" {% if section.settings.box_shadow  == true%} box-shadow {%endif%} {% if section.settings.overlay  == true and template.name == 'index'%} overlay-header overlay-active {%endif%}" data-section-type="header" style="{% if section.settings.bg_color != blank and settings.texture_header != true %}background-color: {{section.settings.bg_color}}; {%endif%}{% if section.settings.text_color != blank%}color: {{section.settings.text_color}};{% endif %}">
+
+<!-- header-above. Often includes announcements, etc -->
+<div class="header-above {% if section.settings.slide_in  == true%} slide-in {%endif%} " style="{% if section.settings.top_bg_color != blank and settings.texture_header != true %}background-color: {{section.settings.top_bg_color}}; {%endif%}{% if section.settings.top_text_color != blank%}color: {{section.settings.top_text_color}};{% endif %}">
+  <div class="header-above__inner">
+  {% if section.settings.layout_socials == 'top-bar' %}
+    {% include 'social-icons' %}
+    {%endif%}
+     {%- if section.settings.announcement_bar_enabled -%}
+        {%- if section.settings.announcement_bar_home_page_only == false or template.name == 'index' -%}
+      <div class="header-announce">
+          {%- if section.settings.announcement_bar_link != blank -%}
+            <a href="{{ section.settings.announcement_bar_link }}">
+              {{ section.settings.announcement_bar_text  }}
+            </a>
+          {%- else -%}
+            <p>{{ section.settings.announcement_bar_text }}</p>
+          {%- endif -%}
+      </div>
+        {%- endif -%}
+    {%- endif -%}
+      {% if section.settings.email_button_text != blank %}
+      <div class="signup-outer">
+        <div class="lightbox-button button outline please" data-lightbox-type="html" data-module="lightbox" data-lightbox-target="newsletter">{{section.settings.email_button_text}}</div>
+        <div class="lightbox-content" data-lightbox-content="newsletter">{% include 'newsletter-popup' %}</div>
+    </div>
+      {%endif%}
+        {% if section.settings.layout_search == 'above' %}
+          {{search_markup}}
+          {%endif%}
+        {% if section.settings.layout_cart == 'top-bar' %}
+          {{cart_markup}}
+        {%endif%}
+  </div> <!--end header-above__inner-->
+</div>
+
+<div class="site-header__inner {% if section.settings.layout_header == 'above' %}force-wrap{%endif%} mobile--{{section.settings.layout_mobile}} {% if section.settings.enable_mobile_menu == true %} make-mobile {%endif%}">
+  
+  {% if section.settings.layout_header == 'above' %}
+  <div class="header-fullwidth">
+  {{header_markup}}
+  </div>
+  {%endif%}
+  
+  {% if section.settings.layout_header == 'menu' %}
+  {{header_markup}}
+  {%endif%}
+  
+  {% if section.settings.layout_header == 'menu-centered' %}
+      <div class="mobile-logo">
+        {{header_markup}}
+      </div>
+  {%endif%}
+  
+  {% if section.settings.layout_socials == 'before-menu' %}
+    {% include 'social-icons' %}
+    {%endif%}
+    
+      
+<nav role="navigation" class="main-nav {% if section.settings.enable_mobile_menu == true %} make-mobile {%endif%} font-weight--{{section.settings.menu_font_weight}} text-align--{{section.settings.menu_text_align}} {% if section.settings.layout_header == 'menu-centered' %} has-halves {%endif%} " id="site-nav" >
+  <div class="nav-inner">
+  <ul>
+  
+  {% assign menu = linklists[section.settings.menu] %}
+  
+  
+    {% if section.settings.layout_header == 'menu-centered' %}
+  <div class="nav-halves">
+  
+  {% assign menu_count = menu.links.size %}
+   {% assign menu_break = menu_count | divided_by: 2 %}
+   {% unless section.settings.layout_search == 'menu'  or section.settings.layout_cart == 'menu' %}
+    {% assign menu_break = menu_break | minus : 1 %}  {%comment %} Want one less on the left if there are extras {%endcomment%}
+   {%endunless%}
+  {% assign menu_count = menu_count | minus: 1 %} {%comment %} fix for the loop! {%endcomment%}
+   
+   <div class="nav-half nav-half__first">
+    {% for i in (0 ..menu_break) %}
+    {% assign link = menu.links[i] %}
+      {% assign isbacklink = '' %}
+      {% if section.settings.back_to_site == 'first' and i == 0 %} {% assign isbacklink = 'back-link' %}{%endif%}
+      {% include 'menu-li'%}
+    {%endfor %}
+   </div>
+   <div class="centered-logo">{{header_markup}}</div>
+   <div class="nav-half nav-half__last">
+   {% assign continue = menu_break | plus: 1 %}  {%comment %} Start after where we left off {%endcomment%}
+      {% for i in (continue .. menu_count) %}
+        {% assign link = menu.links[i] %}
+        {% assign isbacklink = '' %}
+        {% if section.settings.back_to_site == 'last' and i == menu_count%} {% assign isbacklink = 'back-link' %}{%endif%}
+        {% include 'menu-li'%}
+    {%endfor%}
+    {% if section.settings.layout_search == 'menu'  or section.settings.layout_cart == 'menu' %}
+      <div class="nav-half__extras">
+          {% if section.settings.layout_search == 'menu' %}
+            <li>
+              {{search_markup}}
+            </li>
+            
+            {%endif%}
+            {% if section.settings.layout_cart == 'menu' %}
+            <li >
+              {{cart_markup}}
+            </li>
+            
+          {%endif%}
+      </div><!-- end extras -->
+    {% endif%}
+    
+  
+   </div>
+   </div><!-- end nav-halves -->
+  {%else %}{%comment%}If not menu-centered {%endcomment%}
+    
+ 
+    
+  
+    
+      {% for link in menu.links %}
+        {% assign isbacklink = '' %}
+        {% if section.settings.back_to_site == 'first' and forloop.index <= 1%} {% assign isbacklink = 'back-link' %}{%endif%}
+        {% if section.settings.back_to_site == 'last' and forloop.index >= linklists[section.settings.menu].links.size %} {% assign isbacklink = 'back-link' %}{%endif%}
+        {% include 'menu-li'%}
+        
+      {% endfor %}
+        {% if section.settings.layout_search == 'menu' %}
+        <li>
+          {{search_markup}}
+        </li>
+        
+        {%endif%}
+        {% if section.settings.layout_cart == 'menu' %}
+        <li >
+          {{cart_markup}}
+        </li>
+        
+        {%endif%}
+      {%endif%} {%comment%}End menu-centered conditional {%endcomment%}
+    </ul>
+    {% if section.settings.layout_socials == 'after-menu' and section.settings.layout_header != 'menu-centered' %}  {%comment%}Disable if menu-centered {%endcomment%}
+    
+   {% include 'social-icons' %}
+   {%endif%}
+  {% if section.settings.mobile_socials == true and section.settings.enable_mobile_menu == true %}
+  <div class="mobile-socials mobile-menu-extra">
+    {% include 'social-icons' %}
+  </div>
+  {%endif%}
+   {% if section.settings.mobile_email == true and section.settings.enable_mobile_menu == true  %}
+      <div class="mobile_email mobile-menu-extra">
+        <div class="lightbox-button button" data-lightbox-type="html" data-module="lightbox-newsletter" data-lightbox-target="newsletter">{{section.settings.email_button_text | default: 'Get Emails'}}</div>
+        <div class="lightbox-content" data-lightbox-content="newsletter">{% include 'newsletter-popup' %}</div>
+      </div>
+    {%endif%}
+   
+    </div><!-- end nav-inner-->
+  </nav>
+  <div class="mobile-cart">
+    {{cart_markup}}
+  </div>
+  <button class="mobile-nav-toggle">
+    <div class="opener">
+      {% if section.settings.menu_text == true %}<span>Menu </span>{%endif%}
+      <i class="opener fas fa-bars" aria-label="open menu"></i >
+    </div>
+    <div class="closer">
+      {% if section.settings.menu_text == true %}<span>Close </span>{%endif%}
+      <i class="closer fas fa-times"></i aria-label="open menu">
+    </div>
+  </button>
+</div>
+</section>
+
+
+  <style>
+    .logo-wrap {
+      display: block;
+    }
+    .site-header__inner img, .site-header__inner svg {
+      max-width: {{ section.settings.logo_max_width }}px;
+      
+    }
+    @media only screen and (max-width: 750px) {
+      .site-header__inner img, .site-header__inner svg {
+        max-width: {{ section.settings.logo_max_width_mobile }}px;
+      
+      }
+    }
+  </style>
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type" : "header",
+        "content": "settings"
+      },
+      {
+        "type" : "color",
+        "id" : "bg_color",
+        "label" : "Background Color",
+        "default" : "#ffffff"
+      },
+      {
+        "type" : "color",
+        "id" : "text_color",
+        "label" : "Text Color",
+        "default" : "#3a3a3a"
+      },
+      {
+        "type" : "color",
+        "id" : "text_color_hover",
+        "label" : "Text Color (Hover)",
+        "default" : "#1a1a1a"
+      },
+      {
+        "type" : "color",
+        "id" : "top_bg_color",
+        "label" : "Top Background Color",
+        "default" : "#000000"
+      },
+      {
+        "type" : "color",
+        "id" : "top_text_color",
+        "label" : "Top Text Color",
+        "default" : "#efefef"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "box_shadow",
+        "label" : "Shadow?"
+      },
+      {
+        "type" : "header",
+        "content" : "Layout"
+      },
+        {
+        "type" : "select",
+        "id" : "layout_header",
+        "label" : "Header Position",
+        "default" : "menu",
+        "options" : [
+           {
+             "value" : "menu",
+             "label" : "In Menu"
+           },
+           {
+             "value" : "above",
+             "label" : "Above Menu"
+           },
+           {
+             "value" : "menu-centered",
+             "label" : "Centered in Menu"
+           }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "layout_cart",
+        "label" : "Cart Position",
+        "default" : "menu",
+        "options" : [
+           {
+             "value" : "menu",
+             "label" : "In Menu"
+           },
+           {
+             "value" : "top-bar",
+             "label" : "In Top Bar"
+           }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "layout_socials",
+        "label" : "Socials Position",
+        "default" : "top-bar",
+        "options" : [
+           {
+             "value" : "before-menu",
+             "label" : "Before Menu"
+           },
+           {
+             "value" : "after-menu",
+             "label" : "After Menu"
+           },
+           {
+             "value" : "top-bar",
+             "label" : "In Top Bar"
+           },
+           {
+             "value" : "disabled",
+             "label" : "Disable Socials"
+           }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "layout_search",
+        "label" : "Search Position",
+        "default" : "menu",
+        "options" : [
+          
+            {
+              "value" : "disabled",
+              "label" : "Disable Search"
+            },
+           {
+             "value" : "menu",
+             "label" : "In Menu"
+           },
+           {
+             "value" : "above",
+             "label" : "Above Menu"
+           }
+        ]
+      },
+     
+      {
+        "type" : "select",
+        "id" : "layout_mobile",
+        "label" : "Mobile Cart Layout",
+        "default" : "centered-cart",
+        "options" : [
+          
+            {
+              "value" : "centered-cart",
+              "label" : "Logo Centered (w/cart)"
+            },
+           {
+             "value" : "left-cart",
+             "label" : "Logo Left (w/cart)"
+           },
+           {
+             "value" : "left-nocart",
+             "label" : "Logo Left (cart in menu)"
+           }
+        ]
+      },
+     {
+       "type" : "text",
+       "id" : "show_cart_text",
+       "label" : "Cart Text",
+       "info" : "Leave Blank for just Icon!"
+     },
+      {
+        "type": "header",
+        "content": "Announcement bar"
+      },
+      {
+        "type": "checkbox",
+        "id": "announcement_bar_enabled",
+        "label": "Show announcement",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "announcement_bar_home_page_only",
+        "label": "Show on home page only",
+        "default": true
+      },
+      {
+        "type": "richtext",
+        "id": "announcement_bar_text",
+        "label": "Announcement text",
+        "default": "<p>Announce something <b>here!</b></p>"
+      },
+       {
+        "type" : "checkbox",
+        "id" : "slide_in",
+        "label" : "Slide in top bar?"
+      },
+      {
+        "type" :"checkbox",
+        "id" :"header_socials",
+        "label" : "Enable header socials?"
+      },
+
+      {
+        "type" : "text",
+        "id" : "email_button_text",
+        "label" : "Email Button Text",
+        "info" : "Leave Blank to disable email button. Form uses sitewide settings!"
+      },
+      
+      {
+        "type": "header",
+        "content": "Header"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+     {
+        "type" : "text",
+        "id" : "logo_snippet",
+        "label" :"Logo Snippet Name",
+        "info" : "Name of svg snippet in the snippets folder. Omit the .liquid!"
+      },
+     
+
+    {
+      "type": "range",
+      "id": "logo_max_width",
+      "label": {
+        "de": "Logobreite",
+        "en": "Custom logo width",
+        "es": "Ancho del logotipo personalizado",
+        "fr": "Largeur personnalisée du logo",
+        "it": "Larghezza logo personalizzato",
+        "ja": "ロゴの幅をカスタムする",
+        "pt-BR": "Largura do logotipo personalizado"
+      },
+      "min": 50,
+      "max": 900,
+      "step": 25,
+      "unit": {
+        "de": "px",
+        "en": "px",
+        "es": "px",
+        "fr": "px",
+        "it": "px",
+        "ja": "px",
+        "pt-BR": "px"
+      },
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "logo_max_width_mobile",
+      "label": "Custom logo width (mobile)",
+      "min": 50,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "default": 140
+    },
+    {
+      "type" : "select",
+      "id" : "header_font_size",
+      "label" : "Header Font Size",
+      "options" : [
+        {
+        "value" : "h3",
+          "label" : "Small"
+        },
+        {
+          "value" : "h2",
+          "label" : "Medium"  
+        },
+        {
+          "value" : "h1",
+          "label" : "Large"
+        },
+        {
+          "value" : "mega",
+          "label" : "Mega"
+        }
+      ]
+    },
+    {
+      "type" : "header",
+      "content" :"overlay"
+    },
+     {
+        "type" : "checkbox",
+        "id" : "overlay",
+        "label" : "Overlay on first section?"
+      },
+       {
+        "type": "image_picker",
+        "id": "logo_overlay",
+        "label": "Logo image (overlay)"
+      },
+     {
+        "type" : "text",
+        "id" : "logo_snippet_overlay",
+        "label" :"Logo Snippet Name (Overlay)",
+        "info" : "Name of svg snippet in the snippets folder. Omit the .liquid!"
+      },
+      {
+        "type" : "color",
+        "id" : "overlay_color",
+        "label" : "Overlay Color"
+      },
+ 
+    {
+      "type" : "header",
+      "content" : "Menu"
+    },
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Menu",
+        "default": "main-menu"
+      },
+   
+    {
+      "type" : "select",
+      "id" : "menu_font_weight",
+      "label" : "Menu Font Weight",
+      "options" : [
+        {
+          "value" : "regular",
+          "label" : "Regular"
+        },
+        {
+          "value" : "bold",
+          "label" : "Bold"
+        }
+      ]
+    },
+    {
+      "type" : "select",
+      "id" : "menu_text_align",
+      "label" : "Menu Text Align",
+      "options" : [
+          {
+          "value" : "left",
+          "label" : "Left"
+        },
+        {
+          "value" : "center",
+          "label" : "Center"
+        },
+        {
+          "value" : "right",
+          "label" : "Right"
+        }
+      ]
+    },
+    {
+      "type" : "select",
+      "id" : "back_to_site",
+      "label" :"Back To Site Link Position",
+      "default" : "none",
+      "options" : [
+        {
+          "value" : "none",
+          "label" :"None"
+        },
+        {
+          "value" :"last",
+          "label" : "Last Link"
+        },
+        {
+          "value" : "first",
+          "label" : "First Link"
+        }
+      ]
+    },
+    {
+      "type" : "header",
+      "content" : "Mobile"
+    },
+    {
+      "type" : "checkbox",
+      "id" : "enable_mobile_menu",
+      "label" : "Enable Mobile Menu?",
+      "default" : true
+    },
+    {
+      "type" : "checkbox",
+      "id" : "mobile_socials",
+      "label": "Mobile Menu Socials?"
+    },
+    {
+      "type" : "checkbox",
+      "id" : "mobile_email",
+      "label": "Mobile Menu Email Signup?"
+    },
+    {
+      "type" : "checkbox",
+      "id" : "mobile_text",
+      "label": "Mobile Menu Text",
+      "info" : "Includes 'Menu' text next to icon"
+    }
+    
+  ]
+}
+{% endschema %}
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "{{ shop.name }}",
+  {% if section.settings.logo %}
+    {% assign image_size = section.settings.logo.width | append:'x' %}
+    "logo": "https:{{ section.settings.logo | img_url: image_size }}",
+  {% endif %}
+  "sameAs": [
+    "{{ settings.social_twitter_link }}",
+    "{{ settings.social_facebook_link }}",
+    "{{ settings.social_pinterest_link }}",
+    "{{ settings.social_instagram_link }}",
+    "{{ settings.social_tumblr_link }}",
+    "{{ settings.social_snapchat_link }}",
+    "{{ settings.social_youtube_link }}",
+    "{{ settings.social_vimeo_link }}"
+  ],
+  "url": "{{ shop.url }}{{ page.url }}"
+}
+</script>
+
+{% if template.name == 'index' %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "{{ shop.name }}",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ shop.url }}/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "url": "{{ shop.url }}{{ page.url }}"
+    }
+  </script>
+{% endif %}

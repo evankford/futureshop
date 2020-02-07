@@ -1,0 +1,171 @@
+{% if section.settings.show_related_products == true %}
+<div class="product-template__container page-width" itemscope itemtype="http://schema.org/Product" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="related-products" data-enable-history-state="true">
+ 
+
+
+{% assign heading = section.settings.related_title %}
+
+{% comment %}
+  Set either or both to true, if you want
+  to limit yourself to items with same vendor, and/or type.
+{% endcomment %}
+
+{% assign same_vendor = false %}
+{% assign same_type = false %}
+
+{% comment %}
+  Collections to ignore.
+  Never pick related items from those.
+{% endcomment %}
+
+{% assign exclusions = 'frontpage,all' | split: ',' %}
+
+{% comment %}
+  Looking for a relevant collection.
+{% endcomment %}
+
+{% if product.metafields.c_f['Related Products'] %}
+  {% assign collection = collections[product.metafields.c_f['Related Products']] %}
+{% endif %}
+
+{% assign found_a_collection = false %}
+{% if collection and collection.all_products_count > 1 %}
+  {% unless exclusions contains collection.handle %}
+    {% assign found_a_collection = true %}
+  {% endunless %}
+{% endif %}
+{% unless found_a_collection %}
+  {% for c in product.collections %}
+    {% unless exclusions contains c.handle or c.all_products_count < 2 %}
+      {% assign found_a_collection = true %}
+      {% assign collection = c %}
+      {% break %}
+    {% endunless %}
+  {% endfor %}
+{% endunless %}
+
+{% comment %}
+  If we have a relevant collection.
+{% endcomment %}
+
+{% if found_a_collection %}
+
+  {% assign counter = 0 %}
+  {% assign break_at = section.settings.limit %}
+  {% assign current_product = product %}
+  
+
+
+{% assign max = counter %}
+  {% capture related_items %}
+    {% for product in collection.products %}
+      {% unless product.handle == current_product.handle %}
+         {% unless same_vendor and current_product.vendor != product.vendor %}
+           {% unless same_type and current_product.type != product.type %}
+           {% include 'grid-item' with secondary_image: true, show_price: true, simplify: section.settings.simplify, hover_details: section.settings.hover_details %}
+             {% assign counter = counter | plus: 1 %}
+              {% assign max = counter %}
+             {% if counter == break_at %}
+               {% break %}
+             {% endif %}
+           {% endunless %}
+        {% endunless %}
+      {% endunless %}
+    {% endfor %}
+  {% endcapture %}
+
+  {% assign related_items = related_items | trim %}
+
+  {% unless related_items == blank %}
+
+  <aside class=" related-products section-outer">
+      <div class="section-inner">
+        {% if section.settings.related_title != blank or section.settings.related_pre_title != blank %}
+          <div class="collection-header section-header">
+    {% if section.settings.related_pre_title != blank %}
+      <h4 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 section-header__pre_title">{{ section.settings.related_pre_title | escape }}</h4>
+    {% endif %}
+    {% if section.settings.related_title != blank %}
+      <h2 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h2 section-header__title">{{ section.settings.related_title | escape }}</h2>
+      {%endif%}
+          </div>
+        {%endif%}
+      <div class="grid-uniform collection-grid product-grid size--{{section.settings.size}}" data-max="{{max}}">
+        {{ related_items }}
+      </div>
+      </div>
+  </aside>
+
+  {% endunless %}
+     
+{% endif %}
+  
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Related products",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_related_products",
+      "label": "Show related products",
+      "default": false
+    },
+    {
+      "id": "related_pre_title",
+      "type": "text",
+      "label": "Title",
+      "default": "Check out these"
+    },
+    {
+      "id": "related_title",
+      "type": "text",
+      "label": "Section title",
+      "default": "Other fine products"
+    },
+    {
+      "type" : "range",
+      "id" :"limit",
+      "label" : "Limit",
+      "default" : 4,
+      "step": 1,
+      "min": 2,
+      "max": 12
+    },
+     {
+        "type" : "select",
+        "id" : "size",
+        "label" : "Grid Size",
+        "default" : "large",
+        "options" : [
+          {
+            "value" : "small",
+            "label" : "Small"
+          },
+          {
+            "value" : "standard",
+            "label" : "Standard"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          }
+        ]
+      },
+    {
+      "type" : "checkbox",
+      "id" : "simplify",
+      "default" : true,
+      "label" : "Simplify related products?"
+    },
+    {
+      "type" : "checkbox",
+      "id" : "hover_details",
+      "default" : true,
+      "label" : "Details on hover?"
+    }
+  ]
+}
+{% endschema %}

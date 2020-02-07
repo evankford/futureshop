@@ -1,0 +1,22 @@
+.eg-cc-compliance > a {
+  @extend %button;
+  margin: 0;
+  border-radius: $border-radius !important;
+  &:hover {
+   @extend %button;
+   margin: 0;
+  }
+}
+
+body.button-style--outline {
+  .eg-cc-compliance > a:hover,
+  .eg-cc-compliance > a:focus {
+  &:hover {
+    background: transparent !important;;
+  }
+}
+}
+
+.eg-cc-message {
+  @include font-body();
+}

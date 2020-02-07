@@ -1,0 +1,15 @@
+ {% if section.settings.pre_title != blank or section.settings.title != blank  %}
+  <div class="section-header">
+    {% if section.settings.pre_title != blank %}
+      <h4 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4  section-header__pre_title">{{ section.settings.pre_title | escape }}</h4>
+    {% endif %}
+    {% if section.settings.title != blank %}
+      <h2 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h2 section-header__title">{{ section.settings.title | escape }}</h2>
+    {% endif %}
+  </div>
+  {%endif%}
+  {%- if section.settings.text != blank -%}
+    <div class="rte">
+      {{ section.settings.text }}
+    </div>
+  {%- endif -%}

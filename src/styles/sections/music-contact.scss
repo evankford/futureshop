@@ -1,0 +1,33 @@
+.contact-columns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 45px auto;
+  .contact-blocks {
+    flex: 1 1 220px;
+    max-width: 400px;
+    .h4 {
+      font-size: 19px;
+      @include font-extra;
+      letter-spacing: 0.1em;
+    }
+    .h3 {
+      font-size: 34px;
+    }
+  }
+  .contact-block {
+    margin: 22px 0;
+    padding: 12px;
+  }
+  .contact-main {
+    flex: 1 1 550px;
+    max-width: 780px;
+    input[type="email"], input[type=text], textarea {
+      background: rgba(white, 0.4);
+      &:focus {
+        background: rgba(white, 0.8);
+      }
+    }
+  }
+}

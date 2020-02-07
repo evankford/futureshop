@@ -1,0 +1,244 @@
+
+/* 
+   Swatches Styles
+*/
+
+$swatchwidth: 60px;
+$swatchheight: 30px;
+
+
+.swatch { 
+  margin:0.6em 0; 
+}
+/* Label */
+.swatch .header {
+  margin: 0.5em 0;
+  font-family: $font-heading;
+  // text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.05em;
+  &:after {
+    // content:':';
+  }
+  .option-value--holder {
+    font-weight: normal;
+    text-transform: none;
+    letter-spacing: 0;
+    font-family: $font-body;
+  }
+  color: $color-body-text;
+
+}
+/* Hide radio buttons.*/
+.swatch input { 
+  display:none;
+}
+.swatch label {
+  /* Rounded corners */
+  border-radius:$border-radius-small;
+  
+  /* To give width and height */
+  display: inline-block;
+  /* Color swatches contain no text so they need to have a width. */
+  min-width:$swatchwidth !important; 
+  min-height:$swatchheight !important;
+  /* No extra spacing between them */
+  margin:1px;
+  font-size:1em;
+  text-align:center;
+  line-height:$swatchheight ;
+  white-space:nowrap;
+  // text-transform:uppercase;
+  letter-spacing: -0.03em;
+  font-family: $font-heading;
+  border: 1px solid $color-body-text;
+  color: $color-body-text;
+  opacity: 0.6;
+  transition: opacity 200ms $ease;
+  padding: 2px 10px;
+  &:hover {
+    opacity: 0.8;
+  }
+  
+}
+// .swatch-element label { padding:0 10px; }
+.color.swatch-element label { padding:0; }
+/* Styling selected swatch */
+/* Slightly raised */
+.swatch input:checked + label {
+  
+  opacity: 1;
+  border-width: 4px;
+  transform: scale(1.1);
+} 
+.swatch .swatch-element {
+  display: inline-block;
+  transform:translateZ(0); /* webkit flicker fix */
+  -webkit-font-smoothing:antialiased; /* webkit text rendering fix */
+  /* Spacing between buttons */
+  margin:0px 5px 5px 0;
+  position:relative;
+}
+.swatch-element.color {
+  label {
+    width: 100px;
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: 50% 50%;
+    opacity: 1;
+  }
+  .tooltip {
+    left: 0;
+  }
+}
+/* Image with the cross in it */
+.crossed-out { position:absolute; width:100%; height:100%; left:0; top:0; }
+.swatch .swatch-element .crossed-out { display:none; }
+.swatch .swatch-element.soldout .crossed-out { display:block; }
+.swatch .swatch-element.soldout label {
+  filter: alpha(opacity=60); /* internet explorer */
+}
+/* Tooltips */
+.swatch .tooltip {
+  text-align:center;
+  background:$color-body-text;
+  color:#fff;
+  bottom:100%;
+  padding: 7px;
+  display:block;
+  position:absolute;
+  width:100px;
+  pointer-events: none;
+  left:0;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom:15px;
+  /* Make it invisible by default */
+  filter:alpha(opacity=0);
+  -khtml-opacity: 0;
+  -moz-opacity: 0;
+  opacity:0;
+  visibility:hidden;
+  /* Animations */
+  
+          transform: translateY(10px);
+  
+          transition: all .25s ease-out;
+  
+          box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  z-index: 10000;
+  -moz-box-sizing:border-box; 
+  -webkit-box-sizing:border-box; 
+  box-sizing:border-box;
+}
+.swatch .tooltip:before {
+  bottom:-20px;
+  content:" ";
+  display:block;
+  height:20px;
+  left:0;
+  position:absolute;
+  width:100%;
+}
+/* CSS triangle */
+.swatch .tooltip:after {
+  border-left:solid transparent 8px;
+  border-right:solid transparent 8px;
+  border-top:solid $color-body-text 8px;
+  bottom:-8px;
+  content:" ";
+  height:0;
+  left:50%;
+  margin-left:-6px;
+  position:absolute;
+  width:0;
+}
+.swatch .swatch-element:hover .tooltip {
+  filter:alpha(opacity=100);
+  -khtml-opacity:1;
+  -moz-opacity:1;
+  opacity:1;
+  visibility:visible;
+          transform:translateY(0px);
+}
+.swatch.error {
+  background-color:#E8D2D2!important;
+  color:#333!important;
+  padding:1em;
+  border-radius:5px;
+}
+.swatch.error p {
+  margin:0.7em 0;
+}
+.swatch.error p:first-child {
+  margin-top:0;
+}
+.swatch.error p:last-child {
+  margin-bottom:0;
+}
+.swatch.error code {
+  font-family:monospace;
+}
+
+.swatch-element {
+  display: inline-block;
+  margin: 2px;
+  font-size: 15px;
+  line-height: 1em;
+  transition: transform 400ms ease;
+  cursor: pointer;
+  &.sold-out {
+    opacity: 0.6;
+  }
+  &:hover {
+    transform: translateY(-2px)
+  }
+  &:first-child {
+    margin-left:0;
+  }
+
+
+  input {
+    appearance: none;
+    // display: inline-block;
+    position: absolute;
+    top:0;
+    opacity:0;
+
+  }
+}
+
+.selector-wrapper {
+  margin: 0 auto 0.5em;
+  label {
+     margin: 0.5em 0;
+     display: inline-block;
+     vertical-align: middle;
+    font-family: $font-body;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    opacity: 0.5;
+
+  }
+  select {
+  background: transparent;
+    border-radius: 5px;
+    padding: 8px 4px;
+    // appearance: none;
+    font-size: 18px;
+    border: 2px solid $color-border;
+    margin: 5px;
+    vertical-align: middle;
+    display: inline-block;
+  }
+}
+
+
+
+.swatch-element:not(.available) {
+  opacity: 0.4;
+  label {
+    border-width: 1px !important
+  }
+}

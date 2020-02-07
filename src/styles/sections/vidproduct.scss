@@ -1,0 +1,132 @@
+.vidproduct__inner {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: $grid-max-width;
+  margin: auto;
+  width: 94%;
+  align-items: center;
+  justify-content: center;
+  .button-wrap {
+    flex: 1 1 100%;
+    margin: 4px auto ; 
+    text-align: center;
+    .button {
+      margin: 0.4em;
+    }
+  }
+}
+
+.vidproduct__video {
+  position: relative;
+  box-shadow: 0 0 75px rgba(0,0,0,0.15),  3px 3px 7px rgba(0,0,0,0.2);
+  z-index: 20;
+  flex: 1 1 350px;
+  max-width: 780px;
+  padding-bottom: 37.5%;
+  height: 0;
+  overflow: hidden;
+  @include media-query($medium-down) {
+    padding-bottom: 50%;
+    
+  }
+  @include media-query($small) {
+    order: 3;
+    max-width: 500px;
+    flex: 0 1 90%;
+  }
+  .button {
+    position: absolute;
+    bottom: 5%;
+    text-align: center;
+    color: white;
+    z-index: 20;
+    text-align: center;
+    padding: 12px;
+    width: 100%;
+  }
+  .vidproduct__fallback {
+    @extend %psuedo;
+    .responsive-image__wrapper {
+      height: 100%;
+    }
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 50%;
+    }
+  }
+}
+
+
+.vidproduct__header {
+  flex: 1 1 90%;
+  text-align: center;
+  position: relative;
+  z-index: 20;
+  p {
+    margin: 0 auto 12px;
+  }
+  h5 {
+    font-weight: normal;
+  }
+  @include media-query($small) {
+    order: 1;
+  }
+  
+  @include media-query($medium-up) {
+    margin-bottom: -10px;
+    
+  }
+  @include media-query($large-up) {
+    padding: 12px 4%;
+    text-align: center;
+  }
+  @include media-query($small) {
+    h2 {
+      font-size: 45px;
+    }
+  }
+}
+
+.vidproduct__product {
+  flex: 1 1 220px;
+  max-width: 420px;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+  @include media-query($small) {
+    order: 2;
+    margin-bottom: -35%;
+  }
+  color: $color-body-text;
+  text-decoration: none;
+  @include media-query($tiny) {
+    display: block;
+    width: 80%;
+  }
+  p {
+    font-size: 16px;
+    line-height: 1.34;
+    margin: 0;
+  }
+  .vidproduct__image {
+    width: 100%;
+    width: calc(100% + 150px);
+    margin-left: -150px;
+    @include media-query($small) {
+      margin: auto;
+      width: 100%;
+      max-width: 420px;
+    }
+    .responsive-image__wrapper  {
+      width: 100%;
+    }
+    &>img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+

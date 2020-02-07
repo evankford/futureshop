@@ -1,0 +1,34 @@
+nav.breadcrumb {
+  padding: 1em;
+  margin: calc(5px + 1vw) 0 calc(15px + 2vw);
+  color: $color-border-darker;
+  @include media-query($small) {
+    text-align: center;
+    font-size: 0.9em;
+  }
+  letter-spacing: 0.01em;
+
+  max-width: $grid-max-width;
+  // width: 94%;
+  @include font-body;
+  &+.product-grid  {
+    margin-top: 0;
+  }
+  a {
+    text-decoration: none;
+    color: $color-body-text;
+    font-weight: 600;
+    @include transition(transform);
+    &:hover {
+      transform: translateY(-2px)
+    }
+    
+    
+  }
+}
+
+body.product-style--card {
+  nav.breadcrumb {
+    margin: 0 0 calc(12px + 1vw)
+  }
+}

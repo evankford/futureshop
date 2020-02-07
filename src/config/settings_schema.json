@@ -1,0 +1,613 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Starter theme",
+    "theme_version": "1.0.0",
+    "theme_author": "Shopify",
+    "theme_documentation_url": "https://github.com/Shopify/starter-theme",
+    "theme_support_url": "https://github.com/Shopify/starter-theme/issues"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent",
+        "default": "#c4cdd5",
+        "info": "Buttons and special ornaments"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_inverse",
+        "label": "Accent Inverse",
+        "default": "#000",
+        "info": "Inverse of accent for buttons, etc"
+      },
+      {
+        "type": "color",
+        "id": "color_secondary",
+        "label": "Secondary",
+        "default": "#c4cdd5",
+        "info": "Another Accent Color (buttons)"
+      },
+      {
+        "type": "color",
+        "id": "color_secondary_inverse",
+        "label": "Secondary Inverse",
+        "default": "#000",
+        "info": "Inverse of secondary for buttons, etc"
+      },
+      {
+        "type": "color",
+        "id": "color_body_text",
+        "label": "Text",
+        "default": "#161d25"
+      },
+      {
+        "type": "color",
+        "id": "color_main_bg",
+        "label": "Background",
+        "default": "#fff"
+      },
+      {
+        "type": "header",
+        "content": "cards"
+      },
+      {
+        "type": "color",
+        "label": "Card Background",
+        "id": "color_card_background",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "label": "Card Text",
+        "id": "color_card_text",
+        "default": "#3f3f3f"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "font_heading",
+        "default": "helvetica_n4",
+        "label": "Headings"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_body",
+        "default": "helvetica_n4",
+        "label": "Body text"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_extra",
+        "default": "helvetica_n9",
+        "label": "Extra Font"
+      },
+      {
+        "type": "header",
+        "content": "typekit"
+      },
+      {
+        "type": "text",
+        "id": "typekit_text",
+        "label": "Typekit Code",
+        "info": "(from the kit on fonts.adobe.com)"
+      },
+      {
+        "type": "text",
+        "id": "heading_typekit",
+        "label": "Typekit Heading",
+        "info": "Usually all lowercase + hyphenated"
+      },
+      {
+        "type": "text",
+        "id": "body_typekit",
+        "label": "Typekit Body",
+        "info": "Usually all lowercase + hyphenated"
+      }
+    ]
+  },
+  {
+    "name": "Swatches",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Use with care: pair exact color titles with hex codes (including the #, please!)"
+      },
+      {
+        "type": "richtext",
+        "id": "swatch-hexes",
+        "label": "Swatch Hexes"
+      }
+    ]
+  },
+  {
+    "name": "Theme Styles",
+    "settings": [
+      {
+        "type": "header",
+        "content": "general"
+      },
+      {
+        "type": "range",
+        "unit": "px",
+        "id": "border_roundness",
+        "label": "Border Roundness",
+        "step": 1,
+        "min": 0,
+        "default": 0,
+        "max": 30
+      },
+      {
+        "type": "header",
+        "content": "Headers"
+      },
+      {
+        "type": "select",
+        "id": "header_style",
+        "label": "Header Style",
+        "default": "standard",
+        "options": [
+          {
+            "value": "standard",
+            "label": "Standard"
+          },
+          {
+            "value": "high",
+            "label": "High Emphasis"
+          },
+          {
+            "value": "caps",
+            "label": "All Caps"
+          },
+          {
+            "value": "caps-spaced",
+            "label": "All Caps - Spaced"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "header_alignment",
+        "label": "Header Alignment",
+        "default": "center",
+        "options": [
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Buttons"
+      },
+      {
+        "type": "select",
+        "id": "button_font",
+        "label": "Button Font",
+        "default": "body",
+        "options": [
+          {
+            "value": "body",
+            "label": "Body Font"
+          },
+          {
+            "value": "heading",
+            "label": "Heading Font"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "button_style",
+        "label": "Button Style",
+        "default": "solid",
+        "options": [
+          {
+            "value": "solid",
+            "label": "Solid"
+          },
+          {
+            "value": "outline",
+            "label": "Outline"
+          },
+          {
+            "value": "underline",
+            "label": "Underline"
+          },
+          {
+            "value": "gradient",
+            "label": "Gradient"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "capitalize_buttons",
+        "default": true,
+        "label": "Capitalize Buttons?"
+      },
+      {
+        "type": "header",
+        "content": "Products"
+      },
+      {
+        "type": "select",
+        "id": "product_style",
+        "label": "Product style",
+        "options": [
+          {
+            "value": "simple",
+            "label": "Simple"
+          },
+          {
+            "value": "bordered",
+            "label": "Bordered"
+          },
+          {
+            "value": "card",
+            "label": "Card"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "price_style",
+        "default": "simple",
+        "label": "Price Style?",
+        "options": [
+          {
+            "value": "simple",
+            "label": "Simple"
+          },
+          {
+            "value": "background",
+            "label": "On Dark Background"
+          },
+          {
+            "value": "bordered",
+            "label": "Bordered"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "capitalize_product_titles",
+        "default": true,
+        "label": "Capitalize Product Titles?"
+      },
+      {
+        "type": "checkbox",
+        "id": "price_flex",
+        "label": "Price inline with title?",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "details_center",
+        "label": "Center Product Details",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Theme images"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_background",
+        "label": "Main Background"
+      },
+      {
+        "type": "select",
+        "id": "background_style",
+        "label": "Background Style",
+        "options": [
+          {
+            "value": "repeat-all",
+            "label": "Tile"
+          },
+          {
+            "value": "repeat-y",
+            "label": "Repeat Vertically"
+          },
+          {
+            "value": "repeat-x",
+            "label": "Repeat Horizontally"
+          },
+          {
+            "value": "fit",
+            "label": "Fit"
+          },
+          {
+            "value": "stretch",
+            "label": "Stretch"
+          },
+          {
+            "value": "cover",
+            "label": "Cover"
+          }
+        ],
+        "default": "cover"
+      },
+      {
+        "type": "checkbox",
+        "id": "texture_header",
+        "label": "Texture Header"
+      },
+      {
+        "type": "checkbox",
+        "id": "texture_footer",
+        "label": "Texture Footer"
+      }
+    ]
+  },
+  {
+    "name": "Newsletter Signup",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Settings"
+      },
+      {
+        "type": "header",
+        "content": "Popup Settings"
+      },
+      {
+        "type": "text",
+        "id": "signup_cta_text",
+        "label": "Popup CTA Text",
+        "default": "Get Updates"
+      },
+      {
+        "type": "color",
+        "id": "signup_background_color",
+        "label": "Background Color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "signup_text_color",
+        "label": "Text Color",
+        "default": "#efefef"
+      },
+      {
+        "type": "text",
+        "id": "signup_title",
+        "label": "Title",
+        "default": "The latest content in your inbox!"
+      },
+      {
+        "type": "textarea",
+        "id": "signup_subtitle",
+        "label": "Sub-Title",
+        "default": "Get inspired by news, conversations and more! Be the first to know about releases and store sales."
+      },
+      {
+        "type": "text",
+        "id": "signup_success",
+        "label": "Success Text",
+        "default": "Thanks! You'll be hearing from us soon."
+      },
+      {
+        "type": "text",
+        "id": "signup_button_text",
+        "label": "Button Text",
+        "default": "Sign Up"
+      },
+      {
+        "type": "header",
+        "content": "Minimal/Simple Settings"
+      },
+      {
+        "type": "text",
+        "id": "signup_minimal_text",
+        "label": "Main text",
+        "default": "Enter Email For Updates"
+      },
+      {
+        "type": "text",
+        "id": "signup_minimal_success",
+        "label": "Main text",
+        "default": "Thanks"
+      },
+      {
+        "type": "text",
+        "id": "gdpr_text",
+        "label": "GDPR Text",
+        "default": "I want to receive deals & news from this store"
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Social sharing image"
+      },
+      {
+        "type": "image_picker",
+        "id": "share_image",
+        "label": "Image",
+        "info": "Shown when sharing a link on social media. [Learn more](https://help.shopify.com/manual/using-themes/troubleshooting/showing-social-media-thumbnail-images/) about image thumbnails."
+      },
+      {
+        "type": "header",
+        "content": "Social sharing options"
+      },
+      {
+        "type": "checkbox",
+        "id": "social_sharing_blog",
+        "label": "Enable sharing for blog articles",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_facebook",
+        "label": "Share on Facebook",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_twitter",
+        "label": "Tweet on Twitter",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_pinterest",
+        "label": "Pin on Pinterest",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Sharing links"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter link"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook link"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest link"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram link"
+      },
+      {
+        "type": "text",
+        "id": "social_snapchat_link",
+        "label": "Snapchat link"
+      },
+      {
+        "type": "text",
+        "id": "social_soundcloud_link",
+        "label": "Soundcloud link"
+      },
+      {
+        "type": "text",
+        "id": "social_tumblr_link",
+        "label": "Tumblr link"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "Youtube link"
+      },
+      {
+        "type": "text",
+        "id": "social_spotify_link",
+        "label": "Spotify link"
+      },
+      {
+        "type": "text",
+        "id": "social_apple_link",
+        "label": "Apple Music link"
+      },
+      {
+        "type": "text",
+        "id": "social_pandora_link",
+        "label": "Pandora link"
+      },
+      {
+        "type": "text",
+        "id": "social_vimeo_link",
+        "label": "Vimeo link"
+      },
+      {
+        "type": "header",
+        "content": "Social Link Options"
+      },
+      {
+        "type": "select",
+        "id": "social_link_style",
+        "label": "Icon Link Style",
+        "default": "simple",
+        "options": [
+          {
+            "value": "simple",
+            "label": "Simple"
+          },
+          {
+            "value": "circle",
+            "label": "Circle"
+          },
+          {
+            "value": "circle-border",
+            "label": "Circle Border"
+          },
+          {
+            "value": "square",
+            "label": "Square"
+          },
+          {
+            "value": "square-border",
+            "label": "Square Border"
+          }
+        ]
+      },
+      {
+        "type": "color",
+        "id": "social_text_color",
+        "label": "Social Link Color"
+      },
+      {
+        "type": "color",
+        "id": "social_background_color",
+        "label": "Social Link Background Color",
+        "info": "Only works for non-simple styles"
+      },
+      {
+        "type": "checkbox",
+        "id": "social_flip",
+        "label": "Flip color on hover?"
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "cart_notes_enable",
+        "label": "Enable cart notes",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image",
+        "info": "Will be scaled down to 32 x 32px"
+      }
+    ]
+  }
+]

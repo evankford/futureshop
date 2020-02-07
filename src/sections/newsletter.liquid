@@ -1,0 +1,197 @@
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available when you add "Newsletter" section on the Theme Editor.
+
+  Theme Store required settings
+  - Heading: title of the newsletter section
+  - Subheading: description of the newsletter section
+{%- endcomment -%}
+
+
+
+{% assign has_bg = false %}
+{% if section.settings.section_size == 'full-width' and section.settings.background_image != blank %}
+{% assign has_bg = true %}
+{%endif%}
+<section class="newsletter-section standard-section section-outer size--{{section.settings.section_size}} spacing--{{section.settings.section_spacing}} bg-style--{{section.settings.background_style}} lazyload" id="{{section.settings.anchor_id}}" {% if has_bg == true %} data-bgset="{% include 'responsive-bg-image', image: section.settings.background_image%}" {%endif%}>
+{% if section.settings.background_color != blank or section.settings.text_color != blank %}
+  <style>
+    #shopify-section-{{section.id}} {
+      {% if section.settings.background_color != blank %}
+      background-color:  {{section.settings.background_color}};
+      {%endif%}
+      {% if section.settings.text_color != blank %}
+      color:  {{section.settings.text_color}};
+      {%endif%}
+    }
+  </style>
+{%endif%}
+<div class="section-inner">
+{% assign delay = 0 %}
+    {% if section.settings.pre_title != blank or section.settings.title != blank  %}
+  <div class="newsletter-header section-header">
+    {% if section.settings.pre_title != blank %}
+      <h4 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 caps section-header__pre_title">{{ section.settings.pre_title | escape }}</h4>
+    {% endif %}
+    {% if section.settings.title != blank %}
+      <h2 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h2 section-header__title">{{ section.settings.title | escape }}</h2>
+    {% endif %}
+    {% if section.settings.subheading != blank %}
+      <p>{{ section.settings.subheading | escape }}</p>
+    {% endif %}
+  </div>
+  {%endif%}
+
+  {% form 'customer' %}
+    {{ form.errors | default_errors }}
+    {% if form.posted_successfully? %}
+      <p>{{ 'general.newsletter_form.confirmation' | t }}</p>
+    {% else %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <input type="email"
+        name="contact[email]"
+        id="Email"
+        value="{% if customer.email != blank %}{{ customer.email }}{% endif %}"
+        placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
+        autocorrect="off"
+        autocapitalize="off">
+      <button type="submit" name="commit" class="button secondary" id="Subscribe">
+        <span>{{ 'general.newsletter_form.submit' | t }}</span>
+      </button>
+    {% endif %}
+  {% endform %}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Newsletter",
+    "class" : "standard-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "pre_title",
+        "label": "pre_title",
+        "default": "Sign Up For"
+      },
+      {
+        "type": "text",
+        "id": "section_title",
+        "label": "Title",
+        "default": "Email Updates"
+      },
+      {
+        "type": "text",
+        "id": "subheading",
+        "label": "Subheading",
+        "default": "A short sentence describing what someone will receive by subscribing"
+      },
+      {
+        "type": "paragraph",
+        "content": "Any customers who sign up will have an account created for them in Shopify. [View customers](/admin/customers?query=&accepts_marketing=1)"
+      },
+       {
+        "type" : "header",
+        "content" : "Section Settings"
+      },
+       {
+        "type" : "image_picker",
+        "id" : "background_image",
+        "label" : "Background Image",
+        "info": "Use with full-width sections, please!"
+      },
+      {
+        "type" : "color",
+        "id" : "background_color",
+        "label" : "Background Color"
+      },
+      {
+        "type" : "color",
+        "id" : "text_color",
+        "label" : "Text Color"
+      },
+      {
+        "type" : "text",
+        "label" : "ID (for anchor links)",
+        "id" : "anchor_id"
+      },
+      {
+        "type" : "select",
+        "id" : "section_size",
+        "label" : "Section size",
+        "default" : "large",
+        "options" : [
+          {
+            "value" : "full-width",
+            "label" : "Full Width"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "section_spacing",
+        "label" : "Section Spacing",
+        "default" : "medium",
+        "options" : [
+          {
+            "value" : "none",
+            "label" : "No Spacing"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          },
+          {
+            "value" : "medium",
+            "label" : "Medium"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          }
+        ]
+      },
+     
+      {
+        "type" : "select",
+        "id" : "background_style",
+        "label" : "Background Style",
+        "default" : "cover",
+        "options" : [
+          {
+            "value" : "cover",
+            "label" : "Cover"
+          },
+          {
+            "value" : "repeat-x",
+            "label" : "Horizontal Tile"
+          },
+          {
+            "value" : "repeat-y",
+            "label" : "Vertical Tile"
+          },
+          {
+            "value" : "repeat-all",
+            "label" : "Tile"
+          },
+          {
+            "value" : "rellax",
+            "label" : "Parallax"
+          }
+        ]
+      }
+    ],
+    "presets": [{
+      "name": "Newsletter",
+      "category": "Promotional"
+    }]
+  }
+{% endschema %}

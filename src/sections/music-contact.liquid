@@ -1,0 +1,209 @@
+
+{% include 'section-starter' with section_class: 'music-contact' %}
+<div class="section-inner contact-columns">
+{% if section.blocks.size > 0 %}
+<div class="contact-blocks">
+{%for block in section.blocks %}
+  <div class="contact-block">
+    <h4 class="h4 label">{{block.settings.title}}</h4>
+    <div class="h3">{{block.settings.name}}</div>
+    <a class="button inherit" href="{{block.settings.url}}">Contact</a>
+  </div>
+{%endfor%}
+</div>
+{%endif%}
+<div class="contact-main">}
+  {% include 'section-header' %}
+  {%include 'contact-form' %}
+</div>
+</div>
+{% schema %}
+{
+  "name" : "Contact Section",
+  "class" : "contact",
+  "settings" : [
+  
+    {
+      "type" : "header",
+      "content" : "Section Settings"
+    },
+    {
+      "type" : "image_picker",
+      "id" : "background_image",
+      "label" : "Background Image",
+      "info": "Use with full-width sections, please!"
+    },
+    {
+      "type" : "color",
+      "id" : "background_color",
+      "label" : "Background Color"
+    },
+    {
+      "type" : "color",
+      "id" : "text_color",
+      "label" : "Text Color"
+    },
+    {
+      "type" : "text",
+      "label" : "ID (for anchor links)",
+      "id" : "anchor_id"
+    },
+    {
+      "type" : "select",
+      "id" : "section_size",
+      "label" : "Section size",
+      "default" : "large",
+      "options" : [
+        {
+          "value" : "full-width",
+          "label" : "Full Width"
+        },
+        {
+          "value" : "large",
+          "label" : "Large"
+        },
+        {
+          "value" : "small",
+          "label": "Small"
+        }
+      ]
+    },
+    {
+      "type" : "select",
+      "id" : "section_spacing",
+      "label" : "Section Spacing",
+      "default" : "medium",
+      "options" : [
+        {
+          "value" : "none",
+          "label" : "No Spacing"
+        },
+        {
+          "value" : "small",
+          "label": "Small"
+        },
+        {
+          "value" : "medium",
+          "label" : "Medium"
+        },
+        {
+          "value" : "large",
+          "label" : "Large"
+        }
+      ]
+    },
+  
+    {
+      "type" : "select",
+      "id" : "background_style",
+      "label" : "Background Style",
+      "default" : "cover",
+      "options" : [
+        {
+          "value" : "cover",
+          "label" : "Cover"
+        },
+        {
+          "value" : "repeat-x",
+          "label" : "Horizontal Tile"
+        },
+        {
+          "value" : "repeat-y",
+          "label" : "Vertical Tile"
+        },
+        {
+          "value" : "repeat-all",
+          "label" : "Tile"
+        },
+        {
+          "value" : "rellax",
+          "label" : "Parallax"
+        }
+      ]
+    },
+    {
+      "type" : "header",
+      "content" : "contact form"
+    },
+    {
+      "type" : "text",
+      "id" : "button_text",
+      "label" : "Button Text",
+      "default" :"Contact"
+    },
+      {
+      "type": "text",
+      "id": "pre_title",
+      "label": "Pre-Heading",
+      "default": " to"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Get in touch"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Have any questions or comments to share? Want to book a show or reach out about music? Drop us an email using the form below.</p>"
+    }
+  ],
+  "blocks" : [
+    {
+      "type" : "contact",
+      "name" : "Contact",
+      "settings" : [
+        {
+          "type" :"url",
+          "id" : "url",
+          "label" : "URL"
+        },
+        {
+          "type" : "text",
+          "id" : "title",
+          "label" : "Title"
+        },
+        {
+          "type" : "text",
+          "id" : "name",
+          "label" : "Name"
+        }
+      ]
+    }
+  ],
+  "presets" : [
+    {
+      "name" : "Contact Section", 
+      "category" : "Custom (Music)",
+      "blocks" : [
+        {
+          "type" : "contact",
+          "settings" : {  
+            "url" : "#",
+            "title" : "MGMT",
+            "name" :"Management Co"
+          }
+        },
+        {
+          "type" : "contact",
+          "settings" : {  
+            "url" : "#",
+            "title" : "Booking",
+            "name" :"Booking Agency"
+          }
+        },
+        {
+          "type" : "contact",
+          "settings" : {  
+            "url" : "#",
+            "title" : "Label",
+            "name" :"Our Label"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

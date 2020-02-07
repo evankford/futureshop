@@ -1,0 +1,109 @@
+
+<style>
+
+
+
+@font-face  {
+  font-family: "Hext";
+  src: url({{'hext.woff2' | asset_url}}) format('woff2'), url({{'hext.woff2' | asset_url}}) format('woff');
+  font-weight: 900;
+  font-style: bold; 
+}
+@font-face  {
+  font-family: "Icons";
+  src: url("{{'icomoon.woff' | asset_url}}") format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+ 
+  {{ settings.font_heading | font_face }}
+  {{ settings.font_extra | font_face }}
+
+  {{ settings.font_body | font_face }}
+
+  {%- assign font_body_bold = settings.font_body | font_modify: 'weight', 'bolder' -%}
+  {%- assign font_heading_light= settings.font_heading | font_modify: 'weight', 'lighter' -%}
+  {%- assign font_body_bold_italic = font_body_bold | font_modify: 'style', 'italic' -%}
+
+  {{ font_body_bold | font_face }}
+  {{ font_heading_light | font_face }}
+  {{ font_body_bold_italic | font_face }}
+  
+  
+  
+  :root {
+    --border-radius: {{ settings.border_roundness }}px;
+    --border-radius-small: {{ settings.border_roundness | times: 0.5 }}px;
+    --border-radius-big: {{ settings.border_roundness | times: 2 }}px;
+    
+    
+    --color-accent: {{ settings.color_accent }};
+    --color-accent-darker: {{ settings.color_accent | color_darken: 20 }};
+    --color-accent-lighter: {{ settings.color_accent | color_lighten: 10 | color_saturate: 0}};
+    --color-accent-lightest: {{ settings.color_accent | color_lighten: 40 | color_saturate: 20 }};
+    --color-accent-downplay: {{ settings.color_accent | color_lighten: 20 | color_desaturate: 20}};
+    --color-accent-darkest: {{ settings.color_accent | color_darken: 52 | color_saturate: 10 }};
+    --color-accent-inverse: {{ settings.color_accent_inverse }};
+
+    --color-secondary: {{ settings.color_secondary }};
+    --color-secondary-darker: {{ settings.color_secondary | color_darken: 10 }};
+    --color-secondary-inverse: {{ settings.color_secondary_inverse }};
+    --color-body-text: {{ settings.color_body_text }};
+    --color-main-background: {{ settings.color_main_bg }};
+    --color-border: {{ settings.color_body_text | color_lighten: 80 | color_desaturate: 70 }};
+    --color-border-darker: {{ settings.color_body_text | color_lighten: 55 | color_desaturate: 70 }};
+    --color-card-bg: {{ settings.color_card_background }};
+    --color-card-text: {{ settings.color_card_text }};
+
+    {% if settings.heading_typekit != blank %}
+    --font-heading:  {{settings.heading_typekit}} ,{{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
+    {%else %}
+    --font-heading:  {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
+    {% endif%}
+    {% comment %} --font-heading:  "GTABlack", "Helvetica", arial, sans-serif; {% endcomment %}
+    {% if settings.body_typekit != blank %}
+      
+    --font-body: {{settings.body_typekit}} , {{ settings.font_body.fallback_families }};
+    {%else%}
+    --font-body: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }};
+
+    --font-extra:   {{ settings.font_extra.family }}, {{ settings.font_extra.fallback_families }};;
+    
+    {% endif%}
+    --font-body-weight: {{ settings.font_body.weight }};
+    --font-heading-weight: {{ settings.font_heading.weight }};
+    --font-extra-weight: {{ settings.font_extra.weight }};
+    --font-body-style: {{ settings.font_body.style }};
+    --font-body-bold-weight: {{ font_body_bold.weight | default: 'bold' }};
+  }
+  
+  body {
+    {% if settings.main_background  != blank %} 
+    height: auto !important;
+    background-image: url('{{settings.main_background | img_url: '1600x'}}');
+    padding: 1px 0;
+    {%endif%}
+    {% case settings.background_style %}
+      {% when 'repeat-all' %}
+        background-repeat: repeat;
+        background-size: auto;
+      {% when 'repeat-x' %}
+        background-repeat: repeat-x;
+        background-size: auto 100%;
+      {% when 'repeat-y' %}
+        background-repeat: repeat-y;
+        background-size: 100% auto;
+      {% when 'fit' %}
+        background-repeat: no-repeat;
+        background-size: contain;
+      {% when 'stretch' %}
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      {% else %}
+        background-repeat: no-repeat;
+        background-size: cover;
+    {%endcase%}
+  }
+  
+</style>

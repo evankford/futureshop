@@ -1,0 +1,54 @@
+body.template-list-collections  {
+  main h1:first-child {
+    text-align: center;
+    margin: calc(3rem + 4vw) auto calc(1.2rem + 2vw);
+  }
+  
+}
+
+.collections-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  .collection-block {
+    display: flex;
+    flex: 1 1 255px;
+    text-align: center;
+    margin: 12px;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: column;
+    transition: transform 300ms ease;
+    img, .responsive-image__wrapper  {
+      width: 100%;
+      height: auto;
+    }
+    @supports(object-fit: contain) {
+      .responsive-image__wrapper {
+        width: 200px;
+        height: 125px;
+        img {
+          object-fit: contain;
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+    a:first-child {
+      width: 100%;
+      margin-bottom: 12px;
+    }
+    p {
+      text-align: center;
+      margin-bottom: 0;
+      a {
+        text-decoration: none;
+        font-size: calc(1.6rem + 0.21vw);
+      }
+    }   
+    &:hover {
+      transform: translateY(-2px)
+    }
+  }
+}

@@ -1,0 +1,349 @@
+{% unless section.settings.disable == true %}
+{% assign delay = 0 %}
+<footer id="main-footer" class="flex-style--{{section.settings.footer_alignment}}">
+  <style>
+    #main-footer {
+      {% if section.settings.bg_color != blank %}
+      background-color: {{section.settings.bg_color}}; 
+       --bg-color: {{section.settings.bg_color}};
+      {%endif%}
+      {% if section.settings.text_color != blank%}
+      color: {{section.settings.text_color}};
+      --text-color: {{section.settings.text_color}};
+      {% endif %}
+    }
+  </style>
+  <div class="footer-content">
+    {% for block in section.blocks %}
+      <div class="footer-col footer-{{block.type}} align--{{block.settings.text_align}}">
+       
+        {% if block.settings.title != blank %}<h4 class="footer-header">{{block.settings.title}}</h4>{%endif%}
+        
+        {% if block.type == 'brand' %} 
+          {% if block.settings.image_snippet != blank or block.settings.image != blank %}
+            <a href="/" class="footer-logo" style="max-width: {{block.settings.logo_max_width}}px" >
+              {% if block.settings.image_snippet != blank %}
+                {%include block.settings.image_snippet %}
+              {%elsif block.settings.image != blank %}
+                {% include 'responsive-image'  with image: block.settings.image, max_width: 700, max_height: 400 %}
+              {%endif%}
+            </a>
+          {%endif%}
+          {% if block.settings.email != blank %}
+            <a class="email-contact" href="mailto:{{block.settings.email}}">
+              <i  class="fas fa-envelope"></i> {{block.settings.email}}
+            </a>
+          {%endif%}
+          {% if block.settings.phone != blank %}
+            <a class="phone-contact" rel="tel" href="tel:{{block.settings.phone}}">
+              <i  class="fas fa-phone-alt"></i> {{block.settings.phone}}
+            </a>
+          {%endif%}
+          {% if block.settings.socials == true %}
+            <div class="social-wrap"   data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
+              {% include 'social-icons' with social_style: block.settings.socials_style %}
+            </div> 
+          {%endif%}
+          
+        {% elsif block.type == 'newsletter' %}
+          {% if block.settings.content != blank %}
+            <div class="footer-content">{{block.settings.content}}</div>
+          {%endif%}
+          <div class="footer-signup__form">
+            {% form 'customer' %}
+
+              {{ form.errors | default_errors }}
+
+              {% if form.posted_successfully? %}
+                <ul class="form-success">
+                  <li>{{ 'general.password_page.signup_form_success' | t }}</li>
+                </ul>
+              {% else %}
+                <input type="hidden" name="contact[tags]" value="prospect, footer">
+              
+              <div class="input-group">
+              <label for="email">
+                  {{ 'general.password_page.signup_form_email_label' | t }}
+                </label>
+                <input type="email"
+                  name="contact[email]"
+                  id="Email"
+                  spellcheck="false"
+                  autocomplete="off"
+                  autocapitalize="off"
+                  placeholder="{{ 'general.password_page.signup_form_email_placeholder' | t }}">
+              </div>
+              <div class="input-group btn-group">
+                <button type="submit" name="commit" class="button solid">Sign Up </button>
+              </div>
+              <div id="accepts_marketing " class="clearfix large_form">
+                <input type="checkbox" name="customer[accepts_marketing]" value="true" id="marketing" />
+                {% assign default_gdpr = 'I want to receive deals, news, and content from ' | append: shop.name | append: '.'%}
+                <label for="marketing" style="font-weight:normal">{{block.settings.gdpr | default: default_gdpr }}</label>
+              </div>
+              {% endif %}
+            {% endform %}
+          </div>
+        {% elsif block.type == 'menu' %}
+          {% if linklists[block.settings.menu].links.size > 0 %}
+                <ul class="footer-menu"  data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" >
+                  {% for link in linklists[block.settings.menu].links %}
+                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                  {% endfor %}
+                </ul>
+          {% endif %}
+        {%endif%}
+      </div>
+    {%endfor%}
+  </div> 
+  <div class="super-footer">
+    <div class="copyright {% if section.settings.center_copyright == true %} centered {%endif%}"  data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
+      {{ 'layout.footer.copyright' | t }} &copy; {{ 'now' | date: "%Y" }} {{section.settings.copy}}
+    </div>
+
+      {% if section.settings.fs_link == true %}
+    <p class="fs-link"  data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
+      <a href="http://futureshirts.com" target="_blank" rel="nofollow" aria-label="futureshirts">{% include 'fs.svg' %}</a>
+    </p>
+      {%endif%}
+   {% if section.settings.show_payment_icons %}
+        {% unless shop.enabled_payment_types == empty %}
+          <span class="visually-hidden">{{ 'layout.footer.payment_methods' | t }}</span>
+          <ul class="payment-icons"  data-aos-delay="600">
+            {% for type in shop.enabled_payment_types %}
+              <li>
+                {{ type | payment_type_svg_tag: class: 'icon' }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endunless %}
+      {% endif %} 
+  </div>
+</footer>
+{%endunless%}
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type" : "header",
+        "content": "settings"
+      },
+      {
+        "type" : "color",
+        "id" : "bg_color",
+        "label" : "Background Color",
+        "default" : "#000000"
+      },
+      {
+        "type" : "color",
+        "id" : "text_color",
+        "label" : "Text Color",
+        "default" : "#efefef"
+      },
+      {
+        "type" : "header",
+        "content" : "settings"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "disable",
+        "label" : "Disable Footer?"
+      },
+      {
+        "type" : "select",
+        "id" : "footer_alignment",
+        "label" : "Alignment",
+        "options" : [
+          {
+            "value" :"true-center",
+            "label" : "Stacked - Centered"
+          },
+          {
+            "value" :"center",
+            "label" : "Column - Centered"
+          },
+          {
+            "value" :"spaced",
+            "label" : "Spaced"
+          },
+          {
+            "value" :"left",
+            "label" : "Left"
+          }
+        ]
+      },
+      {
+        "type" : "header",
+        "content" : "menu"
+      },
+      {
+        "type" : "richtext",
+        "id" : "copy",
+        "label"  :"Footer Copyright Text",
+        "info" : "Immediately follows the copyright symbol and year."
+      },
+      {
+        "type" :"checkbox",
+        "id" : "center_copyright",
+        "label" : "Center Copyright?"
+      },
+      {
+        "type" :"checkbox",
+        "id" : "fs_link",
+        "label" : "Show Futureshirts link?"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_payment_icons",
+        "label": "Show payment icons",
+        "default": false
+      }
+    ],
+    "blocks" : [
+      {
+        "type" : "brand",
+        "name" : "Branding",
+        "settings" : [
+          {
+            "type" : "text",
+            "id" : "title",
+            "label" : "Title"
+          },
+          {
+            "type" : "image_picker",
+            "id" : "image",
+            "label" : "Image"
+          },
+          {
+            "type" : "text",
+            "id" : "image_snippet",
+            "label" : "Image Snippet"
+          },
+           {
+            "type": "range",
+            "id": "logo_max_width",
+            "label": {
+              "de": "Logobreite",
+              "en": "Custom logo width",
+              "es": "Ancho del logotipo personalizado",
+              "fr": "Largeur personnalisée du logo",
+              "it": "Larghezza logo personalizzato",
+              "ja": "ロゴの幅をカスタムする",
+              "pt-BR": "Largura do logotipo personalizado"
+            },
+            "min": 50,
+            "max": 500,
+            "step": 10,
+            "unit": {
+              "de": "px",
+              "en": "px",
+              "es": "px",
+              "fr": "px",
+              "it": "px",
+              "ja": "px",
+              "pt-BR": "px"
+            },
+            "default": 100
+          },
+          {
+            "type" : "text",
+            "id" : "email",
+            "label" : "Email"
+          },
+          {
+            "type" : "text",
+            "id" : "phone",
+            "label" : "Phone Contact"
+          },
+          {
+            "type" : "checkbox",
+            "id" : "socials",
+            "label" : "Include Socials?"
+          },
+           {
+            "type" : "select",
+            "id" : "text_align",
+            "label" : "Text Align",
+            "options" : [
+                {
+                "value" : "left",
+                "label" : "Left"
+              },
+              {
+                "value" : "center",
+                "label" : "Center"
+              },
+              {
+                "value" : "right",
+                "label" : "Right"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "menu",
+        "name" : "Menu",
+        "settings" : [
+          {
+            "type" : "text",
+            "id" : "title",
+            "label" : "Title"
+          },
+          {
+            "type" : "link_list",
+            "id" : "menu",
+            "label" : "Menu"
+          },
+          {
+            "type" : "select",
+            "id" : "text_align",
+            "label" : "Menu Text Align",
+            "options" : [
+                {
+                "value" : "left",
+                "label" : "Left"
+              },
+              {
+                "value" : "center",
+                "label" : "Center"
+              },
+              {
+                "value" : "right",
+                "label" : "Right"
+              },
+              {
+                "value" : "flex",
+                "label" : "Side-by-side"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "newsletter",
+        "name" : "Newsletter",
+        "settings" : [
+          {
+            "type" : "text",
+            "id" : "title",
+            "label" : "Title"
+          },
+          {
+            "type" : "richtext",
+            "id" : "content",
+            "label" : "Above Form Content"
+          },
+          {
+            "type" : "richtext",
+            "id" : "gdpr",
+            "label" : "GDPR"
+          }
+        ]
+      }
+    ]
+  }
+
+{% endschema %}

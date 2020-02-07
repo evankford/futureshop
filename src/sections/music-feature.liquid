@@ -1,0 +1,248 @@
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available when you add "Music Feature" section on the Theme Editor.
+
+  Theme Store required settings
+  - Heading: title of the Music Feature section
+  - Text: description of the Music Feature section
+{%- endcomment -%}
+
+{% assign has_bg = false %}
+{% if section.settings.section_size == 'full-width' and section.settings.background_image != blank %}
+{% assign has_bg = true %}
+{%endif%}
+<section class="music-section section-outer size--{{section.settings.section_size}} spacing--{{section.settings.section_spacing}} bg-style--{{section.settings.background_style}} lazyload" id="{{section.settings.anchor_id}}" {% if has_bg == true %} data-bgset="{% include 'responsive-bg-image', image: section.settings.background_image%}" {%endif%}>
+{% if section.settings.background_color != blank or section.settings.text_color != blank %}
+  <style>
+    #shopify-section-{{section.id}} {
+      {% if section.settings.background_color != blank %}
+      background-color:  {{section.settings.background_color}};
+      {%endif%}
+      {% if section.settings.text_color != blank %}
+      color:  {{section.settings.text_color}};
+      {%endif%}
+    }
+  </style>
+{%endif%}
+<div class="section-inner music-inner">
+  {% assign delay = 0 %}
+  <div class="music-image" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
+    {% include 'responsive-image' with image: section.settings.music_image, wrapper_class: 'music-cover', max_width: 800, max_height: 800 %}
+  </div>
+  <div class="music-content text-align--{{section.settings.text_align}}">
+      {% if section.settings.pre_title != blank or section.settings.title != blank  %}
+    <div class="music-content-header section-header">
+      {% if section.settings.pre_title != blank %}
+        <h4 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 caps section-header__pre_title">{{ section.settings.pre_title | escape }}</h4>
+      {% endif %}
+      {% if section.settings.title != blank %}
+        <h2 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h2 section-header__title">{{ section.settings.title | escape }}</h2>
+      {% endif %}
+      {% if section.settings.post_title != blank %}
+        <h5 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 caps section-header__title">{{ section.settings.post_title | escape }}</h2>
+      {% endif %}
+      {% if section.settings.button_url != blank and section.settings.button_text != blank %}
+        <div class="button-wrap">
+          <a href="{{section.settings.button_url}}" class="button accent">{{section.settings.button_text}}</a> 
+        </div>
+      {%endif%}
+    </div>
+    {%endif%}
+    <div class="music-links">
+    {% for block in section.blocks %}
+      <a href="{{block.settings.url}}" target="_blank" rel="nofollow"><i class="{{block.settings.classes}}" aria-label="{{block.settings.title}}"></i></a>
+      {%endfor%}
+    </div>
+  </div>
+  
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Music Feature",
+    "class" : "standard-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "pre_title",
+        "label": "Pre-Heading",
+        "default": "The newest"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Music"
+      },
+      {
+        "type" : "text",
+        "id" : "post_title",
+        "label" : "Post Header",
+        "default" : "Listen Now"
+      },
+      {
+        "type" : "select",
+        "id" : "text_align",
+        "label" : "Text Alignment",
+        "options" : [
+          {
+            "value" : "left",
+            "label" : "Left"
+          },
+          {
+            "value" : "center",
+            "label" : "Center"
+          },
+          {
+            "value" : "right",
+            "label" : "Right"
+          }
+        ]
+      },
+      {
+        "type" : "text",
+        "id" : "button_text",
+        "label" : "Button Text"
+      },
+      {
+        "type" : "url",
+        "label" : "Button URL",
+        "id" : "button_url"
+      },
+      {
+        "type" : "header",
+        "content" : "Music Settings"
+      },
+      {
+        "type" : "image_picker",
+        "id" : "music_image",
+        "label" : "Music Image"
+      },
+       {
+        "type" : "header",
+        "content" : "Section Settings"
+      },
+       {
+        "type" : "image_picker",
+        "id" : "background_image",
+        "label" : "Background Image",
+        "info": "Use with full-width sections, please!"
+      },
+      {
+        "type" : "color",
+        "id" : "background_color",
+        "label" : "Background Color"
+      },
+      {
+        "type" : "color",
+        "id" : "text_color",
+        "label" : "Text Color"
+      },
+      {
+        "type" : "text",
+        "label" : "ID (for anchor links)",
+        "id" : "anchor_id"
+      },
+      {
+        "type" : "select",
+        "id" : "section_size",
+        "label" : "Section size",
+        "default" : "large",
+        "options" : [
+          {
+            "value" : "full-width",
+            "label" : "Full Width"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "section_spacing",
+        "label" : "Section Spacing",
+        "default" : "medium",
+        "options" : [
+          {
+            "value" : "none",
+            "label" : "No Spacing"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          },
+          {
+            "value" : "medium",
+            "label" : "Medium"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "background_style",
+        "label" : "Background Style",
+        "default" : "cover",
+        "options" : [
+          {
+            "value" : "cover",
+            "label" : "Cover"
+          },
+          {
+            "value" : "repeat-x",
+            "label" : "Horizontal Tile"
+          },
+          {
+            "value" : "repeat-y",
+            "label" : "Vertical Tile"
+          },
+          {
+            "value" : "repeat-all",
+            "label" : "Tile"
+          },
+          {
+            "value" : "rellax",
+            "label" : "Parallax"
+          }
+        ]
+      }
+    ],
+    "blocks" : [
+      {
+        "type" : "link",
+        "name" : "Link",
+        "settings" : [
+          {
+            "type" : "url",
+            "label" : "URL",
+            "id" : "url"
+          },
+          {
+            "type" : "text",
+            "id" : "classes",
+            "label" : "Classes"
+          },
+          {
+            "type" : "text",
+            "id" : "title",
+            "label" : "Accessability Text`"
+          }
+        ]
+      }
+    ],
+    "presets": [{
+        "name": "Album",
+        "category": "Custom (Music)"
+    }]
+  }
+{% endschema %}

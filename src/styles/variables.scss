@@ -1,0 +1,168 @@
+$tilting: titling-gothic-fb, sans-serif;
+$comp: titling-gothic-fb-compressed, sans-serif;
+$wide: titling-gothic-fb-wide, sans-serif;
+
+$border-radius: var(--border-radius);
+$border-radius-small: var(--border-radius-small);
+$border-radius-big: var(--border-radius-big);
+
+// Text colors
+$color-body-text: var(--color-body-text);
+
+// Background colors
+$color-body: var(--color-main-background);
+
+// Placeholders
+$placeholder-color-foreground: #161d25;
+$placeholder-color-background: #f9fafb;
+
+// Other colors
+$color-border: var(--color-border);
+$color-border-darker: var(--color-border-darker);
+$color-card-bg: var(--color-card-bg);
+$color-card-text: var(--color-card-text);
+$color-accent: var(--color-accent);
+$color-accent-inverse: var(--color-accent-inverse);
+$color-accent-lighter: var(--color-accent-lighter);
+$color-accent-lightest: var(--color-accent-lightest);
+$color-accent-downplay: var(--color-accent-downplay);
+$color-accent-darker: var(--color-accent-darker);
+$color-accent-darkest: var(--color-accent-darkest);
+$color-secondary: var(--color-secondary);
+$color-secondary-lighter: var(--color-secondary-lighter);
+$color-secondary-darker: var(--color-secondary-darker);
+$color-secondary-inverse: var(--color-secondary-inverse);
+
+$color-body-link: $color-accent;
+
+// Helper colors for form error states
+$color-disabled: #000000;
+$color-disabled-border: #000000;
+$color-error: #ff6d6d;
+$color-error-bg: #ffffff;
+$color-success: #35b32a;
+$color-success-bg: #ffffff;
+
+// Typography
+$font-heading: $comp;
+$font-extra: $wide;
+$font-body: $tilting;
+
+
+$font-heading-weight: var(--font-heading-weight);
+$font-extra-weight: 900;
+$font-body-weight: var(--font-body-weight);
+$font-body-style: var(--font-body-style);
+$font-body-bold-weight: var(--font-body-bold-weight);
+
+@mixin font-extra($extraweight: 700) {
+  font-family: $wide;
+  font-weight: $extraweight;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+@mixin font-heading($headingweight: 700) {
+  font-family: $comp;
+  font-weight: $headingweight;
+}
+@mixin font-body($bodyweight: 300) {
+  font-family: $tilting;
+  font-weight: $bodyweight;
+  font-style: $font-body-style;
+}
+
+// Transitions
+$transition-duration: 250ms;
+$transition-timing: ease-in-out;
+
+// Grid
+$grid-tiny: 510px;
+$grid-medium: 750px;
+$grid-large: 990px;
+$grid-widescreen: 1280px;
+$grid-max-width: 1400px;
+$grid-gutter: 30px;
+
+// Breakpoints used with the media-query mixin
+$tiny: 'tiny';
+$small: 'small';
+$medium: 'medium';
+$medium-down: 'medium-down';
+$medium-up: 'medium-up';
+$large: 'large';
+$large-down: 'large-down';
+$large-up: 'large-up';
+$widescreen: 'widescreen';
+
+$breakpoints: (
+  $tiny '(max-width: #{$grid-tiny - 1})',
+  $small '(max-width: #{$grid-medium - 1})',
+  $medium '(min-width: #{$grid-medium}) and (max-width: #{$grid-large - 1})',
+  $medium-down '(max-width: #{$grid-large - 1})',
+  $medium-up '(min-width: #{$grid-medium})',
+  $large '(min-width: #{$grid-large}) and (max-width: #{$grid-widescreen - 1})',
+  $large-down '(max-width: #{$grid-widescreen - 1})',
+  $large-up '(min-width: #{$grid-large})',
+  $widescreen '(min-width: #{$grid-widescreen})'
+);
+
+$ease: cubic-bezier(0.77, 0, 0.175, 1);
+
+%psuedo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  content:'';
+  display: block;
+}
+
+%hover {
+  transition: transform 300ms $ease;
+      &:hover {
+        transform: translateY(-2px)
+      }
+}
+
+%standard-width {
+  width: 94%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $grid-max-width;
+}
+
+
+@mixin shadowBefore($startingScale: 0.95, $endingScale: 0.99, $shadowColor: rgba(0,0,0,0.24)) {
+  &:before  {
+    @extend %psuedo;
+    position: absolute;
+    z-index: -1;
+    opacity: 0.75;
+    transition: transform 400ms $ease, opacity 400ms $ease;
+    top: -3px;
+    box-shadow: 4px 9px 18px $shadowColor;
+    transform: scale($startingScale);
+  }
+  &:after {
+    @extend %psuedo;
+    z-index: -1;
+    background: var(--color-card-bg);
+    
+  }
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+  transition: transform 400ms $ease, opacity 400ms $ease !important;
+  backface-visibility: visible;
+  transform:perspective(100px) translate3d(0, 0, -1px );
+  &:hover {
+    transform:perspective(100px) translate3d(0, -2px, 1px );
+    
+    &::before {
+      opacity: 1;
+      transform: scale($endingScale) translateY(3px);
+    }
+  }
+}

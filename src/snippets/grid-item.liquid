@@ -1,0 +1,51 @@
+
+
+
+
+ <a data-aos="fade-up" data-aos-delay="{{delay}}" href="{{ product.url | within: collection }}" class="product-grid-item grid-item {% if simplify == true %} simplify {%endif%} {% if hover_details == true  %} detail-on-hover {%endif%} {% unless product.available %} sold-out {% endunless %}">
+      {% if product.featured_image != blank %}
+        <div class="grid-item__image">
+        {% if secondary_image == true  and product.images.size > 1 %}
+          <div class="secondary-featured-image">
+            {% include 'responsive-image' with
+            image: product.images[1],
+            max_width: 600,
+            max_height: 600
+          %}
+          </div>
+        {% endif %}
+          {% include 'responsive-image' with
+            image: product.featured_image,
+            max_width: 600,
+            max_height: 600
+          %}
+        </div>
+      {% else %}
+      <div class="responsive-image__wrapper">
+      {% assign diff = max | minus: min %}
+      {% assign randomNumber = "now" | date: "%N" | modulo: diff | plus: min %}
+      {%capture productTag %}product-{{randomNumber}}{%endcapture%}
+      {{  productTag | placeholder_svg_tag }}
+      </div>
+      {%endif%}
+      <div class="product-details grid-item__details">
+        
+        <h5>{{ product.title | escape }}</h5>
+        {% if show_price == true %}
+      <span class="price-outer">
+        {% if product.compare_at_price > product.price %}
+            <s>{{product.compare_at_price | money}}</s>
+            <span class="real-price">{{ product.price | money }}</span>
+        {% else %}
+          {% if product.price_varies %}
+            {%- assign price = product.price | money -%}
+            {{ 'products.product.from_text_html' | t: price: price }}
+          {% else %}
+            {{ product.price | money }}
+          {% endif %}
+        {% endif %}
+        {% unless product.available %}<span class="sold-out-text">SOLD OUT</span>{% endunless %}
+      </span>
+      {%endif%}
+      </div>
+    </a>

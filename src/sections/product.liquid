@@ -1,0 +1,87 @@
+<section data-section-id="{{ section.id }}" data-section-type="product" >
+{% if section.settings.enable_breadcrumbs == true %}{% include 'breadcrumbs' %}{%endif%}
+{% assign delay = 0%}
+<div class="product-grid__wrap">
+  <div class="product-images__wrap" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" >
+    {%- assign current_variant = product.selected_or_first_available_variant -%}
+    {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
+
+    {% for image in product.images %}
+      {% capture wrapper_class %}
+        {%- unless featured_image == image -%}
+          hide
+        {%- endunless -%}
+      {% endcapture %}
+
+      {% include 'responsive-image' with
+        image: image,
+        max_width: 700,
+        max_height: 800,
+        image_attributes: "data-product-featured-image",
+        wrapper_class: wrapper_class,
+        wrapper_attributes: "data-product-image-wrapper",
+      %}
+    {% endfor %}
+
+    {% if product.images.size > 1 %}
+      <ul class="product-thumbnails swiper-container" data-module="swiper-thumbs" data-swiper-type="thumbnails">
+        <div class="swiper-wrapper">
+          {% for image in product.images %}
+            <li class="swiper-slide">
+              <a href="{{ image.src | img_url: '480x480' }}" data-thumbnail-id="{{ image.id }}" data-product-single-thumbnail{% if featured_image == image %} aria-current="true"{% endif %}>
+                <img class="product-single__thumbnail-image" src="{{ image.src | img_url: '160x160' }}" alt="{{ image.alt | escape }}">
+              </a>
+            </li>
+          {% endfor %}
+        </div>
+      </ul>
+    {% endif %}
+  </div>
+    <div class="product-details__wrap">
+    
+
+      <h1 data-aos="fade-up" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">{{ product.title }}</h1>
+      
+      
+      {%include 'product-form' %}
+  {% if product.description != blank %}
+      <div class="rte" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
+        {{ product.description }}
+      </div>
+      {%endif%}
+
+    </div>
+</div>
+</section>
+
+{% schema %}
+  {
+    "name": "Product pages",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_related_products",
+        "label": "Show related products",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "swatches",
+        "label": "Use Swatches",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_quantity",  
+        "label": "Enable Quantity",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_breadcrumbs",  
+        "label": "Enable Breadcrumbs Menu?",
+        "default": true
+      }
+    ]
+  }
+{% endschema %}

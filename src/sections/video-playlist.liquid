@@ -1,0 +1,229 @@
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available when you add "Rich text" section on the Theme Editor.
+
+  Theme Store required settings
+  - Heading: title of the rich text section
+  - Text: description of the rich text section
+{%- endcomment -%}
+
+{% assign has_bg = false %}
+{% if section.settings.section_size == 'full-width' and section.settings.background_image != blank %}
+{% assign has_bg = true %}
+{%endif%}
+<section class="video-playlist section-outer size--{{section.settings.section_size}} spacing--{{section.settings.section_spacing}} bg-style--{{section.settings.background_style}} lazyload" id="{{section.settings.anchor_id}}" {% if has_bg == true %} data-bgset="{% include 'responsive-bg-image', image: section.settings.background_image%}" {%endif%}>
+{% if section.settings.background_color != blank or section.settings.text_color != blank %}
+  <style>
+    #shopify-section-{{section.id}} {
+      {% if section.settings.background_color != blank %}
+      background-color:  {{section.settings.background_color}};
+      {%endif%}
+      {% if section.settings.text_color != blank %}
+      color:  {{section.settings.text_color}};
+      {%endif%}
+    }
+  </style>
+{%endif%}
+<div class="section-inner">
+{% assign delay = 0 %}
+    {% if section.settings.pre_title != blank or section.settings.title != blank  %}
+  <div class="video-playlist__header section-header">
+    {% if section.settings.pre_title != blank %}
+      <h4 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 caps section-header__pre_title">{{ section.settings.pre_title | escape }}</h4>
+    {% endif %}
+    {% if section.settings.title != blank %}
+      <h2 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h2 section-header__title">{{ section.settings.title | escape }}</h2>
+    {% endif %}
+  </div>
+  {%endif%}
+   <div class="video-wrapper video-slider  swiper-containe" data-module="swiper-videos" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
+    <div class="swiper-wrapper">
+     {%for block in section.blocks %}
+      <div class="swiper-slide video-slide"  data-module="lightbox" data-lightbox-type="video" data-lightbox-target="{{block.settings.id}}">
+        <div class="video-slide__bg {% if block.settings.image != blank %} lazyload" data-bgset="{% include 'responsive-bg-image',  image: slide.settings.image %} {%else%} load-img" data-youtube-id="{{block.settings.id}}{%endif%}">
+        </div>
+        <div class="video-slide__content">
+          <i class="fas fa-play-circle"></i>
+          {% if block.settings.title != blank or block.settings.subtitle != blank%}
+          <div class="video-slide__text">
+          {% if block.settings.title != blank %}
+            <h3 class="h3">{{block.settings.title}}</h3>
+            {%endif%}
+            {% if block.settings.subtitle != blank%}
+            <h4 class="h4 caps">{{block.settings.subtitle}}</h4>
+            {%endif%}
+          </div>
+          {%endif%}
+        </div>
+      </div>
+      {%endfor%}
+    </div>
+    </div>
+    {% if section.settings.button_url != blank and section.settings.button_text != blank %}
+    <div class="button-wrap" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
+      <a href="{{section.settings.button_url}}" class="button" target="_blank" rel="nofollow"><i class="fab fa-youtube"></i> {{section.settings.button_text}}</a>
+    </div>
+      {%endif%}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Video Playlist",
+    "class" : "standard-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "pre_title",
+        "label": "Pre-Heading",
+        "default": "Watch some of our"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Favorite Videos"
+      },
+      {
+        "type" : "text",
+        "id" : "button_text",
+        "label" : "Button Text"
+      },
+      {
+        "type" : "url",
+        "id" : "button_url",
+        "label" : "Button URL"
+      },
+       {
+        "type" : "header",
+        "content" : "Section Settings"
+      },
+       {
+        "type" : "image_picker",
+        "id" : "background_image",
+        "label" : "Background Image",
+        "info": "Use with full-width sections, please!"
+      },
+      {
+        "type" : "color",
+        "id" : "background_color",
+        "label" : "Background Color"
+      },
+      {
+        "type" : "color",
+        "id" : "text_color",
+        "label" : "Text Color"
+      },
+      {
+        "type" : "text",
+        "label" : "ID (for anchor links)",
+        "id" : "anchor_id"
+      },
+      {
+        "type" : "select",
+        "id" : "section_size",
+        "label" : "Section size",
+        "default" : "large",
+        "options" : [
+          {
+            "value" : "full-width",
+            "label" : "Full Width"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "section_spacing",
+        "label" : "Section Spacing",
+        "default" : "medium",
+        "options" : [
+          {
+            "value" : "none",
+            "label" : "No Spacing"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          },
+          {
+            "value" : "medium",
+            "label" : "Medium"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          }
+        ]
+      },
+     
+      {
+        "type" : "select",
+        "id" : "background_style",
+        "label" : "Background Style",
+        "default" : "cover",
+        "options" : [
+          {
+            "value" : "cover",
+            "label" : "Cover"
+          },
+          {
+            "value" : "repeat-x",
+            "label" : "Horizontal Tile"
+          },
+          {
+            "value" : "repeat-y",
+            "label" : "Vertical Tile"
+          },
+          {
+            "value" : "repeat-all",
+            "label" : "Tile"
+          },
+          {
+            "value" : "rellax",
+            "label" : "Parallax"
+          }
+        ]
+      }
+    ],
+    "blocks" : [
+      {
+        "type" :"video",
+        "name" : "Video",
+        "settings" : [
+          {
+            "type" :"text",
+            "id" : "title",
+            "label" : "Title"
+          },
+          {
+            "type" :"text",
+            "id" : "subtitle",
+            "label" : "Subtitle"
+          },
+          {
+            "type" : "text",
+            "label" : "Youtube ID",
+            "id" : "id"
+          },
+          {
+            "type" : "image_picker",
+            "id" : "image",
+            "label" :"Image"
+          }
+        ]
+      }
+    ],
+    "presets": [{
+        "name": "Video Playlist",
+        "category": "Custom"
+    }]
+  }
+{% endschema %}

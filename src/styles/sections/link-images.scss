@@ -1,0 +1,25 @@
+.link-images__inner {
+  display: flex;
+  align-items: center;  
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: calc(12px + 1vw);
+}
+
+ .link-image__block {
+    flex: 1 1 200px;
+    margin: 12px;
+    
+    text-align: center;
+    @include media-query($medium-down) {
+      flex: 1 1 160px;
+      margin: 8px;
+    }
+    
+  }
+.link-image__image {
+    @include shadowBefore(0.96);
+  display: block;
+  position: relative;
+  
+}

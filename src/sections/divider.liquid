@@ -1,0 +1,89 @@
+<div class="custom-divider {% if section.settings.hide_mobile == true %} hide-mobile {%endif%} space--{{section.settings.spacing}} style--{{section.settings.type}} "id="divider--{{section.id}}">
+</div>
+{% if section.settings.color != empty %}
+<style>
+#divider--{{section.id}}  {
+  border-top-color: {{section.settings.color}}
+}
+</style>
+{%endif %}
+{%schema %}
+{
+  "name" : "Divider",
+  "class" :"divider-wrap",
+  "settings" : [
+    {
+      "type" : "paragraph",
+      "content" : "Use this block to space front-page sections"
+    },
+    {
+      "type" : "select",
+      "id" : "spacing",
+      "label" : "Spacing",
+      "options" : [
+        {
+          "value" : "min",
+          "label" : "Minimum"
+        },
+        {
+          "value" : "small",
+          "label" : "Small"
+        },
+        {
+          "value" : "medium",
+          "label" : "Medium"
+        },
+        {
+          "value" : "large",
+          "label" : "Large"
+        },
+        {
+          "value" : "extra",
+          "label" : "Extra-Large"
+        },
+        {
+          "value" : "huge",
+          "label" : "Huge"
+        }
+      ],
+      "default" : "medium"
+    },
+    {
+      "type" : "select",
+      "id" : "type",
+      "label" : "Style",
+      "options" : [
+        {
+          "value":  "transparent",
+          "label" : "Transparent"
+        },
+        {
+          "value":  "border-full",
+          "label" : "Border (Full Width)"
+        },
+        {
+          "value":  "border-half",
+          "label" : "Border (Half Width)"
+        }
+      ]
+    },
+    {
+      "type" : "color",
+      "id" : "color",
+      "label" : "Border Color",
+      "info": "If left blank, uses the theme default."
+    },
+    {
+      "type" : "checkbox",
+      "id" : "hide_mobile",
+      "label" : "Hide on mobile?"
+    }
+  ],
+  "presets" : [
+    {
+      "name" : "Divider",
+      "category" : "Layout"
+    }
+  ]
+}
+{%endschema%}
