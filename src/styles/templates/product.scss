@@ -32,7 +32,7 @@ ul.product-thumbnails {
   max-width: 1200px;
   width: 95%;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: stretch;
   justify-content: center;
   &.reverse-layout {
     flex-direction: row-reverse;
@@ -42,11 +42,15 @@ ul.product-thumbnails {
   flex: 2 1 230px;
   position: relative;
   z-index: 2;
+  display: flex;
+  height: auto;
+  align-items: flex-start;
+  justify-content: center;
   max-width: 550px;
   @include media-query($small) {
     width: 100%;
   }
-  margin: 12px 0;
+  margin:  0;
   ul {
     list-style: none;
     padding: 0;

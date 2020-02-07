@@ -42,6 +42,7 @@
     "babel": "6.23",
     "basiclightbox": "^5.0.2",
     "classlist-polyfill": "^1.2.0",
+    "drift-zoom": "^1.4.0",
     "headroom.js": "^0.9.4",
     "instafeed-lite": "^1.0.10",
     "instafeed.js": "^1.4.1",

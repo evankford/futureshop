@@ -80,6 +80,7 @@
     tabindex="-1"
     alt="{{ image.alt | escape }}"
     {{ image_attributes }}
+    {% if zoom %} data-zoom="{{image | img_url: '2000x'}}" {%endif%}
   >
 </div>
 
