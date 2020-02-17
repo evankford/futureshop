@@ -152,26 +152,33 @@ function initRellaxImages() {
   var rellaxImages = document.querySelectorAll('.rellax-image');
   var rellaxFloats = document.querySelectorAll('.rellax-float');
   if (rellaxImages) {
-    var rellaxImage = new Rellax('.rellax-image', {
-      center: true,
-      speed: -4
-    })
+    if (rellaxImages.length > 0) {
+      
+      var rellaxImage = new Rellax('.rellax-image', {
+        center: true,
+        speed: -4
+      })
+      window.addEventListener('load', function () {
+        rellaxImage.refresh();
+      });
+    }
   }
   if (rellaxFloats) {
-    rellaxFloats.forEach(el=> {
-      let offset = el.parentElement.scrollTop;
-      var float = new Rellax(el, {
-        center: true, 
-        speed: 3
-      })
-    })
-  }
-  window.addEventListener('load', function () {
     
-    if (rellaxImage) {
-      rellaxImage.refresh();
+    if (rellaxFloats.length > 0) {
+      
+      rellaxFloats.forEach(el=> {
+        let offset = el.parentElement.scrollTop;
+        var float = new Rellax(el, {
+          center: true, 
+          speed: 3
+        })
+        window.addEventListener('load', function () {
+            float.refresh();
+        });
+      })
     }
-  });
+  }
 }
 initRellaxImages();
 
@@ -200,7 +207,20 @@ function handleURLParams() {
 
 window.addEventListener('load', handleURLParams);
 
-
+import browserUpdate from 'browser-update';
+browserUpdate({
+  required: {
+    e: -2,
+    i: 11,
+    f: -3,
+    o: -3,
+    s: 10.1,
+    c: "64.0.3282.16817",
+    samsung: 7.0,
+    vivaldi: 1.2
+  },
+  insecure: true
+})
 
 ///Look for modules in the script, much of the rest of the boilerplate is in modules!
 

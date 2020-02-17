@@ -78,6 +78,9 @@ body:not(.template-index) {
     .social-wrap {
       text-align: center;
     }
+    ul, ul li {
+        text-align: center;
+    }
     .footer-logo {
       margin: auto;
     }
@@ -97,7 +100,8 @@ body:not(.template-index) {
     justify-content: center;
     .footer-header {
       font-size: 1.1em;
-      font-weight: 200;
+      font-weight: 700;
+      opacity: 0.5;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       margin: 0 8px 0;
@@ -348,7 +352,7 @@ ul.footer-menu {
     max-width: 100%; 
   }
   a svg {
-    max-width: 58px;
+    max-width: 52px;
     margin: 12px auto;
     width: 15vw;
     path, g {

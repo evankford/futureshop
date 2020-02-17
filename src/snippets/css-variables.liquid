@@ -4,9 +4,9 @@
 
 
 @font-face  {
-  font-family: "Hext";
-  src: url({{'hext.woff2' | asset_url}}) format('woff2'), url({{'hext.woff2' | asset_url}}) format('woff');
-  font-weight: 900;
+  font-family: "WeeBairn";
+  src: url({{'wee.woff' | asset_url}}) format('woff');
+  font-weight: 700;
   font-style: bold; 
 }
 @font-face  {
@@ -52,7 +52,7 @@
     --color-body-text: {{ settings.color_body_text }};
     --color-main-background: {{ settings.color_main_bg }};
     --color-border: {{ settings.color_body_text | color_lighten: 80 | color_desaturate: 70 }};
-    --color-border-darker: {{ settings.color_body_text | color_lighten: 55 | color_desaturate: 70 }};
+    --color-border-darker: {{ settings.color_body_text | color_lighten: 25 | color_desaturate: 70 }};
     --color-card-bg: {{ settings.color_card_background }};
     --color-card-text: {{ settings.color_card_text }};
 

@@ -27,13 +27,13 @@ $productformHeight: 40px;
     width: 120px;
     position: relative;
     border-radius: $border-radius-small;
-     border: 1px solid $color-border;
+     border: 1px solid currentColor;
   }
   .quantity-adjust {
     // background: rgb(82, 82, 82);
     flex:0 0 30px;
    
-    color: $color-border-darker;
+    color: inherit;
     line-height: $productformHeight - 5px;
     text-align: center;
     // font-size: 1em/;

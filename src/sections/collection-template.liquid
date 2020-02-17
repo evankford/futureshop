@@ -1,7 +1,7 @@
 
 {% paginate collection.products by section.settings.limit %}
   <header role="banner" class="collection-header">
-    <h1>{{ collection.title }}</h1>
+    <h1 class="mega">{{ collection.title }}</h1>
     {% if collection.description != blank %}
       <div class="rte">
         {{ collection.description }}
@@ -68,6 +68,7 @@
         "type" : "select",
         "id" : "size",
         "label" : "Grid Size",
+        "default" :"standard",
         "options" : [
           {
             "value" : "small",

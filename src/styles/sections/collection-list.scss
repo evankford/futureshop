@@ -140,6 +140,35 @@
     margin-bottom: 10px;
   }
   
+  &.style--big {
+    flex-wrap: wrap;
+    display: flex;
+    .collection-list-item {
+      flex: 1 1 440px;
+      overflow: hidden;
+      min-width: 0;
+      margin: 1% !important;
+      max-width: 720px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 100%; 
+      flex-direction: row;
+      .collection-list__image {
+        flex: 1 1 300px;
+        margin: -5% 0 -20%;
+      }
+      .collection-item-content {
+        flex: 1 1 200px;
+        padding: 40px;
+        
+      }
+      @include media-query($medium-up) {
+        flex-wrap: nowrap;
+      }
+    }
+  }
+  
   &.style--overlay {
     max-width: 100%;
       .collection-list__image {

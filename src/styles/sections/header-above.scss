@@ -45,6 +45,9 @@
     &:first-child {
       margin-right:calc(-2px - 0.4vw);
     }
+    &:only-child {
+      margin: auto;
+    }
   }
   @include media-query($small) {
     // padding: 5px;
@@ -118,25 +121,3 @@
   }
  
 } //Close .header-above__inner
-
-.header-announce {
-  display: flex;
-  
-  flex: 0 1 auto;
-  text-align: center;
-  padding: 1.2vmin 1.2vmin 1.4vmin;
-  p {
-    margin: 2px auto;
-    font-size: 15px;
-    display: block;
-  }
-  a {
-    text-decoration: none;
-    display: inline-block;
-    padding-bottom: 0.1em;
-    border-bottom: 2px solid rgba(white, 0.5);
-    color: inherit;
-    font-weight: bold;
-    @extend %hover;
-  }
-}

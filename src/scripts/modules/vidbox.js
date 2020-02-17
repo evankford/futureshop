@@ -14,9 +14,9 @@ function YouTubeGetID(url) {
 
 
 export default class TestModule {
-
-
-
+   
+  
+  
   constructor(el) {
     var tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
@@ -39,11 +39,11 @@ export default class TestModule {
       "controls": 0,
       "autoplay": 1
     }
-
+    
     el.player = '';
-    window.onYouTubeIframeAPIReady = function () {
+    window.onYouTubeIframeAPIReady = function() {
 
-      el.player = new YT.Player(el.querySelector('.youtube-player'), {
+        el.player= new YT.Player(el.querySelector('.youtube-player'), {
         height: '600',
         width: '1200',
         videoId: YouTubeGetID(el.getAttribute('data-video-url')),
@@ -57,66 +57,66 @@ export default class TestModule {
 
     var checkCount = 0;
     function checkIfPlaying() {
-
+    
       var state = el.player.getPlayerState();
 
       // playerWrap.classList.add('use-vid');
-      if (checkCount > 12 && state != 1) {
+    if (checkCount > 12 && state != 1) {
+      playerWrap.classList.add('use-gif');
+      if (window.innerWidth <= 800) {
         playerWrap.classList.add('use-gif');
-        if (window.innerWidth <= 800) {
-          playerWrap.classList.add('use-gif');
-          playerWrap.classList.add('small');
-        }
-        return false;
+        playerWrap.classList.add('small');
       }
-      if (state == 5 || state == 3 || state == -1) {
-        checkCount++;
-        if (state == 5) {
-          checkCount++
-        }
-        el.player.mute();
-
-        if (startTime > 0) {
-          el.player.seekTo(startTime)
-        } else {
-
-          el.player.playVideo();
-        }
-        setTimeout(checkIfPlaying, 400);
+      return false;
+    }
+    if (state == 5 || state == 3 || state == -1) {
+      checkCount++;
+      if (state == 5) {
+        checkCount++
       }
-      if (state == 1) {
-        playerWrap.classList.add('use-vid');
-        return true;
+      el.player.mute();
+      
+      if (startTime > 0) {
+        el.player.seekTo(startTime)
+      } else {
+        
+        el.player.playVideo();
       }
-      // if (state == -1)
-      //     playerWrap.classList.add('use-gif');
-      //   if (window.innerWidth <= 800) {
-      //     playerWrap.classList.add('small');
-      //   }
-      //   return false;
+      setTimeout(checkIfPlaying, 400);
+    } 
+     if (state == 1) {
+      playerWrap.classList.add('use-vid');
+      return true;
+    } 
+    // if (state == -1)
+    //     playerWrap.classList.add('use-gif');
+    //   if (window.innerWidth <= 800) {
+    //     playerWrap.classList.add('small');
+    //   }
+    //   return false;
     }
 
     function onPlayerReady(event) {
-
+      
       event.target.mute();
       el.player.mute();
-
-      el.player.playVideo();
-
+     
+        el.player.playVideo();
+      
       // if (startTime > 0) {
       //   el.player.seekTo(startTime)
       // }
       setTimeout(checkIfPlaying, 250)
-
+      
     }
-
+    
     function onPlayerStateChange(event) {
       if (event.data == YT.PlayerState.PLAYING) {
-
+        
       } else if (event.data == YT.PlayerState.ENDED) {
-
+        
         el.player.playVideo();
-
+        
         // if (startTime > 0) {
         //   el.player.seekTo(startTime)
         // }

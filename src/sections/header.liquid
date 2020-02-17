@@ -13,11 +13,6 @@
 
 <style>
   #shopify-section-header {
-   
-    {% if section.settings.top_text_color %}
-    --top-text: {{section.settings.top_text_color }};
-    {%endif %}
-   
     {% if section.settings.text_color %}
     --header-text: {{section.settings.text_color }};
     {%endif %}
@@ -29,6 +24,7 @@
     {%endif %}
     {% if settings.texture_header == true and settings.main_background != blank %}
         --header-bg: transparent;
+        --header-bg-dropdown: {{section.settings.bg_color}};
         --top-bg: transparent;
         background-image: url('{{settings.main_background | img_url: '1600x'}}');
         {% case settings.background_style %}
@@ -52,12 +48,7 @@
             background-size: cover;
         {%endcase%}
     {%else %}
-    {% if section.settings.top_bg_color %}
-      --top-bg: {{section.settings.top_bg_color }};
-    {%endif %}
-     {% if section.settings.bg_color %}
-       --header-bg: {{section.settings.bg_color }};
-    {%endif %}
+   
     {%endif%}
   }
 </style>
@@ -142,19 +133,7 @@ document.body.classList.add('header-overlay');
   {% if section.settings.layout_socials == 'top-bar' %}
     {% include 'social-icons' %}
     {%endif%}
-     {%- if section.settings.announcement_bar_enabled -%}
-        {%- if section.settings.announcement_bar_home_page_only == false or template.name == 'index' -%}
-      <div class="header-announce">
-          {%- if section.settings.announcement_bar_link != blank -%}
-            <a href="{{ section.settings.announcement_bar_link }}">
-              {{ section.settings.announcement_bar_text  }}
-            </a>
-          {%- else -%}
-            <p>{{ section.settings.announcement_bar_text }}</p>
-          {%- endif -%}
-      </div>
-        {%- endif -%}
-    {%- endif -%}
+    
       {% if section.settings.email_button_text != blank %}
       <div class="signup-outer">
         <div class="lightbox-button button outline please" data-lightbox-type="html" data-module="lightbox" data-lightbox-target="newsletter">{{section.settings.email_button_text}}</div>
@@ -205,9 +184,11 @@ document.body.classList.add('header-overlay');
   
   {% assign menu_count = menu.links.size %}
    {% assign menu_break = menu_count | divided_by: 2 %}
-   {% unless section.settings.layout_search == 'menu'  or section.settings.layout_cart == 'menu' %}
+   
+    {% comment %} {% assign menu_break = menu_break | minus : 1 %}  {%comment %} Want one less on the left if there are extras {%endcomment%} {% endcomment %}
+   {% if section.settings.layout_search == 'menu'  or section.settings.layout_cart == 'menu' %}
     {% assign menu_break = menu_break | minus : 1 %}  {%comment %} Want one less on the left if there are extras {%endcomment%}
-   {%endunless%}
+   {%endif%}
   {% assign menu_count = menu_count | minus: 1 %} {%comment %} fix for the loop! {%endcomment%}
    
    <div class="nav-half nav-half__first">
@@ -352,23 +333,6 @@ document.body.classList.add('header-overlay');
         "default" : "#1a1a1a"
       },
       {
-        "type" : "color",
-        "id" : "top_bg_color",
-        "label" : "Top Background Color",
-        "default" : "#000000"
-      },
-      {
-        "type" : "color",
-        "id" : "top_text_color",
-        "label" : "Top Text Color",
-        "default" : "#efefef"
-      },
-      {
-        "type" : "checkbox",
-        "id" : "box_shadow",
-        "label" : "Shadow?"
-      },
-      {
         "type" : "header",
         "content" : "Layout"
       },
@@ -481,44 +445,11 @@ document.body.classList.add('header-overlay');
        "label" : "Cart Text",
        "info" : "Leave Blank for just Icon!"
      },
-      {
-        "type": "header",
-        "content": "Announcement bar"
-      },
-      {
-        "type": "checkbox",
-        "id": "announcement_bar_enabled",
-        "label": "Show announcement",
-        "default": false
-      },
-      {
-        "type": "checkbox",
-        "id": "announcement_bar_home_page_only",
-        "label": "Show on home page only",
-        "default": true
-      },
-      {
-        "type": "richtext",
-        "id": "announcement_bar_text",
-        "label": "Announcement text",
-        "default": "<p>Announce something <b>here!</b></p>"
-      },
-       {
-        "type" : "checkbox",
-        "id" : "slide_in",
-        "label" : "Slide in top bar?"
-      },
+     
       {
         "type" :"checkbox",
         "id" :"header_socials",
         "label" : "Enable header socials?"
-      },
-
-      {
-        "type" : "text",
-        "id" : "email_button_text",
-        "label" : "Email Button Text",
-        "info" : "Leave Blank to disable email button. Form uses sitewide settings!"
       },
       
       {

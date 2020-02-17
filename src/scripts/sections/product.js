@@ -1,10 +1,10 @@
 /**
- * Product Template Script
- * ------------------------------------------------------------------------------
+  * Product Template Script
+    * ------------------------------------------------------------------------------
  * A file that contains scripts highly couple code to the Product template.
  *
- * @namespace product
- */
+ * @namespace product  
+**/
 
 import { getUrlWithVariant, ProductForm } from '@shopify/theme-product-form';
 import { formatMoney } from '@shopify/theme-currency';
@@ -49,6 +49,8 @@ register('product', {
     this.onThumbnailClick = this.onThumbnailClick.bind(this);
     this.onThumbnailKeyup = this.onThumbnailKeyup.bind(this);
     this.checkAvailableVariants = this.checkAvailableVariants.bind(this);
+    this.initializeVariants = this.initializeVariants.bind(this);
+    this.initializeVariants();
 
     this.container.addEventListener('click', this.onThumbnailClick);
     this.container.addEventListener('keyup', this.onThumbnailKeyup);
@@ -98,79 +100,57 @@ register('product', {
     this.updateBrowserHistory(variant);
   },
 
+  initializeVariants() {
+    const radios = this.container.querySelectorAll('.radio-selector');
+    var swatches = [this.container.querySelector('.swatch[data-option-index="0"]'), this.container.querySelector('.swatch[data-option-index="1"]'), this.container.querySelector('.swatch[data-option-index="2"]')]
+    var i = 0;
+    this.product.options.forEach(option => {
+      var optionString = 'option' + (i + 1);
+
+
+      option.values.forEach(value => {
+        var activeButton = swatches[i].querySelector('[value="' + value + '"]');
+        var activeVariants = this.product.variants.filter((val, i) => { return (val[optionString] == value && val.available == true) });
+        if (activeVariants.length > 0) {
+          activeButton.parentNode.classList.add('available')
+          activeButton.parentNode.classList.remove('soldout')
+          activeButton.removeAttribute('disabled');
+        }
+      })
+      i++;
+    })
+
+  },
+
   checkAvailableVariants(variant) {
     const lastClickedSwatch = this.container.querySelector('.swatch.last-clicked');
     const swatches = this.container.querySelectorAll('.swatch');
+    var radios = this.container.querySelectorAll('.radio-selector');
     if (event.dataset.options && lastClickedSwatch) {
-
-
       const optionIndex = parseInt(lastClickedSwatch.getAttribute('data-option-index'));
-      if (optionIndex == 0) {
-        var resetEls = lastClickedSwatch.querySelectorAll('input');
-        resetEls.forEach(el => {
-          el.parentNode.classList.add('available');
-        })
-      }
-      const idHolder = this.container.querySelector('[name=id]');
-      console.log('[data-option' + (optionIndex + 1) + '="' + event.dataset.options[optionIndex].value + '"]');
-      var activeVariants = idHolder.querySelectorAll('[data-option' + (optionIndex + 1) + '="' + event.dataset.options[optionIndex].value + '"]');
-      console.log(activeVariants)
-      let availableOptions1 = [];
-      let availableOptions2 = [];
-      let availableOptions3 = [];
+      // if (optionIndex == 0) {
 
-      activeVariants.forEach(el => {
-        if (el.getAttribute('data-option1')) {
-          availableOptions1.push(el.getAttribute('data-option1'))
-        }
-        if (el.getAttribute('data-option2')) {
-          availableOptions2.push(el.getAttribute('data-option2'))
-        }
-        if (el.getAttribute('data-option3')) {
-          availableOptions3.push(el.getAttribute('data-option3'))
+      // }
+      // const idHolder = this.container.querySelector('[name=id]');
+      // var activeVariants = idHolder.querySelectorAll('[data-option' + (optionIndex + 1) + '="' + event.dataset.options[optionIndex].value + '"]');
+
+      var availableVariants = this.product.variants.filter((filt) => { return (filt.options.indexOf(variant.options[optionIndex]) == optionIndex) })
+
+
+      radios.forEach(radio => {
+        var radioIndex = parseInt(radio.getAttribute('name').replace('option-', ''));
+        if (!radioIndex == optionIndex) {
+          var matched = this.product.variants.filter(filt => { return (filt.options[radioIndex] == radio.getAttribute('value') && filt.options[optionIndex] == variant.options[optionIndex] && filt.available == true) });
+          if (matched.length > 0) {
+            radio.parentNode.classList.add('available');
+            radio.parentNode.classList.remove('soldout');
+            radio.removeAttribute('disabled');
+          } else {
+            radio.parentNode.classList.remove('available');
+            radio.parentNode.classList.add('soldout');
+          }
         }
       })
-
-      if (optionIndex != 0) {
-        if (swatches[0]) {
-          swatches[0].querySelectorAll('input').forEach(el => {
-            if (availableOptions1.includes(el.value)) {
-
-              el.parentNode.classList.add('available');
-            } else {
-              el.parentNode.classList.remove('available');
-
-            }
-          })
-        }
-      }
-      if (optionIndex != 1) {
-        if (swatches[1]) {
-          swatches[1].querySelectorAll('input').forEach(el => {
-            if (availableOptions2.includes(el.value)) {
-
-              el.parentNode.classList.add('available');
-            } else {
-              el.parentNode.classList.remove('available');
-
-            }
-          })
-        }
-      }
-      if (optionIndex != 2) {
-        if (swatches[2]) {
-          swatches[2].querySelectorAll('input').forEach(el => {
-            if (availableOptions3.includes(el.value)) {
-
-              el.parentNode.classList.add('available');
-            } else {
-              el.parentNode.classList.remove('available');
-
-            }
-          })
-        }
-      }
-
 
 
     } else {

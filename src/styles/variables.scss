@@ -1,6 +1,4 @@
-$tilting: titling-gothic-fb, sans-serif;
-$comp: titling-gothic-fb-compressed, sans-serif;
-$wide: titling-gothic-fb-wide, sans-serif;
+
 
 $border-radius: var(--border-radius);
 $border-radius-small: var(--border-radius-small);
@@ -44,9 +42,9 @@ $color-success: #35b32a;
 $color-success-bg: #ffffff;
 
 // Typography
-$font-heading: $comp;
-$font-extra: $wide;
-$font-body: $tilting;
+$font-heading: var(--font-heading);
+$font-extra: var(--font-extra);
+$font-body: var(--font-body);
 
 
 $font-heading-weight: var(--font-heading-weight);
@@ -56,17 +54,17 @@ $font-body-style: var(--font-body-style);
 $font-body-bold-weight: var(--font-body-bold-weight);
 
 @mixin font-extra($extraweight: 700) {
-  font-family: $wide;
+  font-family: $font-extra;
   font-weight: $extraweight;
   text-transform: uppercase;
   letter-spacing: 0.01em;
 }
 @mixin font-heading($headingweight: 700) {
-  font-family: $comp;
+  font-family: $font-heading;
   font-weight: $headingweight;
 }
 @mixin font-body($bodyweight: 300) {
-  font-family: $tilting;
+  font-family: $font-body;
   font-weight: $bodyweight;
   font-style: $font-body-style;
 }

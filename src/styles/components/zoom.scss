@@ -1,10 +1,11 @@
 .drift-zoom-pane {
   background: $color-body;
-
+  z-index: 5;
 }
 body.product-style--card {
   .drift-zoom-pane {
     background: $color-card-bg;
+
   }
   .product-image {
    

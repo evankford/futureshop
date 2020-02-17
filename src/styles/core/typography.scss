@@ -34,16 +34,17 @@ h6 {
     letter-spacing: 0.1em;
   }
   &.mega, &.extra {
-    // @include font-extra;
+    @include font-extra;
+    font-size: calc(2.2em + 3vw);
   }
 }
 
 h1, .h1 {
-  font-size: calc(1.35em + 2.2vw);
+  font-size: calc(1.5em + 2.2vw);
   // @include font-extra;
 }
 h2, .h2 {
-  font-size: calc(1.25em + 2vw);
+  font-size: calc(1.3em + 2vw);
   // @include font-extra;
 }
 h3, .h3 {

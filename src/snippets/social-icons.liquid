@@ -31,12 +31,12 @@
 {% if settings.social_soundcloud_link != blank %}
 <li><a target="_blank" rel="nofollow" href="{{settings.social_soundcloud_link}}" aria-label="On soundcloud"><i class="fab fa-soundcloud"></i></a></li>
 {%endif %}
+  <style>
+    .social-wrap {
+      --bg-color: {{settings.social_background_color}} ;
+      --text-color: {{settings.social_text_color}} ;
+    }
+  </style>
 </ul>
-<style>
-  .social-wrap {
-    --bg-color: {{settings.social_background_color}} ;
-    --text-color: {{settings.social_text_color}} ;
-  }
-</style>
 
 {%endif%} 

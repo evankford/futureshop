@@ -10,7 +10,7 @@
 {% include 'section-starter' with section_class: 'collection-list' %}
 <div class="section-inner{% if section.settings.section_size == 'full-width' %} stretch-width{%endif%}" id="section--{{section.id}}">
  {% include 'section-header' %}
-  <div class="collection-list__grid {% if section.settings.overlay == true %} style--overlay {%endif%}" data-item-count="{{section.blocks.size}}">
+  <div class="collection-list__grid style--{{section.settings.layout}}" data-item-count="{{section.blocks.size}}">
   
   {% for block in section.blocks %}
     {%- assign collection = collections[block.settings.collection] -%}
@@ -55,7 +55,7 @@
   {% endif %}
   </div>
   </div>
-  {% if section.settings.overlay == true %}
+  {% if section.settings.layout == 'overlay' %}
   {% assign opacity = 100 | minus: section.settings.overlay_op | times: 0.01 %}
     <style>
       #section--{{section.id}} .collection-list__image {
@@ -98,11 +98,30 @@
         "label" : "Button Text",
         "id" : "button_text"
        },
+       {
+         "type" : "header",
+         "content" : "Layout Settings"
+       },
+      
       {
-        "type" : "checkbox",
-        "id" : "overlay",
-        "label" : "Overlay style?",
-        "default" : true
+        "type" : "select",
+        "id" : "layout",
+        "label" : "Layout",
+        "default" : "standard",
+        "options" : [
+          {
+            "value" : "standard",
+            "label" :"Standard"
+          },
+          {
+            "value" : "overlay",
+            "label" : "Overlay"
+          },
+          {
+            "value" : "big",
+            "label" : "Big"
+          }
+        ]
       },
      
       {
