@@ -104,21 +104,26 @@ register('product', {
     const radios = this.container.querySelectorAll('.radio-selector');
     var swatches = [this.container.querySelector('.swatch[data-option-index="0"]'), this.container.querySelector('.swatch[data-option-index="1"]'), this.container.querySelector('.swatch[data-option-index="2"]')]
     var i = 0;
-    this.product.options.forEach(option => {
-      var optionString = 'option' + (i + 1);
-
-
-      option.values.forEach(value => {
-        var activeButton = swatches[i].querySelector('[value="' + value + '"]');
-        var activeVariants = this.product.variants.filter((val, i) => { return (val[optionString] == value && val.available == true) });
-        if (activeVariants.length > 0) {
-          activeButton.parentNode.classList.add('available')
-          activeButton.parentNode.classList.remove('soldout')
-          activeButton.removeAttribute('disabled');
-        }
-      })
-      i++;
-    })
+    
+    if (swatches && radios) {
+      
+      this.product.options.forEach(option => {
+        var optionString = 'option' + (i + 1);
+  
+        if (option.values.length > 0 && swatches.length > 0) {
+            option.values.forEach(value => {
+              var activeButton = swatches[i].querySelector('[value="' + value + '"]');
+              var activeVariants = this.product.variants.filter((val, i) => { return (val[optionString] == value && val.available == true) });
+              if (activeVariants.length > 0) {
+                activeButton.parentNode.classList.add('available')
+                activeButton.parentNode.classList.remove('soldout')
+                activeButton.removeAttribute('disabled');
+              }
+            })
+            i++;
+          }
+        })
+      }
 
   },
 
