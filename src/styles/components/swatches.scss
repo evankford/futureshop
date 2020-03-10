@@ -1,4 +1,4 @@
-
+$color-border-darker: black;
 /* 
    Swatches Styles
 */
@@ -35,7 +35,7 @@ $swatchheight: 30px;
 }
 .swatch label {
   /* Rounded corners */
-  border-radius:$border-radius-small;
+  border-radius:0;
   
   /* To give width and height */
   display: inline-block;

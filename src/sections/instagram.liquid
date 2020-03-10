@@ -1,19 +1,17 @@
 {%- comment -%}
   This is a required section for the Shopify Theme Store.
-  It is available when you add "Newsletter" section on the Theme Editor.
+  It is available when you add "Instagram" section on the Theme Editor.
 
   Theme Store required settings
-  - Heading: title of the newsletter section
-  - Subheading: description of the newsletter section
+  - Heading: title of the Instagram section
+  - Text: description of the Instagram section
 {%- endcomment -%}
-
-
 
 {% assign has_bg = false %}
 {% if section.settings.section_size == 'full-width' and section.settings.background_image != blank %}
 {% assign has_bg = true %}
 {%endif%}
-<section class="newsletter-section standard-section section-outer size--{{section.settings.section_size}} spacing--{{section.settings.section_spacing}} bg-style--{{section.settings.background_style}} lazyload" id="{{section.settings.anchor_id}}" {% if has_bg == true %} data-bgset="{% include 'responsive-bg-image', image: section.settings.background_image%}" {%endif%}>
+<section class="instagram section-outer size--{{section.settings.section_size}} spacing--{{section.settings.section_spacing}} bg-style--{{section.settings.background_style}} lazyload" id="{{section.settings.anchor_id}}" {% if has_bg == true %} data-bgset="{% include 'responsive-bg-image', image: section.settings.background_image%}" {%endif%}>
 {% if section.settings.background_color != blank or section.settings.text_color != blank %}
   <style>
     #shopify-section-{{section.id}} {
@@ -29,66 +27,81 @@
 <div class="section-inner">
 {% assign delay = 0 %}
     {% if section.settings.pre_title != blank or section.settings.title != blank  %}
-  <div class="newsletter-header section-header">
+  <div class="instagram-header section-header">
     {% if section.settings.pre_title != blank %}
-      <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 caps section-header__pre_title">{{ section.settings.pre_title | escape }}</h4>
+      <h4 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 caps section-header__pre_title">{{ section.settings.pre_title | escape }}</h4>
     {% endif %}
     {% if section.settings.title != blank %}
-      <h2 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h2 section-header__title">{{ section.settings.title | escape }}</h2>
+      <h2 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h2 section-header__title">{{ section.settings.title | escape }}</h2>
     {% endif %}
-    {% if section.settings.subheading != blank %}
-      <p>{{ section.settings.subheading | escape }}</p>
-    {% endif %}
+    
   </div>
   {%endif%}
-
-  {% form 'customer' %}
-    {{ form.errors | default_errors }}
-    {% if form.posted_successfully? %}
-      <p>{{ 'general.newsletter_form.confirmation' | t }}</p>
-    {% else %}
-      <input type="hidden" name="contact[tags]" value="newsletter">
-      <input type="email"
-        name="contact[email]"
-        id="Email"
-        value="{% if customer.email != blank %}{{ customer.email }}{% endif %}"
-        placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
-        autocorrect="off"
-        autocapitalize="off">
-      <button type="submit" name="commit" class="button secondary" id="Subscribe">
-        <span>{{ 'general.newsletter_form.submit' | t }}</span>
-      </button>
-    {% endif %}
-  {% endform %}
+  <div class="embed-wrap">
+    {{section.settings.html}}
+  </div>
+  {% if section.settings.button_url != blank and section.settings.button_text != blank %}
+    <div class="button-wrap" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
+      <a href="{{section.settings.button_url}}" class="button solid accent" target="_blank" rel="nofollow"><i class="fab fa-instagram"></i> {{section.settings.button_text}}</a>
+    </div>
+      {%endif%}
   </div>
 </section>
 
 {% schema %}
   {
-    "name": "Newsletter",
+    "name": "Instagram",
     "class" : "standard-section",
     "settings": [
       {
         "type": "text",
         "id": "pre_title",
-        "label": "pre_title",
-        "default": "Sign Up For"
+        "label": "Pre-Heading",
+        "default": "Use this space to"
       },
       {
         "type": "text",
-        "id": "section_title",
-        "label": "Title",
-        "default": "Email Updates"
+        "id": "title",
+        "label": "Heading",
+        "default": "Talk about your brand"
+      },
+       {
+        "type" : "text",
+        "id" : "button_text",
+        "label" : "Button Text"
       },
       {
-        "type": "text",
-        "id": "subheading",
-        "label": "Subheading",
-        "default": "A short sentence describing what someone will receive by subscribing"
+        "type" : "url",
+        "id" : "button_url",
+        "label" : "Button URL"
       },
       {
-        "type": "paragraph",
-        "content": "Any customers who sign up will have an account created for them in Shopify. [View customers](/admin/customers?query=&accepts_marketing=1)"
+        "type" : "header",
+        "content" : "Instagram Settings"
+      },
+      {
+        "type" : "paragraph",
+        "content" : "As of March 2, 2020, there is no way to embed Instagram without a Instagram for Business account, so we use apps.elfsight.com now! Please create a widget there and copy the embed code below!"
+      },
+      {
+        "type" : "html",
+        "id" : "html",
+        "label" : "ElfSight Embed Code"
+      },
+      {
+        "type" : "select",
+        "id" : "grid_size",
+        "label" :"Grid Size",
+        "options" : [
+          {
+            "value" : "grid",
+            "label" : "Grid (small photos)"
+          },
+          {
+            "value" : "slider",
+            "label" : "Slider (large photos)"
+          }
+        ]
       },
        {
         "type" : "header",
@@ -114,26 +127,6 @@
         "type" : "text",
         "label" : "ID (for anchor links)",
         "id" : "anchor_id"
-      },
-      {
-        "type" : "select",
-        "id" : "section_size",
-        "label" : "Section size",
-        "default" : "large",
-        "options" : [
-          {
-            "value" : "full-width",
-            "label" : "Full Width"
-          },
-          {
-            "value" : "large",
-            "label" : "Large"
-          },
-          {
-            "value" : "small",
-            "label": "Small"
-          }
-        ]
       },
       {
         "type" : "select",
@@ -190,8 +183,8 @@
       }
     ],
     "presets": [{
-      "name": "Newsletter",
-      "category": "Promotional"
+        "name": "Instagram",
+        "category": "Custom"
     }]
   }
 {% endschema %}

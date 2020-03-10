@@ -1,8 +1,8 @@
 body.template-product {
   
   main#MainContent {
-    max-width: $grid-max-width;
-    margin: auto;
+    // max-width: $grid-max-width;
+    // margin: auto;
   }
 }
 
@@ -14,12 +14,6 @@ body.template-product {
   }
 }
 
-ul.product-thumbnails {
-  // width: 100%;
-  li {
-    width: 65px;
-  }
-}
 
 #shopify-section-product {
   padding: 30px 12px;
@@ -29,8 +23,10 @@ ul.product-thumbnails {
   display: flex;
   margin: 15px auto;
   margin: auto;
-  max-width: 1200px;
-  width: 95%;
+  max-width: $grid-max-width;
+  @include media-query($small) {
+    // padding: 20px;
+  }
   flex-wrap: wrap;
   align-items: stretch;
   justify-content: center;
@@ -38,59 +34,7 @@ ul.product-thumbnails {
     flex-direction: row-reverse;
   }
 }
-.product-images__wrap {
-  flex: 2 1 230px;
-  position: relative;
-  z-index: 2;
-  display: flex;
-  height: auto;
-  align-items: center;
-  justify-content: flex-start;
-  flex-direction: column;
-  max-width: 550px;
-  @include media-query($small) {
-    width: 100%;
-  }
-  margin:  0;
-  .product-image {
-    width: 100%;
-    position: relative;
-    z-index: 2;
-  }
-  ul {
-    position: relative;
-    z-index: 1;
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    max-width: 490px;
-    width: auto;
-    margin: 12px auto;
-    width: 100%;
-    li {
-      flex: 0 0 90px;
-      @include media-query($small) {
-        flex: 0 0 70px;
-      }
-      padding: 7px;
-      
-      display: inline-block;
-      a {
-        padding: 0;
-        opacity: 0.7;
-        display: inline-block;
-        position: relative;
-        transition: transform 150ms $ease, opacity 150ms $ease;
-        &[aria-current=true] {
-          opacity: 1;
-          transform: scale(1.04);
-        }
-      }
-    }
-  }
-}
+
 
 [data-price-wrapper] {
   margin: 20px auto;
@@ -107,7 +51,7 @@ ul.product-thumbnails {
   flex: 1 2 180px;
   position: relative;
   z-index: 1;
-  padding: 0 calc(10px + 1.2vw);
+  padding: 20px calc(10px + 2.2vw);
   
   // margin-top:6vmin;
   min-height: 350px;
@@ -188,7 +132,7 @@ ul.product-thumbnails {
     margin: 24px 12px 0;
   }
   button {
-    margin: 32px 0 0;
+    margin: calc(12px + 2vw) 0 0;
     &.button.solid {
       background: $color-secondary;
     }
@@ -212,6 +156,11 @@ ul.product-thumbnails {
   }
 }
 
+body.product-style--bordered {
+  section[data-section-type="product"] {
+    border: $border-thickness solid $color-body-text
+  }
+}
 body.product-style--card {
   section[data-section-type="product"] {
     padding:  calc(10px + 1vw);

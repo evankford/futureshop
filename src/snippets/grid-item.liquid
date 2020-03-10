@@ -2,7 +2,7 @@
 
 
 
- <a data-aos="fade-up" data-aos-delay="{{delay}}" href="{{ product.url | within: collection }}" class="product-grid-item grid-item {% if simplify == true %} simplify {%endif%} {% if hover_details == true  %} detail-on-hover {%endif%} {% unless product.available %} sold-out {% endunless %}">
+ <a data-aos="fade-in" data-aos-delay="{{delay}}" href="{{ product.url | within: collection }}" class="product-grid-item grid-item {% if simplify == true %} simplify {%endif%} {% if hover_details == true  %} detail-on-hover {%endif%} {% unless product.available %} sold-out {% endunless %}">
       {% if product.featured_image != blank %}
         <div class="grid-item__image">
         

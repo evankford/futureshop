@@ -52,7 +52,7 @@
   <div class="header">{{ swatch }}: <span class="option-value--holder">{{current_value}}</span></div>
   {% assign values = '' %}
   {% for variant in product.variants %}
-    {% assign value = variant.options[option_index] %}
+    {% assign value = variant.options[option_index] | replace: '"', '″' %}
     {% unless values contains value %}
       {% assign values = values | join: ',' %}
       {% assign values = values | append: ',' | append: value %} 

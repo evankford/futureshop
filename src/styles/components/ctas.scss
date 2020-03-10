@@ -71,9 +71,9 @@
       
     }
   }
-  &.outline {
+  &.outline, &.border {
     background: transparent;
-    border: 2px solid $color-body-text;
+    border: $border-thickness solid $color-body-text;
     color:  $color-body-text;
     
   }
@@ -199,7 +199,7 @@ body {
     %button {
       background: transparent;
       color: $color-accent;
-      border: 2px solid $color-accent;
+      border: $border-thickness solid $color-accent;
       &::before {
         background: $color-accent;
       }

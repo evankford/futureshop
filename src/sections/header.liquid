@@ -22,34 +22,6 @@
     {% if section.settings.overlay_color %}
     --color-overlay: {{section.settings.overlay_color }};
     {%endif %}
-    {% if settings.texture_header == true and settings.main_background != blank %}
-        --header-bg: transparent;
-        --header-bg-dropdown: {{section.settings.bg_color}};
-        --top-bg: transparent;
-        background-image: url('{{settings.main_background | img_url: '1600x'}}');
-        {% case settings.background_style %}
-          {% when 'repeat-all' %}
-            background-repeat: repeat;
-            background-size: auto;
-          {% when 'repeat-x' %}
-            background-repeat: repeat-x;
-            background-size: auto 100%;
-          {% when 'repeat-y' %}
-            background-repeat: repeat-y;
-            background-size: 100% auto;
-          {% when 'fit' %}
-            background-repeat: no-repeat;
-            background-size: contain;
-          {% when 'stretch' %}
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
-          {% else %}
-            background-repeat: no-repeat;
-            background-size: cover;
-        {%endcase%}
-    {%else %}
-   
-    {%endif%}
   }
 </style>
 
@@ -187,7 +159,7 @@ document.body.classList.add('header-overlay');
    
     {% comment %} {% assign menu_break = menu_break | minus : 1 %}  {%comment %} Want one less on the left if there are extras {%endcomment%} {% endcomment %}
    {% if section.settings.layout_search == 'menu'  or section.settings.layout_cart == 'menu' %}
-    {% assign menu_break = menu_break | minus : 1 %}  {%comment %} Want one less on the left if there are extras {%endcomment%}
+    {% assign menu_break = menu_break | plus : 1 %}  {%comment %} Want one less on the left if there are extras {%endcomment%}
    {%endif%}
   {% assign menu_count = menu_count | minus: 1 %} {%comment %} fix for the loop! {%endcomment%}
    

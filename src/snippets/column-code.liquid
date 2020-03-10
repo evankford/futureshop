@@ -2,10 +2,10 @@
 {% if block.settings.pre_title != blank or block.settings.title != blank  %}
     <div class="block-header section-header align--{{block.settings.align_text}} style--{{block.settings.header_style}}">
       {% if block.settings.pre_title != blank %}
-        <h4 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 caps block-header__pre_title">{{ block.settings.pre_title | escape }}</h4>
+        <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 caps block-header__pre_title">{{ block.settings.pre_title | escape }}</h4>
       {% endif %}
       {% if block.settings.title != blank %}
-        <h2 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h2 block-header__title">{{ block.settings.title | escape }}</h2>
+        <h2 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h2 block-header__title">{{ block.settings.title | escape }}</h2>
       {% endif %}
     </div>
 {%endif%}

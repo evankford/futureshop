@@ -26,20 +26,20 @@
 {%endif%}
 <div class="section-inner music-inner">
   {% assign delay = 0 %}
-  <div class="music-image" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
+  <div class="music-image" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
     {% include 'responsive-image' with image: section.settings.music_image, wrapper_class: 'music-cover', max_width: 800, max_height: 800 %}
   </div>
   <div class="music-content text-align--{{section.settings.text_align}}">
       {% if section.settings.pre_title != blank or section.settings.title != blank  %}
     <div class="music-content-header section-header">
       {% if section.settings.pre_title != blank %}
-        <h4 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 caps section-header__pre_title">{{ section.settings.pre_title | escape }}</h4>
+        <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 caps section-header__pre_title">{{ section.settings.pre_title | escape }}</h4>
       {% endif %}
       {% if section.settings.title != blank %}
-        <h2 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h2 section-header__title">{{ section.settings.title | escape }}</h2>
+        <h2 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h2 section-header__title">{{ section.settings.title | escape }}</h2>
       {% endif %}
       {% if section.settings.post_title != blank %}
-        <h5 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 caps section-header__title">{{ section.settings.post_title | escape }}</h2>
+        <h5 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 caps section-header__title">{{ section.settings.post_title | escape }}</h2>
       {% endif %}
       {% if section.settings.button_url != blank and section.settings.button_text != blank %}
         <div class="button-wrap">

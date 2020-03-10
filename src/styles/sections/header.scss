@@ -266,15 +266,27 @@ nav.main-nav.has-halves {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  .nav-half, .centered-logo {
-    margin: 8px;
+  @include media-query($medium-up) {
+    flex-wrap: nowrap;
   }
+  
   .nav-half {
-    flex: 0 0 auto;
+    flex: 1 0 220px;
+    @include media-query($medium) {
+      flex: 1 1 30%
+    }
+    
+    &__last {
+      text-align: right;
+    }
   }
   .centered-logo {
     flex: 1 1 300px;
   }
+  .nav-half, .centered-logo {
+    margin: 8px;
+  }
+  
   header {
     text-align: center;
     a.logo-wrap {

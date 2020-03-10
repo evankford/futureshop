@@ -6,8 +6,8 @@ import '../../../node_modules/swiper/dist/css/swiper.min.css';
 export default class TestModule {
   constructor(el) {
 
-
     this.el = el
+    this.parent = this.el.parentNode.parentNode;
 
 
     if (el.getAttribute('data-swiper-type') == 'thumbnails') {
@@ -22,12 +22,25 @@ export default class TestModule {
 
       })
 
-      let thumbs = el.querySelectorAll('[data-product-single-thumbnail]');
-
-      thumbs.forEach(element => {
-        element.addEventListener('click', function () {
-        })
+      const thumbs = this.el.querySelectorAll('[data-product-single-thumbnail]');
+      const images = this.parent.querySelectorAll('[data-product-image-wrapper]');
+      this.el.addEventListener('click' , function(event) {
+        console.log(event);
+        if (thumbs.contains(event.target)) {
+          event.preventDefault();
+          images.forEach(image => {
+            if (image.getAttribute('data-image-id') == event.target.getAttribute('data-thumb-id')) {
+              image.classList.remove('hide')
+            }
+            else {
+              image.classList.add('hide')
+              
+            }
+          })
+          
+        }
       })
+      
     } else {
 
       ////// Swiper for slideshow

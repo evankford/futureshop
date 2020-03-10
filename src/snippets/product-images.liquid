@@ -1,43 +1,57 @@
 
-<div class="product-images__wrap {% if section.settings.zoom_enabled%} has-zoom {%endif%}" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" >
+<div class="product-images__wrap {% if settings.product_zoom == true %} has-zoom {%endif%}"  data-zoom-enabled="{% if settings.product_zoom == true%}true{%else%}false{%endif%}" data-module="product-image-wrap"  data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" >
   {% comment %} visible tags over image {% endcomment %}
  {% if settings.tag_location == 'top' or settings.tag_location == 'bottom' %}{% include 'visible-tags'%}{%endif%}
 
     {%- assign current_variant = product.selected_or_first_available_variant -%}
     {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
 
-  <div class="product-image" {% if section.settings.zoom_enabled%} data-module="zoom"" {%endif%}>
-    {% for image in product.images %}
-      {% capture wrapper_class %}
-        {%- unless featured_image == image -%}
-          hide
-        {%- endunless -%}
-      {% endcapture %}
+  
+   <ul class="product-images swiper-container  {% if settings.product_dots == true %}has-dots{%endif%}" data-main-image>
+        <div class="swiper-wrapper">
+          {% for image in product.images %}
+          <div class="swiper-slide product-image">
+            {% capture wrapper_class %}{% unless featured_image == image %} hide {% endunless %} never-hide{% endcapture %}
 
-      {% include 'responsive-image' with
-        image: image,
-        max_width: 700,
-        max_height: 800,
-        image_attributes: "data-product-featured-image",
-        wrapper_class: wrapper_class,
-        wrapper_attributes: "data-product-image-wrapper",
-        zoom: section.settings.zoom_enabled;
-      %}
-    {% endfor %}
-  </div>
+            {% include 'responsive-image' with
+              image: image,
+              max_width: 700,
+              max_height: 800,
+              image_attributes: "data-product-featured-image",
+              wrapper_class: wrapper_class,
+              wrapper_attributes: "data-product-image-wrapper",
+              zoom: settings.product_zoom;
+            %}
+          </div>
+          {% endfor %}
+        </div>
+        {% if settings.product_dots == true %}
+       <div class="swiper-pagination"></div>
+      {%endif%}
+      {% if settings.product_arrows == true %}
+      <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"><i class="fas fa-chevron-left" aria-label="Previous Slide"></i></div>
+        <div class="swiper-button-next"><i class="fas fa-chevron-right" aria-label="Next Slide"></i></div>
+      {% endif %}
+    
 
 {% comment %} thumbnails {% endcomment %}
     {% if product.images.size > 1 %}
-      <ul class="product-thumbnails swiper-container" data-module="swiper-thumbs" data-swiper-type="thumbnails">
+      <ul class="product-thumbnails swiper-container" data-thumbnails>
         <div class="swiper-wrapper">
           {% for image in product.images %}
             <li class="swiper-slide">
-              <a href="{{ image.src | img_url: '480x480' }}" data-thumbnail-id="{{ image.id }}" data-product-single-thumbnail{% if featured_image == image %} aria-current="true"{% endif %}>
+              <a href="{{ image.src | img_url: '480x480' }}" data-thumbnail-id="{{ image.id }}" data-product-single-thumbnail>
                 <img class="product-single__thumbnail-image" src="{{ image.src | img_url: '160x160' }}" alt="{{ image.alt | escape }}">
               </a>
             </li>
           {% endfor %}
         </div>
+            {% if settings.product_arrows == true %}
+            <!-- If we need navigation buttons -->
+              <div class="swiper-button-prev"><i class="fas fa-chevron-left" aria-label="Previous Slide"></i></div>
+              <div class="swiper-button-next"><i class="fas fa-chevron-right" aria-label="Next Slide"></i></div>
+            {% endif %}
       </ul>
     {% endif %}
   </div>

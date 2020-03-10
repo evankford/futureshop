@@ -14,7 +14,7 @@
 
 %address {
    margin: -5px 0 20px;
-    font-weight: 200;
+    font-weight: $font-body-weight;
     font-size: 22px;
     line-height: 1.5;
 }
@@ -101,12 +101,12 @@ section.account-wrap, {
   }
   p.date {
     text-transform: uppercase;
-    font-weight: 200;
+    font-weight: $font-body-weight;
     -webkit-font-smoothing: initial;
   }
   p.description {
     font-size: 24px;
-    font-weight: 200;
+    font-weight: $font-body-weight;
     &+.label {
       margin-top: -10px;
     }

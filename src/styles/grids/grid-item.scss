@@ -2,13 +2,14 @@
   color: inherit;
   text-decoration: none;
   padding: 12px;
+   display: flex;
+  flex-direction: column;
+ 
 
   // box-shadow: 0 0 20px rgba(0,0,0,0.12);
   &:visited {
     color: inherit;
   }
-  display: flex;
-  flex-direction: column;
  
   .grid-item__image {
     flex: 0 1 auto;
@@ -29,9 +30,11 @@
 
     .secondary-featured-image {
       position: absolute;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      left: -1px;
+      top: -1px;
+      width: calc(100% + 2px);
+      
+      height: calc(100% + 2px);
       object-fit: cover;
       object-position: 50% 50%;
       z-index: 2;
@@ -201,13 +204,23 @@ body {
       // box-shadow: 0 0 12px rgba(0,0,0,0.1);
       // padding: 0.4em 0.9em;
       border-radius: var(--border-radius);
-      overflow: hidden;
+      // overflow: hidden;
       // border: 1px solid $color-border;
+      &:hover {
+        .grid-item__image {
+          transform: scale(1)
+        }
+      }
     }
     .grid-item__image {
-      margin: 0px -12px 3px;
+      margin: -12px -12px 3px;
       display: flex;
       align-items: flex-start;
+    }
+    .grid-item__image, .grid-item__details {
+      position: relative;
+      z-index: 20;
+      overflow: hidden;
     }
      .grid-item__image .secondary-featured-image { 
        background: var(--color-card-bg);

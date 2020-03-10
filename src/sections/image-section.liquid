@@ -29,13 +29,13 @@
       <!-- If we need navigation buttons -->
         <div class="swiper-button-prev"><i class="fas fa-caret-left" aria-label="Previous Slide"></i></div>
         <div class="swiper-button-next"><i class="fas fa-caret-right" aria-label="Next Slide"></i></div>
-    </div>
       {% endif %}
+    </div>
   {%endif%}  
 </div>
 {% schema %}
   {
-    "name" : "Image Section",
+    "name" : "Slider/Images",
     "class" : "image-section",
     "settings" : [
       {
@@ -65,6 +65,11 @@
         "min" : 0,
         "step" : 1,
         "default" : 6
+      },
+      {
+        "type" : "checkbox",
+        "id" : "special",
+        "label" : "Enable Special Styling?"
       },
       {
         "type" : "checkbox",

@@ -4,7 +4,7 @@
 
 {% endcomment %}
 
-<div class="video-player__wrap video-wrap--{{section.id}}" data-overlay="{{overlay}}" data-module="vidbox" data-video-url="{{video_url}}" data-start-time="{{start_time}}"><div class="youtube-player" id="player--{{section.id}}"></div></div>
+<div class="video-player__wrap video-wrap--{{section.id}} {% if video_url == blank%}use-gif{%endif%}" data-overlay="{{overlay}}" data-module="vidbox" data-video-url="{{video_url}}" data-start-time="{{start_time}}" data-aos="fade-in" data-aos-duration="800"><div class="youtube-player" id="player--{{section.id}}"></div></div>
 
 <style>
 .video-player__wrap {

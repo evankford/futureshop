@@ -40,6 +40,34 @@
       },
       {
         "type": "color",
+        "id": "color_three",
+        "label": "Three",
+        "default": "#45666d",
+        "info": "Another Accent Color (buttons)"
+      },
+      {
+        "type": "color",
+        "id": "color_three_inverse",
+        "label": "Three Inverse",
+        "default": "#ffffff",
+        "info": "Inverse of three for buttons, etc"
+      },
+      {
+        "type": "color",
+        "id": "color_four",
+        "label": "Four",
+        "default": "#c7e0e7u",
+        "info": "Another Accent Color (buttons)"
+      },
+      {
+        "type": "color",
+        "id": "color_four_inverse",
+        "label": "Four Inverse",
+        "default": "#000",
+        "info": "Inverse of four for buttons, etc"
+      },
+      {
+        "type": "color",
         "id": "color_body_text",
         "label": "Text",
         "default": "#161d25"
@@ -98,6 +126,12 @@
         "id": "typekit_text",
         "label": "Typekit Code",
         "info": "(from the kit on fonts.adobe.com)"
+      },
+      {
+        "type": "text",
+        "id": "extra_typekit",
+        "label": "Typekit Extra",
+        "info": "Usually all lowercase + hyphenated"
       },
       {
         "type": "text",
@@ -209,6 +243,90 @@
     ]
   },
   {
+    "name": "Product Styles",
+    "settings": [
+      {
+        "type": "select",
+        "id": "product_style",
+        "label": "Product style",
+        "options": [
+          {
+            "value": "simple",
+            "label": "Simple"
+          },
+          {
+            "value": "bordered",
+            "label": "Bordered"
+          },
+          {
+            "value": "card",
+            "label": "Card"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "price_style",
+        "default": "simple",
+        "label": "Price Style?",
+        "options": [
+          {
+            "value": "simple",
+            "label": "Simple"
+          },
+          {
+            "value": "background",
+            "label": "On Dark Background"
+          },
+          {
+            "value": "bordered",
+            "label": "Bordered"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "capitalize_product_titles",
+        "default": true,
+        "label": "Capitalize Product Titles?"
+      },
+      {
+        "type": "checkbox",
+        "id": "price_flex",
+        "label": "Price inline with title?",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "details_center",
+        "label": "Center Product Details",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Slider Settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "product_arrows",
+        "label": "Arrows for product slider?",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "product_dots",
+        "label": "Dots for product slider?",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "product_zoom",
+        "label": "Zoom for product Images?",
+        "default": true
+      }
+    ]
+  },
+  {
     "name": "Theme Styles",
     "settings": [
       {
@@ -290,6 +408,10 @@
           {
             "value": "heading",
             "label": "Heading Font"
+          },
+          {
+            "value": "extra",
+            "label": "Extra Font"
           }
         ]
       },
@@ -326,63 +448,6 @@
       {
         "type": "header",
         "content": "Products"
-      },
-      {
-        "type": "select",
-        "id": "product_style",
-        "label": "Product style",
-        "options": [
-          {
-            "value": "simple",
-            "label": "Simple"
-          },
-          {
-            "value": "bordered",
-            "label": "Bordered"
-          },
-          {
-            "value": "card",
-            "label": "Card"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "price_style",
-        "default": "simple",
-        "label": "Price Style?",
-        "options": [
-          {
-            "value": "simple",
-            "label": "Simple"
-          },
-          {
-            "value": "background",
-            "label": "On Dark Background"
-          },
-          {
-            "value": "bordered",
-            "label": "Bordered"
-          }
-        ]
-      },
-      {
-        "type": "checkbox",
-        "id": "capitalize_product_titles",
-        "default": true,
-        "label": "Capitalize Product Titles?"
-      },
-      {
-        "type": "checkbox",
-        "id": "price_flex",
-        "label": "Price inline with title?",
-        "default": false
-      },
-      {
-        "type": "checkbox",
-        "id": "details_center",
-        "label": "Center Product Details",
-        "default": true
       },
       {
         "type": "header",
@@ -434,6 +499,12 @@
         "type": "checkbox",
         "id": "texture_footer",
         "label": "Texture Footer"
+      },
+      {
+        "type": "checkbox",
+        "id": "card_modal",
+        "label": "Cart Modal?",
+        "info": "May be broken!"
       }
     ]
   },

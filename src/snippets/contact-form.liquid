@@ -45,4 +45,129 @@
 </div>
 
 {% endform %}
+
 </div>
+
+
+
+
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+    async defer>
+</script>
+<script>
+
+///BEFORE POLYFILL
+(function (arr) {
+  arr.forEach(function (item) {
+    if (item.hasOwnProperty('before')) {
+      return;
+    }
+    Object.defineProperty(item, 'before', {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function before() {
+        var argArr = Array.prototype.slice.call(arguments),
+          docFrag = document.createDocumentFragment();
+
+        argArr.forEach(function (argItem) {
+          var isNode = argItem instanceof Node;
+          docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
+        });
+
+        this.parentNode.insertBefore(docFrag, this);
+      }
+    });
+  });
+})([Element.prototype, CharacterData.prototype, DocumentType.prototype]);
+
+var captchaKey = '6Lf0edwUAAAAAKqCGNgOh3TkP9sTmlJf6HB7cRMB';
+var form = document.querySelector('form.contact-form');
+
+var button = form.querySelector('.button');
+
+var captcha = document.createElement('div');
+
+captcha.id="captcha-ph"
+
+var error = document.createElement('p');
+error.classList.add('error');
+error.innerHTML= "We were unable to verify you were human. Please try again!";
+form.append(error);
+
+button.before(captcha)
+
+
+var onloadCallback = function() {
+  grecaptcha.render('captcha-ph', {
+    'sitekey' : captchaKey
+  });
+};
+
+
+function showError() {
+  form.classList.add('error');
+  form.classList.remove('loading');
+  form.classList.remove('success');
+  button.innerHTML = 'Try Again'
+}
+function showSuccess() {
+  form.classList.add('success');
+  form.classList.remove('loading');
+  form.classList.remove('error');
+  button.innerHTML = 'Success'
+}
+
+
+form.addEventListener('submit', function(event) {
+  
+  form.classList.add('loading');
+  event.preventDefault();
+console.log(grecaptcha.getResponse());
+  
+  if (grecaptcha.getResponse() == "") {
+      showError();
+      return false;
+    }
+  else {
+    form.submit();
+  }
+})
+</script>
+
+<style>
+form.loading {
+ opacity: 0.6;
+  pointer-events: none;  
+}
+form.loading .button {
+  background: gray;
+}
+form.error {
+  opacity: 1;
+  pointer-events: all; 
+}
+
+form p.error {
+  display: none;
+}
+
+form.error p.error {
+  display: block;
+  background: red;
+  padding: 12px 20px;
+  color: white;
+  margin: 12px auto;
+}
+#captcha-ph {
+    display: block;
+    margin: -10px auto 20px;
+    max-width: 300px;
+}
+form.error button{
+  background: red;
+}
+form.success button{
+  background: #00ff00;
+}
+</style>

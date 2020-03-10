@@ -423,3 +423,42 @@ ul.footer-menu {
     }
   }
 }
+
+.footer-newsletter {
+  background: $color-secondary-darkest;
+  color: $color-secondary-lighter;
+  padding: calc(24px + 4vw) 30px ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;;
+  &+footer {
+    margin-top: 0 !important;
+  }
+  .h2 {
+    margin-top: 0;
+    font-size: calc(2em + 2vw);
+    
+  }
+  .large_form {
+    margin: 20px auto 0
+  }
+  .footer-content {
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+}
+
+form#footer-newsletter {
+  input[type=email] {
+    background: #efefef;
+    color: $color-body-text;
+    &:focus {
+      background: white;
+    }
+    &::placeholder {
+      color: $color-body-text
+    }
+  }
+}

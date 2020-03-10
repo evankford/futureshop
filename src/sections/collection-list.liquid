@@ -39,13 +39,18 @@
       {%- assign default_label = 'homepage.onboarding.collection_title' | t -%}
       <div class="collection-item-content">
       
+        
           {% if block.settings.pre_header != blank %} 
           <h4 class="h5">{{block.settings.pre_header}}</h5>
         {%endif%}
         <h3 class="h3">{{ collection.title | default: default_label }}</h3>
-        {% if section.settings.button_text != blank %}
-        <div class="button  lighter">{{section.settings.button_text}}</div>
+        {% if block.settings.description  != blank %}
+          <h4 class="h5">{{block.settings.description}}</h5>
         {%endif%}
+        {% if section.settings.button_text != blank %}
+        <div class="button  light over-dark">{{section.settings.button_text}}</div>
+        {%endif%}
+        
       </div>
     </a>
   {% endfor %}

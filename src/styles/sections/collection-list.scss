@@ -30,6 +30,8 @@
 
 .collection-item-content, .collection-list__image { 
   transition: transform 300ms $ease;
+  position: relative;
+  z-index: 3;
 }
 
 .collection-list__image {
@@ -107,13 +109,18 @@
       justify-content: center;
       text-decoration: none;
       color: inherit;
+      overflow: hidden;
       h4.h5 {
         font-weight: normal;
         text-transform: uppercase;
         font-size: 1em;
         letter-spacing: 0.1em;
+        margin: 10px auto;
+        line-height: 1.2;
+        max-width: 80%;
       }
       h2, h3 {
+        margin:15px auto 0;
         @include media-query($tiny) {
           word-break: break-all;
           font-size: 24px;
@@ -129,6 +136,11 @@
         p {
           flex: 0 0 auto;
         }
+      }
+      .button {
+        margin: 10px auto 0;
+        display: inline-block;
+        
       }
     }
   }
@@ -171,6 +183,7 @@
   
   &.style--overlay {
     max-width: 100%;
+    overflow: hidden;
       .collection-list__image {
         width: 100%;
         height: 100%;
@@ -222,11 +235,9 @@
         &:hover {
           .collection-list__image {
             transform: scale(1.05);
-            opacity: 0.7;
+            opacity: 0.9 !important;
           }
-          .collection-item-content {
-            transform: translateY(-2px)
-          }
+         
         }
         &::after {
           display: none;
@@ -250,6 +261,12 @@
     }
 }
 
+body.product-style--bordered {
+  .collection-list-item  {
+    border: $border-thickness solid $color-body-text;
+    border-radius: $border-radius;
+  }
+}
 body.product-style--card {
     .collection-list-item  {
         @include shadowBefore(0.975,1);

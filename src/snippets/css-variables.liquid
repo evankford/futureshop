@@ -4,8 +4,8 @@
 
 
 @font-face  {
-  font-family: "WeeBairn";
-  src: url({{'wee.woff' | asset_url}}) format('woff');
+  font-family: "ranget";
+  src: url({{'ranget.woff2' | asset_url}}) format('woff2'), url({{'ranget.woff' | asset_url}}) format('woff');
   font-weight: 700;
   font-style: bold; 
 }
@@ -34,6 +34,7 @@
   
   :root {
     --border-radius: {{ settings.border_roundness }}px;
+    --border-thickness: {{ settings.border_thickness }}px;
     --border-radius-small: {{ settings.border_roundness | times: 0.5 }}px;
     --border-radius-big: {{ settings.border_roundness | times: 2 }}px;
     
@@ -48,10 +49,11 @@
 
     --color-secondary: {{ settings.color_secondary }};
     --color-secondary-darker: {{ settings.color_secondary | color_darken: 10 }};
+    --color-secondary-darkest: {{ settings.color_secondary | color_darken: 60 | color_saturate: 10}};
     --color-secondary-inverse: {{ settings.color_secondary_inverse }};
     --color-body-text: {{ settings.color_body_text }};
     --color-main-background: {{ settings.color_main_bg }};
-    --color-border: {{ settings.color_body_text | color_lighten: 80 | color_desaturate: 70 }};
+    --color-border: {{ settings.color_body_text | color_lighten: 30 | color_desaturate: 70 }};
     --color-border-darker: {{ settings.color_body_text | color_lighten: 25 | color_desaturate: 70 }};
     --color-card-bg: {{ settings.color_card_background }};
     --color-card-text: {{ settings.color_card_text }};
@@ -78,32 +80,5 @@
     --font-body-bold-weight: {{ font_body_bold.weight | default: 'bold' }};
   }
   
-  body {
-    {% if settings.main_background  != blank %} 
-    height: auto !important;
-    background-image: url('{{settings.main_background | img_url: '1600x'}}');
-    padding: 1px 0;
-    {%endif%}
-    {% case settings.background_style %}
-      {% when 'repeat-all' %}
-        background-repeat: repeat;
-        background-size: auto;
-      {% when 'repeat-x' %}
-        background-repeat: repeat-x;
-        background-size: auto 100%;
-      {% when 'repeat-y' %}
-        background-repeat: repeat-y;
-        background-size: 100% auto;
-      {% when 'fit' %}
-        background-repeat: no-repeat;
-        background-size: contain;
-      {% when 'stretch' %}
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-      {% else %}
-        background-repeat: no-repeat;
-        background-size: cover;
-    {%endcase%}
-  }
   
 </style>

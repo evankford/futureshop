@@ -1,5 +1,5 @@
 .announcement-bar {
-  padding:  12px;
+  padding:  8px;
   position: relative;
   background: var(--bg-color);
   color: var(--text-color);
@@ -37,15 +37,16 @@
     } 
   }
    p {
-    margin: 2px auto;
+    margin: 2px 15px;
     font-size: 15px;
-    display: block;
+    display: inline-block;
+    vertical-align: middle;
   }
   a {
+    vertical-align: middle;
     text-decoration: none;
     display: inline-block;
-    padding-bottom: 0.1em;
-    border-bottom: 2px solid rgba(white, 0.5);
+    margin: 2px 8px;
     color: inherit;
     font-weight: bold;
     @extend %hover;

@@ -8,9 +8,9 @@ export default class TestModule {
   }
   init() {
     this.ht = this.el.getBoundingClientRect().height;
-    document.body.style.WebkitTransition = 'padding 300ms ease';
-    document.body.style.MozTransition = 'padding 300ms ease';
-    document.body.style.transition = 'padding 300ms ease';
+    document.body.style.WebkitTransition = 'margin 300ms ease';
+    document.body.style.MozTransition = 'margin 300ms ease';
+    document.body.style.transition = 'margin 300ms ease';
   
     window.addEventListener('load', () => {
       setTimeout(() => {

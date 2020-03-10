@@ -265,7 +265,7 @@ body.nav-open {
     }
   }
   .site-header__inner.mobile--centered-cart {
-    header {
+    header, .mobile-logo {
       order: 2;
       flex: 1 1 auto;
       text-align: center;

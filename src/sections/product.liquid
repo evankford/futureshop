@@ -1,5 +1,5 @@
-<section data-section-id="{{ section.id }}" data-section-type="product" >
 {% if section.settings.enable_breadcrumbs == true %}{% include 'breadcrumbs' %}{%endif%}
+<section data-section-id="{{ section.id }}" data-section-type="product" >
 {% assign delay = 0%}
 <div class="product-grid__wrap">
   {% include 'product-images' %}
@@ -8,7 +8,7 @@
  {% if settings.tag_location == 'above'%}{% include 'visible-tags'%}{%endif%}
 
       {% comment %} Product title {% endcomment %}
-      <h1 data-aos="fade-up" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">{{ product.title }}</h1>
+      <h1 data-aos="fade-in" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">{{ product.title }}</h1>
       
       {%include 'product-form' %}
       
@@ -17,7 +17,7 @@
       
       {% comment %} product description {% endcomment %}
   {% if product.description != blank %}
-      <div class="rte" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
+      <div class="rte" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
         {{ product.description }}
       </div>
       {%endif%}

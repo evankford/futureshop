@@ -29,14 +29,14 @@
     {% if section.settings.pre_title != blank or section.settings.title != blank  %}
   <div class="video-playlist__header section-header">
     {% if section.settings.pre_title != blank %}
-      <h4 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 caps section-header__pre_title">{{ section.settings.pre_title | escape }}</h4>
+      <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 caps section-header__pre_title">{{ section.settings.pre_title | escape }}</h4>
     {% endif %}
     {% if section.settings.title != blank %}
-      <h2 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h2 section-header__title">{{ section.settings.title | escape }}</h2>
+      <h2 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h2 section-header__title">{{ section.settings.title | escape }}</h2>
     {% endif %}
   </div>
   {%endif%}
-   <div class="video-wrapper video-slider  swiper-containe" data-module="swiper-videos" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
+   <div class="video-wrapper video-slider  swiper-containe" data-module="swiper-videos" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
     <div class="swiper-wrapper">
      {%for block in section.blocks %}
       <div class="swiper-slide video-slide"  data-module="lightbox" data-lightbox-type="video" data-lightbox-target="{{block.settings.id}}">
@@ -60,7 +60,7 @@
     </div>
     </div>
     {% if section.settings.button_url != blank and section.settings.button_text != blank %}
-    <div class="button-wrap" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
+    <div class="button-wrap" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
       <a href="{{section.settings.button_url}}" class="button" target="_blank" rel="nofollow"><i class="fab fa-youtube"></i> {{section.settings.button_text}}</a>
     </div>
       {%endif%}
