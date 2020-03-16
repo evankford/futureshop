@@ -8,9 +8,12 @@
  
  ///SWATCH COLORS
  //create object from liquid form
+ 
+ 
+ 
+
  {% assign swatch_hexes = settings.swatch-hexes | replace: '<p>', '' | replace: '</p>' , '' | newline_to_br | split: '<br />'  %}
 
- 
 {% for hex in swatch_hexes %} 
   {% assign hex = hex | replace: '&nbsp;' , ' ' %}
   {% assign hex_info = hex | split: ':' %}

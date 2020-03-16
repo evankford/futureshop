@@ -34,7 +34,6 @@ class ShopDrawer {
   }
   
   closeDrawer() {
-    console.log('closingDrawer');
     this.drawer.classList.add('transitioning');
     this.drawer.classList.remove('open')
     clearTimeout(this.animator);
@@ -43,7 +42,6 @@ class ShopDrawer {
     }, this.props.speed);
   }
   openDrawer() {
-    console.log('openingDrawer');
     this.drawer.classList.add('transitioning');
     this.drawer.classList.add('open')
     clearTimeout(this.animator);

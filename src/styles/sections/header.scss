@@ -8,6 +8,7 @@ section[data-section-type="header"] {
   width: 100%;  
   height: auto;
   z-index: 999;
+  
   transition: transform 240ms linear, opacity 240ms ease;
   &::before {
     opacity: 0;

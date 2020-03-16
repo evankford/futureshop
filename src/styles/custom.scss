@@ -1,3 +1,28 @@
+
+
+//Buttons
+
+%button, .button, .button.simple, button.button {
+  @include font-heading();
+  &.over-dark {
+    color: $color-accent;
+  }
+}
+body.button-style--underline {
+  %button, .button, .button.simple, button.button { 
+    
+  }
+}
+
+
+//Section general 
+
+.section-inner .section-header {
+  margin-bottom: 0;
+}
+
+//HEader
+
 .site-header__inner {
   max-width: 95%;
 }
@@ -34,6 +59,25 @@ section[data-section-type="header"] {
   }
 }
 
+
+nav.main-nav ul li {
+  a, .icon-fallback-text {
+    font-size: 20px;
+    @include media-query($medium-up) {
+      padding: 24px 12px;
+    }
+  }
+  
+  ul {
+    &::before {
+      border: 1px solid $color-accent;
+      opacity: 1;
+    }
+  }
+  
+}
+
+//Search Drawer
 .search-drawer-inner > form {
   background: $color-body;
   border-color: $color-body-text;
@@ -53,22 +97,6 @@ section[data-section-type="header"] {
   }
 }
 
-nav.main-nav ul li {
-  a, .icon-fallback-text {
-    font-size: 20px;
-    @include media-query($medium-up) {
-      padding: 30px 12px;
-    }
-  }
-  
-  ul {
-    &::before {
-      border: 1px solid $color-accent;
-      opacity: 1;
-    }
-  }
-  
-}
 
 .cart-drawer {
   .cart-note textarea {
@@ -78,29 +106,12 @@ nav.main-nav ul li {
   }
 }
 
-%button, .button, .button.simple, button.button {
-  @include font-heading();
-  &.over-dark {
+textarea[name=note] {
+    background: transparent; 
+    border: 1px solid $color-accent;
     color: $color-accent;
-  }
-}
-body.button-style--underline {
-  %button, .button, .button.simple, button.button { 
-    
-  }
 }
 
-.image-section {
-  .swiper-slide.video-slide, .swiper-slide.background-slide {
-    min-height: 29.925vw
-  }
-  .swiper-button-prev {
-    left: 2.5%;
-  }
-  .swiper-button-next {
-    right: 2.5%;
-  }
-}
 
 .swiper-pagination {
   margin-bottom: 8px;
@@ -163,8 +174,48 @@ div.product-grid {
 
 ///Front page sections
 
+
+.image-section {
+  .swiper-slide.video-slide, .swiper-slide.background-slide {
+    min-height: 29.925vw
+  }
+  .swiper-button-prev {
+    left: 2.5%;
+  }
+  .swiper-button-next {
+    right: 2.5%;
+  }
+}
+
 #iloveme {
   .section-header {
     margin-bottom: 0;
+  }
+}
+
+
+//Product page sections
+section[data-section-type="product"] {
+  border: $border-thickness-big solid $color-accent;
+}
+
+ img[data-zoom] {
+  cursor: crosshair;
+}
+
+///Cart page
+.cart-header {
+  color: $color-accent;
+  opacity: 0.5;
+  h5.label {
+    font-weight: 400;
+  }
+}
+
+.visible-tag__outer.style--backgrounded {
+  h5.visible-tag {
+    background-color: $color-secondary;
+    color: $color-secondary-inverse;
+    padding-top: 0.55em
   }
 }

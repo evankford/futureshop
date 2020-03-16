@@ -8,10 +8,12 @@ $border-radius-big: var(--border-radius-big);
 
 // Text colors
 $color-body-text: var(--color-body-text);
+$color-body-text-trans: var(--color-body-text-trans);
 $color-drawer-text: var(--color-drawer-text);
 
 // Background colors
 $color-body: var(--color-main-background);
+$color-body-trans: var(--color-main-background-trans);
 $color-drawer-bg: var(--color-drawer-background);
 
 
@@ -35,6 +37,7 @@ $color-accent-lightest: var(--color-accent-lightest);
 $color-accent-downplay: var(--color-accent-downplay);
 $color-accent-darker: var(--color-accent-darker);
 $color-accent-darkest: var(--color-accent-darkest);
+$color-accent-trans: var(--color-accent-trans);
 $color-secondary: var(--color-secondary);
 $color-secondary-lighter: var(--color-secondary-lighter);
 $color-secondary-darker: var(--color-secondary-darker);
@@ -45,12 +48,12 @@ $color-secondary-inverse: var(--color-secondary-inverse);
 $color-body-link: $color-accent;
 
 // Helper colors for form error states
-$color-disabled: #000000;
-$color-disabled-border: #000000;
-$color-error: #ff6d6d;
-$color-error-bg: #ffffff;
-$color-success: #35b32a;
-$color-success-bg: #ffffff;
+$color-disabled: #333333;
+$color-disabled-border: #333333;
+$color-error: var(--color-error);
+$color-alert: var(--color-alert);
+$color-success: var(--color-success);
+$color-notification-text: var(--color-notification-text);
 
 // Typography
 $font-heading: 'BodoniCond', var(--font-heading);
@@ -92,6 +95,8 @@ $font-body-bold-weight: var(--font-body-bold-weight);
 $transition-duration: 250ms;
 $transition-timing: ease-in-out;
 
+
+$site-max: 1350px;
 // Grid
 $grid-tiny: 510px;
 $grid-medium: 750px;

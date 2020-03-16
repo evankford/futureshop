@@ -1,8 +1,8 @@
  {% if link.links != blank %}
   <li class="has-children menu-link  {% if link.active%} active {%endif%}">
-    <a href="{{ link.url }}" class=" {{isbacklink}}">
+    <a href="{{ link.url }}" class=" {{isbacklink}} parent-link">
       {{ link.title }}
-      <i class="fas fa-caret-down"></i>
+      
     </a>
     <ul>
       {% for childlink in link.links %}

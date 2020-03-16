@@ -10,8 +10,8 @@
    <ul class="product-images swiper-container  {% if settings.product_dots == true %}has-dots{%endif%}" data-main-image>
         <div class="swiper-wrapper">
           {% for image in product.images %}
-          <div class="swiper-slide product-image">
-            {% capture wrapper_class %}{% unless featured_image == image %} hide {% endunless %} never-hide{% endcapture %}
+          <div class="swiper-slide product-image ">
+            {% capture wrapper_class %}{% unless featured_image == image %} hide {% endunless %} never-hide{% if settings.product_zoom == true %} MagicZoom{%endif%} {% endcapture %}
 
             {% include 'responsive-image' with
               image: image,
@@ -25,23 +25,21 @@
           </div>
           {% endfor %}
         </div>
-        {% if settings.product_dots == true %}
-       <div class="swiper-pagination"></div>
-      {%endif%}
+      
       {% if settings.product_arrows == true %}
       <!-- If we need navigation buttons -->
-        <div class="swiper-button-prev"><i class="fas fa-chevron-left" aria-label="Previous Slide"></i></div>
-        <div class="swiper-button-next"><i class="fas fa-chevron-right" aria-label="Next Slide"></i></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
       {% endif %}
     
-
+    </ul>
 {% comment %} thumbnails {% endcomment %}
     {% if product.images.size > 1 %}
       <ul class="product-thumbnails swiper-container" data-thumbnails>
         <div class="swiper-wrapper">
           {% for image in product.images %}
-            <li class="swiper-slide">
-              <a href="{{ image.src | img_url: '480x480' }}" data-thumbnail-id="{{ image.id }}" data-product-single-thumbnail>
+            <li class="swiper-slide" data-index="{% increment thumb_counter%}">
+              <a href="{{ image.src | img_url: '480x480' }}" data-thumbnail-id="{{ image.id }}" data-product-single-thumbnail {% if image == featured_image %} aria-current="true" {%endif%}>
                 <img class="product-single__thumbnail-image" src="{{ image.src | img_url: '160x160' }}" alt="{{ image.alt | escape }}">
               </a>
             </li>
@@ -49,9 +47,12 @@
         </div>
             {% if settings.product_arrows == true %}
             <!-- If we need navigation buttons -->
-              <div class="swiper-button-prev"><i class="fas fa-chevron-left" aria-label="Previous Slide"></i></div>
-              <div class="swiper-button-next"><i class="fas fa-chevron-right" aria-label="Next Slide"></i></div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
             {% endif %}
       </ul>
     {% endif %}
+    <div id="zoomPlaceholder"></div>
   </div>
+  
+

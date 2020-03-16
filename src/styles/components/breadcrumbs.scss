@@ -1,6 +1,6 @@
 nav.breadcrumb {
   padding: 1em;
-  margin: calc(5px + 1vw) 0 calc(15px + 2vw);
+  margin: calc(5px + 1vw) 0 calc(15px + 1vw);
   color: $color-border-darker;
   @include media-query($small) {
     text-align: center;

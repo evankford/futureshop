@@ -1,21 +1,25 @@
+$headerPadding: 25px;
+.flash {
+  animation: pulse 600ms $ease 1;
+  &[data-cart-button] {
+    animation: bounce 1000ms $ease 1;
+  }
+}
 .cart-drawer {
   &__header {
     text-align: center;
-    padding:  0 10px 10px;
-    margin-top: -06px;
+    padding: $headerPadding $headerPadding $headerPadding $headerPadding;
     position: relative;
-    border-bottom: 1px solid rgba(#aaaaaa, 0.1);
-    width: calc(100% + 40px);
+    width: 100%;
     margin-left: 0px;
+    flex: 0 0 auto;
     display: flex;
+    flex-wrap: wrap;;
     h2.cart-drawer__title {
-      font-size: calc(18px + 0.2vw);
-      margin: 12px ;
+      font-size: 22px;
+      margin: 0 ;
       flex: 1 1 100%;
       line-height: 1;
-      @include media-query($widescreen) {
-        font-size: 20px;
-      }
     }
     button.cart-drawer__closer {
       flex: 0 0 auto;
@@ -23,12 +27,14 @@
       border: 0px solid transparent;
       background: transparent;
       position: relative;
-      width: 40px;
-      height: 40px;
-      padding: 12px;
+      width: $headerPadding*2;
+      height: $headerPadding*2 + 14px;
       transition: transform 200ms $ease;
       backface-visibility: hidden;
       display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
       &::before, &::after {
         @extend %psuedo;
         content:'';
@@ -71,12 +77,14 @@
     flex: 1 1 auto;
     width: 100%;
     display: flex;
-    align-items: center;
+    align-items: space-evenly;
+    position: relative;
+    z-index: 1;
     justify-content: center;
     flex-direction: column;
     &>ul, &>div {
       width: 100%;
-      flex: 0 0 auto;
+      
     }
   }
   .cart-note {
@@ -129,16 +137,37 @@
     textarea {
       width: 100%;
       display: block;
+      position: relative;
+      
     }
     
     .textarea-wrap {
-      transition: max-height 400ms ease;
       margin: 8px 0 0;
       overflow: hidden;
       max-height: 0;
       display: block;
       width: 100%;
-      transition: max-height 400ms ease;
+      transition: max-height 400ms $ease;
+      position: relative;
+      &::after {
+          content: 'Saved';
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          padding: 8px;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 300ms $ease;
+        }
+      &.saved {
+        &::after {
+          opacity: 0.6;
+        }
+      }
+      textarea {
+        opacity: 0;
+        transition: opacity 400ms $ease;
+      }
     }
     &.active {
       i {
@@ -149,21 +178,26 @@
       .textarea-wrap {
         max-height: 105px;
       }
+      textarea {
+        opacity: 1;
+      }
     }
   }
   .cart-drawer__footer {
     
     width: 100%;
-    padding-bottom: 55px;
     flex: 0 0 auto;
+    padding-top: 10px;
+    margin: auto auto 0;
+    position: relative;
+    z-index: 10000;
     button.checkout {
       width: 100%;
       display: block;
-      position: absolute;
       bottom: 0;
       left: 0;
       margin-bottom: -2px;
-      padding: 20px 20px 24px;
+      padding: $headerPadding/1.5 $headerPadding/1.5 ($headerPadding/1.5 + 2) !important;
       background: $color-drawer-button-background;
       color: $color-drawer-button-text;
     }
@@ -171,25 +205,356 @@
       text-transform: uppercase;
       font-weight: bold;
       font-size: 13px;
-      margin: 0 4px 8px 0;
+      margin: 0 4px 4px 0;
     }
     .cart-footer__row {
       margin: 0 0 12px;
       width: 100%;
-      
+      padding: 3px 12px;
+      &.cart-footer__subtotal {
+        justify-content: space-between;
+        display: flex;
+        align-items: center;
+        [data-cart-subtotal] {
+          font-size: 18px;
+          font-weight: bold;
+        }
+      }
     }
   }
 }
 
 .cart-form__loader {
-  margin: 12px auto;
+  margin:  auto;
   font-size: 16px;
   text-align: center;
-  
+  transition: transform 400ms $ease;
+  @extend %psuedoish;
+  max-height: calc(100% - 80px);
+  z-index: 1;
   display: flex;
-  align-items: center;justify-content: center;flex-direction: column;
+  padding: calc(40px + 4vh) 12px;
+  align-items: center;justify-content: flex-start;flex-direction: column;
   a {
     color: inherit;
     font-weight: bold;
+  }
+}
+
+
+ul.cart-drawer__items {
+  flex: 1 1 300px;
+  overflow: auto;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  margin-bottom: auto;
+  position: relative;
+  overflow-x: hidden;
+  position: relative;
+  pointer-events: none;
+  z-index: 2;//Above loader
+  &::before  {
+    //Hides fallback text when open;
+    @extend %psuedo;
+    background: $color-drawer-bg;
+    opacity: 0;
+    transition: opacity 400ms $ease;
+    pointer-events: none;
+  }
+  &.has-items {
+    pointer-events: all;
+    &::before {
+      opacity: 1;
+      pointer-events: all;
+    }
+    &+.cart-form__loader {
+      transform: translateY(20px) !important
+    }
+  }
+}
+
+$drawerItemPadding: 10px;
+.cart-drawer-item{
+  display: block;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+  
+  padding: $drawerItemPadding;
+  
+  &::before {
+    @extend %psuedo;
+    background: $color-accent;
+    opacity: 0.05;
+  }
+  &:nth-child(even) {
+    &::before {
+      opacity: 0;
+    }
+  }
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    p {
+      margin: 0;
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
+    .item-image {
+      flex: 1 1 60px  ;
+      margin:  0;
+      max-height: 80px;
+      max-width: 80px;
+      
+      img {
+        max-height: 80px;
+        max-width: 80px;
+        object-fit: contain;
+        font-family: "object-fit: cover;";
+      }
+    }
+    .item-info {
+      flex: 2 0 100px;
+      padding: 0px 30px 0 20px;
+      h4, .h4 {
+        margin: 0.1em auto;
+      }
+      &::before{
+      content: " ";
+          display: block;
+          width: 18px;
+          height: 18px;
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          border-radius: 50%;
+          border: 3px solid $color-drawer-text;
+          border-color: $color-drawer-text transparent $color-drawer-text transparent;
+          animation: spin 1.2s $ease infinite;
+          transition: opacity 300ms $ease;
+          opacity: 0;
+      }
+      a.remove-item {
+        transition: opacity 300ms $ease;
+        position: absolute;
+        top: 0 - $drawerItemPadding;
+        right: 0 - $drawerItemPadding;
+        text-transform: uppercase;
+        line-height: 44px;
+        letter-spacing: 0.1em;
+        width: 44px;
+        height: 44px;
+        text-align: center;
+        opacity: 0.6;
+        font-size: 18px;
+        // background: $color-body;
+        color: $color-body-text;
+        z-index: inherit;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  a {
+    text-decoration: none;
+  }
+  
+  
+  &__details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    padding: 0;
+    position: relative;
+    z-index: 10;
+    &>div {
+      padding: $drawerItemPadding $drawerItemPadding/2 $drawerItemPadding/2;
+     
+    }
+    
+  }
+  .item-price, .item-total {
+    flex: 0 1 auto;
+    text-align: left;
+    max-width: 120px;
+     .price--main {
+       font-size: 15px;
+       font-weight: 400;
+      &::after {
+        content:' each';
+        text-transform: lowercase;
+        font-size: 12px;
+        letter-spacing: -0.04em;
+        opacity: 0.5;
+        display: inline-block;
+        margin: 2px 5px;
+      }
+    }
+  }
+  .item-total {
+    text-align: right;
+    animation-delay: 200ms;
+  }
+  $smallQuantHeight: 32px;
+  .item-edits {
+    text-align: center;
+    flex: 1 1 auto;
+    margin: auto;
+    text-align: center;
+    .quantity-select {
+      margin: -8px 9px;
+      display: inline-block;
+      width: 90px;
+      
+      .quantity-wrapper__inner {
+        width: 100%;
+        height: $smallQuantHeight;
+        border: none;
+      }
+      .quantity-adjust {
+        line-height: $smallQuantHeight;
+        height:$smallQuantHeight;
+        flex: 0 0 20px;
+      }
+      input {
+        appearance: none;
+        flex: 1 1 60px;
+        line-height: $smallQuantHeight ;
+        height:$smallQuantHeight;
+        font-size: 16px;
+        min-width: 47px;
+        width: 47px;
+        padding: 0;
+        max-width: 47px;
+
+        
+      }
+      label {
+        display: none;
+      }
+    }
+  }
+  
+  
+  .total-price {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1;
+    
+     &::after{
+       position: relative;
+        content:' total';
+        text-transform: lowercase;
+        font-size: 12px;
+        letter-spacing: -0.04em;
+        opacity: 0.5;
+        display: inline-block;
+        margin: 2px 5px;
+        font-weight: 200;
+      }
+  }
+  
+}
+
+  .cart-drawer-item {
+    transition: opacity 250ms $ease, transform 250ms $ease;
+  &::before{
+    transition: opacity 250ms $ease;
+  }
+  &.itemTransitioning, &.itemPre {
+    opacity: 0.8;
+    pointer-events: none;
+    &::before {
+      opacity: 0.1;
+    }
+    &:nth-child(even)::before{
+      opacity: 0.15;
+    }
+    .item-info {
+      a {
+        opacity: 0;
+        pointer-events: none;
+      }
+      &::before { ////WEIRD: USING REMOVE-ITEM THINGY TO SHOW TRAANSISITON
+        opacity: 1;
+      }
+    }
+  }
+  &.itemAdding {
+    animation: addRemoveAnim 600ms $ease forwards;
+  }
+  &.itemUpdating {
+    animation: pulse 600ms $ease;
+  }
+  &.itemRemoving {
+   animation: addRemoveAnim 600ms $ease reverse forwards;
+  }
+}
+
+@keyframes spin {
+  from{ transform: rotate(0deg)}
+  to{transform: rotate(360deg)}
+}
+@keyframes addRemoveAnim {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }  to {
+    opacity: 1;
+    transform: translateX(0)
+  }
+}
+
+
+@keyframes fallbackFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }  to {
+    opacity: 1;
+    transform: translateY(0)
+  }
+}
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.06, 1.06, 1.06);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+$bounceSize: 8px;
+@keyframes bounce {
+  from,
+  20%,
+  53%,
+  80%,
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+
+  40%,
+  43% {
+    transform: translate3d(0, -19%, 0) rotate(5deg);
+  }
+
+  70% {
+    transform: translate3d(0, -8%, 0) rotate(-1deg);
+  }
+
+  90% {
+    transform: translate3d(0, -3%, 0);
   }
 }

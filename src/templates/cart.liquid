@@ -4,7 +4,7 @@
   <h1 id="cart-header">{{ 'cart.general.title' | t }}</h1>
 </div>
 
-  <form action="/cart" method="post" novalidate>
+  <form action="/cart" method="post" novalidate data-cart-form>
     <table class="responsive-table cart-table">
       <thead class="small--hide">
         <tr class="cart-header">
@@ -14,7 +14,7 @@
           <th><h5 class="label">{{ 'cart.label.total' | t }}</h5></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody data-cart-items>
 
         {% for item in cart.items %}
 
@@ -26,7 +26,7 @@
         helpers used for responsive-table labels
         {% endcomment %}
 
-          <tr class="responsive-table-row">
+          <tr class="responsive-table-row" data-cart-item="{{item.variant.id}}">
 
             <td class="item-image" data-label="{{ 'customer.order.product' | t }}">
 
@@ -88,16 +88,17 @@
                         value="{{ item.quantity }}"
                         min="0"
                         class="quantity"
-                        aria-label="{{ 'cart.general.item_quantity' | t }}">
+                        aria-label="{{ 'cart.general.item_quantity' | t }}"
+                        data-quantity>
                       <div class="quantity-adjust adjust-plus">+</div>
                     </div>
               </div>  
-               <a class="remove-item" href="/cart/change?line={{ forloop.index }}&amp;quantity=0">
-                <small><i class="fas fa-times"></i> {{ 'cart.general.remove' | t }}</small>
+               <a class="remove-item" data-remove-item href="/cart/change?line={{ forloop.index }}&amp;quantity=0">
+                <small><i class="icon-times"></i> {{ 'cart.general.remove' | t }}</small>
               </a>
             </td>
             <td class="item-total" data-label="{{ 'cart.label.total' | t }}">
-              <span class="total-price">{{ item.line_price | money }}</span>
+              <span class="total-price" data-price-total>{{ item.line_price | money }}</span>
             </td>
           </tr>
 
@@ -115,7 +116,7 @@
       <div class="cart-controls--info">
       <div class="subtotal">
         <p class="label">{{ 'cart.general.subtotal' | t }}</p>
-        <p class="price--main">{{ cart.total_price | money }}</p>
+        <p class="price--main" data-cart-total>{{ cart.total_price | money }}</p>
       </div>
         {% if cart.total_discounts > 0 %}
           <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money }}</p>

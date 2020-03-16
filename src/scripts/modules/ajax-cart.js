@@ -1,7 +1,7 @@
 import 'unfetch/polyfill';
 import 'es6-promise/auto';
+import queryString from 'query-string'
 
-import * as cart from '@shopify/theme-cart';
 
 import ShopCart from '../components/shop-cart'
 import ShopDrawer from '../components/shop-drawer'
@@ -11,45 +11,96 @@ export default class TestModule {
 
   constructor(el) {
     this.el = el;
-    this.drawerState = 'closed'
     
     this.selectors = {
+      cartButton: '[data-cart-button]',
       noteToggle: '[data-note-toggle]',
       noteWrap: '[data-note]',
-      cartDrawer: '[data-cart-drawer]'
+      cartDrawer: '[data-cart-drawer]',
+      productForms: '[data-product-form]',
+      formQuantity: '[data-product-quantity]',
+      formId: '[name="id"]'
     }
-    this.drawer = new ShopDrawer(el, { direction: this.el.getAttribute('data-offscreen')})
-    this.cartDrawer = this.el.querySelector(this.selectors.cartDrawer); 
-    
+    this.drawer = new ShopDrawer(el, { direction: this.el.getAttribute('data-offscreen')});
+    this.cartState = false;
     this.noteToggle = this.el.querySelector('[data-note-toggle]')
     this.init();
+    
     
   }
   
   init() {
-    this.setupListeners();
-    if (this.cartDrawer) {
-      this.cart = new ShopCart(this.el.querySelector('[data-cart-drawer]'));
-    }
+    this.initCart().then(done=> {
+      this.buttonListeners();
+      this.formListeners();
+    });
   }
   
+  async initCart() {
+    var self = this;
+    document.body.classList.add('ajax-cart');
+    self.cart = new ShopCart(self.el.querySelector('[data-cart-drawer]'));
+    var initDone = await self.cart.init().then(resp=> {
+      self.checkCartState(); 
+    }).catch(err=> { self.checkCartState()});
+    
+    return await initDone;
+    
+  }
+  
+  checkCartState() {
+    if (this.cart.state) {
+      this.cartState = 'loaded'
+    } else {
+      this.cartState = false
+    } 
+  }
+ 
   setupCartButtons() {
     const allAnchors = Array.from(document.getElementsByTagName('a'));
     allAnchors.forEach(myAnchor=> {
-      if (myAnchor.href.indexOf("/cart") >=0) {
-        myAnchor.setAttribute('data-cart-button', true);
+      var hrefString = myAnchor.href;
+      if (hrefString.indexOf("/cart") >=0) {
+        myAnchor.setAttribute(this.cleanSelector(this.selectors.cartButton), true);
+        if (hrefString.indexOf('change?') !== -1) {
+          const props = queryString.parse(hrefString.slice(hrefString.indexOf('change?') +7 ))
+          myAnchor.setAttribute('data-line-item', props.line)
+          myAnchor.setAttribute('data-line-item-quantity', props.quantity)
+        }
       }
     })
+  
+  }
+  
+  cleanSelector(selector) {
+    return selector.replace('[', '').replace(']', '');
   }
   
   handleCartButtonClick(e) {
     e.preventDefault()
-    console.log(this.drawerState);
-    this.drawer.openDrawer();
+    const realButton = this.getRealButton(e.target);
+    const buttonType = this.getButtonType(realButton);
+    if (buttonType == 'basic') {
+      this.drawer.openDrawer(); 
+    } else {
+    }
   }
   
+  getRealButton(target) {
+    if (target.getAttribute(this.cleanSelector(this.selectors.cartButton)) == true) return target;
+    return target.closest(this.selectors.cartButton)
+  }
+  getButtonType(button) {
+    if (typeof button.getAttribute('data-line-item') !== "string"  && typeof button.getAttribute('data-line-item') !== "number") {
+      return 'basic'
+    } else {
+      if (button.getAttribute('data-line-item-quantity') == 0) {
+        return 'remove'
+      } 
+    }
+   }
+  
   setupNote() {
-
     var noteToggle = this.el.querySelector(this.selectors.noteToggle);
     var noteWrap = this.el.querySelector(this.selectors.noteWrap);
     if (noteToggle && noteWrap) {
@@ -63,7 +114,7 @@ export default class TestModule {
     }
   }
   
-  setupListeners() {
+  buttonListeners() {
     //find cart buttons
     this.setupCartButtons();
     this.setupNote();
@@ -74,4 +125,39 @@ export default class TestModule {
    
   }
   
+  async setupFormSubmit(formEl) {
+    var toSubmit = {}
+    toSubmit = {
+      productId: parseInt(formEl.querySelector(this.selectors.formId).getAttribute('data-productid')),
+      variantId: parseInt(formEl.querySelector(this.selectors.formId).value),
+      quantity: parseInt(formEl.querySelector(this.selectors.formQuantity).value)
+    }
+    return toSubmit
+  }
+  
+
+  
+  formListeners() {
+    var self = this;
+    self.productForms = document.querySelectorAll(self.selectors.productForms);
+      //Only override form submit if cartstate is not false
+    self.productForms.forEach(form=> {
+      form.addEventListener('submit', function(e) {
+        self.checkCartState();
+        if (self.cartState != false) {
+          e.preventDefault();
+          self.setupFormSubmit(form).then(resp=> {
+            self.changeCart(resp, {type: 'submitItem'})
+          })
+        }
+      })
+    })
+  }
+  
+  changeCart(obj, args) {
+    this.drawer.openDrawer();
+    this.cart.submitFormObject(obj, args).then(resp=> {
+      
+    });
+  }
 }

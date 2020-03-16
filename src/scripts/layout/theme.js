@@ -117,31 +117,11 @@ function initMenu() {
       window.addEventListener('scroll', throttle(checkScroll, 100))
       checkScroll();
     }
-  myHeader.addEventListener('click', function (event) {
-    handleHeaderClick(event)
-  });
+ 
    
   }
 }
   
-
-function handleHeaderClick(event) {
-  var theHref = event.target.getAttribute('href')
-  if (theHref) {
-    if (theHref.includes('#')) {
-      const targetHash = theHref.split('#')[1];
-      var newTarget = document.querySelector('#' + targetHash);
-
-      //is a hash link
-      if (newTarget) {
-        event.preventDefault();
-        newTarget.scrollIntoView({
-          behavior: "smooth"
-        })
-      }
-    }
-  }
-}
 window.addEventListener('resize', initMenu)
 window.addEventListener('load', function() {
   setTimeout(() => {

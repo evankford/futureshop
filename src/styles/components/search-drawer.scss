@@ -102,6 +102,9 @@
     button {
       padding: 0.4em 1.1em;
       flex: 0 0 auto;
+      i {
+        color: $color-body-text;
+      }
       @extend %hover;
       // background: $color-accent;
       svg path {

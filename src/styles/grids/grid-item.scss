@@ -125,8 +125,12 @@
   
   
   &.simplify {
+    align-items: stretch;
     .grid-item__details {
       display: none;
+    }
+    .grid-item__image {
+      height: 100%;
     }
   }
   

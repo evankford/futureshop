@@ -41,6 +41,18 @@
 
     // max-width: 600px;
     margin: 0 0 -12px;
+    .errors {
+      order: 10;
+      display: block;
+      flex: 1 1 100%;
+      color: red;
+      ul {
+        list-style: none;
+        li {
+          font-weight: normal;
+        }
+      }
+    }
     .input-group {
       flex: 0 1 auto;
       margin: 0 0 12px;

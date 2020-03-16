@@ -89,6 +89,34 @@
         "type": "color",
         "id": "color_drawer_button_text",
         "label": "Drawer Button Text"
+      },
+      {
+        "type" : "header",
+        "content" : "Notificaton Colors"
+      },
+      {
+        "type" : "color",
+        "id" : "color_notification_text",
+        "label" : "Color for notification text!",
+        "default" : "#ffffff"
+      },
+      {
+        "type" : "color",
+        "id" : "color_error",
+        "label" : "Color for error items!",
+        "default" : "#d64242"
+      },
+      {
+        "type" : "color",
+        "id"  : "color_success",
+        "label" : "Color for success items!",
+        "default" : "#34c240"
+      },
+      {
+        "type" : "color",
+        "id"  : "color_alert",
+        "label" : "Color for alert items!",
+        "default" : "#fa9f47"
       }
     ]
   },
@@ -308,12 +336,7 @@
         "label": "Arrows for product slider?",
         "default": true
       },
-      {
-        "type": "checkbox",
-        "id": "product_dots",
-        "label": "Dots for product slider?",
-        "default": true
-      },
+    
       {
         "type": "checkbox",
         "id": "product_zoom",

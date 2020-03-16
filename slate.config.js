@@ -11,8 +11,7 @@ module.exports = {
   'webpack.extend': {
     resolve: {
       alias: {
-        jquery: path.resolve('./node_modules/jquery'),
-        'lodash-es': path.resolve('./node_modules/lodash-es'),
+        // 'lodash-es': path.resolve('./node_modules/lodash-es'),
       },
     },
     optimization: {

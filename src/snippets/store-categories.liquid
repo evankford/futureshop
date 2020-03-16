@@ -30,7 +30,7 @@
         {%- assign image_object = collection.image | default: collection.products.first.featured_image -%}
         {% endif%}
         {% if image_object %}
-        <div class="collection-list__image">
+        <div class="collection-list-item__image">
           {% include 'responsive-image' with
             image: image_object,
             max_width: 600,
@@ -45,7 +45,7 @@
       {% endif %}
 
       {%- assign default_label = 'homepage.onboarding.collection_title' | t -%}
-      <div class="collection-item-content">
+      <div class="collection-list-item__content">
       
           {% if block.settings.pre_header != blank %} 
           <h4 class="h5">{{block.settings.pre_header}}</h5>
@@ -63,10 +63,10 @@
   {% if block.settings.overlay == true %}
   {% assign opacity = 100 | minus: block.settings.overlay_op | times: 0.01 %}
     <style>
-      #block--{{block.id}} .collection-list__image {
+      #block--{{block.id}} .collection-list-item__image {
         opacity: {{opacity}};
       }
-      #block--{{block.id}} .collection-item-content {
+      #block--{{block.id}} .collection-list-item__content {
         color: {{block.settings.overlay_text_color}};
       }
       #block--{{block.id}} .collection-list-item {

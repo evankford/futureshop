@@ -41,8 +41,8 @@
     {{section.settings.html}}
   </div>
   {% if section.settings.button_url != blank and section.settings.button_text != blank %}
-    <div class="button-wrap" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
-      <a href="{{section.settings.button_url}}" class="button solid accent" target="_blank" rel="nofollow"><i class="fab fa-instagram"></i> {{section.settings.button_text}}</a>
+    <div class="button-wrap center" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
+      <a href="{{section.settings.button_url}}" class="button solid accent" target="_blank" rel="nofollow"><i class="icon-instagram"></i> {{section.settings.button_text}}</a>
     </div>
       {%endif%}
   </div>
@@ -151,6 +151,26 @@
             "label" : "Large"
           }, 
 { "value": "huge", "label" : "Huge"}
+        ]
+      },
+       {
+        "type" : "select",
+        "id" : "section_size",
+        "label" : "Section size",
+        "default" : "large",
+        "options" : [
+          {
+            "value" : "full-width",
+            "label" : "Full Width"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          }
         ]
       },
      

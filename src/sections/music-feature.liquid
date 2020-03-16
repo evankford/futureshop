@@ -1,11 +1,3 @@
-{%- comment -%}
-  This is a required section for the Shopify Theme Store.
-  It is available when you add "Music Feature" section on the Theme Editor.
-
-  Theme Store required settings
-  - Heading: title of the Music Feature section
-  - Text: description of the Music Feature section
-{%- endcomment -%}
 
 {% assign has_bg = false %}
 {% if section.settings.section_size == 'full-width' and section.settings.background_image != blank %}
@@ -49,9 +41,9 @@
     </div>
     {%endif%}
     <div class="music-links">
-    {% for block in section.blocks %}
-      <a href="{{block.settings.url}}" target="_blank" rel="nofollow"><i class="{{block.settings.classes}}" aria-label="{{block.settings.title}}"></i></a>
-      {%endfor%}
+     {% for block in section.blocks %}
+        <a href="{{block.settings.url}}" data-aos="fade-up" data-aos-delay="{% increment delay | times: 50%}" class="button listen emphasis--{{block.settings.emphasis}}" title="{{block.settings.accessability_text}}"><i class="{{block.settings.classes}}" aria-hidden="true"></i> {{block.settings.button_text}}</a>
+      {%endfor %}
     </div>
   </div>
   
@@ -185,8 +177,7 @@
           {
             "value" : "large",
             "label" : "Large"
-          }, 
-{ "value": "huge", "label" : "Huge"}
+          }
         ]
       },
       {
@@ -218,25 +209,71 @@
         ]
       }
     ],
-    "blocks" : [
+     "blocks" : [
       {
         "type" : "link",
         "name" : "Link",
         "settings" : [
           {
             "type" : "url",
-            "label" : "URL",
-            "id" : "url"
+            "id" : "url",
+            "label" : "URL"
           },
           {
             "type" : "text",
+            "id" : "button_text",
+            "label" : "Button Text",
+            "default" :"Listen"
+          },
+          {
+            "type" : "text",
+            "id" : "accessability_text",
+            "label" : "Accessability Text",
+            "default" :"Listen on Apple Music"
+          },
+          {
+            "type" : "select",
             "id" : "classes",
-            "label" : "Classes"
-          },
-          {
-            "type" : "text",
-            "id" : "title",
-            "label" : "Accessability Text`"
+            "label" : "Icon",
+            "options" : [
+              {
+                "value" : "icon-apple-music",
+                "label" : "iTunes/Apple Music"
+              },
+              {
+                "value" : "icon-spotify",
+                "label" : "Spotify"
+              },
+              {
+                "value" : "icon-youtube",
+                "label" : "YouTube"
+              },
+              {
+                "value" : "icon-google-play",
+                "label" : "Google Play"
+              },
+              {
+                "value" : "icon-amazon",
+                "label" : "Amazon"
+              },
+              {
+                "value" : "icon-pandora",
+                "label" : "Pandora"
+              },
+              {
+                "value" : "icon-deezer",
+                "label" : "Deezer"
+              },
+              {
+                "value" : "icon-basket",
+                "label" : "Shopping Cart"
+              },
+              {
+                "value" : "icon-shopping-bag",
+                "label" : "Shopping Bag"
+              }
+            ],
+            "default" : "icon-apple-music"
           }
         ]
       }

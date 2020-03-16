@@ -1,7 +1,7 @@
-.collection-list {
+.collection-list, .collections-grid {
   display: flex;
   flex-wrap: wrap;
-  max-width: $grid-max-width;
+  max-width: $site-max;
   width: 100%;
   margin: auto;
   @include media-query($tiny) {
@@ -19,22 +19,30 @@
     flex: 1 1 40%;
   }
   &:hover  {
-    .collection-list__image {
+    .collection-list-item__image {
       transform: scale(1.05)
     }
-    .collection-item-content {
+    .collection-list-item__content {
       transform: translateY(-2px)
     }
   }
 }
-
-.collection-item-content, .collection-list__image { 
+.collections-grid .collection-list-item__content {
+  padding: 20px;
+  h3  {
+    margin: calc(8px + 0.5vw) auto 0;
+  }
+}
+.collection-list-item__content, .collection-list-item__image { 
   transition: transform 300ms $ease;
   position: relative;
   z-index: 3;
+  a {
+    text-decoration: none;
+  }
 }
 
-.collection-list__image {
+.collection-list-item__image {
   min-width: 320px;
 }
 
@@ -43,7 +51,7 @@
   text-align: center;
 }
 
-.collection-item-content {
+.collection-list-item__content {
   h3 {
     margin: 5px auto 10px;
   }
@@ -144,7 +152,7 @@
       }
     }
   }
-  .collection-list__image {
+  .collection-list-item__image {
     flex: 1 1 100%;
     width: 100%;
     min-width: 0;
@@ -166,11 +174,11 @@
       justify-content: center;
       max-width: 100%; 
       flex-direction: row;
-      .collection-list__image {
+      .collection-list-item__image {
         flex: 1 1 300px;
         margin: -5% 0 -20%;
       }
-      .collection-item-content {
+      .collection-list-item__content {
         flex: 1 1 200px;
         padding: 40px;
         
@@ -184,7 +192,7 @@
   &.style--overlay {
     max-width: 100%;
     overflow: hidden;
-      .collection-list__image {
+      .collection-list-item__image {
         width: 100%;
         height: 100%;
         opacity: 0.45;
@@ -233,7 +241,7 @@
           border-right: none;
         }
         &:hover {
-          .collection-list__image {
+          .collection-list-item__image {
             transform: scale(1.05);
             opacity: 0.9 !important;
           }
@@ -244,7 +252,7 @@
         }
       }
     
-      .collection-item-content {
+      .collection-list-item__content {
         position: absolute;
         top: 0;
         left: 0;
@@ -278,7 +286,7 @@ body.product-style--card {
 }
 
 body.preheader-style--caps {
-   .collection-item-content h4.h5 {
+   .collection-list-item__content h4.h5 {
     @include font-body();
     letter-spacing: 0.18em;
     font-size: calc(1.3rem + 0.2vw);

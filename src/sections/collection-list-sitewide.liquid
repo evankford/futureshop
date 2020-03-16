@@ -1,3 +1,4 @@
+{% if section.settings.enable == true%}
 {%- comment -%}
   This is a required section for the Shopify Theme Store.
   It is available when you add "Collection list" section in the Theme Editor.
@@ -76,15 +77,21 @@
     </style>
   {%endif%}
 </div>
+{% endif%}
 {% schema %}
   {
-    "name": "Collection list",
-    "max_blocks": 12,
-   "class" : "standard-section",
+    "name": "Collections (sitewide)",
+    "max_blocks": 6,
+   "class" : "standard-section sitewide-section",
     "settings": [
       {
         "type" : "header",
         "content" : "Collection list settings"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "enable",
+        "label" : "Enable Section"
       },
       {
         "type": "text",
@@ -270,23 +277,6 @@
             "type"  : "image_picker",
             "id" : "image",
             "label" : "Collection Image"
-          }
-        ]
-      }
-    ],
-    "presets": [
-      {
-        "name": "Collection list",
-        "category": "Collection",
-        "blocks": [
-          {
-            "type": "collection"
-          },
-          {
-            "type": "collection"
-          },
-          {
-            "type": "collection"
           }
         ]
       }

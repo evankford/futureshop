@@ -4,11 +4,12 @@
 
 
 @font-face  {
-  font-family: "Icons";
-  src: url("{{'icomoon.woff' | asset_url}}") format('woff');
+  font-family: "fontello";
+  src: url("{{'fontello.woff2' | asset_url}}") format('woff2'), url("{{'fontello.woff' | asset_url}}") format('woff');
   font-weight: 400;
   font-style: normal;
 }
+
 
 @font-face  {
   font-family: "BodoniCond";
@@ -47,6 +48,7 @@
     --color-accent-downplay: {{ settings.color_accent | color_lighten: 20 | color_desaturate: 20}};
     --color-accent-darkest: {{ settings.color_accent | color_darken: 52 | color_saturate: 10 }};
     --color-accent-inverse: {{ settings.color_accent_inverse }};
+    --color-accent-trans: {{ settings.color_accent_inverse | color_modify: 'alpha', 0.5 }};
 
     --color-secondary: {{ settings.color_secondary }};
     --color-secondary-darker: {{ settings.color_secondary | color_darken: 10 }};
@@ -56,7 +58,9 @@
     
     
     --color-body-text: {{ settings.color_body_text }};
+    --color-body-text-trans: {{ settings.color_body_text | color_modify: 'alpha', 0.5}};
     --color-main-background: {{ settings.color_main_bg }};
+    --color-main-background-trans: {{ settings.color_main_background | color_modify: 'alpha', 0.5}};
     
     --color-drawer-text: {{ settings.color_drawer_text  | default: '#3f3f3f'}};
     --color-drawer-background: {{ settings.color_drawer_background | default: '#ffffff' }};
@@ -67,6 +71,12 @@
     --color-border-darker: {{ settings.color_body_text | color_lighten: 25 | color_desaturate: 70 }};
     --color-card-bg: {{ settings.color_card_background }};
     --color-card-text: {{ settings.color_card_text }};
+    
+    /*notifications*/
+    --color-notification-text: {{settings.color_notification_text | default: "#ffffff"}};
+    --color-error: {{settings.color_error | default: '#d64242'}};
+    --color-success: {{settings.color_success | default: '#34c240'}};
+    --color-alert: {{settings.color_alert | default: '#fa9f47'}};
 
     {% if settings.heading_typekit != blank %}
     --font-heading:  {{settings.heading_typekit}} ,{{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
@@ -86,6 +96,19 @@
     --font-body-style: {{ settings.font_body.style }};
     --font-body-bold-weight: {{ font_body_bold.weight | default: 'bold' }};
   }
+
+body, html {
+  display: block;
+  cursor : url("{{'cursor.png' | asset_url}}"), default;
+}  
+body a {
   
   
+}
+  
+  body .button, body button {
+  cursor : url("{{'cursor.png' | asset_url}}"), default;  
+  }
 </style>
+
+

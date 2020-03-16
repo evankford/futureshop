@@ -5,8 +5,9 @@ div#shopify-section-collection-template {
 .product-grid {
   display: flex;
   flex-wrap: wrap;
-  // max-width: 1300px;
+  max-width: $site-max;
   width: 95%;
+  
   margin: 20px auto;
   @supports(display: grid) {
     display: grid;

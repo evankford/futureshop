@@ -35,12 +35,12 @@
 {% capture cart_markup %}
 <div class="cart-outer">
      <a href="/cart" aria-label="{{ 'layout.cart.title' | t }}" data-cart-button>
-      {% include 'icon-cart' %}
+      <i class="icon-shopping-bag"></i>
       {% if section.settings.show_cart_text != blank %}
       <span class="cart-text">{{section.settings.show_cart_text}}</span>
       {%endif%}
       {% if cart.item_count > 0 %}
-      <div class="cart-items">{{ cart.item_count }}</div>
+      <div class="cart-items" data-cart-items-count>{{ cart.item_count }}</div>
       {%endif%}
     </a>
     </div>
@@ -258,11 +258,11 @@ document.body.classList.add('header-overlay');
   <button class="mobile-nav-toggle">
     <div class="opener">
       {% if section.settings.menu_text == true %}<span>Menu </span>{%endif%}
-      <i class="opener fas fa-bars" aria-label="open menu"></i >
+      <i class="opener icon-menu" aria-label="open menu"></i >
     </div>
     <div class="closer">
       {% if section.settings.menu_text == true %}<span>Close </span>{%endif%}
-      <i class="closer fas fa-times"></i aria-label="open menu">
+      <i class="closer icon-times"></i aria-label="open menu">
     </div>
   </button>
 </div>

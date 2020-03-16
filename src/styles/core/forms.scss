@@ -53,8 +53,8 @@ option {
 
 .input-error {
   border-color: $color-error;
-  background-color: $color-error-bg;
-  color: $color-body-text;
+  background-color: $color-error;
+  color: $color-notification-text;
 }
 
 .input-group {

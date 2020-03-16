@@ -68,11 +68,15 @@
   {{ image.width }}
 {%- endcapture -%}
 {%- assign image_widths = image_widths | strip -%}
-
-<div id="ImageWrapper-{{ image.id }}-{{ responsive_image_counter }}" data-image-id="{{ image.id }}" class="responsive-image__wrapper {{ wrapper_class }}" {{ wrapper_attributes }}>
+{% if zoom %}
+<a href="{{image | img_url: '2000x'}}" data-options="zoomPosition: #zoomPlaceholder; hint: always"
+{%else %}
+<div
+{%endif%}
+ id="ImageWrapper-{{ image.id }}-{{ responsive_image_counter }}" data-image-id="{{ image.id }}" class="responsive-image__wrapper {{ wrapper_class }}" {{ wrapper_attributes }}>
   <img id="Image-{{ image.id }}-{{ responsive_image_counter }}"
     class="responsive-image__image lazyload {{ image_class }}"
-    src="{{ image | img_url: '300x' }}"
+    src="{{ image | img_url: '600x' }}"
     data-src="{{ img_url }}"
     data-widths="[{{ image_widths }}]"
     data-aspectratio="{{ image.aspect_ratio }}"
@@ -82,8 +86,13 @@
     {{ image_attributes }}
     {% if zoom %} data-zoom="{{image | img_url: '2000x'}}" {%endif%}
   >
+  {% if zoom %}
+  </a>
+  {%else %}
 </div>
+{%endif%}
 
 <noscript>
   <img class="{{ image_class }}" src="{{ image | img_url: '2048x2048' }}" alt="{{ image.alt | escape }}">
 </noscript>
+

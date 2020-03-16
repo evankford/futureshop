@@ -1,6 +1,6 @@
 
 import Swiper from 'swiper';
-import '../../../node_modules/swiper/dist/css/swiper.min.css';
+import '../../../node_modules/swiper/css/swiper.min.css';
 
 export default class TestModule {
   constructor(el) {

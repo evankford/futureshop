@@ -61,7 +61,11 @@
     background: transparent;
     color: white;
     text-shadow: 0 0 20px rgba(black, 0.1), 2px 2px 4px rgba(black, 0.2);
-   width: 18px;
+    width: 60px;
+    &::after {
+      // content:'';
+      font-size: 20px;
+    }
    &.swiper-button-disabled {
      opacity: 0;
    }
@@ -75,6 +79,12 @@
     }
      &.active {
     }
+  }
+  .swiper-button-prev{ 
+    text-align: left;
+  }
+  .swiper-button-next{ 
+    text-align: right;
   }
   .swiper-pagination-bullet {
     background: white;

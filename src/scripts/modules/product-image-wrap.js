@@ -1,20 +1,23 @@
-import Drift from 'drift-zoom';
 import Swiper from 'swiper';
-import '../../../node_modules/swiper/dist/css/swiper.min.css';
+import '../../../node_modules/swiper/css/swiper.min.css';
+import '../components/magiczoom.css';
+import '../components/magiczoom.js';
+
+var mzOptions = {
+  zoomPosition: 'inner'
+};
 
 export default class myModule {
   constructor(el) {
+    this.el = el;
     this.pane = el.querySelector('.product-image');
-    this.zoom = el.getAttribute('data-zoom-enabled');
     this.images = el.querySelectorAll('[data-product-featured-image]');
     this.imageSwiper = el.querySelector('[data-main-image]');
     this.thumbSwiper = el.querySelector('[data-thumbnails]');
     this.init();
   }
   init() {
-   if (this.zoom == true) {
-     this.initZoom();
-   }
+   
    if (this.imageSwiper) {
      if (this.images.length > 1) {
        this.initSwiper();
@@ -29,7 +32,6 @@ export default class myModule {
       image.classList.remove('hide');
     });
     
-    console.log(this.thumbSwiper)
     //Thumb stuff first
     let thumbSwipe= false; //Default false
     if (this.thumbSwiper) {
@@ -47,19 +49,18 @@ export default class myModule {
       
       //Init thumb swiper
       thumbSwipe = new Swiper(this.thumbSwiper, {
+        centeredSlides: true,
        slidesPerView: 'auto',
        loop: false,
-       centeredSlides: false,
        spaceBetween: 1,
        threshold: 10,
        effect: 'slide',
-       centerInsufficientSlides: true,
        slideToClickedSlide: true,
         navigation: littleNav
      })
      
      
-
+      
       
     } // ENd thumbnail checker
     
@@ -89,23 +90,34 @@ export default class myModule {
         swiper: thumbSwipe
       }
     }
-    console.log(bigThumbs)
-    var mainSwiper = new Swiper(this.imageSwiper, {
+    this.mainSwiper = new Swiper(this.imageSwiper, {
       slidesPerView:1,
       loop: false, 
       centeredSlides: true,
       navigation: bigNav,
+      centerInsufficientSlides: true,
       pagination: bigPage,
       thumbs: bigThumbs
     })
-  }
-  
-  initZoom() {
-    var self = this;
-    this.images.forEach(img => {
-      new Drift(img, {
-        paneContainer: self.pane
+    
+    var classObserver = new MutationObserver(mutations => {
+      mutations.forEach(mutation => {
+        if (mutation.type == 'attributes' && mutation.attributeName == 'aria-current') {
+          this.slideToActive();
+        }
       })
+    });
+    this.thumbSwiper.querySelectorAll('[data-product-single-thumbnail]').forEach(thumb => {
+      classObserver.observe(thumb, {
+        attributes: true
+      });
     })
+    this.slideToActive();
+  }
+  slideToActive() {
+    var activeThumbIndex = this.thumbSwiper.querySelector('[aria-current="true"]').parentNode.getAttribute('data-index');
+    if (activeThumbIndex) {
+      this.mainSwiper.slideTo(activeThumbIndex);
+    }
   }
 }

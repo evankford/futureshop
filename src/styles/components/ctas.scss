@@ -98,7 +98,6 @@ button.button {
     text-align: center;
     .button {
       flex: 0 0 auto;
-      margin: 0.85em
     }
   }
 }
@@ -138,7 +137,9 @@ body {
     %button {
       background: transparent;
       color: $color-accent;
-      padding: 0.48em 0.35em;
+      &:not(.solid) {
+        padding: 0.48em 0.35em;
+      }
       &::after {
         @extend %psuedo;
         height: $border-thickness;

@@ -25,8 +25,6 @@ swatches.forEach(element => {
 
       event.initEvent('change', true, false);
       selector.dispatchEvent(event);
-
-
       formUpdate.initEvent('formUpdate', true, false);
       selector.dispatchEvent(formUpdate);
     })

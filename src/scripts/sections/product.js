@@ -71,7 +71,6 @@ register('product', {
 
   onFormOptionChange(event) {
     const variant = event.dataset.variant;
-
     if (variant) {
       var form = document.querySelector(selectors.productForm);
       for (var i = 0; i < variant.options.length; i++) {
@@ -109,7 +108,7 @@ register('product', {
       this.product.options.forEach(option => {
         var optionString = 'option' + (i + 1);
   
-        if (option.values.length > 0 && swatches.length > 0) {
+        if (option.values.length > 1 && swatches.length > 1) {
             option.values.forEach(value => {
               var activeButton = swatches[i].querySelector('[value="' + value + '"]');
               var activeVariants = this.product.variants.filter((val, i) => { return (val[optionString] == value && val.available == true) });
@@ -130,14 +129,14 @@ register('product', {
     const lastClickedSwatch = this.container.querySelector('.swatch.last-clicked');
     const swatches = this.container.querySelectorAll('.swatch');
     var radios = this.container.querySelectorAll('.radio-selector');
-    if (event.dataset.options && lastClickedSwatch) {
+    if (event.dataset.options && lastClickedSwatch && variant) {
       const optionIndex = parseInt(lastClickedSwatch.getAttribute('data-option-index'));
       // if (optionIndex == 0) {
 
       // }
       // const idHolder = this.container.querySelector('[name=id]');
       // var activeVariants = idHolder.querySelectorAll('[data-option' + (optionIndex + 1) + '="' + event.dataset.options[optionIndex].value + '"]');
-
+      
       var availableVariants = this.product.variants.filter((filt) => { return (filt.options.indexOf(variant.options[optionIndex]) == optionIndex) })
 
 
@@ -156,7 +155,7 @@ register('product', {
         }
       })
 
-
+      
     } else {
 
     }
@@ -202,6 +201,7 @@ register('product', {
     } else if (variant.available) {
       submitButton.disabled = false;
       submitButtonText.innerText = theme.strings.addToCart;
+      this.container.querySelector('[name="id"]').value = variant.id;
     } else {
       submitButton.disabled = true;
       submitButtonText.innerText = theme.strings.soldOut;
@@ -267,15 +267,13 @@ register('product', {
     const inactiveThumbnail = this.container.querySelector(
       selectors.thumbnailActive,
     );
-
     if (activeThumbnail === inactiveThumbnail) {
       return;
     }
-
-    inactiveThumbnail.removeAttribute('aria-current');
+    if (inactiveThumbnail) {
+      inactiveThumbnail.removeAttribute('aria-current');
+    }
     activeThumbnail.setAttribute('aria-current', true);
-    activeThumbnail.click();
-    activeThumbnail.parentNode.click();
   },
 
   renderFeaturedImage(id) {
@@ -285,7 +283,6 @@ register('product', {
     const inactiveImage = this.container.querySelector(
       selectors.imageWrapperById(id),
     );
-
     activeImage.classList.add(classes.hide);
     inactiveImage.classList.remove(classes.hide);
   },

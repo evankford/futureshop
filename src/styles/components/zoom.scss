@@ -1,13 +1,8 @@
-.drift-zoom-pane {
-  background: $color-body;
-  z-index: 5;
-}
-body.product-style--card {
-  .drift-zoom-pane {
-    background: $color-card-bg;
-
-  }
-  .product-image {
-   
+.mz-hint {
+  .mz-hint-message {
+    border-radius: $border-radius;
+    @include font-body();
+    background: $color-body-trans;
+    color: $color-body-text;
   }
 }
