@@ -40,34 +40,6 @@
       },
       {
         "type": "color",
-        "id": "color_three",
-        "label": "Three",
-        "default": "#45666d",
-        "info": "Another Accent Color (buttons)"
-      },
-      {
-        "type": "color",
-        "id": "color_three_inverse",
-        "label": "Three Inverse",
-        "default": "#ffffff",
-        "info": "Inverse of three for buttons, etc"
-      },
-      {
-        "type": "color",
-        "id": "color_four",
-        "label": "Four",
-        "default": "#c7e0e7u",
-        "info": "Another Accent Color (buttons)"
-      },
-      {
-        "type": "color",
-        "id": "color_four_inverse",
-        "label": "Four Inverse",
-        "default": "#000",
-        "info": "Inverse of four for buttons, etc"
-      },
-      {
-        "type": "color",
         "id": "color_body_text",
         "label": "Text",
         "default": "#161d25"
@@ -93,6 +65,30 @@
         "label": "Card Text",
         "id": "color_card_text",
         "default": "#3f3f3f"
+      },
+      {
+        "type" : "header",
+        "content" : "drawers"
+      },
+      {
+        "type": "color",
+        "id": "color_drawer_background",
+        "label": "Drawer Background"
+      },
+      {
+        "type": "color",
+        "id": "color_drawer_text",
+        "label": "Drawer Text"
+      },
+      {
+        "type": "color",
+        "id": "color_drawer_button_background",
+        "label": "Drawer Button Background"
+      },
+      {
+        "type": "color",
+        "id": "color_drawer_button_text",
+        "label": "Drawer Button Text"
       }
     ]
   },
@@ -344,6 +340,16 @@
         "max": 30
       },
       {
+        "type": "range",
+        "unit": "px",
+        "id": "border_thickness",
+        "label": "Border thickness",
+        "step": 1,
+        "min": 0,
+        "default": 1,
+        "max": 50
+      },
+      {
         "type": "header",
         "content": "Headers"
       },
@@ -368,6 +374,31 @@
           {
             "value": "caps-spaced",
             "label": "All Caps - Spaced"
+          },
+          {
+            "value": "caps-narrow",
+            "label": "All Caps - Narrow"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "preheader_style",
+        "label": "Pre-Header Style",
+        "info" : "Affect Pre and post-headers on section titles, slides, and columns",
+        "default": "standard",
+        "options": [
+          {
+            "value": "standard",
+            "label": "Standard"
+          },
+          {
+            "value": "simple",
+            "label": "Simple"
+          },
+          {
+            "value": "caps",
+            "label": "Caps (spaced)"
           }
         ]
       },
@@ -499,12 +530,6 @@
         "type": "checkbox",
         "id": "texture_footer",
         "label": "Texture Footer"
-      },
-      {
-        "type": "checkbox",
-        "id": "card_modal",
-        "label": "Cart Modal?",
-        "info": "May be broken!"
       }
     ]
   },
@@ -748,6 +773,27 @@
         "id": "cart_notes_enable",
         "label": "Enable cart notes",
         "default": true
+      },
+      { 
+        "type" : "checkbox",
+        "id" : "cart_ajax_enable",
+        "label" : "Enable Ajax Cart"
+      },
+      {
+        "type" : "select",
+        "id" : "cart_offscreen",
+        "label" : "Cart Offscreen Direction",
+        "default" : "right",
+        "options" : [
+          {
+            "value" : "right",
+            "label" : "Right"
+          },
+          {
+            "value" : "left",
+            "label" : "Left"
+          }
+        ]
       }
     ]
   },

@@ -105,6 +105,18 @@ section[data-section-type="header"] {
   }
 }
 
+header.site-header {
+  ul.social-wrap {
+    text-align: center;
+    a {
+      padding: 0.1em 0.3em;
+    }
+  }
+  &.has-socials {
+    
+  }
+}
+
 @keyframes getitin {
   from {
     opacity: 0;
@@ -309,4 +321,8 @@ nav.main-nav.has-halves {
 }
 
 .nav-half__extras {
+}
+
+.nav-inner__wrap {
+  width: 100%;
 }

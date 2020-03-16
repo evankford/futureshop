@@ -17,7 +17,11 @@ export default class SearchDrawer {
   }
   
   initSearchDrawer() {
-    
+    if (this.searchDrawer) {
+      if (this.searchDrawer.classList.contains('search-drawer')) {
+        return this.searchDrawer;
+      }
+    }
     //Transform the initial form, moving it to the drawer
     var searchDrawer = document.createElement('div');
     searchDrawer.classList.add('search-drawer');

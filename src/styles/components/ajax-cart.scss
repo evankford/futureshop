@@ -1,0 +1,195 @@
+.cart-drawer {
+  &__header {
+    text-align: center;
+    padding:  0 10px 10px;
+    margin-top: -06px;
+    position: relative;
+    border-bottom: 1px solid rgba(#aaaaaa, 0.1);
+    width: calc(100% + 40px);
+    margin-left: 0px;
+    display: flex;
+    h2.cart-drawer__title {
+      font-size: calc(18px + 0.2vw);
+      margin: 12px ;
+      flex: 1 1 100%;
+      line-height: 1;
+      @include media-query($widescreen) {
+        font-size: 20px;
+      }
+    }
+    button.cart-drawer__closer {
+      flex: 0 0 auto;
+      appearance: none;
+      border: 0px solid transparent;
+      background: transparent;
+      position: relative;
+      width: 40px;
+      height: 40px;
+      padding: 12px;
+      transition: transform 200ms $ease;
+      backface-visibility: hidden;
+      display: block;
+      &::before, &::after {
+        @extend %psuedo;
+        content:'';
+        height: 14px;
+        width: 14px;
+        background: $color-drawer-text;
+        height: 2px;
+        top: 50%;
+        left: 50%;
+        margin: -1px 0 0 -7px;
+        transform-origin: 50% 50%;
+        transition: transform 200ms $ease;
+        backface-visibility: hidden;
+      }
+      &::before {
+        transform: rotate(-45deg)
+      }
+      &::after {
+        transform: rotate(45deg)
+      }
+      &:hover {
+        transform: translateY(-2px);
+        &::before {
+          transform: rotate(-47deg)
+        }
+        &::after {
+          transform: rotate(47deg)
+        }
+      }
+    }
+  }
+}
+.cart-drawer {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  .cart-form {
+    flex: 1 1 auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    &>ul, &>div {
+      width: 100%;
+      flex: 0 0 auto;
+    }
+  }
+  .cart-note {
+    border-bottom: 1px solid rgba(#aaa, 0.2);
+    label.cart-footer-label {
+      transition: opacity 300ms $ease, transform 300ms $ease;;
+      position: relative;
+      font-weight: normal;
+      line-height: 1;
+      display: inline-block;
+      &:hover {
+        transform: translateY(-2px)
+      }
+    }
+    i {
+      font-style: normal;
+      font-weight: bold;
+    position: relative;
+      vertical-align: middle;
+      margin: 0 8px 1px 2px;
+      border: 1px solid currentColor;
+      height: 15px;
+      width: 15px;
+      padding: 0;
+      text-align: center;
+      display: inline-block;
+      opacity: 0.5;
+      border-radius: 2px;
+      
+      cursor: pointer;
+       &::before, &::after {
+        @extend %psuedo;
+        content:'';
+        width: 8px;
+        top: 5px;
+        left: 3px;
+        background: $color-drawer-text;
+        height: 1px;
+        top: 50%;
+        margin-top: -1px;
+        transform-origin: 50% 50%;
+        transition: transform 200ms $ease;
+        backface-visibility: hidden;
+      }
+      &::before {
+        transform: rotate(-90deg);
+      }
+      
+    }
+    textarea {
+      width: 100%;
+      display: block;
+    }
+    
+    .textarea-wrap {
+      transition: max-height 400ms ease;
+      margin: 8px 0 0;
+      overflow: hidden;
+      max-height: 0;
+      display: block;
+      width: 100%;
+      transition: max-height 400ms ease;
+    }
+    &.active {
+      i {
+        &::before {
+          transform: rotate(0deg)
+        }
+      }
+      .textarea-wrap {
+        max-height: 105px;
+      }
+    }
+  }
+  .cart-drawer__footer {
+    
+    width: 100%;
+    padding-bottom: 55px;
+    flex: 0 0 auto;
+    button.checkout {
+      width: 100%;
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      margin-bottom: -2px;
+      padding: 20px 20px 24px;
+      background: $color-drawer-button-background;
+      color: $color-drawer-button-text;
+    }
+    .cart-footer-label {
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 13px;
+      margin: 0 4px 8px 0;
+    }
+    .cart-footer__row {
+      margin: 0 0 12px;
+      width: 100%;
+      
+    }
+  }
+}
+
+.cart-form__loader {
+  margin: 12px auto;
+  font-size: 16px;
+  text-align: center;
+  
+  display: flex;
+  align-items: center;justify-content: center;flex-direction: column;
+  a {
+    color: inherit;
+    font-weight: bold;
+  }
+}

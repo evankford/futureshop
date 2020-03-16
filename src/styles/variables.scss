@@ -1,14 +1,23 @@
 
 
 $border-radius: var(--border-radius);
+$border-thickness: var(--border-thickness);
+$border-thickness-big: var(--border-thickness-big);
 $border-radius-small: var(--border-radius-small);
 $border-radius-big: var(--border-radius-big);
 
 // Text colors
 $color-body-text: var(--color-body-text);
+$color-drawer-text: var(--color-drawer-text);
 
 // Background colors
 $color-body: var(--color-main-background);
+$color-drawer-bg: var(--color-drawer-background);
+
+
+//Drawers
+$color-drawer-button-text: var(--color-drawer-button-text);
+$color-drawer-button-background: var(--color-drawer-button-background);
 
 // Placeholders
 $placeholder-color-foreground: #161d25;
@@ -29,23 +38,8 @@ $color-accent-darkest: var(--color-accent-darkest);
 $color-secondary: var(--color-secondary);
 $color-secondary-lighter: var(--color-secondary-lighter);
 $color-secondary-darker: var(--color-secondary-darker);
+$color-secondary-darkest: var(--color-secondary-darkest);
 $color-secondary-inverse: var(--color-secondary-inverse);
-
-$color-three: var(--color-three);
-$color-three-inverse: var(--color-three-inverse);
-$color-three-lighter: var(--color-three-lighter);
-$color-three-lightest: var(--color-three-lightest);
-$color-three-downplay: var(--color-three-downplay);
-$color-three-darker: var(--color-three-darker);
-$color-three-darkest: var(--color-three-darkest);
-
-$color-four: var(--color-four);
-$color-four-inverse: var(--color-four-inverse);
-$color-four-lighter: var(--color-four-lighter);
-$color-four-lightest: var(--color-four-lightest);
-$color-four-downplay: var(--color-four-downplay);
-$color-four-darker: var(--color-four-darker);
-$color-four-darkest: var(--color-four-darkest);
 
 
 $color-body-link: $color-accent;
@@ -59,7 +53,7 @@ $color-success: #35b32a;
 $color-success-bg: #ffffff;
 
 // Typography
-$font-heading: var(--font-heading);
+$font-heading: 'BodoniCond', var(--font-heading);
 $font-extra: var(--font-extra);
 $font-script: var(--font-extra);
 $font-body: var(--font-body);

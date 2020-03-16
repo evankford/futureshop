@@ -1,5 +1,27 @@
+{%- capture copy -%}
+  {% if section.settings.copy_url != blank %}
+  <a href="{{section.settings.copy_url}}"
+  {%else %}
+  <div
+  {%endif%} class="copyright footer-copy {% if section.settings.center_copyright == true %} centered {%endif%}"  data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
+        {{ 'layout.footer.copyright' | t }} &copy; {{ 'now' | date: "%Y" }} {{section.settings.copy}}
+  {% if section.settings.copy_url != blank %}
+  </a>
+  {%else %}
+  </div>
+  {%endif%} 
+{%- endcapture -%}
+{%- capture fs_link -%}
+{% if section.settings.fs_link == true %}
+    <p class="fs-link"  data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
+      <a href="http://futureshirts.com" target="_blank" rel="nofollow" aria-label="futureshirts">{% include 'fs.svg' %}</a>
+    </p>
+{%endif%}
+{%-endcapture -%}
 {% unless section.settings.disable == true %}
 {% assign delay = 0 %}
+
+{% comment %} First things first, if email above, set that one up! {% endcomment %}
 {% if section.settings.email_above == true %}
   {% for block in section.blocks %}
     {% if block.type == 'newsletter' %}
@@ -14,7 +36,7 @@
       {%endif%}
   {% endfor%}
 {%endif%}
-<footer id="main-footer" class="flex-style--{{section.settings.footer_alignment}}">
+<footer id="main-footer" class="site-footer flex-style--{{section.settings.footer_alignment}} {% if section.settings.hyper_simplify == true %} hyper-simplify{%endif%}">
   <style>
     #main-footer {
       {% if section.settings.bg_color != blank %}
@@ -28,37 +50,35 @@
     }
   </style>
   <div class="footer-content">
+{% comment %} Check if hyper-simplify {% endcomment %}
+  {% if section.settings.hyper_simplify == true %}
+  
+  <div class="simple-footer">
+    {% for block in section.blocks%} 
+    {% if block.type == 'menu' %}
+      {% capture simple_menu %}{% include 'footer-block-menu' %}{% endcapture %}
+    {%elsif block.type == 'brand' %}
+    {%capture simple_brand%}{% include 'footer-block-brand' %}{%endcapture%}
+    {%endif%}
+    {%endfor%}
+    <div class="simple-footer__content">
+      <div class="simple-copy">{{copy}}</div>
+      <div class="simple-menu">{{simple_menu}}</div>
+      <div class="simple-brand">{{simple_brand}}</div>
+      <div class="simple-logo">{{fs_link}}</div>
+    </div>
+  </div>
+  {%else%}
+  
+  
+  
+  
+  
+  
+  
     {% for block in section.blocks %}
         {% if block.type == 'brand' %} 
-       <div class="footer-col footer-{{block.type}} align--{{block.settings.text_align}}">
-       
-        
-        {% if block.settings.title != blank %}<h4 class="footer-header">{{block.settings.title}}</h4>{%endif%}
-          {% if block.settings.image_snippet != blank or block.settings.image != blank %}
-            <a href="/" class="footer-logo" style="max-width: {{block.settings.logo_max_width}}px" >
-              {% if block.settings.image_snippet != blank %}
-                {%include block.settings.image_snippet %}
-              {%elsif block.settings.image != blank %}
-                {% include 'responsive-image'  with image: block.settings.image, max_width: 700, max_height: 400 %}
-              {%endif%}
-            </a>
-          {%endif%}
-          {% if block.settings.email != blank %}
-            <a class="email-contact" href="mailto:{{block.settings.email}}">
-              <i  class="fas fa-envelope"></i> {{block.settings.email}}
-            </a>
-          {%endif%}
-          {% if block.settings.phone != blank %}
-            <a class="phone-contact" rel="tel" href="tel:{{block.settings.phone}}">
-              <i  class="fas fa-phone-alt"></i> {{block.settings.phone}}
-            </a>
-          {%endif%}
-          {% if block.settings.socials == true %}
-            <div class="social-wrap"   data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
-              {% include 'social-icons' with social_style: block.settings.socials_style %}
-            </div> 
-          {%endif%}
-        </div>
+      {% include 'footer-block-brand' %}
         {% elsif block.type == 'newsletter' and section.settings.email_above != true %}
           <div class="footer-col footer-{{block.type}} align--{{block.settings.text_align}}">
           {% if block.settings.title != blank %}<h4 class="footer-header">{{block.settings.title}}</h4>{%endif%}
@@ -102,28 +122,13 @@
             {% endform %}
           </div>
         {% elsif block.type == 'menu' %}
-          <div class="footer-col footer-{{block.type}} align--{{block.settings.text_align}}">
-            {% if block.settings.title != blank %}<h4 class="footer-header">{{block.settings.title}}</h4>{%endif%}
-          {% if linklists[block.settings.menu].links.size > 0 %}
-                <ul class="footer-menu"  data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" >
-                  {% for link in linklists[block.settings.menu].links %}
-                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                  {% endfor %}
-                </ul>
-          {% endif %}
-        </div>
+          {% include 'footer-block-menu' %}
         {%endif%}
     {%endfor%}
   </div> 
   <div class="super-footer">
-    <div class="copyright {% if section.settings.center_copyright == true %} centered {%endif%}"  data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
-      {{ 'layout.footer.copyright' | t }} &copy; {{ 'now' | date: "%Y" }} {{section.settings.copy}}
-    </div>
-        {% if section.settings.fs_link == true %}
-    <p class="fs-link"  data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
-      <a href="http://futureshirts.com" target="_blank" rel="nofollow" aria-label="futureshirts">{% include 'fs.svg' %}</a>
-    </p>
-      {%endif%}
+   {{copy}}
+   {{fs_link}}
    {% if section.settings.show_payment_icons %}
         {% unless shop.enabled_payment_types == empty %}
           <span class="visually-hidden">{{ 'layout.footer.payment_methods' | t }}</span>
@@ -137,6 +142,8 @@
         {% endunless %}
       {% endif %} 
   </div>
+  
+  {%endif%}
 </footer>
 {%endunless%}
 
@@ -147,6 +154,17 @@
       {
         "type" : "header",
         "content": "settings"
+      },
+       {
+        "type" : "checkbox",
+        "id" : "disable",
+        "label" : "Disable Footer?"
+      },
+      {
+        "type": "checkbox",
+        "id": "hyper_simplify",
+        "label": "Hyper Simplify Footer?",
+        "default": false
       },
       {
         "type" : "color",
@@ -160,16 +178,9 @@
         "label" : "Text Color",
         "default" : "#efefef"
       },
-      {
-        "type" : "header",
-        "content" : "settings"
-      },
-      {
-        "type" : "checkbox",
-        "id" : "disable",
-        "label" : "Disable Footer?"
-      },
-      {
+       
+      
+       {
         "type" : "select",
         "id" : "footer_alignment",
         "label" : "Alignment",
@@ -194,7 +205,7 @@
       },
       {
         "type" : "header",
-        "content" : "menu"
+        "content" : "copyright"
       },
       {
         "type" : "richtext",
@@ -203,10 +214,21 @@
         "info" : "Immediately follows the copyright symbol and year."
       },
       {
+        "type" : "url",
+        "id" : "copy_url",
+        "label"  :"Footer Copyright URL",
+        "info" : "Wraps the whole Copyright text in a link!"
+      },
+      {
         "type" :"checkbox",
         "id" : "center_copyright",
         "label" : "Center Copyright?"
       },
+      
+    {
+      "type" : "header",
+      "content" : "Extras"
+    },
      {
         "type" :"checkbox",
         "id" : "fs_link",
@@ -215,9 +237,10 @@
       {
         "type" :"checkbox",
         "id" : "email_above",
-        "label" : "Email Above Footer?",
+        "label" : "Signup Above Footer?",
         "info" : "Moves any newsletter blocks here to above the footer!"
       },
+     
       {
         "type": "checkbox",
         "id": "show_payment_icons",
@@ -230,20 +253,56 @@
         "type" : "brand",
         "name" : "Branding",
         "settings" : [
+          
+        
+          {
+            "type" :"header",
+            "content" : "settings"
+          },
           {
             "type" : "text",
             "id" : "title",
             "label" : "Title"
           },
+          
+          {
+            "type" : "checkbox",
+            "id" : "socials",
+            "label" : "Include Socials?"
+          },
+           {
+            "type" : "select",
+            "id" : "text_align",
+            "label" : "Text Align",
+            "options" : [
+                {
+                "value" : "left",
+                "label" : "Left"
+              },
+              {
+                "value" : "center",
+                "label" : "Center"
+              },
+              {
+                "value" : "right",
+                "label" : "Right"
+              }
+            ]
+          },
+          {
+            "type" : "header",
+            "content" : "logo"
+          },
           {
             "type" : "image_picker",
             "id" : "image",
-            "label" : "Image"
+            "label" : "Footer Logo"
           },
           {
             "type" : "text",
             "id" : "image_snippet",
-            "label" : "Image Snippet"
+            "label" : "Footer Logo Snippet",
+            "info" : "Include an svg from the 'Snippets' folder (leave off the .liquid)"
           },
            {
             "type": "range",
@@ -272,6 +331,10 @@
             "default": 100
           },
           {
+            "type" : "header",
+            "content" : "Extras"
+          },
+            {
             "type" : "text",
             "id" : "email",
             "label" : "Email"
@@ -280,30 +343,6 @@
             "type" : "text",
             "id" : "phone",
             "label" : "Phone Contact"
-          },
-          {
-            "type" : "checkbox",
-            "id" : "socials",
-            "label" : "Include Socials?"
-          },
-           {
-            "type" : "select",
-            "id" : "text_align",
-            "label" : "Text Align",
-            "options" : [
-                {
-                "value" : "left",
-                "label" : "Left"
-              },
-              {
-                "value" : "center",
-                "label" : "Center"
-              },
-              {
-                "value" : "right",
-                "label" : "Right"
-              }
-            ]
           }
         ]
       },

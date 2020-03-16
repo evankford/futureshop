@@ -1,0 +1,49 @@
+<div class="shop-drawer" data-drawer-container data-module="ajax-cart" data-offscreen="{{settings.cart_offscreen | default: right}}">
+  <div class="shop-drawer__background" data-drawer-closer></div>
+  <div class="shop-drawer__content" data-drawer-content>  
+    <div class="shop-drawer__inner cart-drawer" data-cart-drawer>
+      <div class="cart-drawer__header" data-cart-header>
+        <h2 class="h3 caps cart-drawer__title">{{ 'cart.general.title' | t }}</h2>
+        <button class="cart-drawer__closer" data-drawer-closer aria-label="Close Cart"></button>
+      </div>
+      <form class="cart-form {% if cart.items.size > 0 %} has-items{%endif%}" action="/cart" method="post" novalidate data-cart-header>
+        <div class="cart-form__loader">
+              <div class="supports-cookies">
+          <p>{{ 'cart.general.empty' | t }}</p>
+          <p>{{ 'cart.general.continue_browsing_html' | t }}</p>
+        </div>
+
+        {% comment %}
+        Cart no cookies state
+        ---------------------
+        Browser cookies are required to use the cart. If cookies aren't enabled in the
+        browser a message is displayed prompting the user to enable them.
+        {% endcomment %}
+        <div class="supports-no-cookies">
+          <p>{{ 'cart.general.cookies_required' | t }}</p>
+        </div>
+      </div>
+        <div class="cart-drawer__items" data-cart-items>
+        </div>
+      
+      </form>
+        <div class="cart-drawer__footer" data-cart-footer>
+        {% if settings.cart_notes_enable %} 
+            <div class="cart-footer__row cart-note" data-note="true">
+            
+              <label class="cart-footer-label" for="ajaxCartNote" data-note-toggle><i class="expand-icon switcher"></i>{{ 'cart.general.note' | t }}</label>
+              <div class="textarea-wrap" >
+              <textarea name="note" id="ajaxCartNote" width="100%" rows="4">{{ cart.note }}</textarea>
+              </div>
+            </div>
+          {%endif%}
+          <div class="cart-footer__row">
+            <div class="cart-footer-label">{{ 'cart.general.subtotal' | t }}</div>
+            <div data-cart-subtotal></div>
+          </div>
+          
+          <button class="button checkout accent" type="submit">{{ 'cart.general.checkout' | t }}</button>
+        </div>        
+    </div>
+  </div>
+</div>

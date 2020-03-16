@@ -53,7 +53,7 @@ body:not(.template-index) {
 
 }
 
-#main-footer.flex-style--true-center {
+.site-footer.flex-style--true-center {
   .footer-content {
     flex-direction: column;
     width: 100%;
@@ -332,7 +332,16 @@ ul.footer-menu {
   }
   }
 }
-
+.fs-link {
+   svg {
+    max-width: 52px;
+    margin: 12px auto;
+    width: 15vw;
+    path, g {
+      fill: var(--text-color);
+    }
+  }
+}
 .super-footer {
   text-align: center;
   display: flex;
@@ -351,14 +360,7 @@ ul.footer-menu {
     flex: 1 0 auto;
     max-width: 100%; 
   }
-  a svg {
-    max-width: 52px;
-    margin: 12px auto;
-    width: 15vw;
-    path, g {
-      fill: var(--text-color);
-    }
-  }
+ 
   a {
     position: relative;
     display: inline-block;
@@ -460,5 +462,84 @@ form#footer-newsletter {
     &::placeholder {
       color: $color-body-text
     }
+  }
+}
+
+.site-footer.hyper-simplify {
+  ul.footer-menu {
+    margin: 0;
+  }
+  .footer-col {
+    max-width: 100%;
+    padding: 0;
+  }
+  .footer-menu {
+    max-width: 600px;
+    li  {
+      margin: 0;
+      a {
+        padding: 5px;
+      }
+    }
+  }
+  .fs-link {
+    width: 36px;
+    margin: 5px;
+    svg {
+      width: 100%;
+      display: inline-block;
+      margin: 0
+    }
+  }
+  .social-wrap {
+    margin: 0;
+  }
+}
+
+.simple-copy, .simple-menu, .simple-brand, .simple-logo {
+  display: inline-block;
+  flex: 0 0 auto;
+  padding: 5px;
+  vertical-align: middle;
+  a {
+    margin: 0;
+    text-decoration: none;
+    font-weight: bold;
+  }
+}
+.site-footer.flex-style--true-center {
+  
+  .simple-footer {
+    margin: auto;
+    text-align: center;
+    ul {
+      text-align: center;
+      max-width: 500px;
+    }  
+  }
+}
+
+.site-footer.flex-style--spaced {
+  .simple-footer {
+    width: 100%;
+  }
+  .simple-footer__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap:wrap;
+    @include media-query($small) {
+      display: block;
+      text-align: center;
+    }
+  }
+  .simple-menu {
+    margin-right: auto;
+    flex: 0 0 auto;
+    width: auto;
+    max-width: auto;
+  }
+  .simple-brand {
+    margin-left: auto;
   }
 }

@@ -44,11 +44,14 @@ h1, .h1 {
   // @include font-extra;
 }
 h2, .h2 {
-  font-size: calc(1.3em + 2vw);
+  font-size: calc(1.3em + 1.8vw);
   // @include font-extra;
 }
 h3, .h3 {
-  font-size: calc(1.125em + 1.75vw);
+  font-size: calc(1.125em + 1.25vw);
+  &.caps {
+    font-size:  calc(1.125em + 0.7vw);
+  }
   
 }
 h4, .h4 {
@@ -118,19 +121,30 @@ body {
       letter-spacing: 0.04em
     }
   }
+  &.heading-style--caps-narrow {
+    h1, .h1,
+    h2, .h2,
+    h3, .h3,
+    h4, .h4,
+    h5, .h5,
+    h6, .h6 {
+      text-transform: uppercase;
+      letter-spacing: -0.03em
+    }
+  }
   &.heading-style--caps-spaced {
     h1, .h1,
     h2, .h2,
     h3, .h3
      {
       text-transform: uppercase;
-      letter-spacing: 0.2em
+      letter-spacing: 0.15em
     }
     h4, .h4,
     h5, .h5,
     h6, .h6 {
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.15em;
     }
   }
 }

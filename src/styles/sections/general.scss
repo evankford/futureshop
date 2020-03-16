@@ -41,6 +41,10 @@ body {
     margin-top: calc(30px + 3vmin);
     margin-bottom: calc(24px + 2vmin);
   }
+  &.spacing--huge {
+    margin-top: calc(40px + 5vmin);
+    margin-bottom: calc(36px + 4vmin);
+  }
   
    &.size--full-width {
     width: 100%;
@@ -67,6 +71,10 @@ body {
       &.spacing--large {
         padding-top: calc(30px + 3vmin);
         padding-bottom: calc(24px + 2vmin);
+      }
+      &.spacing--huge {
+        padding-top: calc(40px + 5vmin);
+        padding-bottom: calc(36px + 4vmin);
       }
   }
   
@@ -108,6 +116,24 @@ body {
     }
   }
   
+}
+
+body.preheader-style--simple {
+  .section-header h4 {
+    @include font-body();
+    
+  }
+}
+
+body.preheader-style--caps {
+  .section-header h4 {
+    @include font-body();
+    letter-spacing: 0.18em;
+    font-size: calc(1.3rem + 0.2vw);
+    text-transform: uppercase;
+    
+  }
+ 
 }
 
 body.heading-alignment--center {

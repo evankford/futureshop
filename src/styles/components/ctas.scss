@@ -1,7 +1,7 @@
 %button {
   display: inline-block;
   font-size: calc(1.4rem + 0.3vw);
-  padding: 0.8em 1.2em;
+  padding: 0.8em 1.2em 0.7em;
   line-height: 1;
   position: relative;
   z-index: 10;
@@ -90,6 +90,10 @@ button.button {
 }
 
 .button-wrap {
+   .button {
+      flex: 0 0 auto;
+      margin: 0.45em
+    }
   &.center {
     text-align: center;
     .button {
@@ -134,10 +138,10 @@ body {
     %button {
       background: transparent;
       color: $color-accent;
-      padding: 0.8em 0.5em;
+      padding: 0.48em 0.35em;
       &::after {
         @extend %psuedo;
-        height: 3px;
+        height: $border-thickness;
         bottom: 0;
         background: $color-accent;
         transition: transform 300ms $ease;

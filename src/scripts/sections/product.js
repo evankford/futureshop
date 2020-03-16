@@ -5,7 +5,6 @@
  *
  * @namespace product  
 **/
-
 import { getUrlWithVariant, ProductForm } from '@shopify/theme-product-form';
 import { formatMoney } from '@shopify/theme-currency';
 import { register } from '@shopify/theme-sections';
@@ -302,4 +301,24 @@ register('product', {
     const url = getUrlWithVariant(window.location.href, variant.id);
     window.history.replaceState({ path: url }, '', url);
   },
+  // Add item using @elkfox/shopify-theme/cart
+  onSubmitButtonClick(event) {
+    if (window.Cart){      
+      const submitButton = event.target.closest(selectors.submitButton);
+  
+      if (!submitButton) {
+        return;
+      }
+  
+      event.preventDefault();
+
+      const currentVariant = this.productForm.variant();
+      const quantity = this.productForm.quantityInputs[0].value;
+
+      item.id = currentVariant.id;
+      item.quantity = quantity;
+
+      addItem(item);
+    }
+  }
 });

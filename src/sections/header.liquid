@@ -13,6 +13,9 @@
 
 <style>
   #shopify-section-header {
+    {% if section.settings.bg_color %}
+    --header-bg: {{section.settings.bg_color }};
+    {%endif %}
     {% if section.settings.text_color %}
     --header-text: {{section.settings.text_color }};
     {%endif %}
@@ -31,7 +34,7 @@
 {%endcapture %}
 {% capture cart_markup %}
 <div class="cart-outer">
-     <a href="/cart" aria-label="{{ 'layout.cart.title' | t }}">
+     <a href="/cart" aria-label="{{ 'layout.cart.title' | t }}" data-cart-button>
       {% include 'icon-cart' %}
       {% if section.settings.show_cart_text != blank %}
       <span class="cart-text">{{section.settings.show_cart_text}}</span>
@@ -45,7 +48,7 @@
 
 
 {%capture header_markup %}
-  <header role="banner">
+  <header role="banner" class="site-header {% if section.settings.layout_socials == 'after_menu'%} with-socials{%endif%}" >
     {% if template.name == 'index' %}
       <h1 class="{{section.settings.header_font_size }} {% if section.settings.logo == blank and section.settings.logo_overlay == blank%} fallback{%endif%}">
     {% else %}
@@ -87,6 +90,7 @@
     {% else %}
       </div>
     {% endif %}
+    {% if section.settings.layout_socials == 'after-header'%}{%include 'social-icons' %}{%endif%}
   </header>
 {%endcapture %}
 
@@ -146,6 +150,9 @@ document.body.classList.add('header-overlay');
       
 <nav role="navigation" class="main-nav {% if section.settings.enable_mobile_menu == true %} make-mobile {%endif%} font-weight--{{section.settings.menu_font_weight}} text-align--{{section.settings.menu_text_align}} {% if section.settings.layout_header == 'menu-centered' %} has-halves {%endif%} " id="site-nav" >
   <div class="nav-inner">
+  <div class="nav-inner__background"></div>
+  <div class="nav-inner__wrap {% if section.settings.mobile_nav_space == true %} use-space {%endif%}" >
+  
   <ul>
   
   {% assign menu = linklists[section.settings.menu] %}
@@ -242,7 +249,7 @@ document.body.classList.add('header-overlay');
         <div class="lightbox-content" data-lightbox-content="newsletter">{% include 'newsletter-popup' %}</div>
       </div>
     {%endif%}
-   
+   </div><!--end nav-inner__wrap-->
     </div><!-- end nav-inner-->
   </nav>
   <div class="mobile-cart">
@@ -353,6 +360,10 @@ document.body.classList.add('header-overlay');
            {
              "value" : "before-menu",
              "label" : "Before Menu"
+           },
+           {
+             "value" : "after-header",
+             "label" : "After Header"
            },
            {
              "value" : "after-menu",
@@ -603,13 +614,15 @@ document.body.classList.add('header-overlay');
     },
     {
       "type" : "checkbox",
-      "id" : "mobile_socials",
-      "label": "Mobile Menu Socials?"
+      "id" : "mobile_nav_space",
+      "label" : "Mobile Menu Space?",
+      "default" : false
     },
     {
       "type" : "checkbox",
-      "id" : "mobile_email",
-      "label": "Mobile Menu Email Signup?"
+      "id" : "mobile_socials",
+      "label": "Mobile Menu Socials?",
+      "default" : true
     },
     {
       "type" : "checkbox",

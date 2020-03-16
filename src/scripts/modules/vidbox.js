@@ -82,7 +82,7 @@ export default class TestModule {
         
         el.player.playVideo();
       }
-      setTimeout(checkIfPlaying, 400);
+      setTimeout(checkIfPlaying, 200);
     } 
      if (state == 1) {
       playerWrap.classList.add('use-vid');
@@ -106,7 +106,7 @@ export default class TestModule {
       // if (startTime > 0) {
       //   el.player.seekTo(startTime)
       // }
-      setTimeout(checkIfPlaying, 250)
+      setTimeout(checkIfPlaying, 50)
       
     }
     

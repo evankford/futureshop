@@ -15,14 +15,13 @@ import '../../styles/theme.scss';
 import '../../styles/theme.scss.liquid';
 
 import { focusHash, bindInPageLinks } from '@shopify/theme-a11y';
-import { cookiesEnabled } from '@shopify/theme-cart';
 
 // Common a11y fixes
 focusHash();
 bindInPageLinks();
 
 // Apply a specific class to the html element for browser support of cookies.
-if (cookiesEnabled()) {
+if (navigator.cookieEnabled) {
   document.documentElement.className = document.documentElement.className.replace(
     'supports-no-cookies',
     'supports-cookies',
@@ -39,14 +38,16 @@ window.addEventListener('mouseover', removeFocus);
 
 /// The only JS to work with the mobile menu
 const menuToggler = document.querySelector('.mobile-nav-toggle');
-
-menuToggler.addEventListener('click', function () {
+const menuBg = document.querySelector('.nav-inner__background');
+function toggleMenu() {
   if (document.body.classList.contains('nav-open')) {
     document.body.classList.remove('nav-open');
   } else {
     document.body.classList.add('nav-open');
   }
-})
+}
+menuToggler.addEventListener('click', toggleMenu)
+menuBg.addEventListener('click', toggleMenu)
 
 //// Fancy Scrolling effects  
 import AOS from 'aos';
@@ -98,7 +99,7 @@ function initMenu() {
     }
     var myHeadroom = new Headroom(myHeader, {
       "offset": offset,
-      "tolerance": 6
+      "tolerance": 9
     })
     myHeadroom.init();
 

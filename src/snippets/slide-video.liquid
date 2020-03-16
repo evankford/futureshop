@@ -9,8 +9,8 @@
       {% if slide.settings.content != empty %}<p >{{slide.settings.content}}</p>{%endif%}
       
       <div class="button-wrap">
-        {% if slide.settings.button_1_link != empty and slide.settings.button_1_text != empty %}<a href="{{slide.settings.button_1_link}}" class="button big over-dark">{{slide.settings.button_1_text}}</a><br>{%endif%}
-        {% if slide.settings.video_button != false%}<a href="{{slide.settings.url}}" data-module="lightbox" data-lightbox-type="video" data-lightbox-target="{{slide.settings.url}}" class="button {%if slide.settings.video_button_big == true %} big {% else %} simple white {%endif%}">Watch Video</a>{%endif%}
+        {% if slide.settings.button_1_link != empty and slide.settings.button_1_text != empty %}<a href="{{slide.settings.button_1_link}}" class="button over-dark">{{slide.settings.button_1_text}}</a>{%endif%}
+        {% if slide.settings.video_button != false%}<a href="{{slide.settings.url}}" data-module="lightbox" data-lightbox-type="video" data-lightbox-target="{{slide.settings.url}}" class="button {%if slide.settings.video_button_big == true %} over-dark {% else %} simple white {%endif%}">Watch Video</a>{%endif%}
       </div>
       
     </div>

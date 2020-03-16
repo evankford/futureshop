@@ -91,8 +91,11 @@ nav.main-nav {
     text-align: right;
     // flex: 0 0 150px;
     padding: 4px 6px;
+    display: block;
+    line-height: 0;
     button {
       color: var(--header-text);
+      margin-top: 0;
       &:hover {
         color: var(--header-text-hover)
       }
@@ -100,11 +103,19 @@ nav.main-nav {
     @include media-query($medium-down) {
       // flex: 0 0 60px;
     }
-    display: block;
+  }
+  .cart-outer {
+    a {
+      line-height: 0;
+    }
+    svg {
+      width: 21px;
+    }
   }
   
   li {
     display: inline-block;
+    vertical-align: middle;
     position: relative;
     ul { //Child menu
       &:before {
@@ -129,7 +140,7 @@ nav.main-nav {
          text-align: left;
          padding: 0;
          &:first-child {
-           padding:20px 0 0;
+           padding:9px 0 0;
          }
         
          a {
@@ -150,20 +161,20 @@ nav.main-nav {
     }
   }
  
-  a {
+  a, .icon-fallback-text {
     
     text-transform: uppercase;
     display: inline-block;
     position: relative;
     letter-spacing: 0.02em;
     color: var(--header-text);
-    svg {
-      fill:currentColor;
-    } 
     font-weight: bold;
     font-family: $font-heading;
     font-weight: 400;
     transition: color 400ms $ease, transform 300ms $ease;
+    svg {
+      fill:currentColor;
+    } 
     
     &:visited {
       color: var(--header-text);
@@ -183,11 +194,9 @@ nav.main-nav {
         -webkit-font-smoothing: antialiased;
         display: inline-block;
         margin-right: 5px;
+        font-size: 0.6em;
+        vertical-align: middle;
       }
-      padding: 0 5px;
-      font-size: 0.85em;
-      letter-spacing: 0.03em;
-      opacity: 0.9;
     }
   }
 }
@@ -241,6 +250,17 @@ body.nav-open {
     }
   }
 
+  
+  .nav-inner__background {
+    @extend %psuedoish;
+    background: rgba(0,0,0,0.75);
+    opacity: 0;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    pointer-events: none;
+    transition: opacity 400ms 300ms $ease;
+  }
 @include media-query($small) {
   .site-header__inner.make-mobile {
     .mobile-nav-toggle {
@@ -307,38 +327,71 @@ body.nav-open {
     width: 100%;
     height: 100%;
     transform: translateX(100%);
-    transition: transform 400ms $ease;
+    transition: transform 500ms $ease;
     pointer-events: none;
    
     body.nav-open &  {
       pointer-events: all;
-      transform: translateX(0)
+      transform: translateX(0);
+      .nav-inner__background {
+        opacity: 1;
+        pointer-events: all;
+      }
     }
     .nav-inner {
-      display: flex;
-      padding: 12px;
-      justify-content: center;
-      align-items: center;
-      position: fixed;
-      flex-direction: column;
+     
       top: 0;
-      background: $color-body;
-      background: var(--header-bg);
+      
       left: 0;
       width: 100%;
       height: 100%;
       width: 100vw;
       height: 100vh;
       z-index: 10000;
-      padding: 40px 12px;
-      flex-wrap: nowrap;
+      position: fixed;
+      
+      
       
     }
+    
+    .nav-inner__wrap {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background: $color-drawer-bg;
+      color: $color-drawer-text;
+       display: flex;
+      padding: 12px;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      padding: 40px 12px;
+      &.use-space {
+        width: 85%;
+        max-width: 450px;
+      }
+      .logo-wrap {
+        text-align: center;
+        width: 100%;
+        display: inline-block;
+        box-sizing: border-box;
+        margin: 0 auto 18px;
+      }
+    }
+  
     .nav-halves {
         flex-direction: column;
         width: 340px;
         max-width: 100%;
         margin: auto;
+        &>div {
+           flex: 0 0 auto;
+          width: 100%;
+          text-align: center;
+        }
         .centered-logo {
           order: 1;
           width: 100%;
@@ -349,10 +402,12 @@ body.nav-open {
         .nav-half__first {
           order: 2;
           margin: 0;
+         
         }
         .nav-half__last {
           order: 3;
           margin: 0;
+         
         }
       }
       
@@ -399,8 +454,8 @@ body.nav-open {
           display: none;
         }
       }
-      a {
-        color: $color-body-text;
+      a, .icon-fallback-text {
+        color: $color-drawer-text;
         
         font-size: 22px;
         display: inline-block;
@@ -408,6 +463,9 @@ body.nav-open {
         // display: block;
         text-align: center;
       }
+    }
+    .icon-fallback-text {
+      display: block;
     }
   }
  

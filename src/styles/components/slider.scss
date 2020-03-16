@@ -9,6 +9,9 @@
   margin: auto;
   &:not(.full-width) {
     max-width: $grid-max-width;
+    width: 90%;
+    margin: 20px auto;
+    overflow: hidden;
   }
   .swiper-button-prev, .swiper-button-next{
     background: transparent;
@@ -52,7 +55,7 @@
   }
 }
 
-.product-images, .product-thumbnails {
+.product-images, .product-thumbnails, .image-section {
   
   .swiper-button-prev, .swiper-button-next{
     background: transparent;
@@ -254,4 +257,23 @@ body.header-overlay .image-section:first-child {
     padding-top: calc(90px + 5vw);
     
   }
+}
+
+
+body.preheader-style--simple {
+  .slide-content-inner h4 {
+    @include font-body();
+    
+  }
+}
+
+body.preheader-style--caps {
+  .slide-content-inner h4 {
+    @include font-body();
+    letter-spacing: 0.18em;
+    font-size: calc(1.3rem + 0.2vw);
+    text-transform: uppercase;
+    
+  }
+ 
 }
