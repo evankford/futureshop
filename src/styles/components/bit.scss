@@ -29,10 +29,11 @@ h2.loader {
     padding: 0;
     width: 100%;
     max-width: 690px;
-    margin: auto;
+		margin: auto;
+		overflow: hidden;
     &.bit-extra {
       max-height: 0;
-      overflow-y: hidden;
+      overflow: hidden;
       transition: max-height 500ms $ease;
     }
   }
@@ -44,7 +45,11 @@ h2.loader {
 	align-items: stretch;
 	justify-content: stretch;
 
-	margin: 10px auto;
+	margin:  auto;
+	padding: 12px;
+	&:nth-child(even) {
+		background: rgba(white, 0.2);
+	}
 	@include media-query($small) {
 		margin: 20px auto
 	}
@@ -54,16 +59,17 @@ h2.loader {
 	padding:  12px;
 	flex: 0 1 80px;
 	text-align: center;
-	@include font-extra;
+
 	opacity: 0.6;
 	letter-spacing: 0;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
+	
 	@include media-query($tiny) {
 	 flex: 1 1 100%;
 	 padding: 0;
+	 text-align: center;
 	}
 }
 
@@ -83,9 +89,9 @@ h2.loader {
 	margin-top: -1px;
 	a {
 		@include font-body;
-		border: 1px solid currentColor;
 		line-height: 1;
-		padding: 0.85em 1.2em
+		padding: 0.85em 1.2em;
+		margin: 5px;
 	}
 	@include media-query($tiny) {
 		flex: 1 1 100%
@@ -100,24 +106,28 @@ h2.loader {
 	padding:  16px;
 	margin-right: -1px;
 	@include media-query($tiny) {
-		padding: 15px 9px;
+		padding: 9px 9px;
+		align-items: center;
+		justify-content: center;
 		text-align: center;
 		.bit-city, .bit-venue {
 			display: inline-block;
+			text-align: center;
 		}
 	}
 	.bit-city {
 		@extend .h4;
     @include font-extra;
 		font-size: calc(22px + 0.3vw);
-		display: block;
+		display: inline-block;
 		text-transform: uppercase;
 		line-height: 1.2;
 		margin-bottom: 0.15em;
 
 	}
 	.bit-venue {
-    @extend .h4;
+		@extend .h4;
+		display: inline-block;
 		text-transform: none;
 		line-height: 1.2;
 		font-weight: 300;

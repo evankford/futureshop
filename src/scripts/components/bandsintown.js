@@ -4,7 +4,7 @@ var monthsShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'
 
 
 export default class Bit {
-  constructor(el) {   
+  constructor(el, args) {   
     
     var defaults = {
       appId: '5234ca141a91a3721bdc34b061d329a2',
@@ -17,12 +17,12 @@ export default class Bit {
       fallback: '.bit-fallback',
       showYear: false
     };
+    console.log(args);
+    
+    this.props = Object.assign({}, defaults, args);
       this.el = el;
       this.shows = [];
       this.expandButton = this.el.querySelector('[data-expand-bit]')
-      
-      this.checkDefaultValues(defaults);
-      
       this.getShowData().then(response => {
         this.shows = response;
         this.renderAllShows();
@@ -33,42 +33,10 @@ export default class Bit {
       this.addClickListeners();
     }
     
-    checkDefaultValues(options) {
-      this.appId = options.appId;
-      this.artist = options.artist;
-      this.dateFormat = options.dateFormat;
-      this.filterString = options.filterString;
-      this.limit = options.limit;
-      this.showLineup = options.showLineup;
-      this.showYear = options.showYear;
-      if (this.el.getAttribute('data-artist') != false && this.el.getAttribute('data-artist') != null) {
-        this.artist = this.el.getAttribute('data-artist');
-      }
-      if (this.el.getAttribute('data-app-id') != false && this.el.getAttribute('data-app-id') != null) {
-        this.appId = this.el.getAttribute('data-app-id');
-      }
-      if (this.el.getAttribute('data-limit') != false && this.el.getAttribute('data-limit') != null) {
-        this.limit = this.el.getAttribute('data-limit');
-      }
-      if (this.el.getAttribute('data-filter') != false && this.el.getAttribute('data-filter') != null) {
-        this.filterString = this.el.getAttribute('data-filter');
-      }
-      if (this.el.getAttribute('data-show-lineup') != false && this.el.getAttribute('data-show-lineup') != null && this.el.getAttribute('data-show-lineup') != 'false') {
-        this.showLineup = this.el.getAttribute('data-show-lineup');
-      }
-      if (this.el.getAttribute('data-year') != false && this.el.getAttribute('data-year') != null && this.el.getAttribute('data-year') != 'false') {
-        this.showYear = this.el.getAttribute('data-year');
-      }
-      if (this.el.getAttribute('data-date-format') != false && this.el.getAttribute('data-date-format') != null ) {
-        this.dateFormat = this.el.getAttribute('data-date-format');
-      }
-      if (this.el.getAttribute('data-date-format') != false && this.el.getAttribute('data-date-format') != null ) {
-        this.dateFormat = this.el.getAttribute('data-date-format');
-      }
-    }
+    
     async getShowData() {
-      let cleanArtist = this.artist.replace(' ', '');
-      let url = 'https://rest.bandsintown.com/artists/' + cleanArtist + '/events?app_id=' + this.appId;
+      let cleanArtist = this.props.artist.replace(' ', '');
+      let url = 'https://rest.bandsintown.com/artists/' + cleanArtist + '/events?app_id=' + this.props.appId;
       try {
         const response = await fetch(url, {method : 'GET'});
         if (!response.ok) {
@@ -77,12 +45,16 @@ export default class Bit {
         }
         return response.json();
       } catch(error) {
+        this.showError();
         console.log('There has been a problem with your fetch operation: ', error.message);
       }
     }
     
+    showError() {
+      this.el.classList.add('error')
+    }
+    
     renderDate(show) {
-      
       //Store data
       let showDate = new Date(show.datetime);
       let month = showDate.getMonth();
@@ -95,7 +67,7 @@ export default class Bit {
       let string = ''
       
       //Contitional markup
-      switch (this.dateFormat) {
+      switch (this.props.dateFormat) {
         case 'long numbers':
           month = (month + 1).toString();
           if (month.length == 1) {
@@ -106,19 +78,19 @@ export default class Bit {
             string += '0'
           }
           string += day;
-          if (this.showYear) {
+          if (this.props.showYear) {
             string += '.' + year;
           }
           break;
         case 'long words':
           string += monthsLong[month] + ' ' + day;
-          if (this.showYear) {
+          if (this.props.showYear) {
             string += ', ' + year;
           }
           break;
         case 'short words': 
           string += monthsShort[month] + ' ' + day;
-          if (this.showYear) {
+          if (this.props.showYear) {
             string += ', ' +  year ;
           }
           break;
@@ -206,7 +178,6 @@ export default class Bit {
       let date = this.renderDate(show); 
       let info = this.renderInfo(show); 
       let links = this.renderLinks(show);
-      
       showEl.append(date, info, links);
       
       return showEl;
@@ -221,14 +192,14 @@ export default class Bit {
       extras.classList.add('bit-extra');
       
       
+      
       //Loop through shows
       let counter = 0;
       this.shows.forEach(show=> {
-        let showItem = this.renderShow(show);
-        
+        const showItem = this.renderShow(show);
         //Counter
         counter++;
-        if (counter <= this.limit) {
+        if (counter <= this.props.limit) {
           wrapper.append(showItem);
           
         } else {
@@ -236,16 +207,11 @@ export default class Bit {
         };
       })
       
-    
-      if (this.shows.length < this.limit) {
-        const fallbackEl = this.el.querySelector(this.fallback);
-        if (fallbackEl) {
-          fallbackEl.classList.remove('hidden');
-        }
+      if (this.shows.length < this.props.limit) {
+        this.showFallback()
       } else {
         this.expandButton.classList.remove('hidden');
       }
-      
       
       this.el.prepend(wrapper, extras);
       this.el.querySelector('.loader').classList.add('hidden');
@@ -274,6 +240,15 @@ export default class Bit {
         this.toggleExpand();
       }
     };
+    
+    showFallback() {
+      this.el.classList.add('fallback-active');
+      
+      const fallbackEl = this.el.querySelector(this.props.fallback);
+      if (fallbackEl) {
+        fallbackEl.classList.remove('hidden');
+      }
+    }
     addClickListeners() {
       
       this.el.addEventListener('click', evt => this.clickListener(evt));
