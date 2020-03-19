@@ -8,7 +8,7 @@
 {%- endcomment -%}
 
 {% include 'section-starter' with section_class: 'tour-dates' %}
-<div class="section-inner tour-section__inner">
+<div class="section-inner tour-section__inner text-align--{{section.settings.align}}">
   {% assign delay = 0 %}
   <div class="tour-header">
     {% include 'section-header' %}
@@ -19,27 +19,23 @@
     {% if section.settings.bit_artist %}
     {% assign limit = section.settings.limit %}
     {% if  section.settings.limit == 0 %} {% assign limit = "" %}{%endif%}
-    <div  data-module="tour-widget" data-limit="{{section.settings.limit}}" data-artist={{section.settings.bit-artists}}>
+    <div  data-module="tour-widget" data-limit="{{section.settings.limit}}" data-artist="{{section.settings.bit_artist}}"">
       <h2 class="loader">{{section.settings.tour_loading}}</h2>
       <div class="button-wrap center">
-        <a class="button" data-expand-bit data-more-text="{{section.settings.more_button_text}}" data-less-text="{{section.settings.less_button_text}}" href="{{section.settings.bit_button_url}}">{{section.settings.more_button_text}}</a>
+        <a {% if section.settings.bit_button_url != blank %} href="{{section.settings.bit_button_url}}" {% endif%} class="button" data-expand-bit data-more-text="{{section.settings.more_button_text}}" data-less-text="{{section.settings.less_button_text}}" href="{{section.settings.bit_button_url}}">{{section.settings.more_button_text}}</a>
       </div>
     {%endif%}
     <div class="error hidden">There was an error retrieving dates. Please try again.</div>
-    <div class="fallback hidden">{{section.settings.fallback_text}}</div>
-    {% if section.blocks != empty %}
-    </a>
-
+    <div class="fallback hidden">
+    
+    {% if section.settings.fallback_header != empty %}<h3>{{section.settings.fallback_header}}</h3>{%endif%}
+    {% if section.setting.fallback_text != empty %}<div class="rte">{{section.settings.fallback_text}}</div>{%endif%}
+    {% if section.settings.fallback_button_text != empty and section.settings.fallback_button_url != empty %}
+      <div class="button-wrap center"><a href="{{section.settings.fallback_button_url}}" class="button">{{section.settings.fallback_button_text}}</a></div>
     {%endif%}
-    {% if section.settings.bit_button_text != blank and section.settings.bit_button_url != blank %}
-    <div class="rte-links">
-      {% for block in section.blocks %}
-        <a href="{{block.settings.url}}" class="simple button">{{block.settings.text}}</a>
-      {%endfor %}
-    </div>
-    {%endif%}
-    </div>
-  </div>
+    </div>{% comment %} end fallback {% endcomment %}
+    </div>{% comment %} end tour-main {% endcomment %}
+  </div>{% comment %} end section inner {% endcomment %}
 </section>
 
 {% schema %}
@@ -48,26 +44,65 @@
     "class" : "standard-section",
     "settings": [
       {
+        "type" : "header",
+        "content" : "Header"
+      },
+      {
         "type": "text",
         "id": "pre_title",
         "label": "Pre-Heading",
-        "default": "Join Johnny"
+        "default": "Join us at our"
       },
       {
         "type": "text",
         "id": "title",
         "label": "Heading",
-        "default": "Talk about your brand"
+        "default": "Tour Dates"
       },
       {
         "type": "richtext",
         "id": "text",
-        "label": "Text",
-        "default": "<p>Share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+        "label": "Text"
+      },
+      {
+        "type" : "select",
+        "options" : [
+          {
+            "value" : "left",
+            "label" : "Left"
+          },
+          {
+            "value" : "center",
+            "label" : "Center"
+          },
+          {
+            "value" : "right",
+            "label" : "Right"
+          }
+        ],
+        "default" : "center",
+        "id" : "align",
+        "label" :"Text Alignment"
       },
        {
         "type" : "header",
         "content" : "Tour Settings"
+      },
+       {
+        "type" : "text",
+        "id" : "bit_artist",
+        "label" : "Bandsintown Artist Name",
+        "default" : "Keith Urban"
+      },
+      {
+        "type" : "range",
+        "id" : "limit",
+        "label" : "Limit dates?",
+        "min"  : 0,
+        "max": 100,
+        "default": 12,
+        "step" : 1,
+        "info" : "Set to 0 to show all"
       },
       {
         "type" : "text",
@@ -88,52 +123,43 @@
         "default" : "Less Dates"
       },
       {
-        "type" : "text",
-        "id" : "bit_artist",
-        "label" : "Bandsintown Artist Name",
-        "default" : "Keith Urban"
+        "type" : "url",
+        "id" : "bit_button_url",
+        "label" : "More Dates Button url",
+        "info" : "By default, the more/less button toggles expanding the section. Inserting a url opens that url in a new window (like a tour page!)"
       },
       {
-        "type" : "range",
-        "id" : "limit",
-        "label" : "Limit dates?",
-        "min"  : 0,
-        "max": 100,
-        "default": 12,
-        "step" : 1,
-        "info" : "Set to 0 to show all"
+        "type" : "header",
+        "content" : "Fallback Options"
+      },
+     
+      {
+        "type": "text",
+        "label" : "Fallback Header",
+        "id" : "fallback_header",
+        "default" : "More Shows Coming Soon"
       },
       {
         "type": "richtext",
         "label" : "Fallback Text",
-        "info" : "Shows when the number of dates returned is less than the limit above",
         "id" : "fallback_text",
-        "default" : "<p>More shows coming soon.</p><p>Want more shows in your area? <a href=\"/#contact/\">Get in touch!</a></p>"
+        "default" : "<p>Want more shows in your area? ></p>"
       },
       {
-        "type" : "url",
-        "id" : "bit_button_url",
-        "label" : "More Dates Button url"
+        "type" : "text",
+        "id" : "fallback_button_text",
+        "label" : "Fallback Button Text",
+        "default": "Contact Us"
       },
-       {
+     {
+        "type" : "url",
+        "id" : "fallback_button_url",
+        "label" : "Fallback Button url",
+        "info" : "By default, the more/less button toggles expanding the section. Inserting a url opens that url in a new window (like a tour page!)"
+      },
+      {
         "type" : "header",
         "content" : "Section Settings"
-      },
-       {
-        "type" : "image_picker",
-        "id" : "background_image",
-        "label" : "Background Image",
-        "info": "Use with full-width sections, please!"
-      },
-      {
-        "type" : "color",
-        "id" : "background_color",
-        "label" : "Background Color"
-      },
-      {
-        "type" : "color",
-        "id" : "text_color",
-        "label" : "Text Color"
       },
       {
         "type" : "text",
@@ -182,10 +208,28 @@
             "value" : "large",
             "label" : "Large"
           }, 
-{ "value": "huge", "label" : "Huge"}
+{ "value": "huge", "label" : "Huge"},
+          {
+            "value" : "full",
+            "label" : "Full-Height"
+          }
         ]
+      },   {
+        "type" : "header",
+        "content" : "Section Background"
       },
-     
+      
+       {
+        "type" : "image_picker",
+        "id" : "background_image",
+        "label" : "Background Image",
+        "info": "Use with full-width sections, please!"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "rellax",
+        "label" : "Scrolling Effect"
+      },
       {
         "type" : "select",
         "id" : "background_style",
@@ -207,33 +251,20 @@
           {
             "value" : "repeat-all",
             "label" : "Tile"
-          },
-          {
-            "value" : "rellax",
-            "label" : "Parallax"
           }
         ]
-      }
-    ],
-    "blocks" : [
+      },
       {
-        "type" : "link",
-        "name" : "Link",
-        "settings" : [
-          {
-            "type" :"url",
-            "id" : "url",
-            "label" : "URL"
-          },
-          {
-            "type" : "text",
-            "id" : "text",
-            "label" : "Text"
-          }
-        ]
+        "type" : "color",
+        "id" : "background_color",
+        "label" : "Background Color"
+      },
+      {
+        "type" : "color",
+        "id" : "text_color",
+        "label" : "Text Color"
       }
     ],
-    "max_blocks" : 3,
     "presets": [{
         "name": "Tour Dates",
         "category": "Custom (Music)"

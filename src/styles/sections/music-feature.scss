@@ -64,24 +64,31 @@ body.button-style--borderd {
   &.text-align--right {
     text-align: right;
   }
+  &.text-align--right {
+    text-align: center;
+  }
   h2 {
     margin: 0;
   }
 }
 
-.music-links a {
-  color: inherit; 
-  font-size: calc(2.05rem + 0.3vw);
-  padding: 3px;
-  margin: 3px;
-  display: inline-block;
-  position: relative;
-  @include media-query($small) {
-    font-size: 20px;
-  }
-  &:visited {
-    color: inherit;
-  }
-  @extend %hover;
+.music-links {
   
+  text-align: inherit;
+   a {
+    color: inherit; 
+    font-size: calc(2.05rem + 0.3vw);
+    padding: 3px;
+    margin: 3px;
+    display: inline-block;
+    position: relative;
+    @include media-query($small) {
+      font-size: 20px;
+    }
+    &:visited {
+      color: inherit;
+    }
+    @extend %hover;
+    
+  }
 }

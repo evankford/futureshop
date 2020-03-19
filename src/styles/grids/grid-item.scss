@@ -35,7 +35,7 @@
       width: calc(100% + 2px);
       
       height: calc(100% + 2px);
-      object-fit: cover;
+      @include object-fit();
       object-position: 50% 50%;
       z-index: 2;
       opacity: 0;
@@ -242,7 +242,7 @@ body {
       .responsive-image__wrapper {
         min-height: 100%;
         img {
-          object-fit: cover;
+          @include object-fit();
         }
       }
     }

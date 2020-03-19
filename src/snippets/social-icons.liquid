@@ -28,6 +28,12 @@
 {% if settings.social_apple_link != blank %}
 <li><a target="_blank" rel="nofollow" href="{{settings.social_apple_link}}" aria-label="On Apple Music"><i class="icon-apple-music"></i></a></li>
 {%endif %}
+{% if settings.social_amazon_link != blank %}
+<li><a target="_blank" rel="nofollow" href="{{settings.social_amazon_link}}" aria-label="On Amazon"><i class="icon-amazon"></i></a></li>
+{%endif %}
+{% if settings.social_amazon_music_link != blank %}
+<li><a target="_blank" rel="nofollow" href="{{settings.social_amazon_music_link}}" aria-label="On Amazon Music"><i class="icon-amazon-music"></i></a></li>
+{%endif %}
 {% if settings.social_snapchat_link != blank %}
 <li><a target="_blank" rel="nofollow" href="{{settings.social_snapchat_link}}" aria-label="On snapchat"><i class="icon-snapchat"></i></a></li>
 {%endif %}

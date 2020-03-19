@@ -54,8 +54,12 @@
     transform: translate3d(-50%, -50%, 0);
     opacity: 0;
     transition: opacity 400ms ease;
-    min-width: 150vw;
-    min-height: 68vw;
+    min-width: 130vh;
+    min-height: 58vw;
+    @include media-query($tiny) {
+      min-width: 230vh;
+      min-height: 100vh;
+    }
   }
   &::after {
      position: absolute;
@@ -63,7 +67,7 @@
     top: 0;
     width: 100%;
     height: 100%;
-    z-index: 3;
+    z-index: 10;
     opacity: 0.2;
     background: black;
     content:'';

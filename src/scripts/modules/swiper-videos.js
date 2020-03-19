@@ -31,10 +31,10 @@ export default class TestModule {
     
     
     var mySwiper = new Swiper(el, {
-      slidesPerView: 1.25,
+      slidesPerView: 1.5,
       centeredSlides: true,
       centerInsufficientSlides: true,
-      spaceBetween: 60,
+      spaceBetween: 30,
       autoHeight: true,
       effect: 'slide',
       threshold: 5,

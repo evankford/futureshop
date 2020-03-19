@@ -1,7 +1,7 @@
 %button {
   display: inline-block;
   font-size: calc(1.4rem + 0.3vw);
-  padding: 0.8em 1.2em 0.7em;
+  padding: 0.8em 1.2em ;
   line-height: 1;
   position: relative;
   z-index: 10;
@@ -112,6 +112,13 @@ body {
   &.button-font--body {
     %button {
       font-family: $font-body;
+      font-weight: $font-body-weight;
+    }
+  }
+  &.button-font--extra {
+    %button {
+      font-family: $font-extra;
+      font-weight: $font-extra-weight;
     }
   }
   &.button--caps {

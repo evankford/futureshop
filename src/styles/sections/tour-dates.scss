@@ -3,18 +3,10 @@
   align-items: stretch;
   justify-content: center;
   flex-wrap: wrap;
+  text-align: center;
   .tour-main {
     flex: 2 1 630px;
-    &:before {
-      display: block;
-      margin: 20px auto;
-      content:'Upcoming Dates';
-      @include font-extra;
-      font-size: calc(1.5rem + 0.5vw);
-      -webkit-text-fill-color: transparent;
-      -webkit-text-stroke: 1.2px currentColor;
-      letter-spacing: 0.1em;
-    }
+
   }
   .tour-header {
     flex: 1 1 360px;
@@ -22,5 +14,46 @@
     @include media-query($medium-up) {
       margin: calc(2rem + 1vw) 0;
     }
+  }
+  .loader {
+   animation: loading 2s infinite alternate-reverse ease ;
+   margin: 50px auto;
+   text-transform: uppercase;
+   font-weight: normal;
+   letter-spacing: 1px;
+  }
+}
+
+[data-module=tour-widget] {
+  &.fallback-active {
+    [data-expand-bit] {
+      display: none;
+    }
+   .fallback.hidden {
+     display: block;
+   }
+  }
+  &.error {
+   .error.hidden {
+     display: block;
+   }
+  }
+}
+
+.fallback {
+  width: 80%;
+  margin: auto;
+  h2,h3 {
+    @include font-extra;
+  }
+}
+
+@keyframes loading {
+  from {
+    opacity: 0.4;
+    transform: translateY(5px)
+  } to {
+    opacity: 0.6;
+    transform: translateY(0);
   }
 }

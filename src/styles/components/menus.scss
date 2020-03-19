@@ -50,6 +50,9 @@ nav.main-nav {
   @include media-query($tiny) {
     justify-content: center;
   }
+  .nav-inner__wrap {
+    flex: 1 1 100%;
+  }
   .nav-inner {
     flex: 3 1 400px;
     text-align: right;
@@ -409,6 +412,7 @@ body.nav-open {
         flex-direction: column;
         width: 340px;
         max-width: 100%;
+        
         margin: auto;
         &>div {
            flex: 0 0 auto;
@@ -425,10 +429,12 @@ body.nav-open {
         .nav-half__first {
           order: 2;
           margin: 0;
+          text-align: center;
          
         }
         .nav-half__last {
           order: 3;
+          text-align: center;
           margin: 0;
          
         }
@@ -489,6 +495,10 @@ body.nav-open {
     }
     .icon-fallback-text {
       display: block;
+    }
+    .nav-half__extras {
+      display: block ;
+      margin: auto;
     }
   }
  

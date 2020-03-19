@@ -211,7 +211,7 @@
         }
         img {
           margin: 0;
-          object-fit: cover;
+         @include object-fit();
           max-width: 100% !important;
           max-height: 100% !important;
         }

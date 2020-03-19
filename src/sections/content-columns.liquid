@@ -25,22 +25,6 @@
         "type" : "header",
         "content" : "Section Settings"
       },
-       {
-        "type" : "image_picker",
-        "id" : "background_image",
-        "label" : "Background Image",
-        "info": "Use with full-width sections, please!"
-      },
-      {
-        "type" : "color",
-        "id" : "background_color",
-        "label" : "Background Color"
-      },
-      {
-        "type" : "color",
-        "id" : "text_color",
-        "label" : "Text Color"
-      },
       {
         "type" : "text",
         "label" : "ID (for anchor links)",
@@ -94,8 +78,22 @@
             "label" : "Full-Height"
           }
         ]
+      },   {
+        "type" : "header",
+        "content" : "Section Background"
       },
-     
+      
+       {
+        "type" : "image_picker",
+        "id" : "background_image",
+        "label" : "Background Image",
+        "info": "Use with full-width sections, please!"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "rellax",
+        "label" : "Scrolling Effect"
+      },
       {
         "type" : "select",
         "id" : "background_style",
@@ -117,12 +115,18 @@
           {
             "value" : "repeat-all",
             "label" : "Tile"
-          },
-          {
-            "value" : "rellax",
-            "label" : "Parallax"
           }
         ]
+      },
+      {
+        "type" : "color",
+        "id" : "background_color",
+        "label" : "Background Color"
+      },
+      {
+        "type" : "color",
+        "id" : "text_color",
+        "label" : "Text Color"
       }
     ],
     "blocks" : [

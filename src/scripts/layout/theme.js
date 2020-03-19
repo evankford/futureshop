@@ -1,3 +1,5 @@
+import 'babel-polyfill';
+
 import 'lazysizes';
 import 'lazysizes/plugins/object-fit/ls.object-fit';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
@@ -15,6 +17,9 @@ import '../../styles/theme.scss';
 import '../../styles/theme.scss.liquid';
 
 import { focusHash, bindInPageLinks } from '@shopify/theme-a11y';
+
+import objectFitImages from 'object-fit-images';
+objectFitImages();
 
 // Common a11y fixes
 focusHash();
@@ -131,6 +136,7 @@ window.addEventListener('load', function() {
 
 function initRellaxImages() {
   var rellaxImages = document.querySelectorAll('.rellax-image');
+  var rellaxBgs = document.querySelectorAll('.rellax-bg');
   var rellaxFloats = document.querySelectorAll('.rellax-float');
   if (rellaxImages) {
     if (rellaxImages.length > 0) {
@@ -142,6 +148,20 @@ function initRellaxImages() {
       window.addEventListener('load', function () {
         rellaxImage.refresh();
       });
+    }
+  }
+  if (rellaxBgs) {
+    if (rellaxBgs.length > 0) {
+      rellaxBgs.forEach(el => {
+        let offset = el.parentElement.scrollTop;
+        var bg = new Rellax(el, {
+          center: true,
+          speed: -5
+        })
+        window.addEventListener('load', function () {
+          bg.refresh();
+        });
+      })
     }
   }
   if (rellaxFloats) {

@@ -20,14 +20,13 @@
     opacity: 0.5;
     transition: transform 300ms $ease, opacity 300ms $ease;
     height: 100%;
-    @supports (object-fit: cover) {
       .responsive-image__wrapper {
         padding: 0 !important;
         @extend %psuedoish;
         img {
           max-width: 100% !important;
           max-height: 100% !important;
-          object-fit: cover;
+          @include object-fit();
         }
       }
     }

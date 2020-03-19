@@ -1,8 +1,10 @@
-{% assign has_bg = false %}
-{% if section.settings.section_size == 'full-width' and section.settings.background_image != blank %}
-{% assign has_bg = true %}
-{%endif%}
-<section class="{{section_class}} section-outer size--{{section.settings.section_size}} spacing--{{section.settings.section_spacing}} bg-style--{{section.settings.background_style}} lazyload" id="{{section.settings.anchor_id}}" {% if has_bg == true %} data-bgset="{% include 'responsive-bg-image', image: section.settings.background_image%}" {%endif%}>
+
+<section class="{{section_class}} section-outer size--{{section.settings.section_size}} spacing--{{section.settings.section_spacing}}  " id="{{section.settings.anchor_id}}" >
+{% if section.settings.background_image != blank%}<div class="section-bg lazyload {% if section.settings.rellax == true %}  rellax-bg {%endif%}">
+<div class="section-bg__image lazyload style--{{section.settings.background_style}}"  style="background-image: url({{section.settings.background_image | img_url: '500x'}});"  data-bgset="{% include 'responsive-bg-image', image: section.settings.background_image%}">
+</div>
+</div>
+{% endif%}
 {% if section.settings.background_color != blank or section.settings.text_color != blank %}
   <style>
     #shopify-section-{{section.id}} {

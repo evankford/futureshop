@@ -7,23 +7,7 @@
   - Text: description of the Instagram section
 {%- endcomment -%}
 
-{% assign has_bg = false %}
-{% if section.settings.section_size == 'full-width' and section.settings.background_image != blank %}
-{% assign has_bg = true %}
-{%endif%}
-<section class="instagram section-outer size--{{section.settings.section_size}} spacing--{{section.settings.section_spacing}} bg-style--{{section.settings.background_style}} lazyload" id="{{section.settings.anchor_id}}" {% if has_bg == true %} data-bgset="{% include 'responsive-bg-image', image: section.settings.background_image%}" {%endif%}>
-{% if section.settings.background_color != blank or section.settings.text_color != blank %}
-  <style>
-    #shopify-section-{{section.id}} {
-      {% if section.settings.background_color != blank %}
-      background-color:  {{section.settings.background_color}};
-      {%endif%}
-      {% if section.settings.text_color != blank %}
-      color:  {{section.settings.text_color}};
-      {%endif%}
-    }
-  </style>
-{%endif%}
+{% include 'section-starter' with section_class: 'instagram' %}
 <div class="section-inner">
 {% assign delay = 0 %}
     {% if section.settings.pre_title != blank or section.settings.title != blank  %}
@@ -34,7 +18,11 @@
     {% if section.settings.title != blank %}
       <h2 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h2 section-header__title">{{ section.settings.title | escape }}</h2>
     {% endif %}
-    
+    {% if section.settings.include_all_icons == true %}
+      <div class="all-social-icons">
+        {% include 'social-icons' %}
+      </div>
+    {%endif%}
   </div>
   {%endif%}
   <div class="embed-wrap">
@@ -57,13 +45,13 @@
         "type": "text",
         "id": "pre_title",
         "label": "Pre-Heading",
-        "default": "Use this space to"
+        "default": "Connect on"
       },
       {
         "type": "text",
         "id": "title",
         "label": "Heading",
-        "default": "Talk about your brand"
+        "default": "Instagram"
       },
        {
         "type" : "text",
@@ -74,6 +62,11 @@
         "type" : "url",
         "id" : "button_url",
         "label" : "Button URL"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "include_all_icons",
+        "label" : "Include all social icons?"
       },
       {
         "type" : "header",
@@ -87,21 +80,6 @@
         "type" : "html",
         "id" : "html",
         "label" : "ElfSight Embed Code"
-      },
-      {
-        "type" : "select",
-        "id" : "grid_size",
-        "label" :"Grid Size",
-        "options" : [
-          {
-            "value" : "grid",
-            "label" : "Grid (small photos)"
-          },
-          {
-            "value" : "slider",
-            "label" : "Slider (large photos)"
-          }
-        ]
       },
        {
         "type" : "header",

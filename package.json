@@ -40,6 +40,7 @@
     "@shopify/theme-variants": "^1.0.0-alpha.8",
     "aos": "^3.0.0-beta.6",
     "babel": "6.23",
+    "babel-polyfill": "^6.26.0",
     "basiclightbox": "^5.0.2",
     "browser-update": "^3.3.9",
     "classlist-polyfill": "^1.2.0",

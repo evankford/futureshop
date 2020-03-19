@@ -66,9 +66,7 @@ $slider-height-max: 620px;
           }
         }
         img {
-           object-fit: contain;
-          font-family: 'object-fit: contain';
-          object-position: 50% 50%;
+          @include object-fit(contain);
         }
       }
     }
@@ -116,8 +114,7 @@ $slider-height-max: 620px;
         }
       }
       img {
-        object-fit: contain;
-        font-family: 'object-fit: contain';
+       @include object-fit();
         height: 100%;
 object-position: 50% 50%;
       }

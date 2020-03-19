@@ -15,6 +15,9 @@
     a {
       color: inherit;
       font-size: 20px;
+      &[href*=personal-data] {
+        display: none;
+      }
     }
   } 
 }
@@ -47,6 +50,7 @@ body:not(.template-index) {
     }
     a {
       font-size: 25px;
+      
       
     }
   }
@@ -466,6 +470,11 @@ form#footer-newsletter {
 }
 
 .site-footer.hyper-simplify {
+  .footer-content {
+    width: 96%;
+    max-width: $site-max;
+    margin: auto;
+  }
   ul.footer-menu {
     margin: 0;
   }
@@ -494,6 +503,12 @@ form#footer-newsletter {
   .social-wrap {
     margin: 0;
   }
+  .footer-copy {
+    
+    margin: 10px  auto ;
+    p {
+    }
+  } 
 }
 
 .simple-copy, .simple-menu, .simple-brand, .simple-logo {
@@ -541,5 +556,12 @@ form#footer-newsletter {
   }
   .simple-brand {
     margin-left: auto;
+  }
+}
+
+.signup-form {
+  form {
+    
+    @extend %signup-form;
   }
 }

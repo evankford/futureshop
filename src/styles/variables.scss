@@ -56,14 +56,14 @@ $color-success: var(--color-success);
 $color-notification-text: var(--color-notification-text);
 
 // Typography
-$font-heading: 'BodoniCond', var(--font-heading);
+$font-heading: var(--font-heading);
 $font-extra: var(--font-extra);
 $font-script: var(--font-extra);
 $font-body: var(--font-body);
 
 
 $font-heading-weight: var(--font-heading-weight);
-$font-extra-weight: 900;
+$font-extra-weight: var(--font-extra-weight);
 $font-body-weight: var(--font-body-weight);
 $font-body-style: var(--font-body-style);
 $font-body-bold-weight: var(--font-body-bold-weight);
@@ -75,17 +75,17 @@ $font-body-bold-weight: var(--font-body-bold-weight);
   letter-spacing: 0em;
 }
 
-@mixin font-extra($extraweight: 700) {
+@mixin font-extra($extraweight: $font-extra-weight) {
   font-family: $font-extra;
   font-weight: $extraweight;
   text-transform: uppercase;
   letter-spacing: 0em;
 }
-@mixin font-heading($headingweight: 700) {
+@mixin font-heading($headingweight: $font-heading-weight) {
   font-family: $font-heading;
   font-weight: $headingweight;
 }
-@mixin font-body($bodyweight: 400) {
+@mixin font-body($bodyweight: $font-body-weight) {
   font-family: $font-body;
   font-weight: $bodyweight;
   font-style: $font-body-style;
