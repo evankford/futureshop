@@ -44,7 +44,7 @@
 
 .popup-content {
   form {
-    @extend %signup-form
+    @extend %signup-form;
   }
 }
 
