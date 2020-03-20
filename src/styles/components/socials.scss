@@ -69,3 +69,15 @@
     }
   }
 }
+
+.instagram {
+  text-align: center;
+  .all-social-icons {
+    margin: 12px auto;
+  }
+  .social-wrap {
+    a { 
+      font-size: calc(20px + 0.15vw);
+    }
+  }
+}

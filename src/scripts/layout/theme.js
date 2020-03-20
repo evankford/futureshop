@@ -207,22 +207,6 @@ function handleURLParams() {
 }
 
 window.addEventListener('load', handleURLParams);
-
-import browserUpdate from 'browser-update';
-browserUpdate({
-  required: {
-    e: -2,
-    i: 11,
-    f: -3,
-    o: -3,
-    s: 10.1,
-    c: "64.0.3282.16817",
-    samsung: 7.0,
-    vivaldi: 1.2
-  },
-  insecure: true
-})
-
 ///Look for modules in the script, much of the rest of the boilerplate is in modules!
 
 Array.from(document.querySelectorAll('[data-module]')).forEach(el => {
@@ -230,13 +214,3 @@ Array.from(document.querySelectorAll('[data-module]')).forEach(el => {
   const Module = require(`../modules/${name}`).default
   new Module(el)
 })
-
-
-
-//////////////////////////////////////////////////
-//////////////////////////////////////////////////
-//////////////////////////////////////////////////
-//////////////// End Boilerplate /////////////////
-//////////////////////////////////////////////////
-//////////////////////////////////////////////////
-//////////////////////////////////////////////////

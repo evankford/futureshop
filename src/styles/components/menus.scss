@@ -464,7 +464,7 @@ body.nav-open {
           position: relative;
           padding: 0;
           box-shadow: none;
-          li {
+          li, li:first-child {
             padding: 0;
             margin: 0;
           }

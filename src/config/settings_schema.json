@@ -491,6 +491,10 @@
           {
             "value": "gradient",
             "label": "Gradient"
+          },
+          {
+            "value": "minimal",
+            "label": "Minimal"
           }
         ]
       },

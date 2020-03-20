@@ -68,11 +68,6 @@ product-style--{{settings.product_style}} price-style--{{settings.price_style}} 
   </main>
 
   {% section 'footer' %}
-  {% if settings.cart_ajax_enable == true %}
-    {% include 'ajax-cart' %}
-  {%endif%}
-{% include 'alert-snippets' %}
-  {% include 'bupdate' %}
-
+  {% include 'theme-footer' %}
 </body>
 </html>

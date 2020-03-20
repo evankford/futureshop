@@ -1,7 +1,7 @@
 %button {
   display: inline-block;
   font-size: calc(1.4rem + 0.3vw);
-  padding: 0.8em 1.2em ;
+  padding: 0.7em 1.2em 0.62em;
   line-height: 1;
   position: relative;
   z-index: 10;
@@ -73,7 +73,7 @@
   }
   &.outline, &.border {
     background: transparent;
-    border: $border-thickness solid $color-body-text;
+    border: $border-thickness solid currentColor;
     color:  $color-body-text;
     
   }
@@ -211,7 +211,7 @@ body {
     %button {
       background: transparent;
       color: $color-accent;
-      border: $border-thickness solid $color-accent;
+      border: $border-thickness solid currentColor;
       &::before {
         background: $color-accent;
       }
@@ -222,9 +222,53 @@ body {
         }
       }
     }
+    .overlay-section {
+      %button {
+        color: $color-accent-inverse;
+        
+      }
+    }
     .button.lighter {
         color: $color-accent-inverse;
-        border-color: $color-accent-inverse;
+        &:hover {
+        color: $color-accent-darkest;
+        }
+        &::before {
+        background: $color-accent-inverse;
+      }
+    }
+    .button.solid {
+      background: $color-accent;
+      border:none;
+      color: $color-accent-inverse;
+    }
+    .button.simple {
+      background: transparent;
+      border:none;
+    }
+  }
+   &.button-style--minimal {
+    %button {
+      background: transparent;
+      color: $color-accent;
+      &::before {
+        background: $color-accent;
+      }
+      &:hover {
+        color: $color-accent-inverse;
+        &::before {
+          transform: translateY(-101%)
+        }
+      }
+    }
+    .overlay-section {
+      %button {
+        color: $color-accent-inverse;
+        
+      }
+    }
+    .button.lighter {
+        color: $color-accent-inverse;
         &:hover {
         color: $color-accent-darkest;
         }

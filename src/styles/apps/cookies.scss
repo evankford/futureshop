@@ -1,5 +1,6 @@
 .eg-cc-compliance > a {
   @extend %button;
+  color: white;
   margin: 0;
   border-radius: $border-radius !important;
   &:hover {

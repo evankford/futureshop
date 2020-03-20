@@ -18,11 +18,7 @@
     {% if section.settings.title != blank %}
       <h2 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h2 section-header__title">{{ section.settings.title | escape }}</h2>
     {% endif %}
-    {% if section.settings.include_all_icons == true %}
-      <div class="all-social-icons">
-        {% include 'social-icons' %}
-      </div>
-    {%endif%}
+    
   </div>
   {%endif%}
   <div class="embed-wrap">
@@ -30,9 +26,15 @@
   </div>
   {% if section.settings.button_url != blank and section.settings.button_text != blank %}
     <div class="button-wrap center" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
-      <a href="{{section.settings.button_url}}" class="button solid accent" target="_blank" rel="nofollow"><i class="icon-instagram"></i> {{section.settings.button_text}}</a>
+      <a href="{{section.settings.button_url}}" class="button accent" target="_blank" rel="nofollow"><i class="icon-instagram"></i> {{section.settings.button_text}}</a>
     </div>
+    
       {%endif%}
+      {% if section.settings.include_all_icons == true %}
+      <div class="all-social-icons">
+        {% include 'social-icons' %}
+      </div>
+    {%endif%}
   </div>
 </section>
 
