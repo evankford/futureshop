@@ -1,6 +1,8 @@
-import  * as basicLightbox from 'basiclightbox'
+import * as basicLightbox from 'basiclightbox'
 import '../../../node_modules/basiclightbox/dist/basicLightbox.min.css';
 import Cookies from 'js-cookie';
+import queryString from 'query-string';
+
 ////Video Lightbox
 //Element with "data-module" is el
 
@@ -12,7 +14,7 @@ export default class AutoSignup {
     this.el = el
     this.popup;
     this.init();
-
+    this.isAdmin = queryString.parse(location.search).signupPopup == 'true';
   }
   init() {
     console.log("doing the signup popup");
@@ -26,7 +28,8 @@ export default class AutoSignup {
     this.startTimer()
   }
   startTimer() {
-    if (this.time == 0) {;
+    if (this.time == 0) {
+      ;
       this.showPopup();
     } else {
       setTimeout(() => {
@@ -35,12 +38,12 @@ export default class AutoSignup {
     }
   }
   showPopup() {
-    if (Cookies.get('newsletterDismissed') != 'true') {
+    if (Cookies.get('newsletterDismissed') != 'true' || this.isAdmin) {
       this.popup.show();
     }
   }
-  
+
   handleClose() {
-    Cookies.set('newsletterDismissed', 'true', {expires: 1});
+    Cookies.set('newsletterDismissed', 'true', { expires: 1 });
   }
 }
