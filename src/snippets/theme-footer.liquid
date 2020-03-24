@@ -5,3 +5,7 @@
 {% include 'alert-snippets' %}
 {% include 'bupdate' %}
 {% include 'auto-signup' %}
+
+{% if settings.footer_code != blank %}
+{{settings.footer_code}}
+{%endif%}
