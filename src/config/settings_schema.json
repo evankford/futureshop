@@ -291,6 +291,26 @@
       },
       {
         "type": "select",
+        "id": "product_font",
+        "label": "Product Font",
+        "default" : "body",
+        "options": [
+          {
+            "value": "body",
+            "label": "body"
+          },
+          {
+            "value": "heading",
+            "label": "heading"
+          },
+          {
+            "value": "extra",
+            "label": "extra"
+          }
+        ]
+      },
+      {
+        "type": "select",
         "id": "price_style",
         "default": "simple",
         "label": "Price Style?",

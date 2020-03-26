@@ -6,7 +6,7 @@
 
 {% if swatch == blank %}
 <div class="swatch error">
-  <p>You must include the snippet swatch.liquid with the name of a product option.</p> 
+  <p>You must include the snippet swatch.liquid with the name of a product option.</p>
   <p>Use: <code>{% raw %}{% include 'swatch' with 'name of your product option here' %}{% endraw %}</code></p>
   <p>Example: <code>{% raw %}{% include 'swatch' with 'Color' %}{% endraw %}</code></p>
 </div>
@@ -28,7 +28,7 @@
     <script>
     function hideWrapper{{option_index}}() {
       let selectors = document.querySelectorAll(".selector-wrapper");
-      selectors[{{ option_index }}].style.display = 'none';    
+      selectors[{{ option_index }}].style.display = 'none';
     }
      document.addEventListener("DOMContentLoaded", hideWrapper{{option_index}});
     </script>
@@ -55,7 +55,7 @@
     {% assign value = variant.options[option_index] | replace: '"', '″' %}
     {% unless values contains value %}
       {% assign values = values | join: ',' %}
-      {% assign values = values | append: ',' | append: value %} 
+      {% assign values = values | append: ',' | append: value %}
       {% assign values = values | split: ',' %}
       <div data-value="{{ value | escape }}" class="swatch-element {% if is_color %}color {% endif %}swatch--{{ value | handle }} {% if variant.available %}available{% else %}soldout{% endif %}">
         {% if is_color %}
@@ -64,7 +64,7 @@
         <input class="radio-selector" id="swatch-{{ option_index }}-{{ value | handle }}" type="radio" name="option-{{ option_index }}" value="{{ value | escape }}"{% if value == current_value %} checked{% endif %} {% unless variant.available %}disabled{% endunless %} />
         {% if is_color %}
         {% capture filename %}{{value | handle }}.{{file_extension}}{%endcapture%}
-        <label for="swatch-{{ option_index }}-{{ value | handle }}" style="background-color: {{ value | split: ' ' | last | handle }}; background-image: url({{ filename | asset_img_url: '120x' }})">
+        <label for="swatch-{{ option_index }}-{{ value | handle }}" style="background-color: {{ value | split: ' ' | last | handle }}">
           <img class="crossed-out" src="{{ 'soldout.png' | asset_url }}" />
         </label>
         {% else %}

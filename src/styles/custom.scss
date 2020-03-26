@@ -1,103 +1,47 @@
-body[class*=header-style] .section-outer {
-  .section-header {
-    h4 {
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: calc(20px + 0.2vw);
-      &+h2 {
-        margin-top: -0.1em;
-        font-size: calc(35px + 2vw);
-      }
-    }
+%miniCaps {
+  @include font-body(700);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.9;
+  font-size: calc(14px + 0.2vw);
+}
+
+%bigItalic {
+  @include font-extra()
+  font-style: italic;
+  text-transform: none;
+}
+
+body[class*=heading-style] .section-outer .section-header {
+  h4 {
+    @extend %miniCaps;
+    margin: 0.1em auto;
+  }
+  h2 {
+    margin: 0.1em auto;
+    @extend %bigItalic;
   }
 }
 
-.breadcrumbs {
-  text-align: center;
-}
+.collection-list__grid .collection-list-item__content {
+  h4.h5 {
+    @extend %miniCaps;
+    opacity: 0.6;
 
-.search-drawer-inner {
- & >form {
-    background: transparent;
-    color: white;
-    border-color: white;
-    button i {
-      color: white;
-    }
-    input {
-      @include font-heading();
-      font-size: 24px;
-      padding: 12px 24px;
-      &::placeholder {
-        color: white;
-        @include font-heading;
-      }
-    }  
+  }
+  h3.h3 {
+    @extend %bigItalic;
   }
 }
 
-body.button-style--outline {
-  .overlay-section {
-    .button {
-      color: $color-accent-inverse;
-    }
-  }
-}
+.product-grid-item.font--body {
+  .grid-item__image {
 
-
-.product-grid-item {
-  .visible-tag__outer.style--simple {
-    h5.visible-tag {
-      @include font-body();
-      font-size: 14px ;
-      font-weight: bold;
-      color: $color-accent;
-      margin: 0 auto;
-    }
   }
-  
-  .grid-item__details {
-    h5 {
-      font-size: calc(19px + 0.2vw);
-      margin: 0.3em auto;
+  .product-details {
+    h5.product-title {
+      font-weight: 700;
+      line-height: 1;
     }
-    .price-outer {
-      margin: 8px auto 0;
-      font-weight: normal;
-    }
-  }
-}
-
-#category {
-  .section-header h4 {
-    font-style: italic;
-    opacity: 0.5;
-  }
-  .collection-list-item__content {
-  
-  background: rgba(black, 0.8);
-  width: 100%;
-  max-width: 100%;
-  margin-top: auto;
-  margin-bottom: 0;
-    .h3 {
-      font-size: calc(38px + 0.5vw); 
-      margin: -12px 0 0;
-    }
-  }
-}
-
-
-.make-mobile .nav-inner {
-  ul li ul a {
-    @include media-query($small) {
-      font-size :calc(17px + 0.1vw);
-    }
-  }
-}
-
-#home {
-  .h1 {
-    font-size: calc(40px + 3vw);
   }
 }
