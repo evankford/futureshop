@@ -1,6 +1,8 @@
 nav.breadcrumb {
   padding: 1em;
-  margin: calc(5px + 1vw) 0 calc(15px + 1vw);
+  max-width: $site-max;
+  width: 96%;
+  margin: calc(5px + 1vw) auto calc(15px + 1vw);
   color: $color-border-darker;
   @include media-query($small) {
     text-align: center;
@@ -23,8 +25,8 @@ nav.breadcrumb {
     &:hover {
       transform: translateY(-2px)
     }
-    
-    
+
+
   }
 }
 

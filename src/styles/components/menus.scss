@@ -1,4 +1,4 @@
-.mobile-nav-toggle { 
+.mobile-nav-toggle {
   display: none;
   font-size: 1.2em;
     width: auto;
@@ -11,7 +11,7 @@
     appearance: none;
     background: transparent;
     border:none;
-    
+
     color: $color-body-text;
     color: var(--header-text);
     span {display: inline-block;
@@ -38,7 +38,7 @@
       }
     }
   }
-  
+
 
 nav.main-nav {
   z-index: 120;
@@ -82,13 +82,13 @@ nav.main-nav {
       }
     }
   }
-  
+
   ul {
     // display: inline-block;
     list-style: none;
     padding: 0  0 0 12px;
     margin: 0;
-    
+
   }
   .search-outer {
     text-align: right;
@@ -115,7 +115,7 @@ nav.main-nav {
       width: 21px;
     }
   }
-  
+
   li {
     display: inline-block;
     vertical-align: middle;
@@ -136,7 +136,7 @@ nav.main-nav {
         max-height: 0px;
        transition: max-height 300ms $ease;
        padding: 0;
-       
+
        li {
          display: block;
          width: 100%;
@@ -145,7 +145,7 @@ nav.main-nav {
          &:first-child {
            padding:9px 0 0;
          }
-        
+
          a {
            width: 100%;
            padding: 0.4em 0.8em;
@@ -157,15 +157,15 @@ nav.main-nav {
            padding-bottom: 0.8em;
          }
        }
-       
+
       }
     &:hover ul {
       max-height: 300px;
     }
   }
- 
+
   a, .icon-fallback-text {
-    
+
     text-transform: uppercase;
     display: inline-block;
     position: relative;
@@ -175,7 +175,7 @@ nav.main-nav {
     font-family: $font-heading;
     font-weight: 400;
     transition: color 400ms $ease, transform 300ms $ease;
-    
+
     &.parent-link {
       &::after {
         content:'';
@@ -189,8 +189,8 @@ nav.main-nav {
     }
     svg {
       fill:currentColor;
-    } 
-    
+    }
+
     &:visited {
       color: var(--header-text);
     }
@@ -202,7 +202,7 @@ nav.main-nav {
     @extend %hover;
     &.back-link {
       &::before {
-       content: '\e812'; 
+       content: '\e812';
         font-family: "fontello";
     font-style: normal;
     font-weight: normal;
@@ -258,13 +258,14 @@ body.nav-open {
     top: 9px;
     right: 0px;
   }
-  
+
 }
 
 .mobile-cart {
     display: none;
     margin: 5px;
     margin-left: auto;
+    z-index: 9998;
     a {
       display: inline-block;
       position: relative;
@@ -283,20 +284,20 @@ body.nav-open {
     transition: opacity 400ms 300ms $ease;
     display: none;
   }
-  
+
 @include media-query($small) {
   .site-header__inner.make-mobile {
     .mobile-nav-toggle {
-    
+
       display: flex;
-      
+
 
     }
     .social-wrap {
         display: none;
       }
       .nav-inner {
-        
+
       }
   }
   .mobile-cart {
@@ -320,7 +321,7 @@ body.nav-open {
         padding: 0;
       }
     }
-    
+
     .mobile-cart {
       order: 1;
       padding: 0.4em 0.6em;
@@ -336,7 +337,7 @@ body.nav-open {
     }
   }
   .site-header__inner.make-mobile {
-    
+
     .mobile-menu-extra {
     .social-wrap {
       display: block;
@@ -355,7 +356,7 @@ body.nav-open {
    .nav-inner__background {
      display: block;
    }
-  
+
     body.nav-open &  {
       pointer-events: all;
       transform: translateX(0);
@@ -365,9 +366,9 @@ body.nav-open {
       }
     }
     .nav-inner {
-     
+
       top: 0;
-      
+
       left: 0;
       width: 100%;
       height: 100%;
@@ -375,11 +376,11 @@ body.nav-open {
       height: 100vh;
       z-index: 10000;
       position: fixed;
-      
-      
-      
+
+
+
     }
-    
+
     .nav-inner__wrap {
       position: absolute;
       top: 0;
@@ -407,12 +408,12 @@ body.nav-open {
         margin: 0 auto 18px;
       }
     }
-  
+
     .nav-halves {
         flex-direction: column;
         width: 340px;
         max-width: 100%;
-        
+
         margin: auto;
         &>div {
            flex: 0 0 auto;
@@ -423,25 +424,25 @@ body.nav-open {
           order: 1;
           width: 100%;
           flex: 0 0 auto;
-          img {            
+          img {
           }
         }
         .nav-half__first {
           order: 2;
           margin: 0;
           text-align: center;
-         
+
         }
         .nav-half__last {
           order: 3;
           text-align: center;
           margin: 0;
-         
+
         }
       }
-      
+
     ul {
-      display: block; 
+      display: block;
       padding: 0 12px;
       li {
         display: block;
@@ -454,7 +455,7 @@ body.nav-open {
         li {
           display: inline-block;
         }
-        
+
       }
       a.back-link {
         padding: 10px 0;
@@ -485,7 +486,7 @@ body.nav-open {
       }
       a, .icon-fallback-text {
         color: $color-drawer-text;
-        
+
         font-size: 22px;
         display: inline-block;
         padding: 12px 22px;
@@ -501,7 +502,7 @@ body.nav-open {
       margin: auto;
     }
   }
- 
+
   .mobile-menu-extra {
     display: none;
     @include media-query($small) {
@@ -509,4 +510,4 @@ body.nav-open {
       margin: 10px auto;
     }
   }
-  
+

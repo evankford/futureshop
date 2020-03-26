@@ -30,7 +30,7 @@ class Theme {
 
     //Important site sections
     this.main = document.getElementById('MainContent')
-    this.header = document.querySelector('[data-section-type=header]');
+    this.header = document.querySelector('.site-header__wrap');
     this.hero = false;
     this.footer = false;
 
@@ -46,7 +46,7 @@ class Theme {
     });
 
     this.mobileMenuInit()
-    // this.buildHeadroom(); //Disabled for this theme
+    this.buildHeadroom();
     this.initRellaxImages();
     this.initModules();
 
@@ -96,34 +96,35 @@ class Theme {
   }
 
   checkForHero() {
-    var allImages = this.main.querySelectorAll('image-section');
+    var allImages = this.main.querySelectorAll('.image-section');
     if (allImages.length > 0) {
 
-      if (this.main.firstElementChild = allImages[0]) {
+      if (this.main.firstElementChild == allImages[0]) {
         this.hero = allImages[0]
       }
     }
   }
-//Headroom stuff
+  //Headroom stuff
   buildHeadroom() {
     this.offset = 0;
     this.scrollMark = 0;
     this.overlay = false;
 
 
-    if (this.header && this.header.classList.contains('site-header')) {
+    if (this.header && this.header.classList.contains('site-header__wrap')) {
 
       this.headroomCheckOverlay();
-      this.headroomFixHeader();
-      this.headroomInitCheckScroll();
       this.headroomHandleOffsets();
+      this.headroomFixHeader();
       this.headroomInit();
+      this.headroomInitCheckScroll();
     }
 
   }
 
   headroomCheckOverlay() {
     this.checkForHero();
+    console.log("Checking overlay");
     console.log(this.hero);
     if (document.body.classList.contains('template-index') && this.header.classList.contains('overlay-header')) {
       this.overlay = true;
@@ -143,7 +144,7 @@ class Theme {
   }
 
   headroomCheckScroll() {
-    if (window.scrollY < topOffset) {
+    if (window.scrollY < this.scrollMark) {
       this.header.classList.add('overlay-active')
     } else {
       this.header.classList.remove('overlay-active')
@@ -153,8 +154,8 @@ class Theme {
     var self = this;
     if (this.overlay == true && this.hero) {
       this.scrollMark = this.hero.getBoundingClientRect().height;
-      window.addEventListener('scroll', throttle(self.headroomCheckScroll, 100))
-      headroomCheckScroll();
+      window.addEventListener('scroll', throttle(self.headroomCheckScroll.bind(this), 100))
+     self.headroomCheckScroll.bind(this);
     }
   }
   headroomHandleOffsets() {
@@ -171,23 +172,23 @@ class Theme {
 
     var myHeadroom = new Headroom(this.header, {
       "offset": this.offset,
-      "tolerance": 9
+      "tolerance": 5
     })
     myHeadroom.init();
   }
 
-//Resize handling
+  //Resize handling
   allResize() {
-    initMenu()
+    this.headroomCheckScroll()
   }
   allLoad() {
     this.handleURLParams();
     setTimeout(() => {
-      initMenu()
+      this.headroomCheckScroll()
     }, 200);
   }
 
-//Rellax images
+  //Rellax images
   initRellaxImages() {
     this.rellaxImages = document.querySelectorAll('.rellax-image');
     this.rellaxBgs = document.querySelectorAll('.rellax-bg');

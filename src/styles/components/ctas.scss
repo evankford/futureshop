@@ -2,13 +2,13 @@
   display: inline-block;
   font-size: calc(1.4rem + 0.3vw);
   padding: 0.7em 1.2em 0.62em;
-  line-height: 1;
+  line-height: 1.1;
   position: relative;
   z-index: 10;
   // text-transform: uppercase;
   position: relative;
   margin: 0.6em 0 0.4em;
-  
+
   @include font-heading;
   border-radius: 0;
   letter-spacing: -0.03em;
@@ -24,7 +24,7 @@
   &:hover {
     transform: translateY(-2px);
   }
-  
+
   &::before {
     @extend %psuedo;
     position: absolute;
@@ -35,14 +35,14 @@
     transition: transform 350ms 40ms $ease, opacity 350ms 40ms $ease;
   }
   &:hover  {
-    
+
   }
-  
+
 }
 
 .button {
   @extend %button;
- 
+
   &.simple {
     padding: 0.2em 0;
     background: transparent;
@@ -62,29 +62,29 @@
   &.secondary {
   }
   &.solid {
-    
+
     background: $color-accent;
     color: $color-accent-inverse;
     &.secondary {
       background: $color-secondary;
       color: $color-secondary-inverse;
-      
+
     }
   }
   &.outline, &.border {
     background: transparent;
     border: $border-thickness solid currentColor;
     color:  $color-body-text;
-    
+
   }
   &.inherit {
     color: inherit;
-    border-color: inherit;  
+    border-color: inherit;
   }
 }
 button.button {
-  @extend %button;  
-  
+  @extend %button;
+
   appearance:none;
   border:none;
 }
@@ -159,7 +159,7 @@ body {
       }
       &:hover {
         &::after {
-          
+
           transform: translateX(-50%) scaleX(0.85)
         }
       }
@@ -225,7 +225,7 @@ body {
     .overlay-section {
       %button {
         color: $color-accent-inverse;
-        
+
       }
     }
     .button.lighter {
@@ -264,7 +264,7 @@ body {
     .overlay-section {
       %button {
         color: $color-accent-inverse;
-        
+
       }
     }
     .button.lighter {

@@ -533,6 +533,11 @@
         "content": "Theme images"
       },
       {
+        "type" : "checkbox",
+        "id" : "enable_background",
+        "label" : "Enable Background Image"
+      },
+      {
         "type": "image_picker",
         "id": "main_background",
         "label": "Main Background"
@@ -830,12 +835,13 @@
         "type": "checkbox",
         "id": "cart_notes_enable",
         "label": "Enable cart notes",
-        "default": true
+        "default": false
       },
       {
         "type" : "checkbox",
         "id" : "cart_ajax_enable",
-        "label" : "Enable Ajax Cart"
+        "label" : "Enable Ajax Cart",
+        "default" : true
       },
       {
         "type" : "select",
