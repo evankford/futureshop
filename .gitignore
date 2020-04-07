@@ -65,3 +65,7 @@ _site
 secrets.json
 .jekyll-metadata
 .ruby-version
+
+# REMOVING CERTAIN THINGS #
+custom.scss
+styles/custom/*

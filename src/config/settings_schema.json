@@ -172,7 +172,7 @@
     ]
   },
   {
-    "name": "Swatches + Tags",
+    "name": "Swatches, Tags, and Product Text",
     "settings": [
       {
         "type": "header",
@@ -191,7 +191,7 @@
         "type": "select",
         "id": "collection_swatches",
         "label": "Swatches in collections",
-        "default" : "round",
+        "default": "round",
         "info": "NOTE: only works for option exactly called 'Color'",
         "options": [
           {
@@ -264,6 +264,34 @@
             "label": "Backgrounded"
           }
         ]
+      },
+      {
+        "type": "header",
+        "content": "Visible Quantity Text"
+      },
+      {
+        "type": "paragraph",
+        "content": "For this to work, you simply need to have a 'Quantity' variant for a product. This will automatically show those quantities, followed by an 's', and preceded by the text you set below"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_visible_quantity",
+        "label": "Visible Quantity Text?",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "visible_quantity_text",
+        "label": "Before Quantity Text",
+        "info": "Shows before the quantity variants",
+        "default": "Available in"
+      },
+      {
+        "type": "checkbox",
+        "id": "visible_quantity_add_s",
+        "label": "Add 's' to quantities?",
+        "info": "Useful for 'Packs'",
+        "default": true
       }
     ]
   },

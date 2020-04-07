@@ -1,68 +1,51 @@
+<a data-aos="fade-in" data-aos-delay="{{delay}}" href="{{ product.url | within: collection }}" class="product-grid-item grid-item {% if simplify == true %} simplify {%endif%} {% if hover_details == true  %} detail-on-hover {%endif%} {% unless product.available %} sold-out {% endunless %} font--{{settings.product_font}}">
+  {% include 'grid-item-image' %}
 
-
-
-
- <a data-aos="fade-in" data-aos-delay="{{delay}}" href="{{ product.url | within: collection }}" class="product-grid-item grid-item {% if simplify == true %} simplify {%endif%} {% if hover_details == true  %} detail-on-hover {%endif%} {% unless product.available %} sold-out {% endunless %} font--{{settings.product_font}}">
-      {% if product.featured_image != blank %}
-        <div class="grid-item__image">
-
-        {% comment %} Image shown on hover {% endcomment %}
-        {% if secondary_image == true  and product.images.size > 1 %}
-          <div class="secondary-featured-image">
-            {% include 'responsive-image' with
-            image: product.images[1],
-            max_width: 600,
-            max_height: 600
-          %}
-          </div>
-        {% endif %}
-
-        {% comment %} Standard image. Can max out rather small given that it's in the grid{% endcomment %}
-          {% include 'responsive-image' with
-            image: product.featured_image,
-            max_width: 600,
-            max_height: 600
-          %}
-
-          {% comment %} Visible tags (inside image div, to show over the image) {% endcomment %}
-          {% if settings.tag_location == 'top' or settings.tag_location == 'bottom' %}
-              {% include 'visible-tags'%}
-          {%endif%}
-
-       </div> {% comment %}  end image wrapper {% endcomment %}
+  <div class="product-details grid-item__details">
+  {% comment %} Visible tags -- above {% endcomment %}
+  {% if settings.tag_location == 'above'%}
+    {% include 'visible-tags'%}
+  {%endif%}
+  {% comment %} Show the title {% endcomment %}
+  <h5 class="product-title">{{ product.title | escape }}</h5>
+  {% comment %} Collection Swatches for Coloring {% endcomment %}
+  {% if settings.collection_swatches != 'disabled' %}
+    <div class="collection-swatches style--{{settings.collection_swatches}}">{% include 'grid-swatches' %}</div>
+  {%endif%}
+  {% comment %} Visible "3-pack" text, for instance {% endcomment %}
+  {% if product.options_with_values.size > 0 and settings.enable_visible_quantity == true %}
+    {% for option in product.options_with_values %}
+     {% if option.name  == 'quantity' or option.name == 'Quantity' %}
+     <div class="visible-quantity">
+      <span class="visible-quantity__before">{{settings.visible_quantity_text}}</span>
+      {% assign optionsize = option.values.size | minus: 2 %}
+      {% for value in option.values  %}
+      <span class="visible-quantity__quantity">{{value}}{% if settings.visible_quantity_add_s == true %}s{%endif%}</span>
+      {% if forloop.index0 < optionsize %} , {%elsif forloop.index0 == optionsize %} & {%endif%}
+      {%endfor %}
+     </div>
+     {%endif %}
+    {%endfor %}
+  {%endif%}
+  {% comment %} Pricing   {% endcomment %}
+  {% if show_price == true %}
+    <span class="price-outer">
+      {% if product.compare_at_price > product.price %}
+          <s>{{product.compare_at_price | money}}</s>
+          <span class="real-price">{{ product.price | money }}</span>
       {% else %}
-      <div class="responsive-image__wrapper">
-      {% assign diff = max | minus: min %}
-      {% assign randomNumber = "now" | date: "%N" | modulo: diff | plus: min %}
-      {%capture productTag %}product-{{randomNumber}}{%endcapture%}
-      {{  productTag | placeholder_svg_tag }}
-      </div>
-      {%endif%}
-      <div class="product-details grid-item__details">
-        {% if settings.tag_location == 'above'%}{% include 'visible-tags'%}{%endif%}
-        <h5 class="product-title">{{ product.title | escape }}</h5>
-        {% if settings.collection_swatches != 'disabled' %}
-          <div class="collection-swatches style--{{settings.collection_swatches}}">{% include 'grid-swatches' %}</div>
-        {%endif%}
-        {% if show_price == true %}
-      <span class="price-outer">
-        {% if product.compare_at_price > product.price %}
-            <s>{{product.compare_at_price | money}}</s>
-            <span class="real-price">{{ product.price | money }}</span>
+        {% if product.price_varies %}
+          {%- assign price = product.price | money -%}
+          {{ 'products.product.from_text_html' | t: price: price }}
         {% else %}
-          {% if product.price_varies %}
-            {%- assign price = product.price | money -%}
-            {{ 'products.product.from_text_html' | t: price: price }}
-          {% else %}
-            {{ product.price | money }}
-          {% endif %}
+          {{ product.price | money }}
         {% endif %}
-        {% unless product.available %}<span class="sold-out-text">SOLD OUT</span>{% endunless %}
-      </span>
-      {%endif%}
+      {% endif %}
+      {% unless product.available %}<span class="sold-out-text">SOLD OUT</span>{% endunless %}
+    </span>
+  {%endif%}
+  {% comment %} tags at bottom {% endcomment %}
+  {% if settings.tag_location == 'below'%}{% include 'visible-tags'%}{%endif%}
 
-      {% comment %} tags at bottom {% endcomment %}
-      {% if settings.tag_location == 'below'%}{% include 'visible-tags'%}{%endif%}
-
-      </div>{% comment %} end details  {% endcomment %}
-    </a>
+  </div>{% comment %} end details  {% endcomment %}
+</a>
