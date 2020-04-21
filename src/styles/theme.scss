@@ -27,7 +27,7 @@
 @import './components/auto-signup';
 @import './components/ajax-cart';
 @import './components/alert-drawer';
-@import './components/bit.scss';
+@import './components/bit';
 @import './components/breadcrumbs';
 @import './components/buttons';
 @import './components/ctas';
@@ -81,8 +81,8 @@
 
 
 //Grids
-@import './grids/grid-item.scss';
-@import './grids/grid-outer.scss';
+@import './grids/grid-item';
+@import './grids/grid-outer';
 
 // Layouts
 @import './layouts/cart';

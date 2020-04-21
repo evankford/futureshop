@@ -1,23 +1,27 @@
-
 #shopify-section-header {
-  width:100%;
+  width: 100%;
+  position: relative;
+  z-index: 100;
 }
+
 .site-header__wrap {
-  background-color:var(--header-bg);
+  background-color: var(--header-bg);
   color: var(--header-bg);
   width: 100%;
   height: auto;
   z-index: 999;
   transition: transform 240ms linear, opacity 240ms ease;
 
+  html:not(.no-js) & {
+    position: absolute;
+  }
+
   &.box-shadow {
     .site-header__inner::before {
       box-shadow: 0 0 15px rgba(black, 0.1);
     }
   }
-   &.js-fixed {
-    position: absolute;
-  }
+
 
   &.headroom {
     background-color: transparent !important;
@@ -26,15 +30,14 @@
   &.headroom--top {
     transform: translateY(0);
     opacity: 1;
-
   }
   &.headroom--not-top {
+    position: fixed !important;
+    top: 0;
+    transform: translateY(-100%);
     .header-above {
       display: none;
     }
-    position: fixed !important;
-    top: 0;
-    transform: translateY(-100%)
   }
   &.headroom--pinned.headroom--not-top {
     animation: getitin 240ms linear;
@@ -42,13 +45,18 @@
     animation-iteration-count: 1;
 
     opacity: 1;
-
-    &::before {
-      opacity: 0.99;
-    }
     .site-header__inner {
-      padding: 12px 0;
+      padding: 9px 0;
       transform: translateY(0%);
+      .overlay-logo {
+        opacity: 0;
+      }
+      &::before {
+        opacity: 1;
+      }
+      .social-wrap {
+        max-height: 0;
+      }
     }
     &.box-shadow {
       box-shadow: 0 0 15px rgba(black, 0.08);
@@ -66,27 +74,27 @@
     animation-iteration-count: 1;
   }
 
-
   &.overlay-header {
     &.overlay-active {
       .site-header__inner {
         // padding: 1.5vmax 0;
 
-          position: absolute;
-          background: transparent !important;
-          box-shadow: none !important;
-          left: 0%;
-          max-width: 100%;
-          width: 100%;
+        position: absolute;
+        background: transparent !important;
+        box-shadow: none !important;
+        left: 0%;
+        max-width: 100%;
+        width: 100%;
         .overlay-logo {
           display: block;
           opacity: 1;
 
-          &+img, &+svg {
+          & + img,
+          & + svg {
             opacity: 0;
             width: 100%;
           }
-          &+span {
+          & + span {
             display: none;
           }
         }
@@ -96,17 +104,40 @@
               color: var(--color-overlay);
             }
           }
-          nav li, nav li a {
+          .menu-icon,
+          .menu-icon a,
+          nav li.menu-link:not(.has-children) a,
+          nav li.menu-link.has-children > a {
             color: var(--color-overlay) !important;
           }
         }
       }
+      .social-wrap,
+      .cart-outer {
+        a {
+          color: var(--color-overlay);
+        }
+      }
+    }
+    &.headroom--top .site-header__inner {
+      .overlay-logo,
+      .logo-wrap img {
+        transition: none;
+      }
+        .social-wrap a,
+        .cart-outer a,
+        .search-outer button,
+        li a {
+          transition: transform .3s $ease;
+        }
+
     }
   }
   &.expand-logo {
     header {
-      &::before, &::after {
-        content:'';
+      &::before,
+      &::after {
+        content: "";
         display: block;
         max-height: 20px;
         height: 20px;
@@ -125,15 +156,15 @@
     }
     &.headroom--not-top {
       header {
-        &::before, &::after {
+        &::before,
+        &::after {
           max-height: 0;
         }
         .logo-wrap {
-          transform: scale(0.885)
+          transform: scale(0.885);
         }
       }
     }
-
   }
   .social-wrap {
     display: flex;
@@ -145,59 +176,56 @@
 
 @keyframes getitin {
   from {
-
-    transform: translateY(-100%)
+    transform: translateY(-100%);
   }
   to {
-
-    transform: translateY(0)
+    transform: translateY(0);
   }
 }
 
 @keyframes getitout {
   from {
-
-    transform: translateY(0)
+    transform: translateY(0);
   }
   to {
-
-    transform: translateY(-100%)
+    transform: translateY(-100%);
   }
 }
 
- .overlay-logo {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: auto;
-    top:0;
+.overlay-logo {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: auto;
+  top: 0;
+  transition: opacity 300ms $ease;
+  opacity: 0;
+  & + img,
+  & + svg {
     transition: opacity 300ms $ease;
-    opacity: 0;
-    &+img, &+svg {
-      transition: opacity 300ms $ease;
-      opacity: 1;
-    }
+    opacity: 1;
   }
-
-
-
+}
 
 .site-header__inner {
   width: 100%;
   margin: auto;
-  //  padding: 2vmin 0;
-   z-index: 100;
-   position: relative;
+  z-index: 100;
+  position: relative;
 
-  @include media-query($widescreen) {
-    // padding: 10px 0 8px;
+  &::before {
+    @extend %psuedo;
+
+    background: var(--header-bg);
+    opacity: 0;
+    transition: opacity 300ms $ease;
   }
+
   .site-header__inner-wrap {
     display: flex;
     width: 95.5%;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 0;
     max-width: $grid-max-width;
     margin: auto;
   }
@@ -205,13 +233,14 @@
     flex-wrap: wrap;
   }
 
-    h1, .h1 {
+  h1,
+  .h1 {
     margin: 0;
     z-index: 1000;
     position: relative;
     line-height: 1;
     text-transform: uppercase;
-    &:not(.fallback)  {
+    &:not(.fallback) {
       font-size: 0;
     }
     a {
@@ -223,7 +252,6 @@
       margin: 0;
     }
     .logo-image {
-
       max-width: 500px;
     }
   }
@@ -235,16 +263,16 @@
     line-height: 1;
 
     @include media-query($small) {
-      padding: 4px calc(10px + 1vw) 4px 4px ;
+      padding: 4px calc(10px + 1vw) 4px 4px;
       display: block;
       width: 100%;
-
     }
-    img, svg {
+    img,
+    svg {
       width: 100%;
       height: auto;
     }
-    span  {
+    span {
       display: inline-block;
       min-width: 10em;
       @include media-query($small) {
@@ -262,27 +290,26 @@
   text-align: center;
   padding: 12px;
   @include media-query($medium-down) {
-   padding: 0
+    padding: 0;
   }
 
   .make-mobile & {
     @include media-query($medium-down) {
       flex: 1 1 100px;
-       order: 2;
+      order: 2;
 
-    &~ .mobile-nav-toggle {
-      order: 1 !important;
-      flex: 0 0 auto;
-      margin: auto;
-      padding: 22px;
+      & ~ .mobile-nav-toggle {
+        order: 1 !important;
+        flex: 0 0 auto;
+        margin: auto;
+        padding: 22px;
+      }
+      & ~ .mobile-cart {
+        order: 3 !important;
+        flex: 0 0 auto;
+        margin: 0 auto;
+      }
     }
-    &~ .mobile-cart {
-      order: 3 !important;
-      flex: 0 0 auto;
-      margin: 0 auto;
-    }
-    }
-
   }
 }
 
@@ -299,7 +326,7 @@ nav.main-nav.has-halves {
   @include media-query($widescreen) {
     font-size: 1.2em;
   }
-   ul {
+  ul {
     width: 100%;
     padding: 0 !important;
   }
@@ -313,10 +340,9 @@ nav.main-nav.has-halves {
   width: 100%;
   max-width: $site-max;
   margin: auto;
-  @include media-query($medium) {
-    flex-wrap: wrap;
-  }
-  .nav-half, .centered-logo {
+
+  .nav-half,
+  .centered-logo {
     margin: 8px;
   }
   .nav-half {
@@ -327,12 +353,12 @@ nav.main-nav.has-halves {
   }
   .centered-logo {
     flex: 0 0 300px;
-     ul.social-wrap {
+    ul.social-wrap {
       margin: 5px auto 0;
       text-align: center;
-      align-items: center;justify-content: center;
+      align-items: center;
+      justify-content: center;
     }
-
   }
   &.style--squished {
     .centered-logo {
@@ -354,8 +380,6 @@ nav.main-nav.has-halves {
   }
 }
 
-
-
 .nav-half {
   &__extras {
     display: inline-block;
@@ -367,38 +391,41 @@ nav.main-nav.has-halves {
 }
 
 .site-header {
-   position: relative;
-    z-index: 9999;
+  position: relative;
+  z-index: 9999;
 
-    &+.social-wrap {
-      margin-left: 20px;
-    }
+  & + .social-wrap {
+    margin-left: 20px;
+  }
   .social-wrap {
     margin: 0px 0 -12px;
+    transition: max-height 200ms $ease;
+    max-height: 40px;
+    overflow: hidden;
+    a {
+      color: inherit;
+    }
   }
 }
 
 .overlay-active {
-  .mobile-nav-toggle .opener , .mobile-cart i{
-    color: var(--color-overlay)
+  .mobile-nav-toggle .opener,
+  .mobile-cart i {
+    color: var(--color-overlay);
   }
 }
 .site-header__wrap {
-
   .make-mobile .nav-inner {
-    .centered-logo {
-      margin: 0 auto 20px;
-    }
-    .search-outer button {
-      font-size: 22px;
-    }
-     @include media-query($small) {
-        .overlay-logo {
-          opacity: 0 !important;
-          &+img {
-            opacity: 1 !important;
-          }
+    @include media-query($small) {
+      .centered-logo {
+        display: none;
+      }
+      .overlay-logo {
+        opacity: 0 !important;
+        & + img {
+          opacity: 1 !important;
         }
       }
+    }
   }
 }
