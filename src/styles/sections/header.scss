@@ -9,16 +9,9 @@
   height: auto;
   z-index: 999;
   transition: transform 240ms linear, opacity 240ms ease;
-  &::before {
-    opacity: 0;
-    @extend %psuedo;
-    background: var(--header-bg-dropdown);
-    transition: opacity 240ms ease;
-    // box-shadow: 0 0 20px rgba(0,0,0,0.2);
-  }
 
   &.box-shadow {
-    &::before {
+    .site-header__inner::before {
       box-shadow: 0 0 15px rgba(black, 0.1);
     }
   }
@@ -204,7 +197,7 @@
     width: 95.5%;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 0;
+    padding: 8px 0;
     max-width: $grid-max-width;
     margin: auto;
   }

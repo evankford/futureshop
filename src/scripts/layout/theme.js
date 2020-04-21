@@ -164,17 +164,16 @@ class Theme {
       this.offset = 0 + this.topBar.getBoundingClientRect().height;
     }
     if (this.hero) {
-      console.log(this.hero)
       this.offset += this.hero.getBoundingClientRect().height
     }
   }
   headroomInit() {
-
-    var myHeadroom = new Headroom(this.header, {
+    console.log(this.offset);
+    this.Headroom = new Headroom(this.header, {
       "offset": this.offset,
       "tolerance": 5
     })
-    myHeadroom.init();
+    this.Headroom.init();
   }
 
   //Resize handling
