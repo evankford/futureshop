@@ -187,13 +187,13 @@ document.body.classList.add('header-overlay');
       {% if section.settings.layout_search == 'menu'  or section.settings.layout_cart == 'menu' %}
         <div class="nav-half__extras">
             {% if section.settings.layout_search == 'menu' %}
-              <li>
+              <li class="icon-link" >
                 {{search_markup}}
               </li>
 
               {%endif%}
               {% if section.settings.layout_cart == 'menu' %}
-              <li >
+              <li class="icon-link" >
                 {{cart_markup}}
               </li>
 
@@ -218,13 +218,13 @@ document.body.classList.add('header-overlay');
 
         {% endfor %}
           {% if section.settings.layout_search == 'menu' %}
-          <li>
+          <li class="menu-icon">
             {{search_markup}}
           </li>
 
           {%endif%}
           {% if section.settings.layout_cart == 'menu' %}
-          <li >
+          <li  class="menu-icon">
             {{cart_markup}}
           </li>
 
@@ -249,18 +249,18 @@ document.body.classList.add('header-overlay');
     </div><!--end nav-inner__wrap-->
       </div><!-- end nav-inner-->
     </nav>
-    <div class="mobile-cart">
+    <div class="mobile-cart menu-icon">
       {{cart_markup}}
     </div>
     <button class="mobile-nav-toggle">
-      <div class="opener">
+      <span class="opener menu-icon">
         {% if section.settings.menu_text == true %}<span>Menu </span>{%endif%}
         <i class="opener icon-menu" aria-label="open menu"></i >
-      </div>
-      <div class="closer">
+      </span>
+      <span class="closer">
         {% if section.settings.menu_text == true %}<span>Close </span>{%endif%}
         <i class="closer icon-times"></i aria-label="open menu">
-      </div>
+      </span>
     </button>
   </div>
 </div>
@@ -286,361 +286,285 @@ document.body.classList.add('header-overlay');
 {% schema %}
   {
     "name": "Header",
-    "settings": [
-      {
-        "type" : "header",
+    "settings": [{
+        "type": "header",
         "content": "settings"
-      },
-      {
-        "type" : "color",
-        "id" : "bg_color",
-        "label" : "Background Color",
-        "default" : "#ffffff"
-      },
-      {
-        "type" : "color",
-        "id" : "text_color",
-        "label" : "Text Color",
-        "default" : "#3a3a3a"
-      },
-      {
-        "type" : "color",
-        "id" : "text_color_hover",
-        "label" : "Text Color (Hover)",
-        "default" : "#1a1a1a"
-      },
-      {
-        "type" : "header",
-        "content" : "Layout"
-      },
-        {
-        "type" : "select",
-        "id" : "layout_header",
-        "label" : "Header Position",
-        "default" : "menu-centered",
-        "options" : [
-           {
-             "value" : "menu",
-             "label" : "In Menu"
-           },
-           {
-             "value" : "above",
-             "label" : "Above Menu"
-           },
-           {
-             "value" : "menu-centered",
-             "label" : "Centered in Menu"
-           }
-        ]
-      },
-       {
-        "type" : "select",
-        "id" : "header_center_around",
-        "label" : "Centered Logo Style",
-        "default" : "squished",
-        "options" : [
-
-            {
-              "value" : "squished",
-              "label" : "Menu centered around logo"
-            },
-           {
-             "value" : "soaced",
-             "label" : "Menu Spaced around logo"
-           }
-        ]
-      },
-      {
-        "type" : "select",
-        "id" : "layout_cart",
-        "label" : "Cart Position",
-        "default" : "menu",
-        "options" : [
-           {
-             "value" : "menu",
-             "label" : "In Menu"
-           },
-           {
-             "value" : "top-bar",
-             "label" : "In Top Bar"
-           },
-           {
-             "value" : "disabled",
-             "label" : "Disable Cart"
-           }
-        ]
-      },
-      {
-        "type" : "select",
-        "id" : "layout_socials",
-        "label" : "Socials Position",
-        "default" : "top-bar",
-        "options" : [
-           {
-             "value" : "before-menu",
-             "label" : "Before Menu"
-           },
-           {
-             "value" : "after-header",
-             "label" : "After Header"
-           },
-           {
-             "value" : "after-menu",
-             "label" : "After Menu"
-           },
-           {
-             "value" : "top-bar",
-             "label" : "In Top Bar"
-           },
-           {
-             "value" : "disabled",
-             "label" : "Disable Socials"
-           }
-        ]
-      },
-      {
-        "type" : "select",
-        "id" : "layout_search",
-        "label" : "Search Position",
-        "default" : "menu",
-        "options" : [
-
-            {
-              "value" : "disabled",
-              "label" : "Disable Search"
-            },
-           {
-             "value" : "menu",
-             "label" : "In Menu"
-           },
-           {
-             "value" : "above",
-             "label" : "Above Menu"
-           }
-        ]
-      },
-
-      {
-        "type" : "select",
-        "id" : "layout_mobile",
-        "label" : "Mobile Cart Layout",
-        "default" : "centered-cart",
-        "options" : [
-
-            {
-              "value" : "centered-cart",
-              "label" : "Logo Centered (w/cart)"
-            },
-           {
-             "value" : "left-cart",
-             "label" : "Logo Left (w/cart)"
-           },
-           {
-             "value" : "left-nocart",
-             "label" : "Logo Left (cart in menu)"
-           }
-        ]
-      },
-     {
-       "type" : "text",
-       "id" : "show_cart_text",
-       "label" : "Cart Text",
-       "info" : "Leave Blank for just Icon!"
-     },
-       {
-        "type" : "checkbox",
-        "id" : "box_shadow",
-        "label" : "Box Shadow on Hover Menu?"
-      },
-       {
-        "type" : "checkbox",
-        "id" : "expand_logo",
-        "label" : "Expand logo?",
-        "default" : true
-      },
-      {
+    }, {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color",
+        "default": "#ffffff"
+    }, {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#3a3a3a"
+    }, {
+        "type": "color",
+        "id": "text_color_hover",
+        "label": "Text Color (Hover)",
+        "default": "#1a1a1a"
+    }, {
+        "type": "checkbox",
+        "id": "box_shadow",
+        "label": "Box Shadow on Fixed Menu?"
+    },  {
         "type": "header",
         "content": "Header"
-      },
-      {
+    }, {
+        "type": "select",
+        "id": "layout_header",
+        "label": "Header Position",
+        "default": "menu-centered",
+        "options": [{
+            "value": "menu",
+            "label": "In Menu"
+        }, {
+            "value": "above",
+            "label": "Above Menu"
+        }, {
+            "value": "menu-centered",
+            "label": "Centered in Menu"
+        }]
+    }, {
+        "type": "select",
+        "id": "header_center_around",
+        "label": "Centered Logo Style",
+        "default": "squished",
+        "options": [{
+            "value": "squished",
+            "label": "Menu centered around logo"
+        }, {
+            "value": "soaced",
+            "label": "Menu Spaced around logo"
+        }]
+    }, {
+        "type": "checkbox",
+        "id": "expand_logo",
+        "label": "Expand logo?",
+        "default": true
+    }, {
         "type": "image_picker",
         "id": "logo",
         "label": "Logo image"
-      },
-    {
-      "type": "range",
-      "id": "logo_max_width",
-      "label": {
-        "de": "Logobreite",
-        "en": "Custom logo width",
-        "es": "Ancho del logotipo personalizado",
-        "fr": "Largeur personnalisée du logo",
-        "it": "Larghezza logo personalizzato",
-        "ja": "ロゴの幅をカスタムする",
-        "pt-BR": "Largura do logotipo personalizado"
-      },
-      "min": 50,
-      "max": 900,
-      "step": 25,
-      "unit": {
-        "de": "px",
-        "en": "px",
-        "es": "px",
-        "fr": "px",
-        "it": "px",
-        "ja": "px",
-        "pt-BR": "px"
-      },
-      "default": 100
-    },
-    {
-      "type": "range",
-      "id": "logo_max_width_mobile",
-      "label": "Custom logo width (mobile)",
-      "min": 50,
-      "max": 400,
-      "step": 10,
-      "unit": "px",
-      "default": 140
-    },
-    {
-      "type" : "select",
-      "id" : "header_font_size",
-      "label" : "Header Font Size",
-      "options" : [
-        {
-        "value" : "h3",
-          "label" : "Small"
+    }, {
+        "type": "range",
+        "id": "logo_max_width",
+        "label": {
+            "de": "Logobreite",
+            "en": "Custom logo width",
+            "es": "Ancho del logotipo personalizado",
+            "fr": "Largeur personnalisée du logo",
+            "it": "Larghezza logo personalizzato",
+            "ja": "ロゴの幅をカスタムする",
+            "pt-BR": "Largura do logotipo personalizado"
         },
-        {
-          "value" : "h2",
-          "label" : "Medium"
+        "min": 50,
+        "max": 900,
+        "step": 25,
+        "unit": {
+            "de": "px",
+            "en": "px",
+            "es": "px",
+            "fr": "px",
+            "it": "px",
+            "ja": "px",
+            "pt-BR": "px"
         },
-        {
-          "value" : "h1",
-          "label" : "Large"
-        },
-        {
-          "value" : "mega",
-          "label" : "Mega"
-        }
-      ]
-    },
-    {
-      "type" : "header",
-      "content" :"overlay"
-    },
-     {
-        "type" : "checkbox",
-        "id" : "overlay",
-        "label" : "Overlay on first section?"
-      },
-       {
+        "default": 300
+    }, {
+        "type": "range",
+        "id": "logo_max_width_mobile",
+        "label": "Custom logo width (mobile)",
+        "min": 50,
+        "max": 400,
+        "step": 10,
+        "unit": "px",
+        "default": 200
+    }, {
+        "type": "select",
+        "id": "header_font_size",
+        "label": "Header Font Size",
+        "options": [{
+            "value": "h3",
+            "label": "Small"
+        }, {
+            "value": "h2",
+            "label": "Medium"
+        }, {
+            "value": "h1",
+            "label": "Large"
+        }, {
+            "value": "mega",
+            "label": "Mega"
+        }]
+    }, {
+        "type": "header",
+        "content": "overlay"
+    }, {
+        "type": "checkbox",
+        "id": "overlay",
+        "label": "Overlay on first section?"
+    }, {
         "type": "image_picker",
         "id": "logo_overlay",
         "label": "Logo image (overlay)"
-      },
-
-      {
-        "type" : "color",
-        "id" : "overlay_color",
-        "label" : "Overlay Color"
-      },
-
-    {
-      "type" : "header",
-      "content" : "Menu"
-    },
-      {
+    }, {
+        "type": "color",
+        "id": "overlay_color",
+        "label": "Overlay Color"
+    }, {
+        "type": "header",
+        "content": "Menu"
+    }, {
         "type": "link_list",
         "id": "menu",
         "label": "Menu",
         "default": "main-menu"
-      },
-
-    {
-      "type" : "select",
-      "id" : "menu_font_weight",
-      "label" : "Menu Font Weight",
-      "options" : [
-        {
-          "value" : "regular",
-          "label" : "Regular"
-        },
-        {
-          "value" : "bold",
-          "label" : "Bold"
-        }
-      ]
-    },
-    {
-      "type" : "select",
-      "id" : "menu_text_align",
-      "label" : "Menu Text Align",
-      "options" : [
-          {
-          "value" : "left",
-          "label" : "Left"
-        },
-        {
-          "value" : "center",
-          "label" : "Center"
-        },
-        {
-          "value" : "right",
-          "label" : "Right"
-        }
-      ]
-    },
-    {
-      "type" : "select",
-      "id" : "back_to_site",
-      "label" :"Back To Site Link Position",
-      "default" : "none",
-      "options" : [
-        {
-          "value" : "none",
-          "label" :"None"
-        },
-        {
-          "value" :"last",
-          "label" : "Last Link"
-        },
-        {
-          "value" : "first",
-          "label" : "First Link"
-        }
-      ]
-    },
-    {
-      "type" : "header",
-      "content" : "Mobile"
-    },
-    {
-      "type" : "checkbox",
-      "id" : "enable_mobile_menu",
-      "label" : "Enable Mobile Menu?",
-      "default" : true
-    },
-    {
-      "type" : "checkbox",
-      "id" : "mobile_nav_space",
-      "label" : "Mobile Menu Space?",
-      "default" : false
-    },
-    {
-      "type" : "checkbox",
-      "id" : "mobile_socials",
-      "label": "Mobile Menu Socials?",
-      "default" : true
-    },
-    {
-      "type" : "checkbox",
-      "id" : "mobile_text",
-      "label": "Mobile Menu Text",
-      "info" : "Includes 'Menu' text next to icon"
+    }, {
+        "type": "select",
+        "id": "menu_font_weight",
+        "label": "Menu Font Weight",
+        "options": [{
+            "value": "regular",
+            "label": "Regular"
+        }, {
+            "value": "bold",
+            "label": "Bold"
+        }]
+    }, {
+        "type": "select",
+        "id": "menu_text_align",
+        "label": "Menu Text Align",
+        "options": [{
+            "value": "left",
+            "label": "Left"
+        }, {
+            "value": "center",
+            "label": "Center"
+        }, {
+            "value": "right",
+            "label": "Right"
+        }]
+    }, {
+        "type": "select",
+        "id": "back_to_site",
+        "label": "Back To Site Link Position",
+        "default": "none",
+        "options": [{
+            "value": "none",
+            "label": "None"
+        }, {
+            "value": "last",
+            "label": "Last Link"
+        }, {
+            "value": "first",
+            "label": "First Link"
+        }]
+    }, {
+        "type": "header",
+        "content": "Mobile"
+    }, {
+        "type": "checkbox",
+        "id": "enable_mobile_menu",
+        "label": "Enable Mobile Menu?",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "mobile_nav_space",
+        "label": "Mobile Menu Space?",
+        "default": false
+    }, {
+        "type": "checkbox",
+        "id": "mobile_socials",
+        "label": "Mobile Menu Socials?",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "mobile_text",
+        "label": "Mobile Menu Text",
+        "info": "Includes 'Menu' text next to icon"
+    }, {
+        "type": "header",
+        "content": "cart"
+    }, {
+        "type": "select",
+        "id": "layout_cart",
+        "label": "Cart Position",
+        "default": "menu",
+        "options": [{
+            "value": "menu",
+            "label": "In Menu"
+        }, {
+            "value": "top-bar",
+            "label": "In Top Bar"
+        }, {
+            "value": "disabled",
+            "label": "Disable Cart"
+        }]
+    }, {
+        "type": "select",
+        "id": "layout_mobile",
+        "label": "Mobile Cart Layout",
+        "default": "centered-cart",
+        "options": [{
+            "value": "centered-cart",
+            "label": "Logo Centered (w/cart)"
+        }, {
+            "value": "left-cart",
+            "label": "Logo Left (w/cart)"
+        }, {
+            "value": "left-nocart",
+            "label": "Logo Left (cart in menu)"
+        }]
+    }, {
+        "type": "text",
+        "id": "show_cart_text",
+        "label": "Cart Text",
+        "info": "Leave Blank for just Icon!"
+    }, {
+        "type": "header",
+        "content": "socials"
+    }, {
+        "type": "select",
+        "id": "layout_socials",
+        "label": "Socials Position",
+        "default": "top-bar",
+        "options": [{
+            "value": "before-menu",
+            "label": "Before Menu"
+        }, {
+            "value": "after-header",
+            "label": "After Header"
+        }, {
+            "value": "after-menu",
+            "label": "After Menu"
+        }, {
+            "value": "top-bar",
+            "label": "In Top Bar"
+        }, {
+            "value": "disabled",
+            "label": "Disable Socials"
+        }]
+    }, {
+        "type": "header",
+        "content": "Search"
+    }, {
+        "type": "select",
+        "id": "layout_search",
+        "label": "Search Position",
+        "default": "menu",
+        "options": [{
+            "value": "disabled",
+            "label": "Disable Search"
+        }, {
+            "value": "menu",
+            "label": "In Menu"
+        }, {
+            "value": "above",
+            "label": "Above Menu"
+        }]
     }
-
   ]
 }
 {% endschema %}
