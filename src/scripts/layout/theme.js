@@ -124,8 +124,6 @@ class Theme {
 
   headroomCheckOverlay() {
     this.checkForHero();
-    console.log("Checking overlay");
-    console.log(this.hero);
     if (document.body.classList.contains('template-index') && this.header.classList.contains('overlay-header')) {
       this.overlay = true;
     }
