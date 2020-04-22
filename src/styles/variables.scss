@@ -78,8 +78,6 @@ $font-body-bold-weight: var(--font-body-bold-weight);
 @mixin font-extra($extraweight: $font-extra-weight) {
   font-family: $font-extra;
   font-weight: $extraweight;
-  text-transform: uppercase;
-  letter-spacing: 0em;
 }
 @mixin font-heading($headingweight: $font-heading-weight) {
   font-family: $font-heading;
@@ -177,9 +175,9 @@ $ease: cubic-bezier(0.77, 0, 0.175, 1);
     @extend %psuedo;
     z-index: 1;
     background: var(--color-card-bg);
-    
+
   }
-  
+
   position: relative;
   z-index: 1;
   overflow: visible;
@@ -188,7 +186,7 @@ $ease: cubic-bezier(0.77, 0, 0.175, 1);
   transform:perspective(100px) translate3d(0, 0, 0px );
   &:hover {
     transform:perspective(100px) translate3d(0, -2px, 2px );
-    
+
     &::before {
       opacity: 1;
       transform: scale($endingScale) translate3d(0, 3px, -2px);

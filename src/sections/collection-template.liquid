@@ -18,15 +18,7 @@
     {% include 'grid-item' with secondary_image: {{section.settings.secondary_image}}, show_price: {{section.settings.show_price}}, simplify: {{section.settings.simplify}}, hover_details: {{section.settings.hoverer}} %}
     {% assign delay = delay | plus: 50 %}
   {% else %}
-    {% for i in (1..6) %}
-      <a href="#" class="featured-collection-item">
-        {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-        {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
-
-        <p>{{ 'homepage.onboarding.product_title' | t }}</p>
-        <p>{{ 1999 | money }}</p>
-      </a>
-    {% endfor %}
+    {% include 'collection-fallback' %}
   {% endfor %}
   </div>
 

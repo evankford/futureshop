@@ -51,11 +51,6 @@ nav.main-nav {
     margin: 0;
   }
   .search-outer {
-    text-align: right;
-    // flex: 0 0 150px;
-    padding: 4px 6px;
-    display: block;
-    line-height: 0;
     button {
       color: var(--header-text);
       margin-top: 0;
@@ -80,6 +75,10 @@ nav.main-nav {
     display: inline-block;
     vertical-align: middle;
     position: relative;
+    &.menu-icon {
+      margin-bottom: 4px;
+    }
+
     ul {
       //Child menu
       &:before {
@@ -127,7 +126,6 @@ nav.main-nav {
 
   a,
   .icon-fallback-text {
-    text-transform: uppercase;
     display: inline-block;
     position: relative;
     letter-spacing: 0.02em;
@@ -234,6 +232,7 @@ body.nav-open {
     color: var(--header-text);
   }
 }
+
 .nav-inner__background {
   @extend %psuedoish;
   background: rgba(0, 0, 0, 0.75);
@@ -244,4 +243,8 @@ body.nav-open {
   pointer-events: none;
   transition: opacity 400ms 300ms $ease;
   display: none;
+}
+
+.menu-icon {
+  line-height: 1;
 }

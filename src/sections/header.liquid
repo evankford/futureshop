@@ -146,10 +146,10 @@ document.body.classList.add('header-overlay');
       {%endif%}
 
 
-  <nav role="navigation" class="main-nav {% if section.settings.enable_mobile_menu == true %} make-mobile {%endif%} font-weight--{{section.settings.menu_font_weight}} text-align--{{section.settings.menu_text_align}} {% if section.settings.layout_header == 'menu-centered' %} has-halves {%endif%} " id="site-nav" >
+  <nav role="navigation" class="main-nav {% if section.settings.enable_mobile_menu == true %} make-mobile {%endif%} align--{{section.settings.menu_text_align}} {% if section.settings.layout_header == 'menu-centered' %} has-halves {%endif%} " id="site-nav" >
     <div class="nav-inner">
     <div class="nav-inner__background"></div>
-    <div class="nav-inner__wrap {% if section.settings.mobile_nav_space == true %} use-space {%endif%}" >
+    <div class="nav-inner__wrap {% if section.settings.mobile_nav_space == true %} use-space {%endif%} font--{{settings.font_family_menu | default: 'heading'}} style--{{settings.font-style_menu | default: 'standard'}}" >
 
     <ul>
 
@@ -441,7 +441,7 @@ document.body.classList.add('header-overlay');
         "type": "select",
         "id": "menu_text_align",
         "label": "Menu Text Align",
-        "default" : "right"
+        "default" : "right",
         "options": [{
             "value": "left",
             "label": "Left"

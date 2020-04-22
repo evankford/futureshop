@@ -5,7 +5,6 @@
   button {
     background: transparent;
     padding: 4px 7px;
-    margin: 4px 0 0 ;
     border:none;
     appearance: none;
     transition: all 300ms ease;
@@ -22,13 +21,13 @@
   left: 0;
   width: 100%;
   height: 100%;
-  
+
   z-index: -1000;
   display: none;
   pointer-events: none;;
-   
-    
-  
+
+
+
   &.search-form-opening {
     display: block;
     z-index: 100000;
@@ -79,7 +78,7 @@
     border-radius: $border-radius-big;
     @include media-query($tiny) {
       font-size: 0.9em;
-    } 
+    }
     input, button {
       border: none;
       background: transparent
@@ -91,7 +90,7 @@
     input {
       font-size: 1.2em;
       padding: 0.95em 1em;
-    
+
       letter-spacing: -0.02em;
       width: 100%;
       &::placeholder {
@@ -133,7 +132,7 @@
   position: relative;
   z-index: 1000;
   .input-holder {
-    
+
     position: absolute;
     right: 100%;
     z-index: 1;
@@ -147,7 +146,7 @@
       color: inherit;
       padding: 8px 16px;
       border: transparent;
-      
+
       &::placeholder {
         color: inherit;
         font-size: 14px;
@@ -156,7 +155,7 @@
       }
     }
   }
-  
+
   &.search-form-active {
     .input-holder {
       max-width: 200px;

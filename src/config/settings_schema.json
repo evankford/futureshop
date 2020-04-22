@@ -264,6 +264,23 @@
         ]
       },
       {
+        "type": "select",
+        "id": "font_style_menu",
+        "label": "Menu Font Style",
+        "default": "standard",
+        "options": [
+          {
+            "value": "standard",
+            "label": "Standard"
+          },
+          {
+            "value": "caps",
+            "label": "All Caps"
+          }
+        ]
+      },
+
+      {
         "type": "header",
         "content": "buttons"
       },
