@@ -4,6 +4,15 @@
   justify-content: center;
   flex-wrap: wrap;
   text-align: center;
+
+  .fallback {
+    width: 80%;
+    margin: auto;
+    h2,h3 {
+      @include font-extra;
+    }
+  }
+
   .tour-main {
     flex: 2 1 630px;
 
@@ -37,14 +46,6 @@
    .error.hidden {
      display: block;
    }
-  }
-}
-
-.fallback {
-  width: 80%;
-  margin: auto;
-  h2,h3 {
-    @include font-extra;
   }
 }
 

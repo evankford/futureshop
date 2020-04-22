@@ -1,6 +1,6 @@
 {
   "name": "futureshop",
-  "version": "1.0.0-alpha.1",
+  "version": "0.0.1",
   "private": false,
   "description": "FutureShirts starter theme for Shopify Development.",
   "keywords": [
@@ -45,7 +45,6 @@
     "es6-promise": "^4.2.8",
     "headroom.js": "^0.9.4",
     "js-cookie": "^2.2.1",
-    "js-image-zoom": "^0.7.0",
     "lazysizes": "^4.1.1",
     "mustache": "^4.0.0",
     "normalize.css": "^8.0.1",

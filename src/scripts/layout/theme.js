@@ -12,7 +12,7 @@ import Rellax from 'rellax';
 import queryString from 'query-string';
 import AlertDrawer from '../components/alert-drawer';
 
-import { throttle } from 'underscore';
+import { debounce } from 'lodash';
 import '../../styles/theme.scss';
 import '../../styles/theme.scss.liquid';
 
@@ -25,39 +25,45 @@ import AOS from 'aos';
 //Headroom
 import Headroom from 'headroom.js';
 
+import reframe from 'reframe.js/dist/reframe';
+
 class Theme {
   constructor() {
-
     //Important site sections
-    this.main = document.getElementById('MainContent')
+    this.main = document.getElementById('MainContent');
     this.header = document.querySelector('.site-header__wrap');
     this.hero = false;
     this.footer = false;
 
-    this.utilities()
+    this.utilities();
     this.init();
   }
 
   init() {
-
     AOS.init({
       once: true,
-      offset: -200
+      offset: -200,
     });
 
-    this.mobileMenuInit()
+    this.mobileMenuInit();
     this.buildHeadroom();
     this.initRellaxImages();
     this.initModules();
+    this.reframe();
 
     this.resizeHandler = this.allResize.bind(this);
     this.loadHandler = this.allLoad.bind(this);
     window.addEventListener('resize', this.resizeHandler);
     window.addEventListener('load', this.loadHandler);
+    this.loadHandler();
+  }
+
+  reframe() {
+    reframe('.rte iframe');
   }
 
   utilities() {
-    objectFitImages()
+    objectFitImages();
 
     // Common a11y fixes
     focusHash();
@@ -67,7 +73,7 @@ class Theme {
     if (navigator.cookieEnabled) {
       document.documentElement.className = document.documentElement.className.replace(
         'supports-no-cookies',
-        'supports-cookies',
+        'supports-cookies'
       );
     }
 
@@ -77,7 +83,6 @@ class Theme {
       window.removeEventListener('mouseover', removeFocus);
     }
     window.addEventListener('mouseover', removeFocus);
-
   }
 
   mobileMenuInit() {
@@ -91,16 +96,15 @@ class Theme {
         document.body.classList.add('nav-open');
       }
     }
-    menuToggler.addEventListener('click', toggleMenu)
-    menuBg.addEventListener('click', toggleMenu)
+    menuToggler.addEventListener('click', toggleMenu);
+    menuBg.addEventListener('click', toggleMenu);
   }
 
   checkForHero() {
     var allImages = this.main.querySelectorAll('.image-section');
     if (allImages.length > 0) {
-
       if (this.main.firstElementChild == allImages[0]) {
-        this.hero = allImages[0]
+        this.hero = allImages[0];
       }
     }
   }
@@ -110,25 +114,25 @@ class Theme {
     this.scrollMark = 0;
     this.overlay = false;
 
-
     if (this.header && this.header.classList.contains('site-header__wrap')) {
-
       this.headroomCheckOverlay();
       this.headroomHandleOffsets();
       this.headroomFixHeader();
       this.headroomInit();
       this.headroomInitCheckScroll();
     }
-
   }
 
   headroomCheckOverlay() {
     this.checkForHero();
-    if (document.body.classList.contains('template-index') && this.header.classList.contains('overlay-header')) {
+    if (
+      document.body.classList.contains('template-index') &&
+      this.header.classList.contains('overlay-header')
+    ) {
       this.overlay = true;
     }
     if (this.hero) {
-      this.overlay = true
+      this.overlay = true;
     }
   }
 
@@ -143,17 +147,20 @@ class Theme {
 
   headroomCheckScroll() {
     if (window.scrollY < this.scrollMark) {
-      this.header.classList.add('overlay-active')
+      this.header.classList.add('overlay-active');
     } else {
-      this.header.classList.remove('overlay-active')
+      this.header.classList.remove('overlay-active');
     }
   }
   headroomInitCheckScroll() {
     var self = this;
     if (this.overlay == true && this.hero) {
       this.scrollMark = this.hero.getBoundingClientRect().height;
-      window.addEventListener('scroll', throttle(self.headroomCheckScroll.bind(this), 100))
-     self.headroomCheckScroll.bind(this);
+      window.addEventListener(
+        'scroll',
+        debounce(self.headroomCheckScroll.bind(this), 100)
+      );
+      self.headroomCheckScroll.bind(this);
     }
   }
   headroomHandleOffsets() {
@@ -162,27 +169,35 @@ class Theme {
       this.offset = 0 + this.topBar.getBoundingClientRect().height;
     }
     if (this.hero) {
-      this.offset += this.hero.getBoundingClientRect().height
+      this.offset += this.hero.getBoundingClientRect().height;
     }
   }
   headroomInit() {
-    console.log(this.offset);
-    this.Headroom = new Headroom(this.header, {
-      "offset": this.offset,
-      "tolerance": 5
-    })
-    this.Headroom.init();
+    var myHeadroom = new Headroom(this.header, {
+      offset: this.offset,
+      tolerance: 8,
+    });
+    myHeadroom.init();
+  }
+
+  headerOffset() {
+    var headerHeight = this.header.offsetTop + this.header.offsetHeight;
+    if (this.main && !this.hero) {
+      this.main.style.paddingTop = headerHeight + 'px';
+    }
   }
 
   //Resize handling
   allResize() {
-    this.headroomCheckScroll()
+    this.headroomCheckScroll();
+    this.headerOffset();
   }
   allLoad() {
     this.handleURLParams();
     setTimeout(() => {
-      this.headroomCheckScroll()
-    }, 200);
+      this.headroomCheckScroll();
+      this.headerOffset();
+    }, 100);
   }
 
   //Rellax images
@@ -192,44 +207,41 @@ class Theme {
     this.rellaxFloats = document.querySelectorAll('.rellax-float');
     if (this.rellaxImages) {
       if (this.rellaxImages.length > 0) {
-
         var rellaxImage = new Rellax('.rellax-image', {
           center: true,
-          speed: -4
-        })
-        window.addEventListener('load', function () {
+          speed: -4,
+        });
+        window.addEventListener('load', function() {
           rellaxImage.refresh();
         });
       }
     }
     if (this.rellaxBgs) {
       if (this.rellaxBgs.length > 0) {
-        rellaxBgs.forEach(el => {
+        this.rellaxBgs.forEach((el) => {
           let offset = el.parentElement.scrollTop;
           var bg = new Rellax(el, {
             center: true,
-            speed: -5
-          })
-          window.addEventListener('load', function () {
+            speed: -5,
+          });
+          window.addEventListener('load', function() {
             bg.refresh();
           });
-        })
+        });
       }
     }
     if (this.rellaxFloats) {
-
       if (this.rellaxFloats.length > 0) {
-
-        rellaxFloats.forEach(el => {
+        rellaxFloats.forEach((el) => {
           let offset = el.parentElement.scrollTop;
           var float = new Rellax(el, {
             center: true,
-            speed: 3
-          })
-          window.addEventListener('load', function () {
+            speed: 3,
+          });
+          window.addEventListener('load', function() {
             float.refresh();
           });
-        })
+        });
       }
     }
   }
@@ -241,26 +253,25 @@ class Theme {
         type: 'success',
         class: 'email-drawer',
         position: 'top',
-        message: window.alertText.customerSuccess
-      })
+        message: window.alertText.customerSuccess,
+      });
     } else if (parsedURL.form_type == 'customer') {
       console.log('errored');
       var customerSuccessDrawer = new AlertDrawer({
         type: 'error',
         position: 'top',
         class: 'email-drawer',
-        message: window.alertText.customerFailure
-      })
+        message: window.alertText.customerFailure,
+      });
     }
   }
 
-
   initModules() {
-    Array.from(document.querySelectorAll('[data-module]')).forEach(el => {
-      const name = el.getAttribute('data-module')
-      const Module = require(`../modules/${name}`).default
-      new Module(el)
-    })
+    Array.from(document.querySelectorAll('[data-module]')).forEach((el) => {
+      const name = el.getAttribute('data-module');
+      const Module = require(`../modules/${name}`).default;
+      new Module(el);
+    });
   }
 }
 

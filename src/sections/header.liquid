@@ -275,10 +275,15 @@ document.body.classList.add('header-overlay');
       max-width: {{ section.settings.logo_max_width }}px;
 
     }
+    header.site-header {
+      flex-basis: {{section.settings.logo_max_width}}px;
+    }
     @media only screen and (max-width: 750px) {
       .site-header__inner img, .site-header__inner svg {
         max-width: {{ section.settings.logo_max_width_mobile }}px;
-
+      }
+      header.site-header {
+        flex-basis: {{section.settings.logo_max_width_mobile}}px;
       }
     }
   </style>
@@ -315,7 +320,7 @@ document.body.classList.add('header-overlay');
         "type": "select",
         "id": "layout_header",
         "label": "Header Position",
-        "default": "menu-centered",
+        "default": "menu",
         "options": [{
             "value": "menu",
             "label": "In Menu"
@@ -371,7 +376,7 @@ document.body.classList.add('header-overlay');
             "ja": "px",
             "pt-BR": "px"
         },
-        "default": 300
+        "default": 350
     }, {
         "type": "range",
         "id": "logo_max_width_mobile",
@@ -380,7 +385,7 @@ document.body.classList.add('header-overlay');
         "max": 400,
         "step": 10,
         "unit": "px",
-        "default": 200
+        "default": 230
     }, {
         "type": "select",
         "id": "header_font_size",
@@ -436,6 +441,7 @@ document.body.classList.add('header-overlay');
         "type": "select",
         "id": "menu_text_align",
         "label": "Menu Text Align",
+        "default" : "right"
         "options": [{
             "value": "left",
             "label": "Left"
