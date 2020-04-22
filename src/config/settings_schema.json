@@ -1,14 +1,33 @@
 [
   {
-    "name": "futureshop",
-    "theme_name": "FutureShop",
-    "theme_version": "0.0.1",
-    "theme_author": "EKF Design",
-    "theme_documentation_url": "https://docs.futureshop.com"
+    "name": "theme_info",
+    "theme_name": "Starter theme",
+    "theme_version": "1.0.0",
+    "theme_author": "Shopify",
+    "theme_documentation_url": "https://github.com/Shopify/starter-theme",
+    "theme_support_url": "https://github.com/Shopify/starter-theme/issues"
   },
   {
     "name": "Colors",
     "settings": [
+      {
+        "type": "color",
+        "id": "color_body_text",
+        "label": "Text",
+        "default": "#161d25"
+      },
+      {
+        "type": "color",
+        "id": "color_main_bg",
+        "label": "Background",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "color_borders",
+        "label": "Color for Borders",
+        "default": "#dfdfdf"
+      },
       {
         "type": "color",
         "id": "color_accent",
@@ -38,18 +57,6 @@
         "info": "Inverse of secondary for buttons, etc"
       },
       {
-        "type": "color",
-        "id": "color_body_text",
-        "label": "Text",
-        "default": "#161d25"
-      },
-      {
-        "type": "color",
-        "id": "color_main_bg",
-        "label": "Background",
-        "default": "#fff"
-      },
-      {
         "type": "header",
         "content": "cards"
       },
@@ -66,8 +73,8 @@
         "default": "#3f3f3f"
       },
       {
-        "type" : "header",
-        "content" : "drawers"
+        "type": "header",
+        "content": "drawers"
       },
       {
         "type": "color",
@@ -86,36 +93,54 @@
       },
       {
         "type": "color",
+        "id": "color_search_text",
+        "label": "Search Drawer text",
+        "default": "#3f3f3f"
+      },
+      {
+        "type": "color",
+        "id": "color_search_background",
+        "label": "Search Drawer Background",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "color_search_border",
+        "label": "Search drawer border",
+        "default": "#cfcfcf"
+      },
+      {
+        "type": "color",
         "id": "color_drawer_button_text",
         "label": "Drawer Button Text"
       },
       {
-        "type" : "header",
-        "content" : "Notificaton Colors"
+        "type": "header",
+        "content": "Notificaton Colors"
       },
       {
-        "type" : "color",
-        "id" : "color_notification_text",
-        "label" : "Color for notification text!",
-        "default" : "#ffffff"
+        "type": "color",
+        "id": "color_notification_text",
+        "label": "Color for notification text!",
+        "default": "#ffffff"
       },
       {
-        "type" : "color",
-        "id" : "color_error",
-        "label" : "Color for error items!",
-        "default" : "#d64242"
+        "type": "color",
+        "id": "color_error",
+        "label": "Color for error items!",
+        "default": "#d64242"
       },
       {
-        "type" : "color",
-        "id"  : "color_success",
-        "label" : "Color for success items!",
-        "default" : "#34c240"
+        "type": "color",
+        "id": "color_success",
+        "label": "Color for success items!",
+        "default": "#34c240"
       },
       {
-        "type" : "color",
-        "id"  : "color_alert",
-        "label" : "Color for alert items!",
-        "default" : "#fa9f47"
+        "type": "color",
+        "id": "color_alert",
+        "label": "Color for alert items!",
+        "default": "#fa9f47"
       }
     ]
   },
@@ -124,48 +149,240 @@
     "settings": [
       {
         "type": "font_picker",
-        "id": "font_heading",
-        "default": "helvetica_n4",
-        "label": "Headings"
-      },
-      {
-        "type": "font_picker",
         "id": "font_body",
-        "default": "helvetica_n4",
+        "default": "open_sans_n4",
         "label": "Body text"
       },
       {
         "type": "font_picker",
+        "id": "font_heading",
+        "default": "archivo_n7",
+        "label": "Headings"
+      },
+      {
+        "type": "font_picker",
         "id": "font_extra",
-        "default": "helvetica_n9",
+        "default": "archivo_condensed_n7",
         "label": "Extra Font"
       },
       {
         "type": "header",
-        "content": "typekit"
+        "content": "Headers"
+      },
+      {
+        "type": "select",
+        "id": "font_family_heading",
+        "label": "Header Font Family",
+        "default": "extra",
+        "options": [
+          {
+            "value": "heading",
+            "label": "Heading"
+          },
+          {
+            "value": "body",
+            "label": "Body"
+          },
+          {
+            "value": "extra",
+            "label": "Extra"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "header_style",
+        "label": "Header Style",
+        "default": "standard",
+        "options": [
+          {
+            "value": "standard",
+            "label": "Standard"
+          },
+          {
+            "value": "caps",
+            "label": "All Caps"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "header_spacing",
+        "label": "Header Spacing",
+        "info": "3 is normal, 1 is very tight, 10 is very spaced!",
+        "min": 0,
+        "default": 3,
+        "max": 10,
+        "step": 1
+      },
+      {
+        "type": "select",
+        "id": "header_alignment",
+        "label": "Header Alignment",
+        "default": "center",
+        "options": [
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "menu"
+      },
+      {
+        "type": "select",
+        "id": "font_family_menu",
+        "label": "Menu Font Family",
+        "default": "heading",
+        "options": [
+          {
+            "value": "heading",
+            "label": "Heading"
+          },
+          {
+            "value": "body",
+            "label": "Body"
+          },
+          {
+            "value": "extra",
+            "label": "Extra"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "buttons"
+      },
+      {
+        "type": "select",
+        "id": "font_family_buttons",
+        "label": "Button Font Family",
+        "default": "heading",
+        "options": [
+          {
+            "value": "heading",
+            "label": "Heading"
+          },
+          {
+            "value": "body",
+            "label": "Body"
+          },
+          {
+            "value": "extra",
+            "label": "Extra"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Products"
+      },
+      {
+        "type": "select",
+        "id": "font_family_product",
+        "label": "Product Font Family",
+        "default": "heading",
+        "options": [
+          {
+            "value": "heading",
+            "label": "Heading"
+          },
+          {
+            "value": "body",
+            "label": "Body"
+          },
+          {
+            "value": "extra",
+            "label": "Extra"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Labels"
+      },
+      {
+        "type": "select",
+        "id": "font_family_label",
+        "label": "Label Font Family",
+        "info": "Used in pre-headings and info across the site",
+        "default": "body",
+        "options": [
+          {
+            "value": "heading",
+            "label": "Heading"
+          },
+          {
+            "value": "body",
+            "label": "Body"
+          },
+          {
+            "value": "extra",
+            "label": "Extra"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "label_style",
+        "label": "Label Style",
+        "info": "Used in pre-headings and info across the site",
+        "default": "caps",
+        "options": [
+          {
+            "value": "caps",
+            "label": "Caps"
+          },
+          {
+            "value": "italic",
+            "label": "italic"
+          },
+          {
+            "value": "standard",
+            "label": "Standard"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Custom Fonts"
+      },
+      {
+        "type" : "paragraph",
+        "content" : "Use a custom font embed here from typekit/google fonts. Then add the font-family below!"
       },
       {
         "type": "text",
         "id": "typekit_text",
-        "label": "Typekit Code",
+        "label": "Typekit/GF Code",
         "info": "(from the kit on fonts.adobe.com)"
       },
       {
         "type": "text",
-        "id": "extra_typekit",
-        "label": "Typekit Extra",
+        "id": "body_typekit",
+        "label": "Typekit/GF Body Font Family",
         "info": "Usually all lowercase + hyphenated"
       },
       {
         "type": "text",
         "id": "heading_typekit",
-        "label": "Typekit Heading",
+        "label": "Typekit/GF Heading Font Family",
         "info": "Usually all lowercase + hyphenated"
       },
       {
         "type": "text",
-        "id": "body_typekit",
-        "label": "Typekit Body",
+        "id": "extra_typekit",
+        "label": "Typekit/GF Extra Font Family",
         "info": "Usually all lowercase + hyphenated"
       }
     ]
@@ -318,26 +535,6 @@
       },
       {
         "type": "select",
-        "id": "product_font",
-        "label": "Product Font",
-        "default" : "body",
-        "options": [
-          {
-            "value": "body",
-            "label": "body"
-          },
-          {
-            "value": "heading",
-            "label": "heading"
-          },
-          {
-            "value": "extra",
-            "label": "extra"
-          }
-        ]
-      },
-      {
-        "type": "select",
         "id": "price_style",
         "default": "simple",
         "label": "Price Style?",
@@ -384,7 +581,6 @@
         "label": "Arrows for product slider?",
         "default": true
       },
-
       {
         "type": "checkbox",
         "id": "product_zoom",
@@ -422,100 +618,7 @@
       },
       {
         "type": "header",
-        "content": "Headers"
-      },
-      {
-        "type": "select",
-        "id": "header_style",
-        "label": "Header Style",
-        "default": "standard",
-        "options": [
-          {
-            "value": "standard",
-            "label": "Standard"
-          },
-          {
-            "value": "high",
-            "label": "High Emphasis"
-          },
-          {
-            "value": "caps",
-            "label": "All Caps"
-          },
-          {
-            "value": "caps-spaced",
-            "label": "All Caps - Spaced"
-          },
-          {
-            "value": "caps-narrow",
-            "label": "All Caps - Narrow"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "preheader_style",
-        "label": "Pre-Header Style",
-        "info" : "Affect Pre and post-headers on section titles, slides, and columns",
-        "default": "standard",
-        "options": [
-          {
-            "value": "standard",
-            "label": "Standard"
-          },
-          {
-            "value": "simple",
-            "label": "Simple"
-          },
-          {
-            "value": "caps",
-            "label": "Caps (spaced)"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "header_alignment",
-        "label": "Header Alignment",
-        "default": "center",
-        "options": [
-          {
-            "value": "center",
-            "label": "Center"
-          },
-          {
-            "value": "left",
-            "label": "Left"
-          },
-          {
-            "value": "right",
-            "label": "Right"
-          }
-        ]
-      },
-      {
-        "type": "header",
         "content": "Buttons"
-      },
-      {
-        "type": "select",
-        "id": "button_font",
-        "label": "Button Font",
-        "default": "body",
-        "options": [
-          {
-            "value": "body",
-            "label": "Body Font"
-          },
-          {
-            "value": "heading",
-            "label": "Heading Font"
-          },
-          {
-            "value": "extra",
-            "label": "Extra Font"
-          }
-        ]
       },
       {
         "type": "select",
@@ -560,9 +663,9 @@
         "content": "Theme images"
       },
       {
-        "type" : "checkbox",
-        "id" : "enable_background",
-        "label" : "Enable Background Image"
+        "type": "checkbox",
+        "id": "enable_background",
+        "label": "Enable Background Image"
       },
       {
         "type": "image_picker",
@@ -865,24 +968,24 @@
         "default": false
       },
       {
-        "type" : "checkbox",
-        "id" : "cart_ajax_enable",
-        "label" : "Enable Ajax Cart",
-        "default" : true
+        "type": "checkbox",
+        "id": "cart_ajax_enable",
+        "label": "Enable Ajax Cart",
+        "default": true
       },
       {
-        "type" : "select",
-        "id" : "cart_offscreen",
-        "label" : "Cart Offscreen Direction",
-        "default" : "right",
-        "options" : [
+        "type": "select",
+        "id": "cart_offscreen",
+        "label": "Cart Offscreen Direction",
+        "default": "right",
+        "options": [
           {
-            "value" : "right",
-            "label" : "Right"
+            "value": "right",
+            "label": "Right"
           },
           {
-            "value" : "left",
-            "label" : "Left"
+            "value": "left",
+            "label": "Left"
           }
         ]
       }
