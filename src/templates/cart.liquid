@@ -63,7 +63,7 @@
                 {% endfor %}
               {% endif %}
 
-             
+
             </td>
             <td class="item-price" data-label="{{ 'cart.label.price' | t }}">
               <div class="price-wrapper">
@@ -92,7 +92,7 @@
                         data-quantity>
                       <div class="quantity-adjust adjust-plus">+</div>
                     </div>
-              </div>  
+              </div>
                <a class="remove-item" data-remove-item href="/cart/change?line={{ forloop.index }}&amp;quantity=0">
                 <small><i class="icon-times"></i> {{ 'cart.general.remove' | t }}</small>
               </a>
@@ -110,7 +110,7 @@
       <div class="cart-instructions--wrap">
         <label for="CartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
         <textarea name="note" id="CartSpecialInstructions">{{ cart.note }}</textarea>
-    
+
       </div>
       {% endif %}
       <div class="cart-controls--info">
@@ -130,7 +130,7 @@
     </div>
   </form>
 {% else %}
-<div class="cart-fallback"> 
+<div class="cart-fallback">
   <div class="cart-header-wrap">
     <h1 id="cart-header">{{ 'cart.general.title' | t }}</h1>
   </div>
@@ -155,3 +155,5 @@
 
 </div>
 {% endif %}
+
+{% include 'ajax-cart-redirect' %}
