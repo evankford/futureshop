@@ -15,11 +15,11 @@
 
   {%- assign collection = collections[section.settings.collection] -%}
   {% capture max %}{%if collection.products.size <= section.settings.limit%}{{collection.products.size}}{% elsif section.settings.limit == 0%}100{%else%}{{section.settings.limit}}{%endif%}{%endcapture%}
-  <div class="collection-grid product-grid size--{{section.settings.size}}" data-max="{{max}}" > 
-  
+  <div class="collection-grid product-grid size--{{section.settings.size}}" data-max="{{max}}" >
+
   {% for product in collection.products limit: section.settings.limit %}
     {% include 'grid-item' with secondary_image: section.settings.secondary_image}, show_price: section.settings.show_price}, simplify: section.settings.simplify, hover_details: section.settings.hoverer %}
-    {% assign delay = delay | plus: 50 %} 
+    {% assign delay = delay | plus: 50 %}
   {% else %}
     {% for i in (1..6) %}
       <a data-aos="fade-in" data-aos-delay="{{delay}}" href="{{ product.url | within: collection }}" class="product-grid-item grid-item {% if simplify == true %} simplify {%endif%} {% if hover_details == true  %} detail-on-hover {%endif%} ">
@@ -40,7 +40,7 @@
   {% if section.settings.button_text != blank %}
   <div class="button-wrap center">
     <a href="{{section.settings.button_url | default: collection.url}}" class="button">{{section.settings.button_text}}</a>
-  </div> 
+  </div>
   {%endif%}
 </div>
 </section>
@@ -51,17 +51,90 @@
    "class" : "standard-section",
     "settings": [
       {
-        "type": "text",
-        "id": "pre_title",
-        "label": "Pre-Heading",
-        "default": "Shop Our"
+        "type" : "header",
+        "content" : "Meta"
       },
-      
       {
         "type": "text",
-        "id": "title",
+        "id" : "id",
+        "label" : "Section ID (for anchor links and specific styling)"
+      },
+       {
+        "type": "text",
+        "id" : "title",
+        "label" : "Nice Name",
+        "info" : "Just for keeping the back end organized! Enter a nice name here",
+        "default" : "Slideshow"
+      },
+      {
+        "type" : "header",
+        "content" : "Featured Collection Content"
+      },
+{
+        "type" : "select",
+        "id" : "text_align",
+        "label" : "Text Alignment",
+        "default" :  "center",
+        "options" : [
+          {
+            "value" : "left",
+            "label" : "Left"
+          },
+          {
+            "value" : "center",
+            "label" : "Center"
+          },
+          {
+            "value" : "right",
+            "label" : "Right"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "text_size",
+        "label" : "Text Size",
+        "default" :  "standard",
+        "options" : [
+          {
+            "value" : "small",
+            "label" : "Small"
+          },
+          {
+            "value" : "standard",
+            "label" : "Standard"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "mega",
+            "label" : "Mega"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "introduction",
+        "label": "Introduction",
+        "default": "Shop"
+      },
+      {
+        "type": "text",
+        "id": "heading",
         "label": "Heading",
-        "default": "Featured collection"
+        "default": "New and Featured"
+      },
+      {
+        "type" : "text",
+        "id" : "subtitle",
+        "label" : "subtitle"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text"
       },
       {
         "id": "collection",
@@ -100,16 +173,13 @@
         "min" : 0,
         "step" : 1
       },
-     
-
-        {
+      {
         "type" : "text",
         "id" : "button_text",
         "label" : "All Button Text",
         "info" : "Leave Blank for No Button"
       },
-
-        {
+      {
         "type" : "url",
         "id" : "button_url",
         "label" : "All Button url",
@@ -147,11 +217,9 @@
         "type" : "header",
         "content" : "Section Settings"
       },
-       {
-        "type" : "image_picker",
-        "id" : "background_image",
-        "label" : "Background Image",
-        "info": "Use with full-width sections, please!"
+      {
+        "type" : "paragraph",
+        "content" : "These are common options for all sections to make styling out background colors/images a bit easier, as well as editing spacing and sizing."
       },
       {
         "type" : "color",
@@ -162,11 +230,6 @@
         "type" : "color",
         "id" : "text_color",
         "label" : "Text Color"
-      },
-      {
-        "type" : "text",
-        "label" : "ID (for anchor links)",
-        "id" : "anchor_id"
       },
       {
         "type" : "select",
@@ -209,15 +272,23 @@
           {
             "value" : "large",
             "label" : "Large"
-          }, 
-{ "value": "huge", "label" : "Huge"}
+          },
+          {
+            "value": "huge",
+            "label" : "Huge"
+          }
         ]
       },
-     
+        {
+        "type" : "image_picker",
+        "id" : "background_image",
+        "label" : "Background Image",
+        "info": "Use with full-width sections, please!"
+      },
       {
         "type" : "select",
         "id" : "background_style",
-        "label" : "Background Style",
+        "label" : "Background Image Style",
         "default" : "cover",
         "options" : [
           {

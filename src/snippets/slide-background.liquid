@@ -2,15 +2,15 @@
  {% assign overlay_op = 100 | minus: slide.settings.overlay | times: 0.01 %}
   <div class="slide-bg" style="opacity:{{overlay_op}}" aria-label="{{section.settings.title}}">
       {% if slide.settings.image_mobile != blank %}
-    <div class="mobile-image">  
+    <div class="mobile-image">
         {% include 'responsive-image' with image: slide.settings.image_mobile, max_width: 900, max_height: 1000 %}
     </div>
       {%endif%}
-    <div class="desktop-image">  
+    <div class="desktop-image">
       {% if slide.settings.image != blank %}
         {% include 'responsive-image' with image: slide.settings.image, max_width: 2500, max_height: 1400 %}
       {%else %}
-        {{ 'samplebg.jpg' | asset_img_url: '1600x' | img_tag}}
+        {{ 'lifestyle-2' | placeholder_svg_tag }}
       {%endif%}
     </div>
   </div>
@@ -20,12 +20,12 @@
       {% if slide.settings.title_image %}{% include 'responsive-image' with image: slide.settings.title_image, max_width: 900, max_height: 900 %}
       {%elsif slide.settings.title %}<h3 class="h1">{{slide.settings.title}}</h3>{%endif%}
       {% if slide.settings.content %}<p >{{slide.settings.content}}</p>{%endif%}
-      
+
       <div class="button-wrap">
         {% if slide.settings.button_1_link != empty and slide.settings.button_1_text != empty %}<a href="{{slide.settings.button_1_link}}" class="button inherit">{{slide.settings.button_1_text}}</a>{%endif%}
         {% if slide.settings.button_1_link != empty and slide.settings.button_2_text != empty %}<a href="{{slide.settings.button_2_link}}" class="button inherit">{{slide.settings.button_2_text}}</a>{%endif%}
       </div>
-      
+
     </div>
   </div>
 </div>

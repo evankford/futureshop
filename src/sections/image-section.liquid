@@ -1,6 +1,6 @@
 {%capture overlay_type %}{% if section.blocks.size == 1 %}{{section.blocks[0].type}}{%else%}slideshow{%endif%}{%endcapture%}
 <div class="overlay-section type--{{overlay_type}} {% if section.settings.full_width == true %} full-width {%endif%}" id="{{section.settings.id}}">
-  {% if overlay_type == 'banner' %} 
+  {% if overlay_type == 'banner' %}
     {%assign slide = section.blocks[0] %}
     {% include 'slide-banner' %}
   {%elsif overlay_type == 'video' %}
@@ -13,12 +13,12 @@
     <div class="swiper-container" data-module="swiper" data-swiper-speed="{{section.settings.speed}}" data-swiper-dots="{{section.settings.dots}}" data-swiper-arrows="{{section.settings.arrows}}" data-swiper-animation="{{section.settings.type}}">
       <div class="swiper-wrapper">
         {%for slide in section.blocks %}
-        {% if slide.type == 'banner' %} 
+        {% if slide.type == 'banner' %}
             {% include 'slide-banner' %}
           {%elsif slide.type == 'video' %}
             {% include 'slide-video' %}
           {%elsif slide.type == 'background' %}
-            {% include 'slide-background' %} 
+            {% include 'slide-background' %}
           {%endif%}
         {%endfor%}
       </div>
@@ -31,13 +31,29 @@
         <div class="swiper-button-next"></div>
       {% endif %}
     </div>
-  {%endif%}  
+  {%endif%}
 </div>
 {% schema %}
   {
     "name" : "Slider/Images",
     "class" : "image-section",
     "settings" : [
+       {
+        "type" : "header",
+        "content" : "Meta"
+      },
+      {
+        "type": "text",
+        "id" : "id",
+        "label" : "Section ID (for anchor links and specific styling)"
+      },
+       {
+        "type": "text",
+        "id" : "title",
+        "label" : "Nice Name",
+        "info" : "Just for keeping the back end organized! Enter a nice name here",
+        "default" : "Slideshow"
+      },
       {
         "type" : "header",
         "content" : "Image/Video/Slider Section"
@@ -68,11 +84,6 @@
       },
       {
         "type" : "checkbox",
-        "id" : "special",
-        "label" : "Enable Special Styling?"
-      },
-      {
-        "type" : "checkbox",
         "id" : "dots",
         "label" : "Enable Dots?"
       },
@@ -97,18 +108,113 @@
         ]
       },
       {
-        "type": "text",
-        "id" : "id",
-        "label" : "Section ID (for anchors, etc)"
+        "type" : "header",
+        "content" : "Section Settings"
+      },
+      {
+        "type" : "paragraph",
+        "content" : "These are common options for all sections to make styling out background colors/images a bit easier, as well as editing spacing and sizing."
+      },
+      {
+        "type" : "color",
+        "id" : "background_color",
+        "label" : "Background Color"
+      },
+      {
+        "type" : "color",
+        "id" : "text_color",
+        "label" : "Text Color"
+      },
+      {
+        "type" : "select",
+        "id" : "section_size",
+        "label" : "Section size",
+        "default" : "large",
+        "options" : [
+          {
+            "value" : "full-width",
+            "label" : "Full Width"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "section_spacing",
+        "label" : "Section Spacing",
+        "default" : "medium",
+        "options" : [
+          {
+            "value" : "none",
+            "label" : "No Spacing"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          },
+          {
+            "value" : "medium",
+            "label" : "Medium"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value": "huge",
+            "label" : "Huge"
+          }
+        ]
+      },
+        {
+        "type" : "image_picker",
+        "id" : "background_image",
+        "label" : "Background Image",
+        "info": "Use with full-width sections, please!"
+      },
+      {
+        "type" : "select",
+        "id" : "background_style",
+        "label" : "Background Image Style",
+        "default" : "cover",
+        "options" : [
+          {
+            "value" : "cover",
+            "label" : "Cover"
+          },
+          {
+            "value" : "repeat-x",
+            "label" : "Horizontal Tile"
+          },
+          {
+            "value" : "repeat-y",
+            "label" : "Vertical Tile"
+          },
+          {
+            "value" : "repeat-all",
+            "label" : "Tile"
+          },
+          {
+            "value" : "rellax",
+            "label" : "Parallax"
+          }
+        ]
       }
     ],
-    "blocks" : [ 
+    "blocks" : [
       {
         "name" : "Image w/Content",
         "type" : "background",
         "settings" : [
           {
-            "type" : "header", 
+            "type" : "header",
             "content" : "background"
           },
           {
@@ -116,7 +222,7 @@
             "id" : "background_color",
             "default"                                : "#000000",
             "label" : "Background Color",
-            "info" : "Also the overlay color!" 
+            "info" : "Also the overlay color!"
           },
           {
             "type" : "color",
@@ -151,7 +257,7 @@
             "label" : "Enable Parallax Scrolling Effect"
           },
           {
-            "type" : "header", 
+            "type" : "header",
             "content" : "content"
           },
           {
@@ -219,7 +325,7 @@
         "type" : "banner",
         "settings" : [
           {
-            "type" : "header", 
+            "type" : "header",
             "content" : "background"
           },
           {
@@ -227,7 +333,7 @@
             "id" : "background_color",
             "default" : "#000000",
             "label" : "Background Color",
-            "info" : "Also the overlay color!" 
+            "info" : "Also the overlay color!"
           },
           {
             "type" : "color",
@@ -278,7 +384,7 @@
         "type" : "video",
         "settings" : [
           {
-            "type" : "header", 
+            "type" : "header",
             "content" : "background"
           },
           {
@@ -286,7 +392,7 @@
             "id" : "background_color",
             "default" : "#000000",
             "label" : "Background Color",
-            "info" : "Also the overlay color!" 
+            "info" : "Also the overlay color!"
           },
           {
             "type" : "color",
@@ -411,7 +517,7 @@
           }
         ]
       }
-      
+
     ],
     "max_blocks" : 10,
     "presets" : [

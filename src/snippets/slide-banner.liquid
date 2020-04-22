@@ -7,7 +7,7 @@
       {% if slide.settings.image != blank %}
         {% include 'responsive-image' with image: slide.settings.image, wrapper_class: 'desktop-image', max_width: 2000, max_height: 1200 %}
       {%else %}
-        {{ 'sampleslide.jpg' | asset_img_url: '1600x' | img_tag}}
+        <div class="fallback-image">{{ 'lifestyle-2' | placeholder_svg_tag }}</div>
       {%endif%}
   </div>
 </a>

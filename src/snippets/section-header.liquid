@@ -1,15 +1,41 @@
- {% if section.settings.pre_title != blank or section.settings.title != blank  %}
-  <div class="section-header align--{{section.settings.align}}">
-    {% if section.settings.pre_title != blank %}
-      <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4  section-header__pre_title">{{ section.settings.pre_title | escape }}</h4>
-    {% endif %}
-    {% if section.settings.title != blank %}
-      <h2 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h2 section-header__title">{{ section.settings.title | escape }}</h2>
-    {% endif %}
-  </div>
-  {%endif%}
-  {%- if section.settings.text != blank -%}
-    <div class="rte">
-      {{ section.settings.text }}
+{% comment %} Get settings object {% endcomment %}
+{% if section.settings.introduction %}
+  {% assign params = section.settings %}
+  {% assign type = 'section' %}
+{% elsif block.settings.introduction %}
+  {% assign params = block.settings %}
+  {% assign type = 'block' %}
+{% elsif slide.settings.title %}
+  {% assign params = slide.settings %}
+  {% assign type = 'slide' %}
+{%endif %}
+
+{% assign delay = 0 %}
+
+<div class="common-header__outer type--{{type | default: 'section'}} align--{{params.text_align | default: settings.header_alignment }} size--{{params.text_size | default: 'standard'}}">
+  {% if params.heading != empty or params.introduction != empty or params.subtitle != empty %}
+    <header class="common-header type--{{type}}">
+      {% if params.introduction != empty %}
+        <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label font--{{settings.font_family_label}} style--{{label_style}} common-header__introduction">{{ params.introduction | escape }}</h4>
+      {% endif %}
+      {% if params.heading != empty %}
+        <h2 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="font--{{settings.font_family_heading}} style--{{label_style}} style--{{settings.header_style}} spacing--{{settings.header_spacing}} common-header__heading">{{ params.heading | escape }}</h4>
+      {% endif %}
+      {% if params.introduction != empty %}
+        <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label font--{{settings.font_family_label}} style--{{label_style}} common-header__introduction">{{ params.introduction | escape }}</h4>
+      {% endif %}
+    </header>
+  {% endif %}
+
+   {%- if params.text != blank -%}
+    <div class="rte common-rte">
+      {{ params.text }}
     </div>
   {%- endif -%}
+
+  {% if include_button == true  and params.button_url != blank and params.button_text != blank %}
+  <div class="button-wrap">
+    {% include 'button' %}
+  </div>
+  {% endif %}
+</div>

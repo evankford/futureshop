@@ -101,15 +101,35 @@
   {
     "name": "Blog posts",
     "settings": [
+       {
+        "type" : "header",
+        "content" : "Meta"
+      },
       {
         "type": "text",
-        "id": "pre_title",
-        "label": "Pre-Heading",
+        "id" : "id",
+        "label" : "Section ID (for anchor links and specific styling)"
+      },
+       {
+        "type": "text",
+        "id" : "title",
+        "label" : "Nice Name",
+        "info" : "Just for keeping the back end organized! Enter a nice name here",
+        "default" : "Blog Posts"
+      },
+      {
+        "type" : "header",
+        "content" : "Blog Posts Settings"
+      }
+      {
+        "type": "text",
+        "id": "introduction",
+        "label": "Introduction",
         "default": "Show your latest"
       },
       {
         "type": "text",
-        "id": "title",
+        "id": "heading",
         "label": "Heading",
         "default": "Blog posts"
       },
@@ -160,11 +180,6 @@
         "label" : "Text Color"
       },
       {
-        "type" : "text",
-        "label" : "ID (for anchor links)",
-        "id" : "anchor_id"
-      },
-      {
         "type" : "select",
         "id" : "section_size",
         "label" : "Section size",
@@ -205,11 +220,11 @@
           {
             "value" : "large",
             "label" : "Large"
-          }, 
+          },
 { "value": "huge", "label" : "Huge"}
         ]
       },
-     
+
       {
         "type" : "select",
         "id" : "background_style",

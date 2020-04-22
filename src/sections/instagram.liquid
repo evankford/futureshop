@@ -18,7 +18,7 @@
     {% if section.settings.title != blank %}
       <h2 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h2 section-header__title">{{ section.settings.title | escape }}</h2>
     {% endif %}
-    
+
   </div>
   {%endif%}
   <div class="embed-wrap">
@@ -28,7 +28,7 @@
     <div class="button-wrap center" data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
       <a href="{{section.settings.button_url}}" class="button accent" target="_blank" rel="nofollow"><i class="icon-instagram"></i> {{section.settings.button_text}}</a>
     </div>
-    
+
       {%endif%}
       {% if section.settings.include_all_icons == true %}
       <div class="all-social-icons">
@@ -43,27 +43,104 @@
     "name": "Instagram",
     "class" : "standard-section",
     "settings": [
-      {
-        "type": "text",
-        "id": "pre_title",
-        "label": "Pre-Heading",
-        "default": "Connect on"
+       {
+        "type" : "header",
+        "content" : "Meta"
       },
       {
         "type": "text",
-        "id": "title",
+        "id" : "id",
+        "label" : "Section ID (for anchor links and specific styling)"
+      },
+       {
+        "type": "text",
+        "id" : "title",
+        "label" : "Nice Name",
+        "info" : "Just for keeping the back end organized! Enter a nice name here",
+        "default" : "Instagram"
+      },
+       {
+        "type" : "header",
+        "content" : "Instagram Section Content"
+      },
+{
+        "type" : "select",
+        "id" : "text_align",
+        "label" : "Text Alignment",
+        "default" :  "center",
+        "options" : [
+          {
+            "value" : "left",
+            "label" : "Left"
+          },
+          {
+            "value" : "center",
+            "label" : "Center"
+          },
+          {
+            "value" : "right",
+            "label" : "Right"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "text_size",
+        "label" : "Text Size",
+        "default" :  "standard",
+        "options" : [
+          {
+            "value" : "small",
+            "label" : "Small"
+          },
+          {
+            "value" : "standard",
+            "label" : "Standard"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "mega",
+            "label" : "Mega"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "introduction",
+        "label": "Introduction",
+        "default": "Connect with us on"
+      },
+      {
+        "type": "text",
+        "id": "heading",
         "label": "Heading",
         "default": "Instagram"
       },
-       {
+      {
+        "type" : "text",
+        "id" : "subtitle",
+        "label" : "subtitle",
+        "default" : "To see our latest photos"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text"
+      },
+      {
         "type" : "text",
         "id" : "button_text",
-        "label" : "Button Text"
+        "label" : "Button Text",
+        "info" : "Leave blank to hide!"
       },
       {
         "type" : "url",
         "id" : "button_url",
-        "label" : "Button URL"
+        "label" : "Button URL",
+        "info" : "Should be the instagram link!"
       },
       {
         "type" : "checkbox",
@@ -76,7 +153,7 @@
       },
       {
         "type" : "paragraph",
-        "content" : "As of March 2, 2020, there is no way to embed Instagram without a Instagram for Business account, so we use apps.elfsight.com now! Please create a widget there and copy the embed code below!"
+        "content" : "As of March 30, 2020, there is no way to embed Instagram without a Instagram for Business account, so we use [Elfsight](https://apps.elfsight.com) now! Please create a widget there and copy the embed code below!"
       },
       {
         "type" : "html",
@@ -87,11 +164,9 @@
         "type" : "header",
         "content" : "Section Settings"
       },
-       {
-        "type" : "image_picker",
-        "id" : "background_image",
-        "label" : "Background Image",
-        "info": "Use with full-width sections, please!"
+      {
+        "type" : "paragraph",
+        "content" : "These are common options for all sections to make styling out background colors/images a bit easier, as well as editing spacing and sizing."
       },
       {
         "type" : "color",
@@ -104,9 +179,24 @@
         "label" : "Text Color"
       },
       {
-        "type" : "text",
-        "label" : "ID (for anchor links)",
-        "id" : "anchor_id"
+        "type" : "select",
+        "id" : "section_size",
+        "label" : "Section size",
+        "default" : "large",
+        "options" : [
+          {
+            "value" : "full-width",
+            "label" : "Full Width"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "small",
+            "label": "Small"
+          }
+        ]
       },
       {
         "type" : "select",
@@ -129,35 +219,23 @@
           {
             "value" : "large",
             "label" : "Large"
-          }, 
-{ "value": "huge", "label" : "Huge"}
-        ]
-      },
-       {
-        "type" : "select",
-        "id" : "section_size",
-        "label" : "Section size",
-        "default" : "large",
-        "options" : [
-          {
-            "value" : "full-width",
-            "label" : "Full Width"
           },
           {
-            "value" : "large",
-            "label" : "Large"
-          },
-          {
-            "value" : "small",
-            "label": "Small"
+            "value": "huge",
+            "label" : "Huge"
           }
         ]
       },
-     
+        {
+        "type" : "image_picker",
+        "id" : "background_image",
+        "label" : "Background Image",
+        "info": "Use with full-width sections, please!"
+      },
       {
         "type" : "select",
         "id" : "background_style",
-        "label" : "Background Style",
+        "label" : "Background Image Style",
         "default" : "cover",
         "options" : [
           {
@@ -185,7 +263,7 @@
     ],
     "presets": [{
         "name": "Instagram",
-        "category": "Custom"
+        "category": "Connect"
     }]
   }
 {% endschema %}

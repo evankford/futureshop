@@ -1,6 +1,10 @@
 <div class="custom-divider {% if section.settings.hide_mobile == true %} hide-mobile {%endif%} space--{{section.settings.spacing}} style--{{section.settings.type}} "id="divider--{{section.id}}">
+{% if section.settings.image != blank %}
+  {% capture image_width %}{{section.settings.image_max_width}}x{%endcapture %}
+  {{ section.settings.image | img_url: image_width | img_tag }}
+{%endif%}
 </div>
-{% if section.settings.color != empty %}
+{% if section.settings.color != empty and section.settings.image == empty %}
 <style>
 #divider--{{section.id}}  {
   border-top-color: {{section.settings.color}}
@@ -66,6 +70,38 @@
           "label" : "Border (Half Width)"
         }
       ]
+    },
+    {
+      "type" : "image_picker",
+      "id" : "image",
+      "label" : "Custom Image",
+      "info" : "Insert a custom image divider"
+    },
+    {
+        "type": "range",
+        "id": "image_max_width",
+        "label": {
+            "de": "Logobreite",
+            "en": "Custom  width",
+            "es": "Ancho  personalizado",
+            "fr": "Largeur personnalisée ",
+            "it": "Larghezza  personalizzato",
+            "ja": "ロゴの幅をカスタムする",
+            "pt-BR": "Largura do  personalizado"
+        },
+        "min": 20,
+        "max": 900,
+        "step": 10,
+        "unit": {
+            "de": "px",
+            "en": "px",
+            "es": "px",
+            "fr": "px",
+            "it": "px",
+            "ja": "px",
+            "pt-BR": "px"
+        },
+        "default": 150
     },
     {
       "type" : "color",

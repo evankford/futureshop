@@ -2,7 +2,7 @@
   {%- if section.settings.announcement_bar_home_page_only == false or template.name == 'index' -%}
   <style>
       .announcement-outer {
-  
+
       {% if section.settings.bg_color %}
         --bg-color: {{section.settings.bg_color }};
         --bg-color-dropdown: {{section.settings.bg_color}};
@@ -23,13 +23,13 @@
             {{ section.settings.announcement_bar_text }}
             {%endif%}
           {%- endif -%}
-          
-          {% if section.settings.button_text != empty and section.settings.button_url != empty %} 
+
+          {% if section.settings.button_text != empty and section.settings.button_url != empty %}
             <a href="{{section.settings.button_url}}" class="button secondary small">{{section.settings.button_text}}</a>
           {%endif %}
       </div>
           <button aria-label="close announcement" class="close-button" data-close-announcement><i class="icon-times" ></i></button>
-          
+
       </div>
     {%- endif -%}
 {%- endif -%}
@@ -39,6 +39,10 @@
     "name" : "Announcement",
     "class" : "announcement-outer",
     "settings" : [
+      {
+        "type" : "header",
+        "content" : "Announcement Settings"
+      },
        {
         "type" : "color",
         "id" : "bg_color",
@@ -58,48 +62,42 @@
         "default" : "#1a1a1a"
       },
       {
-          "type": "header",
-          "content": "Announcement bar"
-        },
-        {
-          "type": "checkbox",
-          "id": "announcement_bar_enabled",
-          "label": "Show announcement",
-          "default": false
-        },
-        {
-          "type": "checkbox",
-          "id": "announcement_bar_home_page_only",
-          "label": "Show on home page only",
-          "default": true
-        },
-        {
-          "type": "richtext",
-          "id": "announcement_bar_text",
-          "label": "Announcement text",
-          "default": "<p>Announce something <b>here!</b></p>"
-        },
-        {
-          "type" : "header",
-          "content" : "button"
-        },
-        {
-          "type" : "text",
-          "id" :"button_text",
-          "label" : "Button Text"
-        },
-        {
-          "type" : "url",
-          "id" :"button_url",
-          "label" : "Button URL"
-        },
-          {
-          "type" : "checkbox",
-          "id" : "slide_in",
-          "label" : "Slide in top bar?"
-        }
-    ]  
-    
+        "type": "checkbox",
+        "id": "announcement_bar_enabled",
+        "label": "Show announcement",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "announcement_bar_home_page_only",
+        "label": "Show on home page only",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Announcement Content"
+      },
+      {
+        "type": "richtext",
+        "id": "announcement_bar_text",
+        "label": "Announcement text",
+        "default": "<p>Announce something <b>here!</b></p>"
+      },
+      {
+        "type" : "header",
+        "content" : "button"
+      },
+      {
+        "type" : "text",
+        "id" :"button_text",
+        "label" : "Button Text"
+      },
+      {
+        "type" : "url",
+        "id" :"button_url",
+        "label" : "Button URL"
+      }
+    ]
   }
 {% endschema %}
 

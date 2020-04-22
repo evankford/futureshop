@@ -1,31 +1,42 @@
-{% comment %} 
+{% comment %}
 
-{% include 'vidbox' with video_url: section.settings.url, fallback_gif: fallback_gif, fallback_image: fallback_image, overlay: section.settings.overlay_op, start_time: 0 %} 
+{% include 'vidbox' with video_url: section.settings.url, fallback_gif: fallback_gif, fallback_image: fallback_image, overlay: section.settings.overlay_op, start_time: 0 %}
 
 {% endcomment %}
 
-<div class="video-player__wrap video-wrap--{{section.id}} {% if video_url == blank%}use-gif{%endif%}" data-overlay="{{overlay}}" data-module="vidbox" data-video-url="{{video_url}}" data-start-time="{{start_time}}" data-aos="fade-in" data-aos-duration="800"><div class="youtube-player" id="player--{{section.id}}"></div></div>
+<div class="video-player__wrap video-wrap--{{section.id}} {% if video_url == blank%}use-gif{%endif%}" data-overlay="{{overlay}}" data-module="vidbox" data-video-url="{{video_url}}" data-start-time="{{start_time}}" data-aos="fade-in" data-aos-duration="800"><div class="youtube-player" id="player--{{section.id}}"></div>
+<div class="fallback-image">{{ 'lifestyle-2' | placeholder_svg_tag }}</div>
 
+</div>
 <style>
-.video-player__wrap {
-  background-image: url({{'samplebg.jpg' | asset_img_url: '1400x'}});
-} 
+.fallback-image {
+  position: absolute;
+  height: auto;
+  width: 100%;
+}
+.video-player__wrap .fallback-image svg {
+  width: 100%;
+  height: auto;
+}
   {% if fallback_image != blank %}
       .video-wrap--{{section.id}} {
         background-image: url({{fallback_image | img_url: '1200x'}});
-        
       }
       {%endif%}
       {% if fallback_gif != blank %}
+
+      .fallback-image {
+        display: none;
+      }
       .video-wrap--{{section.id}}.use-gif::before {
         background-image: url({{fallback_gif | img_url: '12000x'}});
-        
+
       }{%endif%}
       @media (max-width: 600px) {
       {% if fallback_image != blank %}
           .video-wrap--{{section.id}} {
           background-image: url({{fallback_image | img_url: '900x'}});
-          
+
         }
         {%endif%}
           {% if fallback_gif != blank %}
@@ -38,7 +49,7 @@
       {% if fallback_image != blank %}
           .video-wrap--{{section.id}} {
           background-image: url({{fallback_image | img_url: '1500x'}});
-          
+
         }
         {%endif%}
         {% if fallback_gif != blank %}
@@ -51,7 +62,7 @@
       @media (min-width: 1200px) {
           .video-wrap--{{section.id}} {
           background-image: url({{fallback_image | img_url: '2000x'}});
-          
+
         }
         {%endif%}
         {% if fallback_gif != blank %}

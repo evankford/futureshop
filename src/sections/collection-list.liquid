@@ -11,7 +11,7 @@
 <div class="section-inner{% if section.settings.section_size == 'full-width' %} stretch-width{%endif%}" id="section--{{section.id}}">
  {% include 'section-header' %}
   <div class="collection-list__grid style--{{section.settings.layout}}" data-item-count="{{section.blocks.size}}">
-  
+
   {% for block in section.blocks %}
     {%- assign collection = collections[block.settings.collection] -%}
 
@@ -38,9 +38,9 @@
 
       {%- assign default_label = 'homepage.onboarding.collection_title' | t -%}
       <div class="collection-list-item__content">
-      
-        
-          {% if block.settings.pre_header != blank %} 
+
+
+          {% if block.settings.pre_header != blank %}
           <h4 class="h5">{{block.settings.pre_header}}</h5>
         {%endif%}
         <h3 class="h3">{{ collection.title | default: default_label }}</h3>
@@ -50,7 +50,7 @@
         {% if section.settings.button_text != blank %}
         <div class="button  light over-dark">{{section.settings.button_text}}</div>
         {%endif%}
-        
+
       </div>
     </a>
   {% endfor %}
@@ -72,42 +72,114 @@
       #section--{{section.id}} .collection-list-item {
         background: {{section.settings.overlay_color}};
       }
-    
+
     </style>
   {%endif%}
 </div>
 {% schema %}
   {
-    "name": "Collection list",
+    "name": "Collection List",
     "max_blocks": 12,
-   "class" : "standard-section",
+    "class" : "standard-section",
     "settings": [
+    {
+        "type" : "header",
+        "content" : "Meta"
+      },
+      {
+        "type": "text",
+        "id" : "id",
+        "label" : "Section ID (for anchor links and specific styling)"
+      },
+       {
+        "type": "text",
+        "id" : "title",
+        "label" : "Nice Name",
+        "info" : "Just for keeping the back end organized! Enter a nice name here",
+        "default" : "Collection List"
+      },
       {
         "type" : "header",
-        "content" : "Collection list settings"
+        "content" : "Rich Text Content"
+      },
+{
+        "type" : "select",
+        "id" : "text_align",
+        "label" : "Text Alignment",
+        "default" :  "center",
+        "options" : [
+          {
+            "value" : "left",
+            "label" : "Left"
+          },
+          {
+            "value" : "center",
+            "label" : "Center"
+          },
+          {
+            "value" : "right",
+            "label" : "Right"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "text_size",
+        "label" : "Text Size",
+        "default" :  "standard",
+        "options" : [
+          {
+            "value" : "small",
+            "label" : "Small"
+          },
+          {
+            "value" : "standard",
+            "label" : "Standard"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "mega",
+            "label" : "Mega"
+          }
+        ]
       },
       {
         "type": "text",
-        "id": "pre_title",
-        "label": "Pre-Heading",
-        "default": "Browse our "
+        "id": "introduction",
+        "label": "Introduction",
+        "default": "Use this space to"
       },
       {
         "type": "text",
-        "id": "title",
+        "id": "heading",
         "label": "Heading",
-        "default": "Featured Collections"
+        "default": "Talk about your brand"
       },
       {
         "type" : "text",
-        "label" : "Button Text",
-        "id" : "button_text"
-       },
+        "id" : "subtitle",
+        "label" : "subtitle",
+        "default" : "And even more!"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+      },
        {
          "type" : "header",
          "content" : "Layout Settings"
        },
-      
+       {
+        "type" : "text",
+        "label" : "Button Text",
+        "id" : "button_text",
+        "info" : "If you input a value here, all the collection boxes will have a button on them with this text!"
+       },
       {
         "type" : "select",
         "id" : "layout",
@@ -128,7 +200,7 @@
           }
         ]
       },
-     
+
       {
         "type" : "color",
         "id" : "overlay_color",
@@ -150,15 +222,13 @@
         "min": 0,
         "max" : 100
       },
-       {
+        {
         "type" : "header",
         "content" : "Section Settings"
       },
-       {
-        "type" : "image_picker",
-        "id" : "background_image",
-        "label" : "Background Image",
-        "info": "Use with full-width sections, please!"
+      {
+        "type" : "paragraph",
+        "content" : "These are common options for all sections to make styling out background colors/images a bit easier, as well as editing spacing and sizing."
       },
       {
         "type" : "color",
@@ -169,11 +239,6 @@
         "type" : "color",
         "id" : "text_color",
         "label" : "Text Color"
-      },
-      {
-        "type" : "text",
-        "label" : "ID (for anchor links)",
-        "id" : "anchor_id"
       },
       {
         "type" : "select",
@@ -216,15 +281,23 @@
           {
             "value" : "large",
             "label" : "Large"
-          }, 
-{ "value": "huge", "label" : "Huge"}
+          },
+          {
+            "value": "huge",
+            "label" : "Huge"
+          }
         ]
       },
-     
+        {
+        "type" : "image_picker",
+        "id" : "background_image",
+        "label" : "Background Image",
+        "info": "Use with full-width sections, please!"
+      },
       {
         "type" : "select",
         "id" : "background_style",
-        "label" : "Background Style",
+        "label" : "Background Image Style",
         "default" : "cover",
         "options" : [
           {

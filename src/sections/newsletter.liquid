@@ -69,36 +69,36 @@
     "class" : "standard-section",
     "settings": [
       {
-        "type": "text",
-        "id": "pre_title",
-        "label": "pre_title",
-        "default": "Sign Up For"
+        "type" : "header",
+        "content" : "Meta"
       },
       {
         "type": "text",
-        "id": "section_title",
-        "label": "Title",
-        "default": "Email Updates"
-      },
-      {
-        "type": "text",
-        "id": "subheading",
-        "label": "Subheading",
-        "default": "A short sentence describing what someone will receive by subscribing"
-      },
-      {
-        "type": "paragraph",
-        "content": "Any customers who sign up will have an account created for them in Shopify. [View customers](/admin/customers?query=&accepts_marketing=1)"
+        "id" : "id",
+        "label" : "Section ID (for anchor links and specific styling)"
       },
        {
+        "type": "text",
+        "id" : "title",
+        "label" : "Nice Name",
+        "info" : "Just for keeping the back end organized! Enter a nice name here",
+        "default" : "Newsletter"
+      },
+      {
+        "type" : "header",
+        "content" : "Newsletter Content"
+      },
+     {
+       "type" : "paragraph",
+       "content" : "Newsletter signup content is determined in Theme Options > Newsletter"
+     },
+      {
         "type" : "header",
         "content" : "Section Settings"
       },
-       {
-        "type" : "image_picker",
-        "id" : "background_image",
-        "label" : "Background Image",
-        "info": "Use with full-width sections, please!"
+      {
+        "type" : "paragraph",
+        "content" : "These are common options for all sections to make styling out background colors/images a bit easier, as well as editing spacing and sizing."
       },
       {
         "type" : "color",
@@ -109,11 +109,6 @@
         "type" : "color",
         "id" : "text_color",
         "label" : "Text Color"
-      },
-      {
-        "type" : "text",
-        "label" : "ID (for anchor links)",
-        "id" : "anchor_id"
       },
       {
         "type" : "select",
@@ -156,15 +151,23 @@
           {
             "value" : "large",
             "label" : "Large"
-          }, 
-{ "value": "huge", "label" : "Huge"}
+          },
+          {
+            "value": "huge",
+            "label" : "Huge"
+          }
         ]
       },
-     
+        {
+        "type" : "image_picker",
+        "id" : "background_image",
+        "label" : "Background Image",
+        "info": "Use with full-width sections, please!"
+      },
       {
         "type" : "select",
         "id" : "background_style",
-        "label" : "Background Style",
+        "label" : "Background Image Style",
         "default" : "cover",
         "options" : [
           {
@@ -192,7 +195,7 @@
     ],
     "presets": [{
       "name": "Newsletter",
-      "category": "Promotional"
+      "category": "Connect"
     }]
   }
 {% endschema %}

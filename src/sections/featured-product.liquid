@@ -17,16 +17,16 @@
    {%endunless%}
    <div class="featured-product__content" data-section-id="{{ section.id }}" data-section-type="product" >
    {% include 'product-images' %}
-   
+
     <div class="product-details__wrap {% if section.settings.hide_title == true %} title-hidden {%endif%}">
-    
+
       {% if section.settings.hide_title == true %}
       <h4 data-aos="fade-in" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">{{ section.settings.pre_title }}</h4>
       <h1 data-aos="fade-in" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">{{ section.settings.title }}</h1>
       {%else %}
       <h1 data-aos="fade-in" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">{{ product.title }}</h1>
       {% endif %}
-      
+
       {%include 'product-form' %}
 
       {% if section.settings.show_description == true %}<div class="rte" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
@@ -47,23 +47,97 @@
     "name": "Featured product",
    "class" : "standard-section",
     "settings": [
-      
+       {
+        "type" : "header",
+        "content" : "Meta"
+      },
       {
-        "type" :"header",
-        "content" : "Header"
+        "type": "text",
+        "id" : "id",
+        "label" : "Section ID (for anchor links and specific styling)"
       },
        {
         "type": "text",
-        "id": "pre_title",
-        "label": "Pre-Heading",
-        "default": "You'll Love This"
+        "id" : "title",
+        "label" : "Nice Name",
+        "info" : "Just for keeping the back end organized! Enter a nice name here",
+        "default" : "Slideshow"
       },
-      
+      {
+        "type" :"header",
+        "content" : "Featured Product Header"
+      },
+       {
+        "type" : "header",
+        "content" : "Rich Text Content"
+      },
+{
+        "type" : "select",
+        "id" : "text_align",
+        "label" : "Text Alignment",
+        "default" :  "center",
+        "options" : [
+          {
+            "value" : "left",
+            "label" : "Left"
+          },
+          {
+            "value" : "center",
+            "label" : "Center"
+          },
+          {
+            "value" : "right",
+            "label" : "Right"
+          }
+        ]
+      },
+      {
+        "type" : "select",
+        "id" : "text_size",
+        "label" : "Text Size",
+        "default" :  "standard",
+        "options" : [
+          {
+            "value" : "small",
+            "label" : "Small"
+          },
+          {
+            "value" : "standard",
+            "label" : "Standard"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "mega",
+            "label" : "Mega"
+          }
+        ]
+      },
       {
         "type": "text",
-        "id": "title",
+        "id": "introduction",
+        "label": "Introduction",
+        "default": "Use this space to"
+      },
+      {
+        "type": "text",
+        "id": "heading",
         "label": "Heading",
-        "default": "Featured Product"
+        "default": "Talk about your brand"
+      },
+      {
+        "type" : "text",
+        "id" : "subtitle",
+        "label" : "subtitle",
+        "default" : "And even more!"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
       },
       {
         "type" : "header",
@@ -77,12 +151,14 @@
       {
         "type" : "checkbox",
         "id" : "hide_title",
-        "label" : "Hide Title"
-      },      
+        "label" : "Replace Product Title?",
+        "info" : "Replace the product title with the header info above"
+      },
       {
         "type": "checkbox",
         "id": "reverse",
-        "label": "Reverse layout?"
+        "label": "Reverse layout?",
+        "info" : "Places the image section on the right side"
       },
       {
         "type": "checkbox",
@@ -97,13 +173,13 @@
       },
       {
         "type": "checkbox",
-        "id": "enable_quantity",  
+        "id": "enable_quantity",
         "label": "Enable Quantity",
         "default": true
       },
       {
         "type": "checkbox",
-        "id": "show_description",  
+        "id": "show_description",
         "label": "Show Description",
         "default": true
       },
@@ -111,11 +187,9 @@
         "type" : "header",
         "content" : "Section Settings"
       },
-       {
-        "type" : "image_picker",
-        "id" : "background_image",
-        "label" : "Background Image",
-        "info": "Use with full-width sections, please!"
+      {
+        "type" : "paragraph",
+        "content" : "These are common options for all sections to make styling out background colors/images a bit easier, as well as editing spacing and sizing."
       },
       {
         "type" : "color",
@@ -126,11 +200,6 @@
         "type" : "color",
         "id" : "text_color",
         "label" : "Text Color"
-      },
-      {
-        "type" : "text",
-        "label" : "ID (for anchor links)",
-        "id" : "anchor_id"
       },
       {
         "type" : "select",
@@ -173,15 +242,23 @@
           {
             "value" : "large",
             "label" : "Large"
-          }, 
-{ "value": "huge", "label" : "Huge"}
+          },
+          {
+            "value": "huge",
+            "label" : "Huge"
+          }
         ]
       },
-     
+        {
+        "type" : "image_picker",
+        "id" : "background_image",
+        "label" : "Background Image",
+        "info": "Use with full-width sections, please!"
+      },
       {
         "type" : "select",
         "id" : "background_style",
-        "label" : "Background Style",
+        "label" : "Background Image Style",
         "default" : "cover",
         "options" : [
           {

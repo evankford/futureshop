@@ -10,7 +10,7 @@
           {% include 'column-image' %}
         {% when 'textimg' %}
           {% include 'column-textimg' %}
-      {%endcase%}    
+      {%endcase%}
   {%endfor%}
 </div>
 </div>
@@ -21,14 +21,39 @@
     "name" : "Content Columns",
     "class" : "content-columns",
     "settings" : [
-        {
+      {
+        "type" : "header",
+        "content" : "Meta"
+      },
+      {
+        "type": "text",
+        "id" : "id",
+        "label" : "Section ID (for anchor links and specific styling)"
+      },
+      {
+        "type": "text",
+        "id" : "title",
+        "label" : "Nice Name",
+        "info" : "Just for keeping the back end organized! Enter a nice name here",
+        "default" : "Content Columns"
+      },
+       {
         "type" : "header",
         "content" : "Section Settings"
       },
       {
-        "type" : "text",
-        "label" : "ID (for anchor links)",
-        "id" : "anchor_id"
+        "type" : "paragraph",
+        "content" : "These are common options for all sections to make styling out background colors/images a bit easier, as well as editing spacing and sizing."
+      },
+      {
+        "type" : "color",
+        "id" : "background_color",
+        "label" : "Background Color"
+      },
+      {
+        "type" : "color",
+        "id" : "text_color",
+        "label" : "Text Color"
       },
       {
         "type" : "select",
@@ -71,33 +96,23 @@
           {
             "value" : "large",
             "label" : "Large"
-          }, 
-{ "value": "huge", "label" : "Huge"},
+          },
           {
-            "value" : "full",
-            "label" : "Full-Height"
+            "value": "huge",
+            "label" : "Huge"
           }
         ]
-      },   {
-        "type" : "header",
-        "content" : "Section Background"
       },
-      
-       {
+        {
         "type" : "image_picker",
         "id" : "background_image",
         "label" : "Background Image",
         "info": "Use with full-width sections, please!"
       },
       {
-        "type" : "checkbox",
-        "id" : "rellax",
-        "label" : "Scrolling Effect"
-      },
-      {
         "type" : "select",
         "id" : "background_style",
-        "label" : "Background Style",
+        "label" : "Background Image Style",
         "default" : "cover",
         "options" : [
           {
@@ -115,18 +130,12 @@
           {
             "value" : "repeat-all",
             "label" : "Tile"
+          },
+          {
+            "value" : "rellax",
+            "label" : "Parallax"
           }
         ]
-      },
-      {
-        "type" : "color",
-        "id" : "background_color",
-        "label" : "Background Color"
-      },
-      {
-        "type" : "color",
-        "id" : "text_color",
-        "label" : "Text Color"
       }
     ],
     "blocks" : [
@@ -307,7 +316,7 @@
                 }
               ]
           },
-          
+
           {
             "type" : "html",
             "id" : "html",
@@ -367,17 +376,17 @@
             "content" : "Images"
           },
           {
-            "type" : "image_picker", 
+            "type" : "image_picker",
             "label" : "Image 1",
             "id" : "image"
           },
           {
-            "type" : "image_picker", 
+            "type" : "image_picker",
             "label" : "Image 2",
             "id" : "image2"
           },
           {
-            "type" : "image_picker", 
+            "type" : "image_picker",
             "label" : "Image 3",
             "id" : "image3"
           },
@@ -447,13 +456,13 @@
             "id" : "size",
             "label" :"Size"
           },
-          
+
           {
             "type" : "header",
             "content" : "Images"
           },
           {
-            "type" : "image_picker", 
+            "type" : "image_picker",
             "label" : "Image 1",
             "id" : "image"
           },
@@ -468,7 +477,7 @@
             "label" : "External Link?"
           },
          {
-           "type" : "header", 
+           "type" : "header",
            "content" : "Text"
          },
            {

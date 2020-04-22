@@ -2,7 +2,7 @@
 <div class="section-inner music-inner">
   {% assign delay = 0 %}
   <div class="music-image" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
-    {% include 'responsive-image' with image: section.settings.music_image, wrapper_class: 'music-cover', max_width: 800, max_height: 800 %}
+    {% include 'responsive-image' with image: section.settings.image, wrapper_class: 'music-cover', max_width: 800, max_height: 800 %}
   </div>
   <div class="music-content text-align--{{section.settings.text_align}}">
       {% if section.settings.pre_title != blank or section.settings.title != blank  %}
@@ -18,7 +18,7 @@
       {% endif %}
       {% if section.settings.button_url != blank and section.settings.button_text != blank %}
         <div class="button-wrap">
-          <a href="{{section.settings.button_url}}" class="button accent">{{section.settings.button_text}}</a> 
+          <a href="{{section.settings.button_url}}" class="button accent">{{section.settings.button_text}}</a>
         </div>
       {%endif%}
     </div>
@@ -29,7 +29,7 @@
       {%endfor %}
     </div>
   </div>
-  
+
   </div>
 </section>
 
@@ -39,27 +39,30 @@
     "class" : "standard-section",
     "settings": [
       {
-        "type": "text",
-        "id": "pre_title",
-        "label": "Pre-Heading",
-        "default": "The newest"
+        "type" : "header",
+        "content" : "Meta"
       },
       {
         "type": "text",
-        "id": "title",
-        "label": "Heading",
-        "default": "Music"
+        "id" : "id",
+        "label" : "Section ID (for anchor links and specific styling)"
+      },
+       {
+        "type": "text",
+        "id" : "title",
+        "label" : "Nice Name",
+        "info" : "Just for keeping the back end organized! Enter a nice name here",
+        "default" : "Music Feature"
       },
       {
-        "type" : "text",
-        "id" : "post_title",
-        "label" : "Post Header",
-        "default" : "Listen Now"
+        "type" : "header",
+        "content" : "Music Feature Content"
       },
       {
         "type" : "select",
         "id" : "text_align",
         "label" : "Text Alignment",
+        "default" :  "center",
         "options" : [
           {
             "value" : "left",
@@ -74,6 +77,53 @@
             "label" : "Right"
           }
         ]
+      },
+      {
+        "type" : "select",
+        "id" : "text_size",
+        "label" : "Text Size",
+        "default" :  "standard",
+        "options" : [
+          {
+            "value" : "small",
+            "label" : "Small"
+          },
+          {
+            "value" : "standard",
+            "label" : "Standard"
+          },
+          {
+            "value" : "large",
+            "label" : "Large"
+          },
+          {
+            "value" : "mega",
+            "label" : "Mega"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "introduction",
+        "label": "Introduction",
+        "default": "The newest"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Music"
+      },
+      {
+        "type" : "text",
+        "id" : "subtitle",
+        "label" : "subtitle",
+        "default" : "Listen Now"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text"
       },
       {
         "type" : "text",
@@ -91,17 +141,26 @@
       },
       {
         "type" : "image_picker",
-        "id" : "music_image",
-        "label" : "Music Image"
+        "id" : "image",
+        "label" : "Release Image"
       },
-        {
+      {
         "type" : "header",
         "content" : "Section Settings"
       },
       {
-        "type" : "text",
-        "label" : "ID (for anchor links)",
-        "id" : "anchor_id"
+        "type" : "paragraph",
+        "content" : "These are common options for all sections to make styling out background colors/images a bit easier, as well as editing spacing and sizing."
+      },
+      {
+        "type" : "color",
+        "id" : "background_color",
+        "label" : "Background Color"
+      },
+      {
+        "type" : "color",
+        "id" : "text_color",
+        "label" : "Text Color"
       },
       {
         "type" : "select",
@@ -144,33 +203,23 @@
           {
             "value" : "large",
             "label" : "Large"
-          }, 
-{ "value": "huge", "label" : "Huge"},
+          },
           {
-            "value" : "full",
-            "label" : "Full-Height"
+            "value": "huge",
+            "label" : "Huge"
           }
         ]
-      },   {
-        "type" : "header",
-        "content" : "Section Background"
       },
-      
-       {
+        {
         "type" : "image_picker",
         "id" : "background_image",
         "label" : "Background Image",
         "info": "Use with full-width sections, please!"
       },
       {
-        "type" : "checkbox",
-        "id" : "rellax",
-        "label" : "Scrolling Effect"
-      },
-      {
         "type" : "select",
         "id" : "background_style",
-        "label" : "Background Style",
+        "label" : "Background Image Style",
         "default" : "cover",
         "options" : [
           {
@@ -188,18 +237,12 @@
           {
             "value" : "repeat-all",
             "label" : "Tile"
+          },
+          {
+            "value" : "rellax",
+            "label" : "Parallax"
           }
         ]
-      },
-      {
-        "type" : "color",
-        "id" : "background_color",
-        "label" : "Background Color"
-      },
-      {
-        "type" : "color",
-        "id" : "text_color",
-        "label" : "Text Color"
       }
     ],
      "blocks" : [
@@ -277,7 +320,7 @@
     ],
     "presets": [{
         "name": "Album",
-        "category": "Custom (Music)"
+        "category" : "Music"
     }]
   }
 {% endschema %}

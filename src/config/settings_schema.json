@@ -162,12 +162,16 @@
       {
         "type": "font_picker",
         "id": "font_extra",
-        "default": "archivo_condensed_n7",
+        "default": "archivo_narrow_n7",
         "label": "Extra Font"
       },
       {
         "type": "header",
         "content": "Headers"
+      },
+      {
+        "type" : "paragraph",
+        "content" : "This is the common heading style for most section/poge headers, slides and more!"
       },
       {
         "type": "select",
@@ -218,7 +222,7 @@
       {
         "type": "select",
         "id": "header_alignment",
-        "label": "Header Alignment",
+        "label": "Default Header Alignment",
         "default": "center",
         "options": [
           {
@@ -649,6 +653,27 @@
         ]
       },
       {
+        "type": "select",
+        "id": "button_text_style",
+        "label": "Button Text Style",
+        "info": "Used in pre-headings and info across the site",
+        "default": "caps",
+        "options": [
+          {
+            "value": "caps",
+            "label": "Caps"
+          },
+          {
+            "value": "italic",
+            "label": "italic"
+          },
+          {
+            "value": "standard",
+            "label": "Standard"
+          }
+        ]
+      },
+      {
         "type": "checkbox",
         "id": "capitalize_buttons",
         "default": true,
@@ -717,7 +742,7 @@
     ]
   },
   {
-    "name": "Newsletter Signup",
+    "name": "Newsletter",
     "settings": [
       {
         "type": "header",
