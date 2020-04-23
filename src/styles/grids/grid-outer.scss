@@ -9,6 +9,10 @@ div#shopify-section-collection-template {
   width: 95%;
 
   margin: 20px auto;
+  @include media-query($tiny) {
+    width: 100%;
+  }
+
   @supports(display: grid) {
     display: grid;
     grid-gap: 12px;

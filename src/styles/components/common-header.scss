@@ -1,0 +1,15 @@
+.common-header__outer {
+  max-width: $grid-medium;
+  margin: 0 auto calc(20px + 0.96vw);
+
+  .common-header {
+
+    :last-child {
+      margin-bottom: 0;
+    }
+
+    &__heading {
+      margin: 0.1em auto .15em;
+    }
+  }
+}

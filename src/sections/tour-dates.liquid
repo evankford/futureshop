@@ -11,7 +11,7 @@
 <div class="section-inner tour-section__inner text-align--{{section.settings.align}}">
   {% assign delay = 0 %}
   <div class="tour-header">
-    {% include 'section-header' %}
+    {% include 'common-header' %}
   </div>
   <div class="tour-main">
 
@@ -49,7 +49,7 @@
       },
       {
         "type": "text",
-        "id" : "id",
+        "id" : "anchor_id",
         "label" : "Section ID (for anchor links and specific styling)"
       },
        {
@@ -121,7 +121,7 @@
       {
         "type" : "text",
         "id" : "subtitle",
-        "label" : "subtitle"
+        "label" : "Subtitle"
       },
       {
         "type": "richtext",

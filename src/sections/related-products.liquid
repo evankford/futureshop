@@ -80,14 +80,7 @@
 
   <aside class=" related-products section-outer">
       <div class="section-inner">
-        {% if section.settings.related_title != blank or section.settings.related_pre_title != blank %}
-          <div class="collection-header section-header">
-    {% if section.settings.related_pre_title != blank %}
-      <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 section-header__pre_title">{{ section.settings.related_pre_title | escape }}</h4>
-    {% endif %}
-    {% if section.settings.related_title != blank %}
-      <h2 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h2 section-header__title">{{ section.settings.related_title | escape }}</h2>
-      {%endif%}
+        {% include 'common-header' %}
           </div>
         {%endif%}
       <div class="grid-uniform collection-grid product-grid size--{{section.settings.size}}" data-max="{{max}}">
@@ -172,7 +165,7 @@
       {
         "type" : "text",
         "id" : "subtitle",
-        "label" : "subtitle"
+        "label" : "Subtitle"
       },
       {
         "type": "richtext",

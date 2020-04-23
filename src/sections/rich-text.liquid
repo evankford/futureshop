@@ -10,7 +10,7 @@
 {% include 'section-starter' with section_class: 'rich-text' %}
 <div class="section-inner">
 {% assign delay = 0 %}
-   {% include 'section-header' %}
+   {% include 'common-header' %}
   {% if section.blocks != empty %}
   <div class="rte-links">
     {% for block in section.blocks %}
@@ -32,7 +32,7 @@
       },
       {
         "type": "text",
-        "id" : "id",
+        "id" : "anchor_id",
         "label" : "Section ID (for anchor links and specific styling)"
       },
        {
@@ -105,7 +105,7 @@
       {
         "type" : "text",
         "id" : "subtitle",
-        "label" : "subtitle",
+        "label" : "Subtitle",
         "default" : "And even more!"
       },
       {

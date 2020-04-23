@@ -12,7 +12,7 @@ module.exports = {
     optimization: {
       splitChunks: {
         chunks: 'all',
-        minChunks: 3,
+        minChunks: 2,
       }
     }
   },

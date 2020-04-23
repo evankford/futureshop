@@ -2,7 +2,7 @@
 {% include 'section-starter' with section_class: 'link-images' %}
 <div class="section-inner">
 {% assign delay = 0 %}
-   {% include 'section-header' %}
+   {% include 'common-header' %}
   </div>
   <div class="link-images__inner">
   {% for block in section.blocks %}
@@ -35,7 +35,7 @@
       },
       {
         "type": "text",
-        "id" : "id",
+        "id" : "anchor_id",
         "label" : "Section ID (for anchor links and specific styling)"
       },
        {
@@ -108,7 +108,7 @@
       {
         "type" : "text",
         "id" : "subtitle",
-        "label" : "subtitle"
+        "label" : "Subtitle"
       },
       {
         "type": "richtext",

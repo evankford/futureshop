@@ -10,6 +10,11 @@ a {
   margin: 0;
   font-size: 1em;
   line-height: 1.6;
+  color: inherit;
+
+  a {
+    color: inherit;
+  }
 
   img {
     height: auto;
@@ -40,7 +45,7 @@ a {
   }
   &.align--center {
     text-align: center;
-    
+
   }
 }
 

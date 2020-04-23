@@ -10,15 +10,15 @@
 {%- endcomment -%}
 {%include 'section-starter' with section_class: 'featured-collection', section: block %}
 <div class="section-inner">
-  {% include 'section-header' with section: block%}
+  {% include 'common-header' with section: block%}
 
   {%- assign collection = collections[block.settings.collection] -%}
   {% capture max %}{%if collection.products.size <= block.settings.limit%}{{collection.products.size}}{% elsif block.settings.limit == 0%}100{%else%}{{block.settings.limit}}{%endif%}{%endcapture%}
-  <div class="collection-grid product-grid size--{{block.settings.size}}" data-max="{{max}}" > 
-  
+  <div class="collection-grid product-grid size--{{block.settings.size}}" data-max="{{max}}" >
+
   {% for product in collection.products limit: block.settings.limit %}
     {% include 'grid-item' with secondary_image: block.settings.secondary_image}, show_price: block.settings.show_price}, simplify: block.settings.simplify, hover_details: block.settings.hoverer %}
-    {% assign delay = delay | plus: 50 %} 
+    {% assign delay = delay | plus: 50 %}
   {% else %}
     {% for i in (1..6) %}
       <a data-aos="fade-in" data-aos-delay="{{delay}}" href="{{ product.url | within: collection }}" class="product-grid-item grid-item {% if simplify == true %} simplify {%endif%} {% if hover_details == true  %} detail-on-hover {%endif%} ">
@@ -39,7 +39,7 @@
   {% if block.settings.button_text != blank %}
   <div class="button-wrap center">
     <a href="{{block.settings.button_url | default: collection.url}}" class="button">{{block.settings.button_text}}</a>
-  </div> 
+  </div>
   {%endif%}
 </div>
 </section>

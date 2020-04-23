@@ -131,10 +131,14 @@ nav.main-nav {
     letter-spacing: 0.02em;
     color: var(--header-text);
     font-weight: bold;
-    font-family: $font-heading;
-    font-weight: 400;
+    font-family: inherit;
+    font-weight: inherit;
     transition: color 400ms $ease, transform 300ms $ease;
     font-size: 15px;
+
+    &:hover {
+      color: var(--header-text-hover);
+    }
 
     &.parent-link {
       &::after {

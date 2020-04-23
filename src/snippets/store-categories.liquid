@@ -13,12 +13,12 @@
     {%assign item_count = item_count | plus: 1 %}
     {%endif%}
     {%endfor%}
-    
+
 {% include 'section-starter' with section_class: 'collection-list', section: block %}
 <div class="section-inner{% if block.settings.full_width == true %} stretch-width{%endif%}" id="block--{{block.id}}">
- {% include 'section-header' with section: block %}
+ {% include 'common-header' with section: block %}
   <div class="collection-list__grid" data-item-count="{{item_count}}">
-  
+
   {% for collection_text in collection_texts %}
   {% assign handle = block.settings[collection_text] %}
     {%- assign collection = collections[handle]  -%}
@@ -46,8 +46,8 @@
 
       {%- assign default_label = 'homepage.onboarding.collection_title' | t -%}
       <div class="collection-list-item__content">
-      
-          {% if block.settings.pre_header != blank %} 
+
+          {% if block.settings.pre_header != blank %}
           <h4 class="h5">{{block.settings.pre_header}}</h5>
         {%endif%}
         <h3 class="h3">{{ collection.title | default: default_label }}</h3>
@@ -72,7 +72,7 @@
       #block--{{block.id}} .collection-list-item {
         background: {{block.settings.overlay_color}};
       }
-    
+
     </style>
   {%endif%}
 </div>

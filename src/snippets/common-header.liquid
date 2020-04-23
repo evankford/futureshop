@@ -16,13 +16,13 @@
   {% if params.heading != empty or params.introduction != empty or params.subtitle != empty %}
     <header class="common-header type--{{type}}">
       {% if params.introduction != empty %}
-        <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label font--{{settings.font_family_label}} style--{{label_style}} common-header__introduction">{{ params.introduction | escape }}</h4>
+        <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label style--{{label_style}} common-header__introduction">{{ params.introduction | escape }}</h4>
       {% endif %}
       {% if params.heading != empty %}
-        <h2 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="font--{{settings.font_family_heading}} style--{{label_style}} style--{{settings.header_style}} spacing--{{settings.header_spacing}} common-header__heading">{{ params.heading | escape }}</h4>
+        <h2 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="font--{{settings.font_family_heading}} style--{{settings.header_style}} color--{{settings.header_color}} spacing--{{settings.header_spacing}} common-header__heading">{{ params.heading | escape }}</h4>
       {% endif %}
-      {% if params.introduction != empty %}
-        <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label font--{{settings.font_family_label}} style--{{label_style}} common-header__introduction">{{ params.introduction | escape }}</h4>
+      {% if params.subtitle != empty %}
+        <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label style--{{label_style}} common-header__subtitle">{{ params.subtitle | escape }}</h4>
       {% endif %}
     </header>
   {% endif %}

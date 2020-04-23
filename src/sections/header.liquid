@@ -149,7 +149,7 @@ document.body.classList.add('header-overlay');
   <nav role="navigation" class="main-nav {% if section.settings.enable_mobile_menu == true %} make-mobile {%endif%} align--{{section.settings.menu_text_align}} {% if section.settings.layout_header == 'menu-centered' %} has-halves {%endif%} " id="site-nav" >
     <div class="nav-inner">
     <div class="nav-inner__background"></div>
-    <div class="nav-inner__wrap {% if section.settings.mobile_nav_space == true %} use-space {%endif%} font--{{settings.font_family_menu | default: 'heading'}} style--{{settings.font-style_menu | default: 'standard'}}" >
+    <div class="nav-inner__wrap {% if section.settings.mobile_nav_space == true %} use-space {%endif%} font--{{settings.font_family_menu | default: 'heading'}} style--{{settings.font_style_menu | default: 'standard'}}" >
 
     <ul>
 
@@ -382,27 +382,10 @@ document.body.classList.add('header-overlay');
         "id": "logo_max_width_mobile",
         "label": "Custom logo width (mobile)",
         "min": 50,
-        "max": 400,
+        "max": 300,
         "step": 10,
         "unit": "px",
         "default": 230
-    }, {
-        "type": "select",
-        "id": "header_font_size",
-        "label": "Header Font Size",
-        "options": [{
-            "value": "h3",
-            "label": "Small"
-        }, {
-            "value": "h2",
-            "label": "Medium"
-        }, {
-            "value": "h1",
-            "label": "Large"
-        }, {
-            "value": "mega",
-            "label": "Mega"
-        }]
     }, {
         "type": "header",
         "content": "overlay"

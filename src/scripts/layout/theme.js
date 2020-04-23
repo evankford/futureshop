@@ -35,6 +35,11 @@ class Theme {
     this.hero = false;
     this.footer = false;
 
+    this.heroActive = false;
+    if (this.header) {
+      this.heroActive = this.header.classList.contains('overlay-header');
+    }
+
     this.utilities();
     this.init();
   }
@@ -125,13 +130,7 @@ class Theme {
 
   headroomCheckOverlay() {
     this.checkForHero();
-    if (
-      document.body.classList.contains('template-index') &&
-      this.header.classList.contains('overlay-header')
-    ) {
-      this.overlay = true;
-    }
-    if (this.hero) {
+    if (this.hero && this.heroActive) {
       this.overlay = true;
     }
   }
@@ -154,7 +153,7 @@ class Theme {
   }
   headroomInitCheckScroll() {
     var self = this;
-    if (this.overlay == true && this.hero) {
+    if (this.overlay == true && this.hero && this.heroActive) {
       this.scrollMark = this.hero.getBoundingClientRect().height;
       window.addEventListener(
         'scroll',
@@ -182,7 +181,7 @@ class Theme {
 
   headerOffset() {
     var headerHeight = this.header.offsetTop + this.header.offsetHeight;
-    if (this.main && !this.hero) {
+    if (this.main && (!this.hero || !this.heroActive)) {
       this.main.style.paddingTop = headerHeight + 'px';
     }
   }

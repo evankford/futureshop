@@ -149,24 +149,6 @@ body {
     background-repeat: repeat;
   }
 }
-.common-header__outer {
-  max-width: $grid-medium;
-  margin: calc(9px + 0.4vw) auto calc(20px + 0.96vw);
-
-  .common-header {
-    :last-child {
-      margin-bottom: 0;
-    }
-    h4 {
-      // text-transform: uppercase;
-      font-weight: 400;
-      // letter-spacing: 0.3em;
-    }
-    .h2 {
-      margin: 0.35em auto 0.15em;
-    }
-  }
-}
 
 .align--left {
   text-align: left;
@@ -199,6 +181,10 @@ body {
 }
 .font--heading {
   @include font-heading();
+}
+
+.style--caps {
+  text-transform: uppercase;
 }
 
 .sitewide-section {

@@ -37,6 +37,10 @@ h6 {
     @include font-extra;
     font-size: calc(2.2em + 3vw);
   }
+
+  &.color--accent {
+    color: $color-accent;
+  }
 }
 
 h1, .h1 {
@@ -146,5 +150,109 @@ body {
       text-transform: uppercase;
       letter-spacing: 0.15em;
     }
+  }
+}
+
+.label,
+%label {
+  body.label-font--body  &{
+    @include font-body();
+  }
+  body.label-font--heading  &{
+    @include font-heading();
+  }
+
+  body.label-font--extra & {
+    @include font-extra();
+  }
+  body.label-style--caps & {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  body.label-style--italic & {
+    font-style: italic;
+  }
+}
+
+%mainHeader {
+  word-wrap: break-word;
+  body.heading-style--caps & {
+    text-transform: uppercase;
+  }
+   body.heading-font--body  &{
+    @include font-body();
+  }
+  body.heading-font--heading  &{
+    @include font-heading();
+  }
+
+  body.heading-font--extra & {
+    @include font-extra();
+  }
+}
+
+body.header-spacing--0 {
+  %mainHeader {
+    letter-spacing: -0.1em;
+  }
+}
+
+body.header-spacing--1 {
+  %mainHeader {
+    letter-spacing: -0.066em;
+  }
+}
+
+body.header-spacing--2 {
+  %mainHeader {
+    letter-spacing: -0.033em;
+  }
+}
+
+body.header-spacing--3 {
+  %mainHeader {
+    letter-spacing: 0;
+  }
+}
+
+body.header-spacing--4 {
+  %mainHeader {
+    letter-spacing: 0.33em;
+  }
+}
+
+body.header-spacing--5{
+  %mainHeader {
+    letter-spacing: 0.66em;
+  }
+}
+
+body.header-spacing--6 {
+  %mainHeader {
+    letter-spacing: 0.1em
+  }
+}
+
+body.header-spacing--7 {
+  %mainHeader {
+    letter-spacing: 0.133em
+  }
+}
+
+body.header-spacing--8 {
+  %mainHeader {
+    letter-spacing: 0.166em;
+  }
+}
+
+body.header-spacing--9 {
+  %mainHeader {
+    letter-spacing: 0.2em;
+  }
+}
+
+body.header-spacing--10 {
+  %mainHeader {
+    letter-spacing: 0.25em;
   }
 }

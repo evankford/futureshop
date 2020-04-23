@@ -1,7 +1,12 @@
 .product-grid-item {
   color: inherit;
   text-decoration: none;
-  padding: 12px;
+  padding: 6px;
+
+  @include media-query($large-up) {
+    padding: 12px;
+  }
+
    display: flex;
   flex-direction: column;
 
@@ -256,7 +261,11 @@ body {
       }
     }
     .grid-item__image {
-      margin: -12px -12px 3px;
+      margin: -6px -6px 3px;
+
+      @include media-query($large-up) {
+        margin: -12px -12px 3px;
+      }
       display: flex;
       align-items: flex-start;
     }
@@ -276,7 +285,10 @@ body {
       .grid-item__image {
         height: 100%;
         flex: 1 1 100%;
-        margin: -12px;
+        margin: -6px;
+        @include media-query($large-up) {
+          margin: -12px;
+        }
       }
       .responsive-image__wrapper {
         min-height: 100%;

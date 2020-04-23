@@ -11,7 +11,7 @@
 
 {%include 'section-starter' with section_class: 'featured-collection' %}
 <div class="section-inner">
-  {% include 'section-header'%}
+  {% include 'common-header'%}
 
   {%- assign collection = collections[section.settings.collection] -%}
   {% capture max %}{%if collection.products.size <= section.settings.limit%}{{collection.products.size}}{% elsif section.settings.limit == 0%}100{%else%}{{section.settings.limit}}{%endif%}{%endcapture%}
@@ -21,7 +21,7 @@
     {% include 'grid-item' with secondary_image: section.settings.secondary_image}, show_price: section.settings.show_price}, simplify: section.settings.simplify, hover_details: section.settings.hoverer %}
     {% assign delay = delay | plus: 50 %}
   {% else %}
-   {% include 'collection_fallback' %}
+   {% include 'collection-fallback' %}
    {%endfor %}
   </div>
   {% if section.settings.button_text != blank %}
@@ -43,7 +43,7 @@
       },
       {
         "type": "text",
-        "id" : "id",
+        "id" : "anchor_id",
         "label" : "Section ID (for anchor links and specific styling)"
       },
        {
@@ -51,7 +51,7 @@
         "id" : "title",
         "label" : "Nice Name",
         "info" : "Just for keeping the back end organized! Enter a nice name here",
-        "default" : "Slideshow"
+        "default" : "Featured Collection"
       },
       {
         "type" : "header",
@@ -116,7 +116,7 @@
       {
         "type" : "text",
         "id" : "subtitle",
-        "label" : "subtitle"
+        "label" : "Subtitle"
       },
       {
         "type": "richtext",

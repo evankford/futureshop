@@ -9,7 +9,7 @@
 
 {% include 'section-starter' with section_class: 'collection-list' %}
 <div class="section-inner{% if section.settings.section_size == 'full-width' %} stretch-width{%endif%}" id="section--{{section.id}}">
- {% include 'section-header' %}
+ {% include 'common-header' %}
   <div class="collection-list__grid style--{{section.settings.layout}}" data-item-count="{{section.blocks.size}}">
 
   {% for block in section.blocks %}
@@ -88,7 +88,7 @@
       },
       {
         "type": "text",
-        "id" : "id",
+        "id" : "anchor_id",
         "label" : "Section ID (for anchor links and specific styling)"
       },
        {
@@ -161,7 +161,7 @@
       {
         "type" : "text",
         "id" : "subtitle",
-        "label" : "subtitle",
+        "label" : "Subtitle",
         "default" : "And even more!"
       },
       {
