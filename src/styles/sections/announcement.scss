@@ -1,23 +1,30 @@
+body {
+  //Difference between this and announcement keeps them from showing a gap between them
+  transition: margin 340ms $ease;
+}
 .announcement-bar {
-  padding:  8px;
+  padding:  calc(8px + 0.5vw);
   position: relative;
   background: var(--bg-color);
   color: var(--text-color);
   position: absolute;
   width: 100%;
-  transition: transform 300ms ease;
   transform: translateY(-100%);
-  top: 0;
   left: 0;
+  top: 0px;
+  margin-bottom: -2px;
   text-align: center;
   z-index: 1000;
+
   &.announceActive {
     transform: translateY(0)
   }
+
   &__inner {
     position: relative;
     padding: 0 40px;
   }
+
   button.close-button {
     border: 0px;
     display: block;
@@ -32,16 +39,19 @@
     align-items: center;  justify-content: center;
     background: rgba(black, 0.1);
     padding: 5px;
+
     i {
       display: inline-block;
-    } 
+    }
   }
+
    p {
     margin: 2px 15px;
     font-size: 15px;
     display: inline-block;
     vertical-align: middle;
   }
+
   a {
     vertical-align: middle;
     text-decoration: none;
@@ -49,11 +59,7 @@
     margin: 2px 8px;
     color: inherit;
     font-weight: bold;
+
     @extend %hover;
   }
-  button {
-    
-  }
 }
-
-
