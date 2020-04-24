@@ -48,6 +48,12 @@
       }
     }
   }
+
+  .slide-bg {
+    svg path {
+      fill: gray;
+    }
+  }
 }
 
 .swiper-container:not(.swiper-container-initialized) {

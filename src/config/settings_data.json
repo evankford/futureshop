@@ -1,29 +1,71 @@
 {
-  "current": "Default",
-  "presets": {
-    "Default": {
-      "sections": {
-        "collection-list": {
-          "type": "collection-list"
-        },
-        "featured-collection": {
-          "type": "featured-collection",
-          "settings": {
-            "collection": "frontpage"
+  "current": {
+    "sections": {
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "1587749623644": {
+            "type": "brand",
+            "settings": {
+              "title": "",
+              "socials": true,
+              "text_align": "center",
+              "image": "",
+              "image_snippet": "",
+              "logo_max_width": 100,
+              "email": "",
+              "phone": ""
+            }
+          },
+          "1587749641130": {
+            "type": "menu",
+            "settings": {
+              "title": "",
+              "menu": "footer",
+              "text_align": "flex"
+            }
           }
         },
-        "image-section": {
-          "type" : "image-section",
-          "settings" : [
-
-          ]
+        "block_order": [
+          "1587749623644",
+          "1587749641130"
+        ]
+      },
+      "1587746389051": {
+        "type": "image-section",
+        "blocks": {
+          "1587746389051-0": {
+            "type": "background",
+            "settings": {
+              "background_color": "#000000"
+            }
+          }
+        },
+        "block_order": [
+          "1587746389051-0"
+        ],
+        "settings": {
+          "title": "Hero",
+          "full_width": true
         }
       },
-      "content_for_index": [
-        "image-section",
-        "collection-list",
-        "featured-collection"
-      ]
-    }
+      "1587747357043": {
+        "type": "featured-collection",
+        "settings": {
+          "collection": ""
+        }
+      },
+      "1587747392537": {
+        "type": "instagram",
+        "settings": {
+          "title": "Instagram"
+        }
+      }
+    },
+    "content_for_index": [
+      "1587746389051",
+      "1587747357043",
+      "1587747392537"
+    ]
   }
 }

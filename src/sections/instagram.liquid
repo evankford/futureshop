@@ -10,17 +10,7 @@
 {% include 'section-starter' with section_class: 'instagram' %}
 <div class="section-inner">
 {% assign delay = 0 %}
-    {% if section.settings.pre_title != blank or section.settings.title != blank  %}
-  <div class="instagram-header section-header">
-    {% if section.settings.pre_title != blank %}
-      <h4 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 caps section-header__pre_title">{{ section.settings.pre_title | escape }}</h4>
-    {% endif %}
-    {% if section.settings.title != blank %}
-      <h2 data-aos="fade-up" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h2 section-header__title">{{ section.settings.title | escape }}</h2>
-    {% endif %}
-
-  </div>
-  {%endif%}
+  {% include common-header %}
   <div class="embed-wrap">
     {{section.settings.html}}
   </div>
@@ -134,18 +124,21 @@
         "type" : "text",
         "id" : "button_text",
         "label" : "Button Text",
-        "info" : "Leave blank to hide!"
+        "info" : "Leave blank to hide!",
+        "default" :"More Photos"
       },
       {
         "type" : "url",
         "id" : "button_url",
         "label" : "Button URL",
-        "info" : "Should be the instagram link!"
+        "info" : "Should be the instagram link!",
+        "default" :"https://instagram.com"
       },
       {
         "type" : "checkbox",
         "id" : "include_all_icons",
-        "label" : "Include all social icons?"
+        "label" : "Include all social icons?",
+        "default" : true
       },
       {
         "type" : "header",
@@ -158,7 +151,9 @@
       {
         "type" : "html",
         "id" : "html",
-        "label" : "ElfSight Embed Code"
+        "label" : "ElfSight Embed Code",
+        "default" : '<script src="https://apps.elfsight.com/p/platform.js" defer></script>
+<div class="elfsight-app-8f6047fb-58b6-45c2-9bb1-b4fd052ae5bc"></div>'
       },
        {
         "type" : "header",

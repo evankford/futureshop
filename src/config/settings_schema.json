@@ -14,7 +14,7 @@
         "type": "color",
         "id": "color_body_text",
         "label": "Text",
-        "default": "#161d25"
+        "default": "#363F4B"
       },
       {
         "type": "color",
@@ -32,28 +32,28 @@
         "type": "color",
         "id": "color_accent",
         "label": "Accent",
-        "default": "#c4cdd5",
+        "default": "#125486",
         "info": "Buttons and special ornaments"
       },
       {
         "type": "color",
         "id": "color_accent_inverse",
         "label": "Accent Inverse",
-        "default": "#000",
+        "default": "#ffffff",
         "info": "Inverse of accent for buttons, etc"
       },
       {
         "type": "color",
         "id": "color_secondary",
         "label": "Secondary",
-        "default": "#c4cdd5",
+        "default": "#003F67",
         "info": "Another Accent Color (buttons)"
       },
       {
         "type": "color",
         "id": "color_secondary_inverse",
         "label": "Secondary Inverse",
-        "default": "#000",
+        "default": "#D7EEFC",
         "info": "Inverse of secondary for buttons, etc"
       },
       {
@@ -180,12 +180,12 @@
         "default": "extra",
         "options": [
           {
-            "value": "heading",
-            "label": "Heading"
-          },
-          {
             "value": "body",
             "label": "Body"
+          },
+          {
+            "value": "heading",
+            "label": "Heading"
           },
           {
             "value": "extra",
@@ -215,7 +215,7 @@
         "label": "Header Spacing",
         "info": "3 is normal, 1 is very tight, 10 is very spaced!",
         "min": 0,
-        "default": 3,
+        "default": 2,
         "max": 10,
         "step": 1
       },
@@ -266,15 +266,15 @@
         "type": "select",
         "id": "font_family_menu",
         "label": "Menu Font Family",
-        "default": "heading",
+        "default": "body",
         "options": [
-          {
-            "value": "heading",
-            "label": "Heading"
-          },
           {
             "value": "body",
             "label": "Body"
+          },
+          {
+            "value": "heading",
+            "label": "Heading"
           },
           {
             "value": "extra",
@@ -286,15 +286,23 @@
         "type": "select",
         "id": "font_style_menu",
         "label": "Menu Font Style",
-        "default": "standard",
+        "default": "narrow",
         "options": [
           {
             "value": "standard",
             "label": "Standard"
           },
           {
+            "value": "narrow",
+            "label": "Modern (Narrow)"
+          },
+          {
             "value": "caps",
-            "label": "All Caps"
+            "label": "Small Caps"
+          },
+          {
+            "value": "caps-big",
+            "label": "All Caps (Big)"
           }
         ]
       },
@@ -310,12 +318,12 @@
         "default": "heading",
         "options": [
           {
-            "value": "heading",
-            "label": "Heading"
-          },
-          {
             "value": "body",
             "label": "Body"
+          },
+          {
+            "value": "heading",
+            "label": "Heading"
           },
           {
             "value": "extra",
@@ -334,12 +342,12 @@
         "default": "heading",
         "options": [
           {
-            "value": "heading",
-            "label": "Heading"
-          },
-          {
             "value": "body",
             "label": "Body"
+          },
+          {
+            "value": "heading",
+            "label": "Heading"
           },
           {
             "value": "extra",
@@ -359,12 +367,12 @@
         "default": "body",
         "options": [
           {
-            "value": "heading",
-            "label": "Heading"
-          },
-          {
             "value": "body",
             "label": "Body"
+          },
+          {
+            "value": "heading",
+            "label": "Heading"
           },
           {
             "value": "extra",
@@ -424,6 +432,223 @@
         "id": "extra_typekit",
         "label": "Typekit/GF Extra Font Family",
         "info": "Usually all lowercase + hyphenated"
+      }
+    ]
+  },
+  {
+    "name": "General Styles",
+    "settings": [
+      {
+        "type": "header",
+        "content": "general"
+      },
+      {
+        "type": "range",
+        "unit": "px",
+        "id": "border_roundness",
+        "label": "Border Roundness",
+        "step": 1,
+        "min": 0,
+        "default": 0,
+        "max": 30
+      },
+      {
+        "type": "range",
+        "unit": "px",
+        "id": "border_thickness",
+        "label": "Border thickness",
+        "step": 1,
+        "min": 0,
+        "default": 1,
+        "max": 50
+      },
+      {
+        "type": "header",
+        "content": "Background"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_background",
+        "label": "Enable Background Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_background",
+        "label": "Main Background"
+      },
+      {
+        "type": "select",
+        "id": "background_style",
+        "label": "Background Style",
+        "options": [
+          {
+            "value": "repeat-all",
+            "label": "Tile"
+          },
+          {
+            "value": "repeat-y",
+            "label": "Repeat Vertically"
+          },
+          {
+            "value": "repeat-x",
+            "label": "Repeat Horizontally"
+          },
+          {
+            "value": "fit",
+            "label": "Fit"
+          },
+          {
+            "value": "stretch",
+            "label": "Stretch"
+          },
+          {
+            "value": "cover",
+            "label": "Cover"
+          }
+        ],
+        "default": "cover"
+      }
+    ]
+  },
+  {
+    "name": "Product Styles",
+    "settings": [
+      {
+        "type": "select",
+        "id": "product_style",
+        "label": "Product style",
+        "options": [
+          {
+            "value": "simple",
+            "label": "Simple"
+          },
+          {
+            "value": "bordered",
+            "label": "Bordered"
+          },
+          {
+            "value": "card",
+            "label": "Card"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "price_style",
+        "default": "simple",
+        "label": "Price Style?",
+        "options": [
+          {
+            "value": "simple",
+            "label": "Simple"
+          },
+          {
+            "value": "background",
+            "label": "On Dark Background"
+          },
+          {
+            "value": "bordered",
+            "label": "Bordered"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "capitalize_product_titles",
+        "default": true,
+        "label": "Capitalize Product Titles?"
+      },
+      {
+        "type": "checkbox",
+        "id": "price_flex",
+        "label": "Price inline with title?",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "details_center",
+        "label": "Center Product Details",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Slider Settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "product_arrows",
+        "label": "Arrows for product slider?",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "product_zoom",
+        "label": "Zoom for product Images?",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name" : "Button Styles",
+    "settings" : [
+      {
+        "type": "header",
+        "content": "Buttons"
+      },
+      {
+        "type": "select",
+        "id": "button_style",
+        "label": "Button Style",
+        "default": "outline",
+        "options": [
+          {
+            "value": "solid",
+            "label": "Solid"
+          },
+          {
+            "value": "outline",
+            "label": "Outline"
+          },
+          {
+            "value": "underline",
+            "label": "Underline"
+          },
+          {
+            "value": "gradient",
+            "label": "Gradient"
+          },
+          {
+            "value": "minimal",
+            "label": "Minimal"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "button_text_style",
+        "label": "Button Text Style",
+        "info": "Used in pre-headings and info across the site",
+        "default": "caps",
+        "options": [
+          {
+            "value": "caps",
+            "label": "Caps"
+          },
+          {
+            "value": "italic",
+            "label": "italic"
+          },
+          {
+            "value": "standard",
+            "label": "Standard"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "capitalize_buttons",
+        "default": true,
+        "label": "Capitalize Buttons?"
       }
     ]
   },
@@ -552,232 +777,6 @@
     ]
   },
   {
-    "name": "Product Styles",
-    "settings": [
-      {
-        "type": "select",
-        "id": "product_style",
-        "label": "Product style",
-        "options": [
-          {
-            "value": "simple",
-            "label": "Simple"
-          },
-          {
-            "value": "bordered",
-            "label": "Bordered"
-          },
-          {
-            "value": "card",
-            "label": "Card"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "price_style",
-        "default": "simple",
-        "label": "Price Style?",
-        "options": [
-          {
-            "value": "simple",
-            "label": "Simple"
-          },
-          {
-            "value": "background",
-            "label": "On Dark Background"
-          },
-          {
-            "value": "bordered",
-            "label": "Bordered"
-          }
-        ]
-      },
-      {
-        "type": "checkbox",
-        "id": "capitalize_product_titles",
-        "default": true,
-        "label": "Capitalize Product Titles?"
-      },
-      {
-        "type": "checkbox",
-        "id": "price_flex",
-        "label": "Price inline with title?",
-        "default": false
-      },
-      {
-        "type": "checkbox",
-        "id": "details_center",
-        "label": "Center Product Details",
-        "default": true
-      },
-      {
-        "type": "header",
-        "content": "Slider Settings"
-      },
-      {
-        "type": "checkbox",
-        "id": "product_arrows",
-        "label": "Arrows for product slider?",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "product_zoom",
-        "label": "Zoom for product Images?",
-        "default": true
-      }
-    ]
-  },
-  {
-    "name": "Theme Styles",
-    "settings": [
-      {
-        "type": "header",
-        "content": "general"
-      },
-      {
-        "type": "range",
-        "unit": "px",
-        "id": "border_roundness",
-        "label": "Border Roundness",
-        "step": 1,
-        "min": 0,
-        "default": 0,
-        "max": 30
-      },
-      {
-        "type": "range",
-        "unit": "px",
-        "id": "border_thickness",
-        "label": "Border thickness",
-        "step": 1,
-        "min": 0,
-        "default": 1,
-        "max": 50
-      },
-      {
-        "type": "header",
-        "content": "Buttons"
-      },
-      {
-        "type": "select",
-        "id": "button_style",
-        "label": "Button Style",
-        "default": "solid",
-        "options": [
-          {
-            "value": "solid",
-            "label": "Solid"
-          },
-          {
-            "value": "outline",
-            "label": "Outline"
-          },
-          {
-            "value": "underline",
-            "label": "Underline"
-          },
-          {
-            "value": "gradient",
-            "label": "Gradient"
-          },
-          {
-            "value": "minimal",
-            "label": "Minimal"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "button_text_style",
-        "label": "Button Text Style",
-        "info": "Used in pre-headings and info across the site",
-        "default": "caps",
-        "options": [
-          {
-            "value": "caps",
-            "label": "Caps"
-          },
-          {
-            "value": "italic",
-            "label": "italic"
-          },
-          {
-            "value": "standard",
-            "label": "Standard"
-          }
-        ]
-      },
-      {
-        "type": "checkbox",
-        "id": "capitalize_buttons",
-        "default": true,
-        "label": "Capitalize Buttons?"
-      },
-      {
-        "type": "header",
-        "content": "Products"
-      },
-      {
-        "type": "header",
-        "content": "Theme images"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_background",
-        "label": "Enable Background Image"
-      },
-      {
-        "type": "image_picker",
-        "id": "main_background",
-        "label": "Main Background"
-      },
-      {
-        "type": "select",
-        "id": "background_style",
-        "label": "Background Style",
-        "options": [
-          {
-            "value": "repeat-all",
-            "label": "Tile"
-          },
-          {
-            "value": "repeat-y",
-            "label": "Repeat Vertically"
-          },
-          {
-            "value": "repeat-x",
-            "label": "Repeat Horizontally"
-          },
-          {
-            "value": "fit",
-            "label": "Fit"
-          },
-          {
-            "value": "stretch",
-            "label": "Stretch"
-          },
-          {
-            "value": "cover",
-            "label": "Cover"
-          }
-        ],
-        "default": "cover"
-      },
-      {
-        "type": "checkbox",
-        "id": "texture_header",
-        "label": "Texture Header"
-      },
-      {
-        "type": "checkbox",
-        "id": "texture_footer",
-        "label": "Texture Footer"
-      }
-    ]
-  },
-  {
     "name": "Newsletter",
     "settings": [
       {
@@ -785,14 +784,9 @@
         "content": "Settings"
       },
       {
-        "type": "header",
-        "content": "Popup Settings"
-      },
-      {
-        "type": "text",
-        "id": "signup_cta_text",
-        "label": "Popup CTA Text",
-        "default": "Get Updates"
+        "type" : "html",
+        "id" : "signup_html",
+        "label" : "Custom HTML"
       },
       {
         "type": "color",
@@ -807,22 +801,98 @@
         "default": "#efefef"
       },
       {
+        "type": "select",
+        "id": "signup_alignment",
+        "label": "Newsletter Text Alignment",
+        "default": "center",
+        "options": [
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "signup_text_size",
+        "label": "Text Size",
+        "default": "standard",
+        "options": [
+          {
+            "value": "small",
+            "label": "Small"
+          },
+          {
+            "value": "standard",
+            "label": "Standard"
+          },
+          {
+            "value": "large",
+            "label": "Large"
+          },
+          {
+            "value": "mega",
+            "label": "Mega"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "signup_layout",
+        "label": "Newsletter Layout",
+        "default": "stacked",
+        "options": [
+          {
+            "value": "stacked",
+            "label": "Stacked"
+          },
+          {
+            "value": "columns ",
+            "label": "Columns"
+          }
+        ]
+      },
+      {
+        "type"  : "header",
+        "content" : "Main Header"
+      },
+      {
+        "type": "text",
+        "id": "signup_introduction",
+        "label": "Introduction",
+        "default" :"Join Our"
+      },
+      {
         "type": "text",
         "id": "signup_title",
         "label": "Title",
-        "default": "The latest content in your inbox!"
-      },
-      {
-        "type": "textarea",
-        "id": "signup_subtitle",
-        "label": "Sub-Title",
-        "default": "Get inspired by news, conversations and more! Be the first to know about releases and store sales."
+        "default": "Newsletter"
       },
       {
         "type": "text",
+        "id": "signup_subtitle",
+        "label": "Title",
+        "default": "To get exclusive deals and more!"
+      },
+      {
+        "type": "richtext",
+        "id": "signup_content",
+        "label": "Subtitle",
+        "default": "<p><strong>Be a VIP!</strong> Get exclusive sales, news and more when you sign up for the email list! </p>"
+      },
+      {
+        "type": "richtext",
         "id": "signup_success",
         "label": "Success Text",
-        "default": "Thanks! You'll be hearing from us soon."
+        "default": "<p><strong>Thanks for joining!</strong></p> <p>You'll be hearing from us soon.</p>"
       },
       {
         "type": "text",
@@ -847,10 +917,10 @@
         "default": "Thanks"
       },
       {
-        "type": "text",
+        "type": "richtext",
         "id": "gdpr_text",
         "label": "GDPR Text",
-        "default": "I want to receive deals & news from this store"
+        "default": "<p> I want to receive deals & news from this store. <a href='/pages/privacy-policy'>Privacy Policy</a><p>"
       }
     ]
   },
@@ -907,7 +977,8 @@
       {
         "type": "text",
         "id": "social_facebook_link",
-        "label": "Facebook link"
+        "label": "Facebook link",
+        "default" : "https://facebook.com"
       },
       {
         "type": "text",
@@ -917,7 +988,8 @@
       {
         "type": "text",
         "id": "social_instagram_link",
-        "label": "Instagram link"
+        "label": "Instagram link",
+        "default": "https://instagram.com"
       },
       {
         "type": "text",
@@ -937,7 +1009,8 @@
       {
         "type": "text",
         "id": "social_youtube_link",
-        "label": "Youtube link"
+        "label": "Youtube link",
+        "default": "https://youtube.com"
       },
       {
         "type": "text",

@@ -36,10 +36,7 @@
 {% capture cart_markup %}
 <div class="cart-outer">
      <a href="/cart" aria-label="{{ 'layout.cart.title' | t }}" data-cart-button>
-      <i class="icon-shopping-bag"></i>
-      {% if section.settings.show_cart_text != blank %}
-      <span class="cart-text">{{section.settings.show_cart_text}}</span>
-      {%endif%}
+      <i class="icon-shopping-bag" aria-label="{{ 'cart.general.title' | t }}"></i>
       {% if cart.item_count > 0 %}
       <div class="cart-items" data-cart-items-count>{{ cart.item_count }}</div>
       {%endif%}
@@ -146,12 +143,12 @@ document.body.classList.add('header-overlay');
       {%endif%}
 
 
-  <nav role="navigation" class="main-nav {% if section.settings.enable_mobile_menu == true %} make-mobile {%endif%} align--{{section.settings.menu_text_align}} {% if section.settings.layout_header == 'menu-centered' %} has-halves {%endif%} " id="site-nav" >
+  <nav role="navigation" class="main-nav {% if section.settings.enable_mobile_menu == true %} make-mobile {%endif%} mobile-align--{{section.settings.mobile_menu_text_align}} mobile-text--{{section.settings.mobile_text}} mobile-text-inner--{{section.settings.mobile_inner_text}} align--{{section.settings.menu_text_align}} {% if section.settings.layout_header == 'menu-centered' %} has-halves {%endif%} " id="site-nav" >
     <div class="nav-inner">
     <div class="nav-inner__background"></div>
     <div class="nav-inner__wrap {% if section.settings.mobile_nav_space == true %} use-space {%endif%} font--{{settings.font_family_menu | default: 'heading'}} style--{{settings.font_style_menu | default: 'standard'}}" >
 
-    <ul>
+    <ul class="main-menu">
 
     {% assign menu = linklists[section.settings.menu] %}
 
@@ -187,13 +184,13 @@ document.body.classList.add('header-overlay');
       {% if section.settings.layout_search == 'menu'  or section.settings.layout_cart == 'menu' %}
         <div class="nav-half__extras">
             {% if section.settings.layout_search == 'menu' %}
-              <li class="icon-link" >
+              <li class="menu-icon" >
                 {{search_markup}}
               </li>
 
               {%endif%}
               {% if section.settings.layout_cart == 'menu' %}
-              <li class="icon-link" >
+              <li class="menu-icon" >
                 {{cart_markup}}
               </li>
 
@@ -471,8 +468,29 @@ document.body.classList.add('header-overlay');
     }, {
         "type": "checkbox",
         "id": "mobile_text",
-        "label": "Mobile Menu Text",
-        "info": "Includes 'Menu' text next to icon"
+        "label": "Mobile Opener Icon Text",
+        "info": "Includes 'Menu' text next to icon "
+    }, {
+        "type": "checkbox",
+        "id": "mobile_inner_text",
+        "label": "Mobile Inner Icons Text",
+        "info": "Includes 'Search' and 'Cart' text next to icon",
+        "default" : true
+    }, {
+        "type": "select",
+        "id": "mobile_menu_text_align",
+        "label": "Mobile Menu Text Align",
+        "default" : "left",
+        "options": [{
+            "value": "left",
+            "label": "Left"
+        }, {
+            "value": "center",
+            "label": "Center"
+        }, {
+            "value": "right",
+            "label": "Right"
+        }]
     }, {
         "type": "header",
         "content": "cart"

@@ -27,40 +27,7 @@
   </style>
 {%endif%}
 <div class="section-inner">
-{% assign delay = 0 %}
-    {% if section.settings.pre_title != blank or section.settings.title != blank  %}
-  <div class="newsletter-header section-header">
-    {% if section.settings.pre_title != blank %}
-      <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 caps section-header__pre_title">{{ section.settings.pre_title | escape }}</h4>
-    {% endif %}
-    {% if section.settings.title != blank %}
-      <h2 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h2 section-header__title">{{ section.settings.title | escape }}</h2>
-    {% endif %}
-    {% if section.settings.subheading != blank %}
-      <p>{{ section.settings.subheading | escape }}</p>
-    {% endif %}
-  </div>
-  {%endif%}
-
-  {% form 'customer' %}
-    {{ form.errors | default_errors }}
-    {% if form.posted_successfully? %}
-      <p>{{ 'general.newsletter_form.confirmation' | t }}</p>
-    {% else %}
-      <input type="hidden" name="contact[tags]" value="newsletter">
-      <input type="email"
-        name="contact[email]"
-        id="Email"
-        value="{% if customer.email != blank %}{{ customer.email }}{% endif %}"
-        placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
-        autocorrect="off"
-        autocapitalize="off">
-      <button type="submit" name="commit" class="button secondary" id="Subscribe">
-        <span>{{ 'general.newsletter_form.submit' | t }}</span>
-      </button>
-    {% endif %}
-  {% endform %}
-  </div>
+  {% include 'signup-form' %}
 </section>
 
 {% schema %}
