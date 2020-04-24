@@ -174,7 +174,10 @@ class Theme {
   headroomInit() {
     var myHeadroom = new Headroom(this.header, {
       offset: this.offset,
-      tolerance: 8,
+      tolerance: {
+        down: 22,
+        up: 5
+      },
     });
     myHeadroom.init();
   }
