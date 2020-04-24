@@ -83,7 +83,7 @@ nav.main-nav {
       //Child menu
       padding: 12px 8px;
       &::before {
-        height: 1em;
+        height: 1.5em;
         display: block;
         content: '';
 
@@ -95,7 +95,7 @@ nav.main-nav {
         @extend %psuedo;
         background: var(--header-bg);
         opacity: 1;
-        top: 1em;
+        top: 1.5em;
         z-index: 0;
         box-shadow: 4px 4px 8px rgba(black, 0.25);
       }
@@ -107,7 +107,7 @@ nav.main-nav {
       overflow: hidden;
       min-width: 150px;
       max-height: 0px;
-      transition: max-height 300ms $ease;
+      transition: max-height 500ms $ease;
       padding: 0;
 
 
@@ -118,7 +118,7 @@ nav.main-nav {
         z-index: 2;
         width: 100%;
         text-align: left;
-        padding: 0.2em 0;
+        padding: 0.4em 0;
 
         @include media-query($medium-up){
           border-bottom: 1px solid $color-border;
@@ -127,7 +127,7 @@ nav.main-nav {
         a {
           width: 100%;
           font-size: 0.95em;
-          padding: 0.23em 0.8em;
+          padding: 0.33em 0.8em;
           &::before,
           &::after {
             display: none;

@@ -46,7 +46,7 @@
 
 
 {%capture header_markup %}
-  <header role="banner" class="site-header {% if section.settings.layout_socials == 'after_menu'%} with-socials{%endif%}" >
+  <header role="banner" class="site-header {% if section.settings.layout_socials ==  'below-header'%} with-socials{%endif%}" >
     {% if template.name == 'index' %}
       <h1 class="{{section.settings.header_font_size }} {% if section.settings.logo == blank and section.settings.logo_overlay == blank%} fallback{%endif%}">
     {% else %}
@@ -84,7 +84,7 @@
     {% else %}
       </div>
     {% endif %}
-    {% if section.settings.layout_socials == 'after-header'%}{%include 'social-icons' %}{%endif%}
+    {% if section.settings.layout_socials ==  'below-header'%}{%include 'social-icons' %}{%endif%}
   </header>
 {%endcapture %}
 
@@ -97,29 +97,7 @@ document.body.classList.add('header-overlay');
 
 <section data-section-id="{{ section.id }}" class="site-header__wrap {% if section.settings.box_shadow  == true%} box-shadow {%endif%} {% if section.settings.expand_logo  == true%} expand-logo {%endif%} {% if section.settings.overlay  == true %} overlay-header {%endif%}" data-section-type="header" style="{% if section.settings.bg_color != blank and settings.texture_header != true %}background-color: {{section.settings.bg_color}}; {%endif%}{% if section.settings.text_color != blank%}color: {{section.settings.text_color}};{% endif %}">
 
-<!-- header-above. Often includes announcements, etc -->
-<div class="header-above {% if section.settings.slide_in  == true%} slide-in {%endif%} " style="{% if section.settings.top_bg_color != blank and settings.texture_header != true %}background-color: {{section.settings.top_bg_color}}; {%endif%}{% if section.settings.top_text_color != blank%}color: {{section.settings.top_text_color}};{% endif %}">
-  <div class="header-above__inner">
-  {% if section.settings.layout_socials == 'top-bar' %}
-    {% include 'social-icons' %}
-    {%endif%}
-
-      {% if section.settings.email_button_text != blank %}
-      <div class="signup-outer">
-        <div class="lightbox-button button outline please" data-lightbox-type="html" data-module="lightbox" data-lightbox-target="newsletter">{{section.settings.email_button_text}}</div>
-        <div class="lightbox-content" data-lightbox-content="newsletter">{% include 'newsletter-popup' %}</div>
-    </div>
-      {%endif%}
-        {% if section.settings.layout_search == 'above' %}
-          {{search_markup}}
-          {%endif%}
-        {% if section.settings.layout_cart == 'top-bar' %}
-          {{cart_markup}}
-        {%endif%}
-  </div> <!--end header-above__inner-->
-</div>
-
-<div class="site-header__inner {% if section.settings.layout_header == 'above' %}force-wrap{%endif%} mobile--{{section.settings.layout_mobile}} {% if section.settings.enable_mobile_menu == true %} make-mobile {%endif%}">
+<div class="site-header__inner {% if section.settings.layout_header == 'above' %}force-wrap{%endif%} mobile--{{section.settings.layout_mobile}} {% if section.settings.enable_mobile_menu == true %} make-mobile {%endif%} socials--{{section.settings.layout_socials}}">
   <div class="site-header__inner-wrap">
 
     {% if section.settings.layout_header == 'above' %}
@@ -138,9 +116,9 @@ document.body.classList.add('header-overlay');
         </div>
     {%endif%}
 
-    {% if section.settings.layout_socials == 'before-menu' %}
+    {% if section.settings.layout_socials == 'before-menu' or section.settings.layout_socials == 'after-header'  %}
       {% include 'social-icons' %}
-      {%endif%}
+    {%endif%}
 
 
   <nav role="navigation" class="main-nav {% if section.settings.enable_mobile_menu == true %} make-mobile {%endif%} mobile-align--{{section.settings.mobile_menu_text_align}} mobile-text--{{section.settings.mobile_text}} mobile-text-inner--{{section.settings.mobile_inner_text}} align--{{section.settings.menu_text_align}} {% if section.settings.layout_header == 'menu-centered' %} has-halves {%endif%} " id="site-nav" >
@@ -228,7 +206,7 @@ document.body.classList.add('header-overlay');
           {%endif%}
         {%endif%} {%comment%}End menu-centered conditional {%endcomment%}
       </ul>
-      {% if section.settings.layout_socials == 'after-menu' and section.settings.layout_header != 'menu-centered' %}  {%comment%}Disable if menu-centered {%endcomment%}
+      {% if section.settings.layout_header != 'menu-centered' and section.settings.layout_socials == 'after-menu' %}  {%comment%}Disable if menu-centered {%endcomment%}
 
     {% include 'social-icons' %}
     {%endif%}
@@ -322,9 +300,6 @@ document.body.classList.add('header-overlay');
             "value": "menu",
             "label": "In Menu"
         }, {
-            "value": "above",
-            "label": "Above Menu"
-        }, {
             "value": "menu-centered",
             "label": "Centered in Menu"
         }]
@@ -337,7 +312,7 @@ document.body.classList.add('header-overlay');
             "value": "squished",
             "label": "Menu centered around logo"
         }, {
-            "value": "soaced",
+            "value": "spaced",
             "label": "Menu Spaced around logo"
         }]
     }, {
@@ -536,19 +511,19 @@ document.body.classList.add('header-overlay');
         "type": "select",
         "id": "layout_socials",
         "label": "Socials Position",
-        "default": "top-bar",
+        "default": "after-header",
         "options": [{
             "value": "before-menu",
             "label": "Before Menu"
         }, {
             "value": "after-header",
-            "label": "After Header"
+            "label": "Next To Header"
+        }, {
+            "value": "below-header",
+            "label": "Below Header"
         }, {
             "value": "after-menu",
             "label": "After Menu"
-        }, {
-            "value": "top-bar",
-            "label": "In Top Bar"
         }, {
             "value": "disabled",
             "label": "Disable Socials"
@@ -567,9 +542,6 @@ document.body.classList.add('header-overlay');
         }, {
             "value": "menu",
             "label": "In Menu"
-        }, {
-            "value": "above",
-            "label": "Above Menu"
         }]
     }
   ]

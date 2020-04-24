@@ -229,9 +229,15 @@
     justify-content: space-between;
     max-width: $grid-max-width;
     margin: auto;
+    position: relative;
+    z-index: 2;
   }
   &.force-wrap {
     flex-wrap: wrap;
+  }
+
+  .social-wrap a {
+    color: var(--header-text);
   }
 
   h1,
@@ -391,7 +397,7 @@ nav.main-nav.has-halves {
   z-index: 9999;
 
   & + .social-wrap {
-    margin-left: 20px;
+    margin-left: 10px;
   }
   .social-wrap {
     margin: 0px 0 -12px;
