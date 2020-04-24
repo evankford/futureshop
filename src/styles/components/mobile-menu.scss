@@ -16,7 +16,7 @@
   color: var(--header-text);
   span {
     display: inline-block;
-    font-family: $font-heading;
+    @include font-heading();
     text-transform: uppercase;
     font-weight: normal;
     font-size: 1em;

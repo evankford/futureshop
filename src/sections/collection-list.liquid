@@ -43,7 +43,7 @@
           {% if block.settings.pre_header != blank %}
           <h4 class="h5">{{block.settings.pre_header}}</h5>
         {%endif%}
-        <h3 class="h3">{{ collection.title | default: default_label }}</h3>
+        <h3 class="h3 font--extra">{{ collection.title | default: default_label }}</h3>
         {% if block.settings.description  != blank %}
           <h4 class="h5">{{block.settings.description}}</h5>
         {%endif%}
@@ -150,25 +150,23 @@
         "type": "text",
         "id": "introduction",
         "label": "Introduction",
-        "default": "Use this space to"
+        "default": "Shop By"
       },
       {
         "type": "text",
         "id": "heading",
         "label": "Heading",
-        "default": "Talk about your brand"
+        "default": "Category"
       },
       {
         "type" : "text",
         "id" : "subtitle",
-        "label" : "Subtitle",
-        "default" : "And even more!"
+        "label" : "Subtitle"
       },
       {
         "type": "richtext",
         "id": "text",
-        "label": "Text",
-        "default": "<p>Share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+        "label": "Text"
       },
        {
          "type" : "header",

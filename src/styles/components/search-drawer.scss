@@ -99,11 +99,9 @@
       }
     }
     button {
-      padding: 0.4em 1.1em;
+      padding: 0.4em 1.6em 0.8em ;
       flex: 0 0 auto;
-      i {
-        color: $color-body-text;
-      }
+      color: inherit;
       @extend %hover;
       // background: $color-accent;
       svg path {

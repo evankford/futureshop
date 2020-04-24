@@ -33,7 +33,7 @@ section.account-wrap, {
   margin: 2vw auto;
   box-shadow: 0 0 32px rgba(black, 0.08);
   border-radius: 12px;
-  
+
   table {
     background: $color-accent-lightest;
     width: 100%;
@@ -56,9 +56,9 @@ section.account-wrap, {
       opacity: 0.5
     }
   }
-  
-  
-  
+
+
+
    h1 {
       text-align: center;
       // margin: 30px auto;
@@ -86,12 +86,12 @@ section.account-wrap, {
     h1:first-child() {
     margin: calc(10px + 0.2vw) auto calc(20px + 1vw);
   }
-    
+
   }
   p {
       font-size: 18px;
     }
-  
+
   .label {
     text-transform: uppercase;
     font-size: 16px;
@@ -163,8 +163,8 @@ section.account-wrap, {
     h2 {
       margin-top: 0;
     }
-    
-    
+
+
   }
   .account-details {
     flex: 0 0  280px;
@@ -194,14 +194,14 @@ section.account-wrap, {
       &+.link-wrap {
         display: none;
       }
-      
+
     }
   main {
     // padding:  0 0 ;
     max-width: 1000px;
     margin: auto;
     padding-top: 180px !important;
-   
+
     .form-success {
       text-align: center;
       font-size: 1.2em;
@@ -214,7 +214,7 @@ section.account-wrap, {
           list-style: none;
           text-align: center;
           font-size: 1.2em;
-          
+
         }
         li {
           line-height: 1.4;
@@ -272,10 +272,10 @@ section.account-wrap, {
         }
 
       }
-      
+
     }
-   
-    
+
+
     a {
           display: inline-block;
           font-weight: 600;
@@ -283,7 +283,7 @@ section.account-wrap, {
           &:visited {
             color: $color-accent-darker
           }
-          font-family: $font-heading;
+          @include font-heading();
           font-size: 18px;
           letter-spacing: -0.02em;
           text-decoration: none;

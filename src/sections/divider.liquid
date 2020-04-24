@@ -1,15 +1,13 @@
-<div class="custom-divider {% if section.settings.hide_mobile == true %} hide-mobile {%endif%} space--{{section.settings.spacing}} style--{{section.settings.type}} "id="divider--{{section.id}}">
+<div class="custom-divider {% if section.settings.image != blank %}image-divider{%endif%} {% if section.settings.hide_mobile == true %} hide-mobile {%endif%} space--{{section.settings.spacing}} style--{{section.settings.type}} "id="divider--{{section.id}}">
 {% if section.settings.image != blank %}
   {% capture image_width %}{{section.settings.image_max_width}}x{%endcapture %}
   {{ section.settings.image | img_url: image_width | img_tag }}
 {%endif%}
 </div>
 {% if section.settings.color != empty and section.settings.image == empty %}
-<style>
-#divider--{{section.id}}  {
+<style>#divider--{{section.id}}  {
   border-top-color: {{section.settings.color}}
-}
-</style>
+}</style>
 {%endif %}
 {%schema %}
 {
@@ -89,7 +87,7 @@
             "ja": "ロゴの幅をカスタムする",
             "pt-BR": "Largura do  personalizado"
         },
-        "min": 20,
+        "min": 10,
         "max": 900,
         "step": 10,
         "unit": {

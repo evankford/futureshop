@@ -113,3 +113,23 @@
   object-position: $position;
   font-family: "object-fit: #{$style}; object-position: #{$position};";
 }
+@mixin font-script() {
+  font-family: $font-script;
+  font-weight: 400;
+  text-transform: none !important;
+  letter-spacing: 0em;
+}
+
+@mixin font-extra($extraweight: $font-extra-weight) {
+  font-family: var(--font-extra-real);
+  font-weight: $extraweight;
+}
+@mixin font-heading($headingweight: $font-heading-weight) {
+  font-family:  var(--font-heading-real);
+  font-weight: $headingweight;
+}
+@mixin font-body($bodyweight: $font-body-weight) {
+  font-family:  var(--font-body-real);
+  font-weight: $bodyweight;
+  font-style: $font-body-style;
+}

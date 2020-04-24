@@ -13,7 +13,17 @@
     }
 
     &__heading {
-      margin: 0.19em auto .35em;
+      line-height: 1;
+      margin: 0.45em auto .25em;
     }
+  }
+
+  &.type--slide {
+    max-width: 700px;
+    margin-bottom: 10px;
+  }
+
+  .rte {
+    margin-bottom: 0;
   }
 }

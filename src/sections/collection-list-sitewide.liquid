@@ -44,7 +44,7 @@
           {% if block.settings.pre_header != blank %}
           <h4 class="h5">{{block.settings.pre_header}}</h5>
         {%endif%}
-        <h3 class="h3">{{ collection.title | default: default_label }}</h3>
+        <h3 class="h3 font--extra">{{ collection.title | default: default_label }}</h3>
         {% if block.settings.description  != blank %}
           <h4 class="h5">{{block.settings.description}}</h5>
         {%endif%}

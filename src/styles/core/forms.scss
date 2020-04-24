@@ -21,7 +21,7 @@ select {
   max-width: 100%;
   border: 1px solid $color-border;
   border-radius: 0;
-  
+
   &[disabled] {
     border-color: $color-disabled-border;
     background-color: $color-disabled;
@@ -76,7 +76,7 @@ option {
     border: none;
     background: none;
     color: inherit;
-    font-family: $font-heading;
+    @include font-heading();
 
     width: 22em;
     max-width: 100%;
@@ -86,7 +86,7 @@ option {
     text-align: center;
     &::placeholder {
       color: inherit;
-      font-family: $font-heading;
+      @include font-heading();
       opacity: 1;
     }
     &:focus {
@@ -102,7 +102,7 @@ option {
 
 @keyframes pulse {
   0% {
-    opacity: 1, 
+    opacity: 1,
   }
   100% {
     opacity: 0.5
@@ -133,12 +133,13 @@ option {
   .input-group {
     flex: 0 1 auto;
     margin: 0 0 12px;
-    
+
     input, button {
       margin: 5px !important;
+      height: 48px;
       box-sizing: border-box;
     }
-    
+
     label {
       display: none;
       text-transform: uppercase;
@@ -146,7 +147,7 @@ option {
       font-size: 12px;
       margin: 0.1em auto;
     }
-    
+
     p {
       font-size: 18px;
       font-weight: $font-body-bold-weight;
@@ -159,17 +160,16 @@ option {
       height: 48px;
       width: 280px;
       max-width: 100%;
-      margin: 0 0 12px;
-      font-family: $font-heading;
+      @include font-heading();
 
       &::placeholder {
-        font-family: $font-heading;
+        @include font-heading();
       }
 
     }
   button.button {
       height: 48px;
-      margin: 0 0 12px;
+      margin: 0;
     }
   .large_form {
     text-align: left;
@@ -177,9 +177,9 @@ option {
     max-width: 440px;
     margin: 0 auto;
     padding: 0px 12px;
-    display: flex;  
+    display: flex;
     align-items: center;
-    justify-content: center;  
+    justify-content: center;
       .label-text {
         padding-left: 10px;
       }
@@ -188,7 +188,7 @@ option {
       margin: 5px;
       width: auto;
       height: auto;
-      
+
     }
   }
   .form-success {

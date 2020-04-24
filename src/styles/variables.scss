@@ -56,10 +56,10 @@ $color-success: var(--color-success);
 $color-notification-text: var(--color-notification-text);
 
 // Typography
-$font-heading: var(--font-heading);
-$font-extra: var(--font-extra);
-$font-script: var(--font-extra);
-$font-body: var(--font-body);
+$font-heading: var(--font-heading-real);
+$font-extra: var(--font-extra-real);
+$font-script: var(--font-extra-real);
+$font-body: var(--font-body-real);
 
 
 $font-heading-weight: var(--font-heading-weight);
@@ -68,26 +68,6 @@ $font-body-weight: var(--font-body-weight);
 $font-body-style: var(--font-body-style);
 $font-body-bold-weight: var(--font-body-bold-weight);
 
-@mixin font-script() {
-  font-family: $font-script;
-  font-weight: 400;
-  text-transform: none !important;
-  letter-spacing: 0em;
-}
-
-@mixin font-extra($extraweight: $font-extra-weight) {
-  font-family: $font-extra;
-  font-weight: $extraweight;
-}
-@mixin font-heading($headingweight: $font-heading-weight) {
-  font-family: $font-heading;
-  font-weight: $headingweight;
-}
-@mixin font-body($bodyweight: $font-body-weight) {
-  font-family: $font-body;
-  font-weight: $bodyweight;
-  font-style: $font-body-style;
-}
 
 // Transitions
 $transition-duration: 250ms;

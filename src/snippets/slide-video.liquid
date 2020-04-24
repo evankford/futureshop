@@ -3,16 +3,11 @@
   {% include 'vidbox' with video_url: slide.settings.url, fallback_gif: slide.settings.fallback_gif, fallback_image: slide.settings.image , overlay: slide.settings.overlay_op, start_time: slide.settings.start_time %}
  <div class="slide-content">
     <div class="slide-content-inner {% if slide.settings.mega_text == true%} mega-text {%endif%} {% if slide.settings.shadow_text == true%} shadow-text {%endif%}">
-      {% if slide.settings.pre_title %}<h4>{{slide.settings.pre_title}}</h4>{%endif%}
-      {% if slide.settings.title_image %}{% include 'responsive-image' with image: slide.settings.title_image, max_width: 900, max_height: 900 %}
-      {%elsif slide.settings.title %}<h3 class="h1">{{slide.settings.title}}</h3>{%endif%}
-      {% if slide.settings.content != empty %}<p >{{slide.settings.content}}</p>{%endif%}
-      
+      {% include 'common-header' %}
       <div class="button-wrap">
         {% if slide.settings.button_1_link != empty and slide.settings.button_1_text != empty %}<a href="{{slide.settings.button_1_link}}" class="button over-dark">{{slide.settings.button_1_text}}</a>{%endif%}
         {% if slide.settings.video_button != false%}<a href="{{slide.settings.url}}" data-module="lightbox" data-lightbox-type="video" data-lightbox-target="{{slide.settings.url}}" class="button {%if slide.settings.video_button_big == true %} over-dark {% else %} simple white {%endif%}">Watch Video</a>{%endif%}
       </div>
-      
     </div>
   </div>
 </div>

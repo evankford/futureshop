@@ -60,6 +60,11 @@ body {
     color: inherit;
     font-weight: bold;
 
+    &.button {
+      color: var(--bg-color);
+      background: var(--text-color);
+    }
+
     @extend %hover;
   }
 }

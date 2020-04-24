@@ -35,7 +35,9 @@ overflow: visible;
     position: absolute;
     right: 0;
     height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     z-index: 10;
+    top:0;
 
     &::before {
       @extend %psuedo;
@@ -53,15 +55,15 @@ overflow: visible;
     .shop-drawer__content {
       transform: translateX(0%);
       &:before {
-        
+
         opacity: 1;
       }
     }
   }
- 
+
 
   &.transitioning {
-    
+
       z-index: 9999;
       .shop-drawer__background, .shop-drawer__content, .shop-drawer__content::before {
         transition: opacity 500ms $ease, transform 500ms $ease;;

@@ -40,10 +40,7 @@
     }
   }
   &.headroom--pinned.headroom--not-top {
-    animation: getitin 240ms linear;
-    animation-fill-mode: forwards;
-    animation-iteration-count: 1;
-
+    transform: translateY(0%);
     opacity: 1;
     .site-header__inner {
       padding: 9px 0;
@@ -65,13 +62,11 @@
   &.headroom--not-top {
     opacity: 0;
     .site-header__inner {
-      // transform: translateY(-100%);
+      transform: translateY(-100%);
     }
   }
   &.headroom--unpinned.headroom--not-top {
-    animation: getitout 240ms linear;
-    animation-fill-mode: none;
-    animation-iteration-count: 1;
+
   }
 
   &.overlay-header {

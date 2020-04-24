@@ -1,6 +1,6 @@
 
 
-//Dividers 
+//Dividers
 .divider-wrap {
  width: 95%;
  max-width: $grid-max-width;
@@ -12,6 +12,15 @@
   padding: 1px;
   width: 100%;
   height: $border-thickness;
+
+  &.image-divider {
+    height: auto;
+
+    img {
+      display: block;
+      margin: auto;
+    }
+  }
   @include media-query($small) {
     font-size: 7px;
     &.hide-mobile {

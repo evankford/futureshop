@@ -13,7 +13,7 @@
 @font-face  {
   font-family: "ultra";
   src: url("{{'ultra.woff2' | asset_url}}") format('woff2'), url("{{'ultra.woff' | asset_url}}") format('woff');
-  font-weight: 400;
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -80,25 +80,14 @@
     --color-success: {{settings.color_success | default: '#34c240'}};
     --color-alert: {{settings.color_alert | default: '#fa9f47'}};
 
-    {% if settings.heading_typekit != blank %}
-    --font-heading:  {{settings.heading_typekit}} ,{{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
-    {%else %}
-    {% comment %} --font-heading:  {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; {% endcomment %}
-    --font-heading:  {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
-    {% endif%}
-    {% if settings.body_typekit != blank %}
-    --font-body: {{settings.body_typekit}} , {{ settings.font_body.fallback_families }};
-    {%else%}
-    --font-body: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }};
-    {% endif%}
-    --font-extra:   {{ settings.font_extra.family }}, {{ settings.font_extra.fallback_families }};;
+
     --font-body-weight: {{ settings.font_body.weight }};
     --font-heading-weight: {{ settings.font_heading.weight }};
     --font-extra-weight: {{ settings.font_extra.weight }};
     --font-body-style: {{ settings.font_body.style }};
     --font-body-bold-weight: {{ font_body_bold.weight | default: 'bold' }};
   }
-\
+
 </style>
 
 

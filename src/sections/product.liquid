@@ -4,17 +4,17 @@
 <div class="product-grid__wrap">
   {% include 'product-images' %}
     <div class="product-details__wrap">
-    
+
  {% if settings.tag_location == 'above'%}{% include 'visible-tags'%}{%endif%}
 
       {% comment %} Product title {% endcomment %}
-      <h1 data-aos="fade-in" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">{{ product.title }}</h1>
-      
+      <h1 class="font--extra" data-aos="fade-in" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">{{ product.title }}</h1>
+
       {%include 'product-form' %}
-      
+
       {% comment %} tags below form {% endcomment %}
       {% if settings.tag_location == 'below'%}{% include 'visible-tags'%}{%endif%}
-      
+
       {% comment %} product description {% endcomment %}
   {% if product.description != blank %}
       <div class="rte" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
@@ -44,19 +44,19 @@
       },
       {
         "type": "checkbox",
-        "id": "enable_quantity",  
+        "id": "enable_quantity",
         "label": "Enable Quantity",
         "default": true
       },
       {
         "type": "checkbox",
-        "id": "enable_breadcrumbs",  
+        "id": "enable_breadcrumbs",
         "label": "Enable Breadcrumbs Menu?",
         "default": true
       },
       {
         "type": "checkbox",
-        "id": "zoom_enabled",  
+        "id": "zoom_enabled",
         "label": "Enable Product image zoom?",
         "default": true
       }

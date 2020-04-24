@@ -24,11 +24,11 @@ h6 {
   line-height: 1.1;
   letter-spacing: -0.03em;
   &.light {
-    // font-family: $font-body;
+    // @include font-body();
     font-weight: 400;
   }
   &.caps {
-    // font-family: $font-body;
+    // @include font-body();
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.1em;

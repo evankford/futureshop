@@ -1,6 +1,13 @@
 
  <div class="form-wrap signup-form layout--{{settings.signup_layout}}">
+  <style>
+  .signup-form {
+    background-color: {{settings.signup_background_color}};
+    color: {{settings.signup_text_color}};
+  }
+  </style>
 
+  <div class="signup-form__inner">
  {% if settings.signup_html != blank %}
  <div class="custom-newsletter">
   {{settings.signup_html}}
@@ -8,7 +15,7 @@
  {%else%}
   {%capture form_id%}signup--{{section.id}}{%endcapture%}
 
-  <div class="common-header__outer signup-form__header type--newsletter align--{{settings.signup_align}} size--{{settings.signup_text_size}}">
+  <div class="common-header__outer signup-form__header type--newsletter align--{{settings.signup_alignment}} size--{{settings.signup_text_size}}">
     {% if settings.signup_title != empty or settings.signup_introduction != empty or settings.signup_subtitle != empty %}
       <header class="common-header type--newsletter">
         {% if settings.signup_introduction != empty %}
@@ -53,7 +60,7 @@
           autocapitalize="off"
           placeholder="{{ 'general.password_page.signup_form_email_placeholder' | t }}">
       </div>
-      <div class="input-groupbtn-group">
+      <div class="input-group btn-group">
         <button type="submit" name="commit" class="button secondary">{{settings.signup_button_text | default: 'Sign Up'}}</button>
       </div>
       {% if settings.gdpr_text != blank %}
@@ -65,5 +72,6 @@
       {% endif %}
     {% endform %}
   {%endif%}
+  </div>
   </div>
 </div>

@@ -12,6 +12,11 @@ body {
   width: 100%;
   position: relative;
   z-index: 1;
+
+  .button.outline, body.button-style--outline & .button {
+    color: inherit;
+  }
+
   .section-bg {
     @extend %psuedoish;
     z-index: 1;

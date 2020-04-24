@@ -75,7 +75,7 @@ $slider-height-max: 620px;
 &.product-thumbnails {
   width: 80%;
   flex: 0 0 80px;
-  margin: 12px auto;
+  margin: 12px auto 20px;
   .swiper-button-prev, .swiper-button-next {
     width: 34px;
     &::after {

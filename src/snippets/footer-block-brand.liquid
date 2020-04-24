@@ -20,8 +20,8 @@
       </a>
     {%endif%}
     {% if block.settings.socials == true %}
-      <div class="social-wrap"   data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
-        {% include 'social-icons' with social_style: block.settings.socials_style %}
-      </div> 
+      <ul class="social-wrap style--{{settings.social_link_style}}"   data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">
+        {% include 'social-icons' with nowrap: true %}
+      </ul>
     {%endif%}
   </div>

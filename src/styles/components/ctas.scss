@@ -1,7 +1,7 @@
 %button {
   display: inline-block;
   font-size: calc(1.4rem + 0.3vw);
-  padding: 0.7em 1.2em 0.62em;
+  padding: 0.7em 1.2em;
   line-height: 1.1;
   position: relative;
   z-index: 10;
@@ -111,13 +111,13 @@ form button.simple {
 body {
   &.button-font--body {
     %button {
-      font-family: $font-body;
+      @include font-body();
       font-weight: $font-body-weight;
     }
   }
   &.button-font--extra {
     %button {
-      font-family: $font-extra;
+      @include font-extra();
       font-weight: $font-extra-weight;
     }
   }

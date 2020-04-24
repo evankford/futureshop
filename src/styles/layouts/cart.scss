@@ -6,7 +6,7 @@
   margin: calc(20px + 2vw) 0 20px;
 }
 
-.cart-table { 
+.cart-table {
   width: 100%;
   .quantity-select {
     display: block;
@@ -16,7 +16,7 @@
     a.item-title {
       font-size: 32px;
       font-weight: normal;
-      font-family: $font-heading;
+      @include font-heading();
       text-decoration: none;
       display: inline-block;
       padding: 0 0 0.1em;
@@ -26,11 +26,11 @@
       margin: 0 0 10px;
     }
     p {
-      font-family: $font-heading;
+      @include font-heading();
       // font-style: italic;
       margin: 5px 0;
     }
-    
+
   }
   td {
   &:first-child {
@@ -52,7 +52,7 @@
   .item-image, .item-info , .item-price, .item-total{
         padding: 6px;
   }
-        
+
 
   tbody tr {
     // background: #fafafa;
@@ -88,7 +88,7 @@
         -ms-grid-columns: 1fr 100px 160px 100px;
         grid-template-columns: 1fr 100px 160px 100px;
       }
-      
+
       tr {
         display: -ms-grid;
         display: grid;
@@ -98,7 +98,7 @@
         align-items: center;
       }
       @media (max-width: 1100px) {
-        
+
         tr {
           -ms-grid-columns: (1fr)[6];
           grid-template-columns: repeat(6, 1fr);
@@ -108,7 +108,7 @@
         td {
           -ms-grid-column-span: 2;
           grid-column: span 2;
-         
+
         }
         td.item-image {
           -ms-grid-column: 2;
@@ -121,12 +121,12 @@
       }
     }
     @media (max-width: 1100px) {
-     
+
       // thead {
       //   display: none;
       // }
     }
-    
+
 }
  @media (max-width: 1100px) {
       .cart-header-wrap {
@@ -141,12 +141,12 @@
   color: $color-border;
   padding-bottom: 12px;
   h5 {
-    font-family: $font-body;
+    @extend %label;
     letter-spacing: 0.08em;
   }
   text-transform: uppercase;
   text-align: left;
-  
+
   th:not(:first-child) {
     text-align: center;
   }
@@ -167,7 +167,7 @@
   }
   label {
     // padding: 12px;
-    font-family: $font-heading;
+    @include font-heading();
     display: block;
     margin: 0 0 12px;
   }
@@ -221,7 +221,7 @@
         padding: 2px;
       }
     }
-    
+
   }
 }
 
@@ -249,7 +249,7 @@
       -ms-grid-column: 1;
       -ms-grid-column-span: 2;
       grid-column: 1 / span 2;
-      
+
     }
     .item-info {
       -ms-grid-column-span:  4;
@@ -262,7 +262,7 @@
       display: block;
       text-align: center;
       text-transform: uppercase;
-      // font-family: $font-heading;
+      // @include font-heading();
       color: $color-accent-lighter;
       letter-spacing: 0.08em;
       padding-bottom: 8px;
@@ -286,7 +286,7 @@
         }
         .item-edits {
           padding: 6px;
-          
+
           .quantity-select {
             display: inline-block;
             margin: 10px 5px;
@@ -326,8 +326,8 @@
         -ms-grid-column-span: 1;
 grid-column: span 1;
         text-align: left;
-        
-        
+
+
         font-size: 14px;
         a {
           display: inline-block;
@@ -379,7 +379,7 @@ body.template-cart main#MainContent {
 body.product-style--card {
   .cart-table {
     .responsive-table-row {
-      
+
       background: var(--color-card-bg);
       color: var(--color-card-text);
       box-shadow: 0 0 12px rgba(0,0,0,0.1);

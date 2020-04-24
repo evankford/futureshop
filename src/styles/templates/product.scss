@@ -1,5 +1,5 @@
 body.template-product {
-  
+
   main#MainContent {
     max-width: $site-max;
     margin: auto;
@@ -8,7 +8,7 @@ body.template-product {
       width: 100%
     }
     .section-inner.stretch-width {
-      
+
     }
   }
 }
@@ -32,7 +32,7 @@ ul.product-thumbnails {
   padding: 30px 12px;
   max-width: $site-max;
   margin: auto;
-   
+
 }
 .product-grid__wrap {
   display: flex;
@@ -83,8 +83,8 @@ ul.product-thumbnails {
   flex: 1 2 300px;
   position: relative;
   z-index: 1;
-  padding: calc(12px + 1vw) calc(10px + 2.2vw);
-  
+  padding: calc(12px + 1vw) calc(10px + 2.2vw) ;
+
   // margin-top:6vmin;
   min-height: 350px;
   margin: auto 0;
@@ -106,7 +106,7 @@ ul.product-thumbnails {
     max-width: 500px;
   }
   @include media-query($large-up) {
-    // padding: 50px;
+    padding-left: 50px;
   }
   @include media-query($tiny) {
     margin-top: 0;
@@ -122,27 +122,14 @@ ul.product-thumbnails {
     margin-bottom: 20px;
     width: 100%;
     word-wrap: break-word;
-    @include media-query($large-down) {
-      
-      font-size: calc(2rem + 2.8vw) !important;
-    }
-    @include media-query($widescreen) {
-      font-size: 5.2rem;
-    }
+
   }
-  
+
   .form-wrap {
     position: relative;
     z-index: 2;
     width: 100%;
   }
-}
-
-.image-divider {
-  position: relative;
-  z-index: 0;
-  width: calc(100% + 550px);
-  margin: 20px -150px 0 -400px
 }
 
 .product-form-footer {
@@ -153,7 +140,7 @@ ul.product-thumbnails {
   max-width: 55rem;
   .quantity-select {
     flex: 0 0  140px;
-    
+
     margin: 12px 0;
     padding: 10px;
     label {
@@ -162,13 +149,13 @@ ul.product-thumbnails {
     @include media-query($medium-down) {
       margin-right: 0;
     }
-    
+
   }
- 
+
   button {
     margin: 0 0;
     &.button.solid {
-      // background: $color-secondary;  
+      // background: $color-secondary;
     }
     &.cart {
       font-size: 19px;
@@ -197,6 +184,26 @@ body.product-style--card {
     color: $color-card-text;
     box-shadow: 0 0 25px rgba(0,0,0,0.1);
     border-radius: $border-radius-big;
+  }
+  .product-details__wrap {
+    @include media-query($small) {
+      padding: 0;
+    }
+  }
+}
+body.product-style--bordered {
+  #shopify-section-product {
+    padding: 0;
+    margin: 20px auto calc(20px + 1.7vw);
+  }
+
+  section[data-section-type="product"] {
+    padding:  calc(10px + 1vw);
+    border: $border-thickness solid $color-body-text;
+  }
+
+  .product-images__wrap {
+    margin: calc(-10px - 1vw);
   }
   .product-details__wrap {
     @include media-query($small) {
