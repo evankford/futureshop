@@ -1,0 +1,16 @@
+{%- capture font-heading -%}
+  {% if settings.heading_typekit != blank %}{{settings.heading_typekit}}, {%endif%}{{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
+{%- endcapture -%}
+{%- capture font-body -%}
+  {% if settings.body_typekit != blank %}{{settings.body_typekit}}, {%endif%}{{ settings.font_body.family }}, {{ settings.font_body.fallback_families }};
+{%- endcapture -%}
+{%- capture font-extra -%}
+  {% if settings.extra_typekit != blank %}{{settings.extra_typekit}}, {%endif%}{{ settings.font_extra.family }}, {{ settings.font_extra.fallback_families }};
+{%- endcapture -%}
+<style>
+:root {
+  --font-heading-real:  {{font_heading}};
+  --font-body-real: {{font_body}};
+  --font-extra-real: {{font_extra}}
+}
+</style>

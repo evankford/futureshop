@@ -98,8 +98,7 @@
 
 .popup-header {
   h4 {
-    font-family: $font-body;
-    font-size: 20px;
+    @extend %label;
   }
 }
 

@@ -269,7 +269,7 @@ ul.footer-menu {
     a {
 
       text-decoration: none;
-      font-family: $font-body;
+      @include font-body();
       text-transform: uppercase;
       display: inline-block;
       letter-spacing: 0.05em;

@@ -5,6 +5,12 @@
     }
     .slide-content {
       max-width: 700px;
+
+      .responsive-image__wrapper  {
+        max-width: 280px;
+        width: 65%;
+        margin: auto;
+      }
     }
   }
 }

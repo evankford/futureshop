@@ -1,18 +1,18 @@
-$slider-height: calc(320px + 20vw);
+$slider-height: calc(240px + 26vw);
 $slider-height-max: 620px;
 
 .product-images__wrap {
-  flex: 1 1 300px;
+  flex: 1 1 250px;
   position: relative;
   z-index: 2;
   display: flex;
   align-items: stretch;
   justify-content: flex-start;
   flex-direction: column;
-  margin:  auto;
+  margin: 0 auto auto;
   height: $slider-height;
-  min-width: 0;
   max-width: $slider-height;
+  min-width: 0;
   @include media-query($widescreen) {
     height: $slider-height-max;
     max-width: $slider-height;
@@ -26,7 +26,6 @@ $slider-height-max: 620px;
   @include media-query($small) {
     width: 100%;
   }
-  margin:  0;
 
   ul {
     position: relative;
@@ -75,7 +74,7 @@ $slider-height-max: 620px;
 &.product-thumbnails {
   width: 80%;
   flex: 0 0 80px;
-  margin: 12px auto 20px;
+  margin: 12px auto;
   .swiper-button-prev, .swiper-button-next {
     width: 34px;
     &::after {
