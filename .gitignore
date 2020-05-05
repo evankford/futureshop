@@ -13,6 +13,8 @@ upload
 deploy.log
 config/shopify.yml
 npm-debug.log
+src/assets/**.jpg
+src/assets/**.png
 
 
 # Compiled source #

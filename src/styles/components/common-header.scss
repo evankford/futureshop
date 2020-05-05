@@ -13,7 +13,8 @@
     }
 
     &__heading {
-      line-height: 1;
+      @extend %mainHeader;
+      line-height: 1.1;
       margin: 0.45em auto .25em;
     }
   }

@@ -176,6 +176,7 @@ body {
 
 %mainHeader {
   word-wrap: break-word;
+  letter-spacing: var(--header-spacing);
   body.heading-style--caps & {
     text-transform: uppercase;
   }
@@ -192,67 +193,45 @@ body {
 }
 
 body.header-spacing--0 {
-  %mainHeader {
-    letter-spacing: -0.1em;
-  }
+  --header-spacing: -0.08em;
 }
 
 body.header-spacing--1 {
-  %mainHeader {
-    letter-spacing: -0.066em;
-  }
+  --header-spacing: -0.04em;
 }
 
 body.header-spacing--2 {
-  %mainHeader {
-    letter-spacing: -0.033em;
-  }
+  --header-spacing: -0.013em;
 }
 
 body.header-spacing--3 {
-  %mainHeader {
-    letter-spacing: 0;
-  }
+  --header-spacing: 0;
 }
 
 body.header-spacing--4 {
-  %mainHeader {
-    letter-spacing: 0.33em;
-  }
+  --header-spacing: 0.02em;
 }
 
 body.header-spacing--5{
-  %mainHeader {
-    letter-spacing: 0.66em;
-  }
+  --header-spacing: 0.039em;
 }
 
 body.header-spacing--6 {
-  %mainHeader {
-    letter-spacing: 0.1em
-  }
+  --header-spacing: 0.059em
 }
 
 body.header-spacing--7 {
-  %mainHeader {
-    letter-spacing: 0.133em
-  }
+  --header-spacing: 0.095em
 }
 
 body.header-spacing--8 {
-  %mainHeader {
-    letter-spacing: 0.166em;
-  }
+  --header-spacing: 0.12em;
 }
 
 body.header-spacing--9 {
-  %mainHeader {
-    letter-spacing: 0.2em;
-  }
+  --header-spacing: 0.15em;
 }
 
 body.header-spacing--10 {
-  %mainHeader {
-    letter-spacing: 0.25em;
-  }
+  --header-spacing: 0.175em;
 }

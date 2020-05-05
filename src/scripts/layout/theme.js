@@ -173,11 +173,11 @@ class Theme {
   }
   headroomInit() {
     var myHeadroom = new Headroom(this.header, {
-      offset: this.offset,
       tolerance: {
         down: 22,
-        up: 5
+        up: 12
       },
+      offset: this.offset,
     });
     myHeadroom.init();
   }
@@ -258,7 +258,6 @@ class Theme {
         message: window.alertText.customerSuccess,
       });
     } else if (parsedURL.form_type == 'customer') {
-      console.log('errored');
       var customerSuccessDrawer = new AlertDrawer({
         type: 'error',
         position: 'top',

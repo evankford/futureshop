@@ -17,6 +17,10 @@ $slider-height-max: 620px;
     height: $slider-height-max;
     max-width: $slider-height;
   }
+
+  @include media-query($small) {
+    max-width: 100%;
+  }
   .never-hide {
     display: block;
     &.hide  {
@@ -58,15 +62,19 @@ $slider-height-max: 620px;
           left: 0;
           width: 100% !important;
           max-height: $slider-height !important;
-          max-width: $slider-height !important;
           margin: auto;
           @include media-query($widescreen) {
             max-height: $slider-height-max !important;
             max-width: $slider-height-max !important;
           }
+
+          @include media-query($medium-up) {
+            max-width: $slider-height !important;
+          }
         }
         img {
           @include object-fit(contain);
+          max-width: 100% !important;
         }
       }
     }

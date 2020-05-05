@@ -884,13 +884,12 @@
       {
         "type": "text",
         "id": "signup_subtitle",
-        "label": "Title",
-        "default": "To get exclusive deals and more!"
+        "label": "Subtitle"
       },
       {
         "type": "richtext",
         "id": "signup_content",
-        "label": "Subtitle",
+        "label": "Signup Content",
         "default": "<p><strong>Be a VIP!</strong> Get exclusive sales, news and more when you sign up for the email list! </p>"
       },
       {

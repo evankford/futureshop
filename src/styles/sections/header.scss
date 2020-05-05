@@ -34,7 +34,7 @@
   &.headroom--not-top {
     position: fixed !important;
     top: 0;
-    transform: translateY(-100%);
+
     .header-above {
       display: none;
     }
@@ -43,8 +43,7 @@
     transform: translateY(0%);
     opacity: 1;
     .site-header__inner {
-      padding: 9px 0;
-      transform: translateY(0%);
+      padding: 9px 0;s
       .overlay-logo {
         opacity: 0;
       }
@@ -61,12 +60,9 @@
   }
   &.headroom--not-top {
     opacity: 0;
-    .site-header__inner {
-      transform: translateY(-100%);
-    }
   }
   &.headroom--unpinned.headroom--not-top {
-
+    transform: translateY(-100%);
   }
 
   &.overlay-header {

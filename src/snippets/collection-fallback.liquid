@@ -6,7 +6,7 @@
       {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
     </div>
   <div class="product-details grid-item__details">
-        <h5>{{ 'homepage.onboarding.product_title' | t }}</h5>
+        <h5 class="product-title font--{{settings.font_family_product}}">{{ 'homepage.onboarding.product_title' | t }}</h5>
       <span class="price-outer">
         {{ 1999 | money }}
       </span>

@@ -15,7 +15,8 @@
 
   &.image-divider {
     height: auto;
-
+    background: transparent !important;
+    border: none !important;
     img {
       display: block;
       margin: auto;

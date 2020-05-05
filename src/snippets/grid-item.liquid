@@ -7,7 +7,7 @@
     {% include 'visible-tags'%}
   {%endif%}
   {% comment %} Show the title {% endcomment %}
-  <h5 class="product-title">{{ product.title | escape }}</h5>
+  <h5 class="product-title font--{{settings.font_family_product}}">{{ product.title | escape }}</h5>
   {% comment %} Collection Swatches for Coloring {% endcomment %}
   {% if settings.collection_swatches != 'disabled' %}
     <div class="collection-swatches style--{{settings.collection_swatches}}">{% include 'grid-swatches' %}</div>

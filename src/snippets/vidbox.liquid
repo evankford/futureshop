@@ -5,7 +5,7 @@
 {% endcomment %}
 
 <div class="video-player__wrap video-wrap--{{section.id}} {% if video_url == blank%}use-gif{%endif%}" data-overlay="{{overlay}}" data-module="vidbox" data-video-url="{{video_url}}" data-start-time="{{start_time}}" data-aos="fade-in" data-aos-duration="800"><div class="youtube-player" id="player--{{section.id}}"></div>
-<div class="fallback-image">{{ 'lifestyle-2' | placeholder_svg_tag }}</div>
+<div class="fallback-image"></div>
 
 </div>
 <style>

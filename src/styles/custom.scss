@@ -1,86 +1,47 @@
-#hero {
-  .swiper-slide:first-child {
-    .slide-bg img {
-      object-position: 50% 10%;
-    }
-    .slide-content {
-      max-width: 700px;
+body.header-overlay .image-section:first-child::before {
+  display: none;
+}
 
-      .responsive-image__wrapper  {
-        max-width: 280px;
-        width: 65%;
-        margin: auto;
-      }
-    }
+.product-grid-item {
+  h5.product-title {
+    font-size: 25px;
+  }
+  .price-outer {
+    font-weight: 200;
+    opacity: 0.8;
   }
 }
 
-nav ul.main-menu a {
-  letter-spacing: 0.02em;
-  font-size: 13px;
-  font-weight: 400;
+nav.breadcrumb {
+  text-align: center;
 }
 
-.search-drawer-inner {
-  form {
-    background: transparent;
-    color: white;
-
-    input::placeholder {
-      color: white;
-    }
-
-    button {
-      color: inherit;
-    }
+.signup-form__inner {
+  .common-header__outer {
+    margin-bottom: 0;
   }
 }
 
-#shopify-section-product h1 {
-  font-size: 45px;
+.popup-content form .input-group input, .signup-form form .input-group input, .popup-content form .input-group button, .signup-form form .input-group button {
+  border: 1px solid white;
 }
+
+.popup-content form .large_form, .signup-form form .large_form {
+  max-width: 100%;
+}
+
+@include media-query($small) {
+  nav.make-mobile li a, nav.make-mobile li button, nav.make-mobile li .menu-icon, nav.make-mobile li .icon-fallback-text {
+    font-size: 1.8em;
+  }
+}
+
+div.nav-inner__wrap.style--caps {
+  font-size: 18px;
+}
+
 
 #shopify-section-collection-list-sitewide {
-  &::before {
-    margin: 25px auto;
-    position: relative;
-    display: block;
-    width: 450px;
-    background: var(--divider-bg);
-    content:'';
-    width: 450px;
-    height: 60px;
-    background-size: contain;
-    background-position: 50% 50%;
-  }
+  margin-bottom: calc(14px + 2vw);
 }
 
-@include media-query($large-down) {
-  .site-header__inner {
-    .social-wrap {
-      display: none;
-    }
-  }
-}
-
-body.product-style--bordered .collection-list-item {
-  border-radius: 0;
-}
-
-.site-header__wrap.headroom--pinned.headroom--not-top .site-header__inner::before {
-  border-bottom: $border-thickness solid $color-body-text;
-
-}
-
-.cart-drawer-item::before {
-  background: transparent;
-  border-bottom: $border-thickness solid $color-body-text;
-  border-top: $border-thickness solid $color-body-text;
-  opacity: 1;
-}
-
-.related-products {
-
-  margin: 50px auto 0;
-
-}

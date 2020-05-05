@@ -114,6 +114,7 @@
   .responsive-image__wrapper, .responsive-image__wrapper img {
     max-width: 100% !important;
     max-height: unset !important;
+    height: auto;
 
   }
   .slide-bg.rellax-image {
@@ -282,14 +283,6 @@ body.header-overlay .image-section:first-child {
     min-height: calc(350px + 18vw);
     @include media-query($tiny) {
       min-height: 370px;
-    }
-    @include media-query($widescreen) {
-      min-height: 80vh;
-    }
-    &.banner-slide {
-      .slide-bg,  .responsive-image__wrapper {
-        min-height: 80vh;
-      }
     }
   }
   .slide-content {

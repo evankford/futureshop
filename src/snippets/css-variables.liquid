@@ -1,8 +1,5 @@
 
 <style>
-
-
-
 @font-face  {
   font-family: "fontello";
   src: url("{{'fontello.woff2' | asset_url}}") format('woff2'), url("{{'fontello.woff' | asset_url}}") format('woff');
@@ -11,12 +8,18 @@
 }
 
 @font-face  {
-  font-family: "ultra";
-  src: url("{{'ultra.woff2' | asset_url}}") format('woff2'), url("{{'ultra.woff' | asset_url}}") format('woff');
+  font-family: "cobra";
+  src: url("{{'cobra.woff2' | asset_url}}") format('woff2'), url("{{'cobra.woff' | asset_url}}") format('woff');
   font-weight: 700;
   font-style: normal;
 }
 
+@font-face  {
+  font-family: "savate";
+  src: url("{{'savate.woff2' | asset_url}}") format('woff2'), url("{{'savate.woff' | asset_url}}") format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
 
 
   {{ settings.font_heading | font_face }}
@@ -62,7 +65,7 @@
     --color-body-text: {{ settings.color_body_text }};
     --color-body-text-trans: {{ settings.color_body_text | color_modify: 'alpha', 0.5}};
     --color-main-background: {{ settings.color_main_bg }};
-    --color-main-background-trans: {{ settings.color_main_background | color_modify: 'alpha', 0.5}};
+    --color-main-background-trans: {{ settings.color_main_bg | color_modify: 'alpha', 0.5}};
 
     --color-drawer-text: {{ settings.color_drawer_text  | default: '#3f3f3f'}};
     --color-drawer-background: {{ settings.color_drawer_background | default: '#ffffff' }};

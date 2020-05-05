@@ -29,16 +29,14 @@
   {%- if page_description -%}
     <meta name="description" content="{{ page_description | escape }}">
   {%- endif -%}
-
   {% include 'social-meta-tags' %}
-  {% include 'style-tags', layout: 'theme' %}
   {% include 'css-variables' %}
   {% include 'theme-header' %}
-  <script src="https://kit.fontawesome.com/5a6a95adf4.js"></script>
+  {% include 'style-tags', layout: 'theme' %}
   {% if settings.typekit_text %}{{settings.typekit_text}}{%endif%}
 {% if settings.header_code != blank %}
-{{settings.header_code}}
-{%endif%}
+      {{settings.header_code}}
+  {%endif%}
 
   <script>
     document.documentElement.className = document.documentElement.className.replace('no-js', '');

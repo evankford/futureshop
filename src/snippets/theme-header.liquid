@@ -1,16 +1,21 @@
-{%- capture font-heading -%}
-  {% if settings.heading_typekit != blank %}{{settings.heading_typekit}}, {%endif%}{{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
-{%- endcapture -%}
-{%- capture font-body -%}
-  {% if settings.body_typekit != blank %}{{settings.body_typekit}}, {%endif%}{{ settings.font_body.family }}, {{ settings.font_body.fallback_families }};
-{%- endcapture -%}
-{%- capture font-extra -%}
-  {% if settings.extra_typekit != blank %}{{settings.extra_typekit}}, {%endif%}{{ settings.font_extra.family }}, {{ settings.font_extra.fallback_families }};
-{%- endcapture -%}
 <style>
-:root {
-  --font-heading-real:  {{font_heading}};
-  --font-body-real: {{font_body}};
-  --font-extra-real: {{font_extra}}
+body {
+
+
+  {% if settings.heading_typekit != blank %}
+    --font-heading-real:  {{settings.heading_typekit}}, {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
+  {% else %}
+    --font-heading-real:  {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
+  {% endif%}
+  {% if settings.body_typekit != blank %}
+    --font-body-real: {{settings.body_typekit}} , {{ settings.font_body.fallback_families }};
+  {%else%}
+    --font-body-real: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }};
+  {% endif%}
+  {% if settings.extra_typekit != blank %}
+    --font-extra-real: {{settings.extra_typekit}}, {{ settings.font_extra.family }}, {{ settings.font_extra.fallback_families }};
+  {% else %}
+    --font-extra-real: {{ settings.font_extra.family }}, {{ settings.font_extra.fallback_families }};
+  {% endif %}
 }
 </style>

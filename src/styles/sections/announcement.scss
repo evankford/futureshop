@@ -3,7 +3,7 @@ body {
   transition: margin 340ms $ease;
 }
 .announcement-bar {
-  padding:  calc(8px + 0.5vw);
+  padding:  calc(4px + 0.5vw);
   position: relative;
   background: var(--bg-color);
   color: var(--text-color);
@@ -56,7 +56,7 @@ body {
     vertical-align: middle;
     text-decoration: none;
     display: inline-block;
-    margin: 2px 8px;
+    margin: 0 8px;
     color: inherit;
     font-weight: bold;
 
