@@ -79,17 +79,27 @@
       {
         "type": "color",
         "id": "color_drawer_background",
-        "label": "Drawer Background"
+        "label": "Cart Drawer Background"
       },
       {
         "type": "color",
         "id": "color_drawer_text",
-        "label": "Drawer Text"
+        "label": "Cart Drawer Drawer Text"
       },
       {
         "type": "color",
         "id": "color_drawer_button_background",
-        "label": "Drawer Button Background"
+        "label": "Cart Drawer Button Background"
+      },
+      {
+        "type": "color",
+        "id": "color_menu_drawer_background",
+        "label": "Menu Drawer Background"
+      },
+      {
+        "type": "color",
+        "id": "color_menu_drawer_text",
+        "label": "Menu Drawer Text"
       },
       {
         "type": "color",

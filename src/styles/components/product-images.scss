@@ -1,4 +1,4 @@
-$slider-height: calc(240px + 26vw);
+$slider-height: calc(320px + 26vw);
 $slider-height-max: 620px;
 
 .product-images__wrap {
@@ -81,16 +81,55 @@ $slider-height-max: 620px;
 
 &.product-thumbnails {
   width: 80%;
-  flex: 0 0 80px;
+  flex: 0 0 80px; //Vertical
   margin: 12px auto;
+
+  .swiper-button-prev, .swiper-button-next {
+    z-index: 40;
+  }
+
+   @include media-query($small) {
+    width: 100%;
+    }
   .swiper-button-prev, .swiper-button-next {
     width: 34px;
     &::after {
       font-size: 13px;
     }
   }
+
+  &::before,
+  &::after {
+    @extend %psuedo;
+    z-index: 20;
+    width: 44px;
+  }
+
+  &::before {
+    background: linear-gradient(to left, transparent, $color-body);
+
+    body.product-style--card & {
+      background: linear-gradient(to left, transparent, $color-card-bg);
+    }
+  }
+
+  &::after {
+    left: auto;
+    right: 0;
+    background: linear-gradient(to right, transparent, $color-body);
+
+    body.product-style--card & {
+      background: linear-gradient(to right, transparent, $color-card-bg);
+    }
+  }
+
+
+
   li {
     width: 65px;
+    @include media-query($small ) {
+      width: 50px;
+    }
   }
 }
     @include media-query($small) {

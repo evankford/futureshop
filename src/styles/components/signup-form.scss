@@ -2,7 +2,7 @@
   width: 100%;
   padding: 0;
   &__inner {
-    min-height: 400px;
+    min-height:240px;
     flex-wrap: wrap;
     max-width: $grid-large;
     margin: auto;
@@ -10,6 +10,10 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+  }
+
+  .common-header__outer {
+    margin-bottom: 0;
   }
 
   &__header, &__form {
@@ -26,6 +30,17 @@
 
   input {
     background: transparent;
+
+    &[type=email] {
+      color: var(--color-text);
+      border: $border-thickness solid currentColor;
+    }
+    border: 1px solid var()
+  }
+
+  form {
+    max-width: 600px;
+    margin: 0 auto;
   }
 }
 

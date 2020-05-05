@@ -18,15 +18,15 @@
     display: block;
     i {
       font-size: 30px;
-      color: white;
+      color: $color-body-text;
     }
   }
   .swiper-pagination-bullet {
-    background: white;
+    background: $color-body-text;
     width: 11px;
     height: 11px;
     &.active {
-      background: white;
+      background: $color-body-text;
     }
   }
 
@@ -66,15 +66,20 @@
 
   .swiper-button-prev, .swiper-button-next{
     background: transparent;
-    color: white;
+    color: $color-body-text;
     text-shadow: 0 0 20px rgba(black, 0.1), 2px 2px 4px rgba(black, 0.2);
     width: 60px;
+
+    @include media-query($small) {
+      width: 30px;
+    }
+
     &::after {
       // content:'';
       font-size: 20px;
     }
    &.swiper-button-disabled {
-     opacity: 0;
+     opacity: 0.3;
    }
     i {
       font-size: 30px;
@@ -94,7 +99,7 @@
     text-align: right;
   }
   .swiper-pagination-bullet {
-    background: white;
+    background: $color-body-text;
     width: 11px;
     height: 11px;
 

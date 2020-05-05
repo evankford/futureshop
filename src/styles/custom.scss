@@ -1,47 +1,26 @@
-body.header-overlay .image-section:first-child::before {
-  display: none;
+.logo-wrap img {
+    margin-bottom: -12%;
 }
 
-.product-grid-item {
-  h5.product-title {
-    font-size: 25px;
-  }
-  .price-outer {
-    font-weight: 200;
-    opacity: 0.8;
-  }
-}
-
-nav.breadcrumb {
-  text-align: center;
-}
-
-.signup-form__inner {
-  .common-header__outer {
-    margin-bottom: 0;
-  }
-}
-
-.popup-content form .input-group input, .signup-form form .input-group input, .popup-content form .input-group button, .signup-form form .input-group button {
-  border: 1px solid white;
-}
-
-.popup-content form .large_form, .signup-form form .large_form {
+#shopify-section-related-products {
+  background: $color-accent;
+  padding: 12px;
+  margin: 30px 0 0;
   max-width: 100%;
-}
+  width: 100%;
 
-@include media-query($small) {
-  nav.make-mobile li a, nav.make-mobile li button, nav.make-mobile li .menu-icon, nav.make-mobile li .icon-fallback-text {
-    font-size: 1.8em;
+
+  .product-grid-item.detail-on-hover .grid-item__details::before {
+    background: $color-accent;
   }
 }
-
-div.nav-inner__wrap.style--caps {
-  font-size: 18px;
-}
-
 
 #shopify-section-collection-list-sitewide {
-  margin-bottom: calc(14px + 2vw);
-}
+  max-width: 100%;
+  width: 100%;
+  margin: 0 0;
 
+  .collection-list__grid {
+    margin: 0 auto;
+  }
+}
