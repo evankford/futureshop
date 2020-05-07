@@ -88,6 +88,11 @@
       },
       {
         "type": "color",
+        "id": "color_drawer_button_text",
+        "label": "Cart Drawer Button Text"
+      },
+      {
+        "type": "color",
         "id": "color_drawer_button_background",
         "label": "Cart Drawer Button Background"
       },
@@ -119,11 +124,7 @@
         "label": "Search drawer border",
         "default": "#cfcfcf"
       },
-      {
-        "type": "color",
-        "id": "color_drawer_button_text",
-        "label": "Drawer Button Text"
-      },
+    
       {
         "type": "header",
         "content": "Notificaton Colors"

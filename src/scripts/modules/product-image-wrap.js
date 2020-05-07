@@ -35,7 +35,7 @@ export default class myModule {
     //Thumb stuff first
     let thumbSwipe= false; //Default false
     if (this.thumbSwiper) {
-      //If thumbs are here
+    //If thumbs are here
       //Check for arrows
       let littleNav = false;
       const littleLeft= this.thumbSwiper.querySelector('.swiper-button-prev');
