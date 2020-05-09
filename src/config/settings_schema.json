@@ -1,9 +1,9 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Starter theme",
+    "theme_name": "FutureShop",
     "theme_version": "1.0.0",
-    "theme_author": "Shopify",
+    "theme_author": "EKF Design + Futureshirts",
     "theme_documentation_url": "https://github.com/Shopify/starter-theme",
     "theme_support_url": "https://github.com/Shopify/starter-theme/issues"
   },
@@ -124,7 +124,7 @@
         "label": "Search drawer border",
         "default": "#cfcfcf"
       },
-    
+
       {
         "type": "header",
         "content": "Notificaton Colors"
@@ -523,6 +523,11 @@
           }
         ],
         "default": "cover"
+      },
+      {
+        "type" : "html",
+        "id" : "general_css",
+        "label" : "General CSS"
       }
     ]
   },
@@ -1057,6 +1062,16 @@
         "id": "social_vimeo_link",
         "label": "Vimeo link"
       },
+      {
+        "type" : "header",
+        "content" : "Extras"
+      },
+      {
+        "type" : "html",
+        "id" : "social_extra",
+        "label" : "Social Extra",
+        "info" : "Useful for FB messages, or spotify likes"
+      } ,
       {
         "type": "header",
         "content": "Social Link Options"

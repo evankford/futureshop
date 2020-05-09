@@ -12,6 +12,11 @@
   z-index: 999;
   transition: transform 240ms linear, opacity 240ms ease;
 
+  .social-wrap {
+    transition: max-height 240ms ease;
+    overflow: hidden;
+  }
+
   html:not(.no-js) & {
     position: absolute;
   }
@@ -103,8 +108,11 @@
       }
       .social-wrap,
       .cart-outer {
+
         a {
+
           color: var(--color-overlay);
+          text-decoration: none;
         }
       }
        &.headroom {
@@ -142,7 +150,6 @@
         transition: transform 300ms $ease;
         position: relative;
         display: block;
-        margin: -10px 0;
         padding: 0 10px;
       }
     }

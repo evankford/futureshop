@@ -245,6 +245,14 @@ body {
     .button.simple {
       background: transparent;
       border:none;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+
+      &::before {
+        display: none;
+      }
     }
   }
    &.button-style--minimal {

@@ -48,7 +48,7 @@ nav.main-nav {
     // display: inline-block;
     list-style: none;
     padding: 0 0 0 12px;
-    margin: 0;
+    margin: 5px;
   }
   .search-outer {
     button {
@@ -62,22 +62,12 @@ nav.main-nav {
       // flex: 0 0 60px;
     }
   }
-  .cart-outer {
-    a {
-      line-height: 0;
-    }
-    svg {
-      width: 21px;
-    }
-  }
+
 
   li {
     display: inline-block;
     vertical-align: middle;
     position: relative;
-    &.menu-icon {
-      margin-bottom: 4px;
-    }
 
     ul {
       //Child menu
@@ -147,6 +137,7 @@ nav.main-nav {
     color: var(--header-text);
     font-family: inherit;
     font-weight: inherit;
+    text-decoration: none;
     transition: color 400ms $ease, transform 300ms $ease;
 
     &:hover {
@@ -280,6 +271,12 @@ body.nav-open {
 .nav-inner__wrap {
   font-size: 1.5rem;
   padding: 1.25rem 0 ;
+
+  button {
+    text-transform:  inherit;
+    letter-spacing: inherit;
+    font-weight: inherit;
+  }
   &.style--narrow {
     letter-spacing: -0.045em;
     font-size: 1.5rem;
@@ -294,6 +291,13 @@ body.nav-open {
     font-size: 1.6rem;
     text-transform: uppercase;
     letter-spacing: 0.5em;
+  }
+
+  &.has-socials {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
   }
 }
 

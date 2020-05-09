@@ -37,6 +37,10 @@
       {% if cart.item_count > 0 %}
       <div class="cart-items" data-cart-items-count>{{ cart.item_count }}</div>
       {%endif%}
+      <span class="{% unless section.settings.show_cart_label == true %}visually-hidden {%endunless%} label-for-icon">
+      {{ 'cart.general.title' | t }}
+      </span>
+
     </a>
     </div>
 {%endcapture%}
@@ -121,7 +125,7 @@ document.body.classList.add('header-overlay');
   <nav role="navigation" class="main-nav {% if section.settings.enable_mobile_menu == true %} make-mobile {%endif%} mobile-align--{{section.settings.mobile_menu_text_align}} mobile-text--{{section.settings.mobile_text}} mobile-text-inner--{{section.settings.mobile_inner_text}} align--{{section.settings.menu_text_align}} {% if section.settings.layout_header == 'menu-centered' %} has-halves {%endif%} " id="site-nav" >
     <div class="nav-inner">
     <div class="nav-inner__background"></div>
-    <div class="nav-inner__wrap {% if section.settings.mobile_nav_space == true %} use-space {%endif%} font--{{settings.font_family_menu | default: 'heading'}} style--{{settings.font_style_menu | default: 'standard'}}" >
+    <div class="nav-inner__wrap {% if section.settings.layout_socials == 'after-menu' %}  has-socials {%endif%} {% if section.settings.mobile_nav_space == true %} use-space {%endif%} font--{{settings.font_family_menu | default: 'heading'}} style--{{settings.font_style_menu | default: 'standard'}}" >
 
     <ul class="main-menu">
 
@@ -380,17 +384,6 @@ document.body.classList.add('header-overlay');
         "default": "main-menu"
     }, {
         "type": "select",
-        "id": "menu_font_weight",
-        "label": "Menu Font Weight",
-        "options": [{
-            "value": "regular",
-            "label": "Regular"
-        }, {
-            "value": "bold",
-            "label": "Bold"
-        }]
-    }, {
-        "type": "select",
         "id": "menu_text_align",
         "label": "Menu Text Align",
         "default" : "right",
@@ -497,8 +490,8 @@ document.body.classList.add('header-overlay');
             "label": "Logo Left (cart in menu)"
         }]
     }, {
-        "type": "text",
-        "id": "show_cart_text",
+        "type": "checkbox",
+        "id": "show_cart_label",
         "label": "Cart Text",
         "info": "Leave Blank for just Icon!"
     }, {
@@ -540,6 +533,11 @@ document.body.classList.add('header-overlay');
             "value": "menu",
             "label": "In Menu"
         }]
+    }, {
+        "type": "checkbox",
+        "id": "show_search_text",
+        "label": "Show Search Text",
+        "info": "Leave false for just Icon!"
     }
   ]
 }

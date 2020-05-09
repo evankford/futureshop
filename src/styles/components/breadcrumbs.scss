@@ -2,7 +2,7 @@ nav.breadcrumb {
   padding: 1em;
   max-width: $site-max;
   width: 96%;
-  margin: calc(5px + 1vw) auto calc(15px + 1vw);
+  margin: calc(5px + 0.5vw) auto calc(5px + 1vw);
   color: $color-border-darker;
   @include media-query($small) {
     text-align: center;
@@ -28,11 +28,5 @@ nav.breadcrumb {
     }
 
 
-  }
-}
-
-body.product-style--card {
-  nav.breadcrumb {
-    margin: 0 0 calc(12px + 1vw)
   }
 }

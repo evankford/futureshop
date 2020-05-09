@@ -61,6 +61,12 @@
     }
   </style> {% endcomment %}
 
+{% if settings.social_extra != blank%}
+<li class="social-extra">
+  {{settings.social_extra}}
+</li>
+{%endif %}
+
 {% unless nowrap == true %}
 </ul>
 {%endunless %}

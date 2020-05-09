@@ -12,7 +12,10 @@
     </div>
 
     <button data-search-button type="submit" class="simple">
-      <i class="icon-search" aria-label="{{ 'general.search.submit' | t }}"></i>
+      <i class="icon-search"></i>
+      <span class="{% unless section.settings.show_search_text == true %}visually-hidden{%endunless%} label-for-icon">
+      {{ 'general.search.submit' | t}}
+      </span>
     </button>
   </form>
 </div>

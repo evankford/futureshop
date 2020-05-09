@@ -1,26 +1,31 @@
-.logo-wrap img {
-    margin-bottom: -12%;
-}
-
-#shopify-section-related-products {
-  background: $color-accent;
-  padding: 12px;
-  margin: 30px 0 0;
-  max-width: 100%;
-  width: 100%;
-
-
-  .product-grid-item.detail-on-hover .grid-item__details::before {
-    background: $color-accent;
+@keyframes infiniteScroll {
+  from {
+    transform: translateX(0)
+  }
+  to {
+    transform: translateX(-100%)
   }
 }
 
-#shopify-section-collection-list-sitewide {
-  max-width: 100%;
-  width: 100%;
-  margin: 0 0;
-
-  .collection-list__grid {
-    margin: 0 auto;
+#hero .swiper-slide.background-slide:first-child {
+  .slide-bg {
+    animation: infiniteScroll 30s linear infinite;
+    overflow: visible;
+    display: flex;
+    flex-wrap: none;
+    .desktop-image {
+      flex: 0 0 100%;
+      display: block !important;
+      position: relative;
+    }
+    .mobile-image {
+      flex: 0 0 100%;
+      display: block !important;
+      position: relative;
+    }
   }
+}
+
+.site-header__wrap {
+  border-bottom: 2px solid $color-accent;
 }

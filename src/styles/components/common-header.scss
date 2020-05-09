@@ -4,18 +4,19 @@
 
   .common-header {
 
-    :last-child {
+    div:last-child {
       margin-bottom: 0;
     }
 
     .label {
       opacity: 0.8;
+      margin: 0;
     }
 
     &__heading {
       @extend %mainHeader;
       line-height: 1.1;
-      margin: 0.45em auto .25em;
+      margin: 0.25em auto 0.35em;
     }
   }
 

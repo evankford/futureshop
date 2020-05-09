@@ -18,4 +18,8 @@ body {
     --font-extra-real: {{ settings.font_extra.family }}, {{ settings.font_extra.fallback_families }};
   {% endif %}
 }
+
+{% if settings.general_css != blank %}
+  {{settings.general_css}}
+{% endif%}
 </style>

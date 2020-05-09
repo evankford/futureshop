@@ -28,7 +28,7 @@ ul.product-thumbnails {
 #shopify-section-product {
   padding: 5px;
   max-width: $site-max;
-  margin: auto;
+  margin: 0  auto calc(12px + 2vw);
 
   @include media-query($medium-up) {
 
@@ -175,12 +175,6 @@ ul.product-thumbnails {
   }
 }
 
-.related-products {
-  h3 {
-    text-align: center;
-    text-transform: uppercase;
-  }
-}
 
 body.product-style--card {
   section[data-section-type="product"] {

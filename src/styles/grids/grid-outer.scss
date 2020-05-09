@@ -74,6 +74,7 @@ div#shopify-section-collection-template {
 
     }
     &[data-max="4"] {
+      grid-template-columns: repeat(2, 1fr);
       @include media-query($widescreen) {
         grid-template-columns: repeat(4, 1fr);
         &.size--large {
@@ -81,8 +82,6 @@ div#shopify-section-collection-template {
         }
       }
     }
-
-
 }
 
 

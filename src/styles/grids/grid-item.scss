@@ -198,6 +198,7 @@
       align-items: center;
       justify-content: center;
       opacity: 0;
+      padding: 20px;
       transition: 300ms $ease opacity, transform 300ms $ease;
       flex-direction: column;
       align-items: center;
@@ -333,7 +334,7 @@ body {
   }
   &.price-style--background {
     .price-outer {
-      background: $color-accent-darker;
+      background: $color-accent;
       padding: 0.4em 0.9em;
       flex: 0 1 5.4em;
       display: inline-block;
