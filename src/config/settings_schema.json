@@ -527,7 +527,7 @@
       {
         "type" : "html",
         "id" : "general_css",
-        "label" : "General CSS"
+        "label" : "Custom CSS"
       }
     ]
   },
