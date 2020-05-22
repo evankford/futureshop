@@ -63,9 +63,15 @@ div#shopify-section-collection-template {
   }
   &[data-max="2"] {
     max-width: 900px;
+    &.size--small {
+      max-width: 600px;
+    }
   }
   &[data-max="3"] {
     max-width: 1200px;
+    &.size--small {
+      max-width: 900px;
+    }
   }
     &[data-max="4"], &[data-max="2"] {
       @include media-query($small) {
@@ -75,7 +81,7 @@ div#shopify-section-collection-template {
     }
     &[data-max="4"] {
       grid-template-columns: repeat(2, 1fr);
-      @include media-query($widescreen) {
+      // @include media-query($widescreen) {
         grid-template-columns: repeat(4, 1fr);
         &.size--large {
           grid-template-columns: repeat(2, 1fr);

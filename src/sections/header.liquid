@@ -88,6 +88,22 @@
     {% if section.settings.layout_socials ==  'below-header'%}{%include 'social-icons' %}{%endif%}
   </header>
 {%endcapture %}
+{% capture menu_extras %}
+    {% assign is_first_extra = true %}
+            {% if section.settings.layout_search == 'menu' %}
+              {% assign is_first_extra = false %}
+                <li class="menu-icon first-extra" >
+                  {{search_markup}}
+                </li>
+              {%endif%}
+              {% if section.settings.layout_cart == 'menu' %}
+                <li class="menu-icon {% if is_first_extra == true %} first-icon{%endif%}">
+                  {{cart_markup}}
+                </li>
+
+            {% assign is_first_extra = false %}
+            {%endif%}
+{% endcapture %}
 
 {% if section.settings.overlay  == true and template.name == 'index'%}
 <script>
@@ -162,18 +178,7 @@ document.body.classList.add('header-overlay');
       {%endfor%}
       {% if section.settings.layout_search == 'menu'  or section.settings.layout_cart == 'menu' %}
         <div class="nav-half__extras">
-            {% if section.settings.layout_search == 'menu' %}
-              <li class="menu-icon" >
-                {{search_markup}}
-              </li>
-
-              {%endif%}
-              {% if section.settings.layout_cart == 'menu' %}
-              <li class="menu-icon" >
-                {{cart_markup}}
-              </li>
-
-            {%endif%}
+            {{menu_extras}}
         </div><!-- end extras -->
       {% endif%}
 
@@ -193,28 +198,18 @@ document.body.classList.add('header-overlay');
           {% include 'menu-li'%}
 
         {% endfor %}
-          {% if section.settings.layout_search == 'menu' %}
-          <li class="menu-icon">
-            {{search_markup}}
-          </li>
-
-          {%endif%}
-          {% if section.settings.layout_cart == 'menu' %}
-          <li  class="menu-icon">
-            {{cart_markup}}
-          </li>
-
-          {%endif%}
+          {{menu_extras}}
         {%endif%} {%comment%}End menu-centered conditional {%endcomment%}
       </ul>
-      {% if section.settings.layout_header != 'menu-centered' and section.settings.layout_socials == 'after-menu' %}  {%comment%}Disable if menu-centered {%endcomment%}
 
-    {% include 'social-icons' %}
-    {%endif%}
+
+      {% if section.settings.layout_header != 'menu-centered' and section.settings.layout_socials == 'after-menu' %}  {%comment%}Disable if menu-centered {%endcomment%}
+        {% include 'social-icons' %}
+      {%endif%}
     {% if section.settings.mobile_socials == true and section.settings.enable_mobile_menu == true %}
-    <div class="mobile-socials mobile-menu-extra">
-      {% include 'social-icons' %}
-    </div>
+      <div class="mobile-socials mobile-menu-extra">
+        {% include 'social-icons' %}
+      </div>
     {%endif%}
     {% if section.settings.mobile_email == true and section.settings.enable_mobile_menu == true  %}
         <div class="mobile_email mobile-menu-extra">

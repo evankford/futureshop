@@ -316,3 +316,57 @@ body.preheader-style--caps {
   }
 
 }
+
+.overlay-section.style--boxed {
+
+   .slide-content-inner {
+      display: grid;
+      text-align: left;
+      grid-template-columns: auto 1fr;
+      grid-template-areas: "logo content" ;
+    }
+
+    .logo-wrap {
+      grid-area: logo;
+      width: 150px;
+      padding-right: 24px;
+      margin-left: -12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .content-wrap {
+      grid-area: content;
+    }
+
+  .slide-content {
+    background: rgba(black, 0.8);
+    color: white;
+    width: auto;
+    max-width: 600px;
+    margin: auto auto 0 0 ;
+    @include media-query($widescreen)
+    padding: 24px;
+
+    .button {
+      padding: 0.4em 0.8em;
+      margin: 0;
+    }
+
+  }
+  .common-header {
+
+    @include media-query($medium-up) {
+      min-width: 300px;
+      padding-right: 24px;
+    }
+    h4{
+      margin-top: 0;
+      font-size: 18px;
+    }
+    h2 {
+      font-size: calc(1.3em + 0.8vw);
+    }
+  }
+}
+

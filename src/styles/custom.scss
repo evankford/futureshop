@@ -1,31 +1,47 @@
-@keyframes infiniteScroll {
-  from {
-    transform: translateX(0)
-  }
-  to {
-    transform: translateX(-100%)
+.align--left .menu-icon.first-extra{
+  @include media-query($medium-up) {
+    margin-left: auto;
   }
 }
 
-#hero .swiper-slide.background-slide:first-child {
-  .slide-bg {
-    animation: infiniteScroll 30s linear infinite;
-    overflow: visible;
-    display: flex;
-    flex-wrap: none;
-    .desktop-image {
-      flex: 0 0 100%;
-      display: block !important;
-      position: relative;
+.can-grid {
+  @include media-query($medium-up) {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: auto auto;
+    align-items: center;
+    grid-template-areas: "header grid" "button grid";
+
+    .collection-grid,
+    .collection-list__grid {
+      grid-area: grid;
+      margin: 0 20px;
+
     }
-    .mobile-image {
-      flex: 0 0 100%;
-      display: block !important;
-      position: relative;
+
+    .section-header,
+    .common-header__outer{
+      grid-area: header;
+      align-self: end;
+      margin-bottom: 0;
+    }
+
+    .common-header__outer, .button-wrap {
+      width: 100%;
+      text-align: left;
+      padding: 0 20px;
+    }
+    .button-wrap {
+      grid-area: button;
+      align-self: start;
+      margin-top: 0;
+      .button {
+        margin: 0;
+      }
     }
   }
 }
 
-.site-header__wrap {
-  border-bottom: 2px solid $color-accent;
+ul.footer-menu li a {
+  text-transform: none;
 }

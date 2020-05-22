@@ -18,24 +18,24 @@ nav.main-nav {
   &.font-weight--bold a {
     font-weight: 700;
   }
-  &.text-align--right {
+  &.align--right {
     justify-content: flex-end;
-    ul,
+    ul.main-menu,
     .nav-inner {
       text-align: right;
     }
   }
-  &.text-align--center {
+  &.align--center {
     justify-content: center;
-    ul,
+    ul.main-menu,
     .nav-inner {
       text-align: center;
       justify-content: center;
     }
   }
-  &.text-align--left {
+  &.align--left {
     justify-content: flex-start;
-    ul,
+    ul.main-menu,
     .nav-inner {
       @include media-query($medium-up) {
         text-align: left;
@@ -44,11 +44,14 @@ nav.main-nav {
     }
   }
 
-  ul {
+  ul.main-menu {
     // display: inline-block;
     list-style: none;
     padding: 0 0 0 12px;
     margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .search-outer {
     button {
@@ -351,4 +354,5 @@ body.nav-open {
 
 .menu-icon {
   line-height: 1;
+  
 }

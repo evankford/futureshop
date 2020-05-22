@@ -1,4 +1,5 @@
-  {% paginate search.results by 10 %}
+<div class="page-basic">
+{% paginate search.results by 10 %}
   <div class="search-template-header">
     <h1>
       {% if search.performed %}
@@ -23,7 +24,7 @@
         <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
       </button>
     </form>
-  
+
   </div>
 
   {% if search.performed %}
@@ -41,7 +42,7 @@
                 {{ featured_image | img_url: '240x240' | img_tag }}
               {% endif %}
             </div>
-            <div class="search-result__title">  
+            <div class="search-result__title">
               <h3>{{ item.title }}</h3>
               {% if item.object_type == 'product' %}
                 <span class="price-outer">
@@ -76,3 +77,4 @@
   {% endif %}
 
 {% endpaginate %}
+</div>

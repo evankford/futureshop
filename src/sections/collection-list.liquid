@@ -8,12 +8,13 @@
 {%- endcomment -%}
 
 {% include 'section-starter' with section_class: 'collection-list' %}
-<div class="section-inner{% if section.settings.section_size == 'full-width' %} stretch-width{%endif%}" id="section--{{section.id}}">
+<div class="section-inner can-grid {% if section.settings.section_size == 'full-width' %} stretch-width{%endif%}" id="section--{{section.id}}">
  {% include 'common-header' %}
   <div class="collection-list__grid style--{{section.settings.layout}}" data-item-count="{{section.blocks.size}}">
 
   {% for block in section.blocks %}
     {%- assign collection = collections[block.settings.collection] -%}
+        {%- assign image_object = false  -%}
 
     <a href="{{ collection.url | default: "#" }}" class="collection-list-item collection-block" {{ block.shopify_attributes }}>
     {% if block.settings.image != blank %}
@@ -21,7 +22,7 @@
       {% elsif collection.image != blank or collection.products.first != blank %}
         {%- assign image_object = collection.image | default: collection.products.first.featured_image -%}
         {% endif%}
-        {% if image_object %}
+        {% if image_object != false %}
         <div class="collection-list-item__image">
           {% include 'responsive-image' with
             image: image_object,
@@ -47,8 +48,8 @@
         {% if block.settings.description  != blank %}
           <h4 class="h5">{{block.settings.description}}</h5>
         {%endif%}
-        {% if section.settings.button_text != blank %}
-        <div class="button  light over-dark">{{section.settings.button_text}}</div>
+        {% if section.settings.list_button != blank %}
+        <div class="button  light over-dark">{{section.settings.list_button}}</div>
         {%endif%}
 
       </div>
@@ -59,6 +60,12 @@
     {% include 'no-blocks' %}
   {% endif %}
   </div>
+
+{% if section.settings.button_text != blank %}
+  <div class="button-wrap center">
+    <a href="{{section.settings.button_url | default: '/collections/all'}}" class="button">{{section.settings.button_text}}</a>
+  </div>
+  {%endif%}
   </div>
   {% if section.settings.layout == 'overlay' %}
   {% assign opacity = 100 | minus: section.settings.overlay_op | times: 0.01 %}
@@ -175,9 +182,22 @@
        {
         "type" : "text",
         "label" : "Button Text",
-        "id" : "button_text",
+        "id" : "list_button",
         "info" : "If you input a value here, all the collection boxes will have a button on them with this text!"
        },
+        {
+        "type" : "text",
+        "id" : "button_text",
+        "label" : "All Button Text",
+        "info" : "Leave Blank for No Button",
+        "default" : "Shop More"
+      },
+      {
+        "type" : "url",
+        "id" : "button_url",
+        "label" : "All Button url",
+        "info" : "Leave Blank to use collection link"
+      },
       {
         "type" : "select",
         "id" : "layout",

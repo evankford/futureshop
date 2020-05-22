@@ -46,6 +46,10 @@ body {
 
   .button.outline, body.button-style--outline & .button {
     color: inherit;
+
+    &:hover {
+      color: $color-accent-inverse
+    }
   }
 
   .section-inner {

@@ -14,15 +14,6 @@
       {%endif%}
     </div>
   </div>
-  <div class="slide-content">
-    <div class="slide-content-inner {% if slide.settings.mega_text == true%} mega-text {%endif%} {% if slide.settings.shadow_text == true%} shadow-text {%endif%}">
-      {% include 'common-header' %}
-
-      <div class="button-wrap">
-        {% if slide.settings.button_1_link != empty and slide.settings.button_1_text != empty %}<a href="{{slide.settings.button_1_link}}" class="button inherit">{{slide.settings.button_1_text}}</a>{%endif%}
-        {% if slide.settings.button_1_link != empty and slide.settings.button_2_text != empty %}<a href="{{slide.settings.button_2_link}}" class="button inherit">{{slide.settings.button_2_text}}</a>{%endif%}
-      </div>
-
-    </div>
+  {% include 'slide-content' %}
   </div>
 </div>
