@@ -1,47 +1,30 @@
-.align--left .menu-icon.first-extra{
-  @include media-query($medium-up) {
-    margin-left: auto;
-  }
+#shopify-section-header {
+  z-index: 1000;
 }
 
-.can-grid {
-  @include media-query($medium-up) {
-    display: grid;
-    grid-template-columns: 240px 1fr;
-    grid-template-rows: auto auto;
-    align-items: center;
-    grid-template-areas: "header grid" "button grid";
-
-    .collection-grid,
-    .collection-list__grid {
-      grid-area: grid;
-      margin: 0 20px;
-
-    }
-
-    .section-header,
-    .common-header__outer{
-      grid-area: header;
-      align-self: end;
-      margin-bottom: 0;
-    }
-
-    .common-header__outer, .button-wrap {
-      width: 100%;
-      text-align: left;
-      padding: 0 20px;
-    }
-    .button-wrap {
-      grid-area: button;
-      align-self: start;
-      margin-top: 0;
-      .button {
-        margin: 0;
-      }
-    }
-  }
+.site-header__wrap .logo-wrap {
+  margin: -40px -20px
 }
 
-ul.footer-menu li a {
-  text-transform: none;
+.site-header__wrap.expand-logo.headroom--not-top header .logo-wrap {
+  transform: scale(0.72);
+  transform-origin: 50% 40%;
+}
+
+.rotating-background .common-header__outer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 900px;
+  .common-header__logo {
+    flex: 1 1 320px;
+    max-width: 500px;
+    padding: 20px;
+  }
+
+  .common-header {
+    flex: 2 1 220px;
+    padding: 20px;
+  }
 }

@@ -1,0 +1,13 @@
+.globo-form-app {
+
+  .content + p {
+    display: none;
+  }
+  div.footer {
+    margin-top: 0;
+    text-align: center;
+    .flat-button {
+      @extend %button;
+    }
+  }
+}

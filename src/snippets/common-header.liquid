@@ -13,8 +13,18 @@
   {% assign include_button = true %}
 {% endunless %}
 {% assign delay = 0 %}
-{% if params.heading != blank or params.introduction != blank or params.text != blank%}
+{% if params.heading != blank or params.introduction != blank or params.text != blank or params.logo != blank%}
 <div class="common-header__outer type--{{type | default: 'section'}} align--{{params.text_align | default: settings.header_alignment }} size--{{params.text_size | default: 'standard'}}">
+    {% if params.logo != blank %}
+    <div class="common-header__logo">
+      {% include 'responsive-image' with image: params.logo, max_width: 1200, max_height: 900 %}
+    </div>
+      <style>
+      .common-header__logo {
+        max-width: {{ params.logo_max_width }}px;
+      }
+    </style>
+    {%endif %}
   {% if params.heading != blank or params.introduction != blank or params.subtitle != blank %}
     <header class="common-header type--{{type}}">
       {% if params.introduction != blank %}

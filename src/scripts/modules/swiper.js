@@ -34,18 +34,22 @@ export default class TestModule {
             }
             else {
               image.classList.add('hide')
-              
+
             }
           })
-          
+
         }
       })
-      
+
     } else {
 
       ////// Swiper for slideshow
 
       var animType = el.getAttribute('data-swiper-animation');
+      var animSpeed = 500;
+      if (animType == 'fade') {
+        animSpeed = 1000
+      }
       var dots = false;
       if (el.getAttribute('data-swiper-dots') == 'true') {
         dots = {
@@ -67,12 +71,18 @@ export default class TestModule {
       if (delay > 0) {
         autoplayObj.delay = delay * 1000
       }
+
+      var autoHt = true;
+      if (el.getAttribute('data-auto-height') == 'false') {
+        autoHt = false;
+      }
       var mySwiper = new Swiper(el, {
+        speed: animSpeed,
         slidesPerView: 1,
         centeredSlides: false,
         spaceBetween: 0,
         autoplay: autoplayObj,
-        autoHeight: true,
+        autoHeight: autoHt,
         effect: animType,
         threshold: 10,
         pagination: dots,

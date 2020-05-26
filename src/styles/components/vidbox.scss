@@ -9,8 +9,8 @@
   background-repeat: no-repeat;
   pointer-events: none;
   background-color: black;
-  opacity: 0.1;
-  
+  opacity: 1;
+
   &::before, &::after {
     @extend %psuedo;
     z-index: 4;
@@ -24,7 +24,7 @@
     transition: opacity 300ms 200ms linear;
     opacity: 1;
   }
- 
+
   &.use-gif {
     transition: opacity 700ms 200ms ease;
     opacity: 1;
@@ -43,7 +43,7 @@
     }
    iframe {
      opacity: 1;
-   } 
+   }
   }
   iframe {
     position: absolute;

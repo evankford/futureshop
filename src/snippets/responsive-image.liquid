@@ -41,6 +41,7 @@
   #Image-{{ image.id }}-{{ responsive_image_counter }} {
     max-width: {{ max_width_image }}px;
     max-height: {{ max_height_image }}px;
+    object-position: {{center_x | default: '50'}}% {{center_y | default: '50'}}%;
   }
   #ImageWrapper-{{ image.id }}-{{ responsive_image_counter }} {
     max-width: {{ max_width_image }}px;

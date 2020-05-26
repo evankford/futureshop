@@ -22,6 +22,7 @@ nav.main-nav {
     justify-content: flex-end;
     ul.main-menu,
     .nav-inner {
+      justify-content: flex-end;
       text-align: right;
     }
   }
@@ -354,5 +355,5 @@ body.nav-open {
 
 .menu-icon {
   line-height: 1;
-  
+
 }

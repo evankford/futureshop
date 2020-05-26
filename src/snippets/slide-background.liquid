@@ -8,12 +8,14 @@
       {%endif%}
     <div class="desktop-image">
       {% if slide.settings.image != blank %}
-        {% include 'responsive-image' with image: slide.settings.image, max_width: 2500, max_height: 1400 %}
+        {% include 'responsive-image' with image: slide.settings.image, max_width: 2500, max_height: 1400, center_x: slide.settings.center_x, center_y: slide.settings.center_y %}
       {%else %}
         {{ 'lifestyle-2' | placeholder_svg_tag }}
       {%endif%}
     </div>
   </div>
+  {% unless background == true %}
   {% include 'slide-content' %}
-  </div>
+  {% endunless %}
+  {% comment %} </div> {% endcomment %}
 </div>

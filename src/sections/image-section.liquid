@@ -18,14 +18,14 @@
           {%elsif slide.type == 'video' %}
             {% include 'slide-video' %}
           {%elsif slide.type == 'background' %}
-            {% include 'slide-background' %}
+            {% comment %} {% include 'slide-background' %} {% endcomment %}
           {%endif%}
         {%endfor%}
       </div>
       {% if section.settings.dots == true %}
+        <div class="swiper-pagination"></div>
       {%endif%}
       {% if section.settings.arrows == true %}
-       <div class="swiper-pagination"></div>
       <!-- If we need navigation buttons -->
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
