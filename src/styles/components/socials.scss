@@ -8,7 +8,7 @@ ul.social-wrap {
   }
   a {
     display: inline-block;
-    color: $color-accent-lighter;
+    // color: $color-accent-lighter;
     @include font-heading();
     font-weight: 400;
     text-transform: uppercase;

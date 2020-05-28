@@ -63,6 +63,14 @@
     }
     .nav-inner {
     }
+
+    .main-menu {
+      display: block;
+    }
+
+    .menu-icon .visually-hidden {
+      @include visually-shown();
+    }
   }
   //Always, not just make-mobile
 

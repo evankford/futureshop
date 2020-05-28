@@ -8,18 +8,12 @@
 }
 
 @font-face  {
-  font-family: "cobra";
-  src: url("{{'cobra.woff2' | asset_url}}") format('woff2'), url("{{'cobra.woff' | asset_url}}") format('woff');
+  font-family: "Type";
+  src: url("{{'type.woff2' | asset_url}}") format('woff2'), url("{{'type.woff' | asset_url}}") format('woff');
   font-weight: 700;
   font-style: normal;
 }
 
-@font-face  {
-  font-family: "savate";
-  src: url("{{'savate.woff2' | asset_url}}") format('woff2'), url("{{'savate.woff' | asset_url}}") format('woff');
-  font-weight: 400;
-  font-style: normal;
-}
 
 
   {{ settings.font_heading | font_face }}
@@ -38,6 +32,7 @@
 
 
   :root {
+
     --border-radius: {{ settings.border_roundness }}px;
     --border-thickness: {{ settings.border_thickness }}px;
     --border-thickness-big: {{ settings.border_thickness | times: 2}}px;

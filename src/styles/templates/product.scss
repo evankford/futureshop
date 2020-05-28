@@ -84,6 +84,7 @@ ul.product-thumbnails {
 .product-details__wrap {
   flex: 1 2 300px;
   position: relative;
+  min-width: 0;
   z-index: 1;
   padding: calc(12px + 1vw) calc(10px + 2.2vw) ;
 

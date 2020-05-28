@@ -98,7 +98,8 @@
     }
   }
   .grid-item__details {
-    flex: 1 0 100px;
+    flex: 1 0 auto;
+    min-height: 90px;
     display: flex;
     width: 100%;
     flex-direction: column;

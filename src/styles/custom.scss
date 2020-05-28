@@ -1,30 +1,58 @@
 #shopify-section-header {
-  z-index: 1000;
-}
 
-.site-header__wrap .logo-wrap {
-  margin: -40px -20px
-}
-
-.site-header__wrap.expand-logo.headroom--not-top header .logo-wrap {
-  transform: scale(0.72);
-  transform-origin: 50% 40%;
-}
-
-.rotating-background .common-header__outer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 900px;
-  .common-header__logo {
-    flex: 1 1 320px;
-    max-width: 500px;
-    padding: 20px;
+  .logo-wrap {
+    position: relative;
+    width: 100%;
+    display: block;
   }
 
-  .common-header {
-    flex: 2 1 220px;
-    padding: 20px;
+  h1.fallback, .h1.fallback {
+    line-height: 0.9;
+    font-size: calc(32px + 1vw);
+    .overlay-logo {
+      // position: relative;
+    }
+    .title-text {
+      padding-top: 0.2em;
+    }
+        @include media-query($small) {
+          text-align: center;
+          width: auto;
+        }
+
   }
+  .logo-wrap {
+    margin: 0;
+  }
+
+}
+
+body:not(.template-index) #MainContent {
+  background: #ff775d;
+}
+
+body.template-index #MainContent .shopify-section,
+body:not(.template-index) #MainContent {
+  position: relative;
+  text-shadow: 2px 2px 0px black;
+  &::after {
+    @extend %psuedo;
+    background-image: var(--static-image);
+    background-size: 600px auto;
+    mix-blend-mode: overlay;
+    opacity: 0.59;
+  }
+  &:first-child {
+    &::after {
+      opacity: 0.5;
+    }
+  }
+}
+
+.site-header__wrap {
+  background: transparent !important;
+}
+
+.product-thumbnails::before, .product-thumbnails::after {
+  display: none !important;
 }

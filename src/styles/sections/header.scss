@@ -89,7 +89,8 @@
             width: 100%;
           }
           & + span {
-            display: none;
+            opacity: 0;
+            // display: none;
           }
         }
         @include media-query($medium-up) {
@@ -263,7 +264,11 @@
     .logo-image {
       max-width: 500px;
     }
+
+
   }
+
+
 
   .logo-wrap {
     width: 100%;
@@ -412,6 +417,10 @@ nav.main-nav.has-halves {
 .overlay-active {
   .mobile-nav-toggle .opener,
   .mobile-cart i {
+    color: var(--color-overlay);
+  }
+
+  .fallback {
     color: var(--color-overlay);
   }
 }

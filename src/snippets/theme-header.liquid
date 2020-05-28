@@ -1,6 +1,6 @@
 <style>
 body {
-
+  --static-image: url("{{ 'static.gif' |  asset_url }}");
 
   {% if settings.heading_typekit != blank %}
     --font-heading-real:  {{settings.heading_typekit}}, {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
