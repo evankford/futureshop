@@ -236,7 +236,7 @@
     flex-wrap: wrap;
   }
 
-  .social-wrap a {
+  .social-wrap.style--simple a {
     color: var(--header-text);
   }
 
@@ -437,5 +437,30 @@ nav.main-nav.has-halves {
         }
       }
     }
+  }
+}
+
+
+.site-header__inner-wrap.layout--balanced {
+  @include media-query($medium-up) {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    grid-template-areas: "header nav" "socials nav";
+    grid-template-rows: auto auto;
+
+    nav {
+      grid-area: nav;
+    }
+    header {
+      grid-area: header;
+    }
+    .social-wrap {
+      grid-area: socials;
+    }
+
+  }
+  @include media-query($large-up) {
+    grid-template-columns: 240px 1fr 240px;
+    grid-template-areas: "header nav socials";
   }
 }

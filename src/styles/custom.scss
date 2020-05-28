@@ -1,0 +1,67 @@
+body.header-overlay .image-section:first-child::before {
+  display: none;
+}
+
+body div.image-section:first-child {
+  .overlay-section .swiper-slide {
+    min-height: 90vh
+  }
+
+}
+
+img#Image-333057917033-0 {
+  object-position: 50% 80%;
+  @include media-query($small) {
+    margin-top: -50%;
+    height: 150%;
+    max-height: 150% !important;
+  }
+}
+
+nav.main-nav a, nav.main-nav .icon-fallback-text {
+
+}
+
+nav.main-nav {
+  a,
+  .icon-fallback-text {
+    font-size: 15px;
+    padding: 6px 12px;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+  li  {
+    transition: opacity 300ms $ease;
+  }
+  &:hover {
+    li {
+      opacity: 0.5;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+  .label-for-icon {
+    font-size: 15px;
+    font-weight: 600;
+  }
+}
+
+%button {
+  padding-bottom: 0.9em;
+  font-weight: 600;
+}
+
+.slide-content {
+  .button-wrap {
+    margin-top: 30px;
+  }
+}
+
+.common-header.type--slide {
+
+ .label {
+    font-weight: 600;
+    font-size: 18px;
+  }
+}

@@ -192,6 +192,16 @@ body {
   @include font-heading();
 }
 
+.weight--normal {
+  font-weight: 400;
+}
+.weight--light {
+  font-weight: 300;
+}
+.weight--bold {
+  font-weight: 700;
+}
+
 .style--caps {
   text-transform: uppercase;
 }

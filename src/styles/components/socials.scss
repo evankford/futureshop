@@ -37,12 +37,17 @@ ul.social-wrap {
       font-weight: normal;
     }
   }
+
   &.style--circle, &.style-square {
+    li {
+      margin-top: 3px;
+    }
     &>li>a {
       background: var(--bg-color);
-      color: var(--text-color);
+      color: var(--text-color) !important;
     }
   }
+
   &.style--circle {
     &>li>a {
       font-size: 18px;

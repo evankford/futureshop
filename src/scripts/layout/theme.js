@@ -167,9 +167,9 @@ class Theme {
     if (this.topBar) {
       this.offset = 0 + this.topBar.getBoundingClientRect().height;
     }
-    if (this.hero) {
-      this.offset += this.hero.getBoundingClientRect().height - 1;
-    }
+    // if (this.hero) {
+    //   this.offset += this.hero.getBoundingClientRect().height - 1;
+    // }
   }
   headroomInit() {
     var myHeadroom = new Headroom(this.header, {

@@ -17,6 +17,8 @@ body {
   {% else %}
     --font-extra-real: {{ settings.font_extra.family }}, {{ settings.font_extra.fallback_families }};
   {% endif %}
+
+  --color-border: {{settings.color_borders}};
 }
 
 {% if settings.general_css != blank %}

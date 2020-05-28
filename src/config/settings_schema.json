@@ -317,6 +317,26 @@
           }
         ]
       },
+      {
+        "type": "select",
+        "id": "font_weight_menu",
+        "label": "Menu Font Weight",
+        "default": "bold",
+        "options": [
+          {
+            "value": "bold",
+            "label": "Bold"
+          },
+          {
+            "value": "normal",
+            "label": "Normal"
+          },
+          {
+            "value": "light",
+            "label": "Light"
+          }
+        ]
+      },
 
       {
         "type": "header",

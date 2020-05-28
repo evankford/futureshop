@@ -73,18 +73,18 @@ div#shopify-section-collection-template {
       max-width: 900px;
     }
   }
-  &[data-max="4"], &[data-max="2"] {
-    @include media-query($small) {
-      grid-template-columns: repeat(2, 1fr)
-    }
 
-  }
   &[data-max="4"] {
     grid-template-columns: repeat(2, 1fr);
     // @include media-query($widescreen) {
     grid-template-columns: repeat(4, 1fr);
     &.size--large {
       grid-template-columns: repeat(2, 1fr);
+    }
+  }
+   &[data-max="4"], &[data-max="2"] {
+    @include media-query($small) {
+      grid-template-columns: repeat(2, 1fr)
     }
   }
 }

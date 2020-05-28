@@ -73,6 +73,9 @@ $headerPadding: 25px;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  a {
+    color: inherit;
+  }
   .cart-form {
     flex: 1 1 auto;
     width: 100%;

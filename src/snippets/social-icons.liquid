@@ -54,12 +54,12 @@
 {% if settings.social_soundcloud_link != blank %}
 <li><a target="_blank" rel="nofollow" href="{{settings.social_soundcloud_link}}" aria-label="On soundcloud"><i class="icon-soundcloud"></i></a></li>
 {%endif %}
-  {% comment %} <style>
+  <style>
     .social-wrap {
       --bg-color: {{settings.social_background_color}} ;
       --text-color: {{settings.social_text_color}} ;
     }
-  </style> {% endcomment %}
+  </style>
 
 {% if settings.social_extra != blank%}
 <li class="social-extra">

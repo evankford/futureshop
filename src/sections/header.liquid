@@ -112,10 +112,15 @@ document.body.classList.add('header-overlay');
 {%endif%}
 
 
+{% assign balanced_menu = false %}
+{% if section.settings.layout_socials == 'balanced' or  section.settings.menu_text_align == 'balanced' %}
+{% assign balanced_menu = true %}
+{%endif%}
+
 <section data-section-id="{{ section.id }}" class="site-header__wrap {% if section.settings.box_shadow  == true%} box-shadow {%endif%} {% if section.settings.expand_logo  == true%} expand-logo {%endif%} {% if section.settings.overlay  == true %} overlay-header {%endif%}" data-section-type="header" style="{% if section.settings.bg_color != blank and settings.texture_header != true %}background-color: {{section.settings.bg_color}}; {%endif%}{% if section.settings.text_color != blank%}color: {{section.settings.text_color}};{% endif %}">
 
 <div class="site-header__inner {% if section.settings.layout_header == 'above' %}force-wrap{%endif%} mobile--{{section.settings.layout_mobile}} {% if section.settings.enable_mobile_menu == true %} make-mobile {%endif%} socials--{{section.settings.layout_socials}}">
-  <div class="site-header__inner-wrap">
+  <div class="site-header__inner-wrap  {% if balanced_menu %} layout--balanced{%endif%}">
 
     {% if section.settings.layout_header == 'above' %}
     <div class="header-fullwidth">
@@ -141,7 +146,7 @@ document.body.classList.add('header-overlay');
   <nav role="navigation" class="main-nav {% if section.settings.enable_mobile_menu == true %} make-mobile {%endif%} mobile-align--{{section.settings.mobile_menu_text_align}} mobile-text--{{section.settings.mobile_text}} mobile-text-inner--{{section.settings.mobile_inner_text}} align--{{section.settings.menu_text_align}} {% if section.settings.layout_header == 'menu-centered' %} has-halves {%endif%} " id="site-nav" >
     <div class="nav-inner">
     <div class="nav-inner__background"></div>
-    <div class="nav-inner__wrap {% if section.settings.layout_socials == 'after-menu' %}  has-socials {%endif%} {% if section.settings.mobile_nav_space == true %} use-space {%endif%} font--{{settings.font_family_menu | default: 'heading'}} style--{{settings.font_style_menu | default: 'standard'}}" >
+    <div class="nav-inner__wrap {% if section.settings.layout_socials == 'after-menu' %}  has-socials {%endif%} {% if section.settings.mobile_nav_space == true %} use-space {%endif%} font--{{settings.font_family_menu | default: 'heading'}} weight--{{settings.font_weight_menu | default: 'bold'}} style--{{settings.font_style_menu | default: 'standard'}}" >
 
     <ul class="main-menu">
 
@@ -220,6 +225,10 @@ document.body.classList.add('header-overlay');
     </div><!--end nav-inner__wrap-->
       </div><!-- end nav-inner-->
     </nav>
+
+    {% if balanced_menu %}
+    {% include 'social-icons' %}
+    {%endif%}
     <div class="mobile-cart menu-icon">
       {{cart_markup}}
     </div>
@@ -391,6 +400,9 @@ document.body.classList.add('header-overlay');
         }, {
             "value": "right",
             "label": "Right"
+        }, {
+            "value": "balanced",
+            "label": "Balanced (Logo + Menu + Socials will be balanced)"
         }]
     }, {
         "type": "select",
@@ -509,6 +521,9 @@ document.body.classList.add('header-overlay');
         }, {
             "value": "after-menu",
             "label": "After Menu"
+        }, {
+            "value": "balanced",
+            "label": "Balanced (Logo + Menu + Socials will be balanced)"
         }, {
             "value": "disabled",
             "label": "Disable Socials"

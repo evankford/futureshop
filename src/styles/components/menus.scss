@@ -191,17 +191,6 @@ nav.main-nav {
 
   @include media-query($small) {
 
-     &.mobile-text-inner--true {
-      .menu-icon i::after {
-        content: attr(aria-label);
-        display: inline-block;
-        font-style: normal;
-        text-transform: inherit;
-        text-transform: uppercase;
-        margin: 0 0 0 0.4em;
-      }
-    }
-
     .nav-inner__wrap {
       font-size: 1.6rem;
     }
