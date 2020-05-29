@@ -65,3 +65,11 @@ nav.main-nav {
     font-size: 18px;
   }
 }
+
+.slide-content-inner .responsive-image__wrapper {
+  max-width: 600px;
+}
+
+body.product-style--card .product-grid-item {
+  box-shadow: 3px 3px 4px #dedede;
+}

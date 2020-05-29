@@ -18,7 +18,7 @@
           {%elsif slide.type == 'video' %}
             {% include 'slide-video' %}
           {%elsif slide.type == 'background' %}
-            {% comment %} {% include 'slide-background' %} {% endcomment %}
+            {% include 'slide-background' %}
           {%endif%}
         {%endfor%}
       </div>
@@ -333,10 +333,36 @@
         "default": "Image Overlay Section"
       },
       {
-            "type" : "image_picker",
-            "id" : "title_logo",
-          "label" : "Title Logo Image"
-          },
+        "type" : "image_picker",
+        "id" : "logo",
+        "label" : "Logo"
+      },
+      {
+        "type": "range",
+        "id": "logo_max_width",
+        "label": {
+            "de": "Logobreite",
+            "en": "Custom logo width",
+            "es": "Ancho del logotipo personalizado",
+            "fr": "Largeur personnalisée du logo",
+            "it": "Larghezza logo personalizzato",
+            "ja": "ロゴの幅をカスタムする",
+            "pt-BR": "Largura do logotipo personalizado"
+        },
+        "min": 50,
+        "max": 900,
+        "step": 25,
+        "unit": {
+            "de": "px",
+            "en": "px",
+            "es": "px",
+            "fr": "px",
+            "it": "px",
+            "ja": "px",
+            "pt-BR": "px"
+        },
+        "default": 350
+      },
       {
         "type" : "text",
         "id" : "subtitle",
@@ -559,11 +585,36 @@
         "label": "Heading",
         "default": "Image Overlay Section"
       },
-      {
+       {
         "type" : "image_picker",
-        "id" : "title_logo",
-        "label" : "Title Logo Image",
-        "info" : "Replaces the header above!"
+        "id" : "logo",
+        "label" : "Logo"
+      },
+      {
+        "type": "range",
+        "id": "logo_max_width",
+        "label": {
+            "de": "Logobreite",
+            "en": "Custom logo width",
+            "es": "Ancho del logotipo personalizado",
+            "fr": "Largeur personnalisée du logo",
+            "it": "Larghezza logo personalizzato",
+            "ja": "ロゴの幅をカスタムする",
+            "pt-BR": "Largura do logotipo personalizado"
+        },
+        "min": 50,
+        "max": 900,
+        "step": 25,
+        "unit": {
+            "de": "px",
+            "en": "px",
+            "es": "px",
+            "fr": "px",
+            "it": "px",
+            "ja": "px",
+            "pt-BR": "px"
+        },
+        "default": 350
       },
       {
         "type" : "text",
