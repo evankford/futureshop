@@ -102,7 +102,7 @@ ul.product-thumbnails {
   text-align: left;
   .rte {
     margin: calc(12px + 1vw) 0 0;
-    padding-top: calc(12px + 1vw);
+    // padding-top: calc(12px + 1vw);
     // border-top: 2px solid $color-border;
     width: 100%;
     p:first-of-type {
@@ -164,7 +164,7 @@ ul.product-thumbnails {
       // background: $color-secondary;
     }
     &.cart {
-      font-size: 19px;
+      font-size: 1.2em;
     }
     &[disabled] {
       // background-color: $color-border-darker !important;

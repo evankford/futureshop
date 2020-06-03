@@ -21,16 +21,19 @@
       font-size: calc(24px + 2vw);
     }
     &.hide-title {
-      
+
     }
     .button {
       // margin: 5px 0;
     }
   }
+  .common-header {
+    width: 100%;
+  }
 }
 
-body.product-style--card { 
-  
+body.product-style--card {
+
   .featured-product__content {
     background: var(--card-bg);
     @include shadowBefore(0.99, 1);

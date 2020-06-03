@@ -31,13 +31,19 @@ a {
   }
   ul,
   ol {
-    margin: 0 0 ($grid-gutter / 2) $grid-gutter;
+    margin: 0.9em 0 1.2em $grid-gutter;
+  }
+
+  li {
+    line-height: 1.2;
+    margin: 0.4em auto;
   }
 
   strong {
     font-weight: $font-body-bold-weight;
   }
   p {
+    margin: 0.9em 0 1.2em;
     line-height: 1.6;
   }
   &.align--left {

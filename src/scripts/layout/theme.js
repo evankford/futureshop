@@ -163,7 +163,7 @@ class Theme {
     }
   }
   headroomHandleOffsets() {
-    this.topBar = this.header.querySelector('.header-above__inner');
+    this.topBar = document.querySelector('.announcement-bar__inner');
     if (this.topBar) {
       this.offset = 0 + this.topBar.getBoundingClientRect().height;
     }

@@ -245,9 +245,11 @@ $swatchheightsmall: 22px;
   line-height: $swatchheightsmall;
   min-height: 0 !important;
   overflow: hidden;
+
 }
 
 .grid-swatch__element {
+  margin: 2px;
   &.selected label {
     border-width: 2px;
     border-color: $color-body-text

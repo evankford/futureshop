@@ -21,9 +21,17 @@
     <div class="product-details__wrap {% if section.settings.hide_title == true %} title-hidden {%endif%}">
 
       {% if section.settings.hide_title == true %}
-      <h4 data-aos="fade-in" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">{{ section.settings.introduction }}</h4>
-      <h1 data-aos="fade-in" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">{{ section.settings.heading }}</h1>
-      <h4 data-aos="fade-in" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">{{ section.settings.subtitle }}</h4>
+      <header class="common-header type--product">
+        {% if section.settings.introduction != blank %}
+          <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label common-header__introduction">{{ section.settings.introduction | escape }}</h4>
+        {% endif %}
+        {% if section.settings.heading != blank %}
+          <h2 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="main-header font--{{settings.font_family_heading}} style--{{settings.header_style}} color--{{settings.header_color}} spacing--{{settings.header_spacing}} common-header__heading">{{ section.settings.heading | escape }}</h4>
+        {% endif %}
+        {% if section.settings.subtitle != blank %}
+          <h4 data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}" class="h4 label common-header__subtitle">{{ section.settings.subtitle | escape }}</h4>
+        {% endif %}
+      </header>
       {%else %}
       <h1 data-aos="fade-in" data-aos="fade-in" data-aos-delay="{{delay}}{% assign delay = delay | plus: 50 %}">{{ product.title }}</h1>
       {% endif %}
@@ -65,14 +73,54 @@
         "default" : "Featured Product"
       },
       {
+        "type" : "header",
+        "content" :"Product Settings"
+      },
+      {
+        "type": "product",
+        "id": "product",
+        "label": "Product"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "hide_title",
+        "label" : "Replace Product Title?",
+        "info" : "Replace the product title with the header info above"
+      },
+      {
+        "type": "checkbox",
+        "id": "reverse",
+        "label": "Reverse layout?",
+        "info" : "Places the image section on the right side"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_share_buttons",
+        "label": "Show social sharing buttons"
+      },
+      {
+        "type": "checkbox",
+        "id": "swatches",
+        "label": "Use Swatches",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_quantity",
+        "label": "Enable Quantity",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_description",
+        "label": "Show Description",
+        "default": true
+      },
+      {
         "type" :"header",
         "content" : "Featured Product Header"
       },
-       {
-        "type" : "header",
-        "content" : "Rich Text Content"
-      },
-{
+      {
         "type" : "select",
         "id" : "text_align",
         "label" : "Text Alignment",
@@ -139,50 +187,7 @@
         "id": "text",
         "label": "Text"
       },
-      {
-        "type" : "header",
-        "content" :"Product Settings"
-      },
-      {
-        "type": "product",
-        "id": "product",
-        "label": "Product"
-      },
-      {
-        "type" : "checkbox",
-        "id" : "hide_title",
-        "label" : "Replace Product Title?",
-        "info" : "Replace the product title with the header info above"
-      },
-      {
-        "type": "checkbox",
-        "id": "reverse",
-        "label": "Reverse layout?",
-        "info" : "Places the image section on the right side"
-      },
-      {
-        "type": "checkbox",
-        "id": "show_share_buttons",
-        "label": "Show social sharing buttons"
-      },
-      {
-        "type": "checkbox",
-        "id": "swatches",
-        "label": "Use Swatches",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_quantity",
-        "label": "Enable Quantity",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "show_description",
-        "label": "Show Description",
-        "default": true
-      },
+
        {
         "type" : "header",
         "content" : "Section Settings"

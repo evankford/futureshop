@@ -177,6 +177,19 @@
         "label": "Extra Font"
       },
       {
+        "type" : "header",
+        "content" : "base settings"
+      },
+      {
+        "label" : "Base font size",
+        "type" : "range",
+        "id" : "base_font_size",
+        "min" : 12,
+        "max": 20,
+        "step" : 1,
+        "default" : 16
+      },
+      {
         "type": "header",
         "content": "Headers"
       },
@@ -429,6 +442,31 @@
           {
             "value": "standard",
             "label": "Standard"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "label_size",
+        "label": "Label Size",
+        "info": "Used in pre-headings and info across the site",
+        "default": "normal",
+        "options": [
+          {
+            "value": "xs",
+            "label": "Extra-Small"
+          },
+          {
+            "value": "small",
+            "label": "Small"
+          },
+          {
+            "value": "normal",
+            "label": "Normal"
+          },
+          {
+            "value": "large",
+            "label": "Large"
           }
         ]
       },

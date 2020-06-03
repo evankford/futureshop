@@ -7,14 +7,27 @@
   font-style: normal;
 }
 
-@font-face  {
-  font-family: "Type";
-  src: url("{{'type.woff2' | asset_url}}") format('woff2'), url("{{'type.woff' | asset_url}}") format('woff');
-  font-weight: 700;
+@font-face {
+  font-family: "antonio";
+  src: url("{{'Antonio-Regular.woff2' | asset_url}}") format('woff2'),url("{{'Antonio-Regular.woff' | asset_url}}") format('woff');
+  font-weight: 400;
   font-style: normal;
+
 }
+@font-face {
+  font-family: "antonio";
+  src: url("{{'Antonio-Bold.woff2' | asset_url}}") format('woff2'),url("{{'Antonio-Bold.woff' | asset_url}}") format('woff');
+  font-weight: 600;
+  font-style: normal;
 
+}
+@font-face {
+  font-family: "antonio";
+  src: url("{{'Antonio-Light.woff2' | asset_url}}") format('woff2'),url("{{'Antonio-Light.woff' | asset_url}}") format('woff');
+  font-weight: 300;
+  font-style: normal;
 
+}
 
   {{ settings.font_heading | font_face }}
   {{ settings.font_extra | font_face }}
@@ -32,7 +45,7 @@
 
 
   :root {
-
+    --font-size: {{settings.base_font_size | default: 16 |  divided_by: 10.0 }}rem;
     --border-radius: {{ settings.border_roundness }}px;
     --border-thickness: {{ settings.border_thickness }}px;
     --border-thickness-big: {{ settings.border_thickness | times: 2}}px;

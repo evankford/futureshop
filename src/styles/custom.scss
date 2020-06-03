@@ -1,85 +1,58 @@
-body.header-overlay .image-section:first-child::before {
-  display: none;
+div.password-header__wrap h4 {
+  margin-top: -24px;
 }
 
-body div.image-section:first-child {
-  .overlay-section .swiper-slide {
-    min-height: 90vh
-  }
+#hero .swiper-slide {
+  padding-top: calc(120px + 12vw);
+  padding-bottom: calc(30px + 6vw);
+}
 
-  .button.inherit {
-    background: white;
-    border: none;
-    color: #444;
+img#Image-322899050575-0 {
+  object-position: 70% 0;
+}
+
+img#Image-322901704783-0 {
+  object-position: 70% 30%;
+}
+
+.site-header__inner {
+  &::after {
+    @extend %psuedo;
+    height: 18px;
+    background: black;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 300ms $ease;
+  }
+  .logo-wrap {
     transition: all 300ms $ease;
-    &:hover {
-      color: white;
+    @include media-query($medium-up) {
+      margin: -55px auto 0;
+
     }
   }
 
 }
+@include media-query($medium-up) {
+  .headroom--not-top  {
+    .site-header__inner {
 
-img#Image-333057917033-0 {
-  object-position: 50% 80%;
-  @include media-query($small) {
-    margin-top: -50%;
-    height: 150%;
-    max-height: 150% !important;
-  }
-}
+      .logo-wrap {
+        margin: -85px 0 -15px;
 
-nav.main-nav a, nav.main-nav .icon-fallback-text {
+      }
 
-}
-
-nav.main-nav {
-  a,
-  .icon-fallback-text {
-    font-size: 15px;
-    padding: 6px 12px;
-    letter-spacing: 0.05em;
-    font-weight: 600;
-  }
-  li  {
-    transition: opacity 300ms $ease;
-  }
-  &:hover {
-    li {
-      opacity: 0.5;
-      &:hover {
+      &::after {
         opacity: 1;
       }
     }
   }
-  .label-for-icon {
-    font-size: 15px;
-    font-weight: 600;
-  }
 }
 
-%button {
-  padding-bottom: 0.9em;
-  font-weight: 600;
+h1, h2, h3, h4, h5, h6 {
+  margin: 0.2em auto
 }
 
-.slide-content {
-  .button-wrap {
-    margin-top: 30px;
-  }
-}
-
-.common-header.type--slide {
-
- .label {
-    font-weight: 600;
-    font-size: 18px;
-  }
-}
-
-.slide-content-inner .responsive-image__wrapper {
-  max-width: 600px;
-}
-
-body.product-style--card .product-grid-item {
-  box-shadow: 3px 3px 4px #dedede;
+.common-header__logo #ImageWrapper-322901835855-1 {
+  margin: 20px auto -14px;
 }
