@@ -60,6 +60,13 @@ div#shopify-section-collection-template {
 
 
     }
+     &.size--huge {
+     grid-template-columns: repeat(2, 1fr);
+
+        @include media-query($small) {
+          grid-template-columns: 1fr
+        }
+    }
   }
   &[data-max="2"] {
     max-width: 900px;
