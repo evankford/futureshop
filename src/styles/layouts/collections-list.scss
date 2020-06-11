@@ -3,5 +3,12 @@ body.template-list-collections  {
     text-align: center;
     margin: calc(3rem + 4vw) auto calc(1.2rem + 2vw);
   }
-  
+    main .shopify-section {
+    max-width: $site-max;
+    margin: auto;
+    width: 96%  ;
+    .product-grid {
+      width: 100%
+    }
+  }
 }
