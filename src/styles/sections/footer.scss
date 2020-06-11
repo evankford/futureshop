@@ -11,14 +11,16 @@
 
   font-size: 0.9em;
 
-  .social-wrap  {
+  .social-wrap.style--normal  {
     a {
       color: inherit;
       font-size: 20px;
-      &[href*=personal-data] {
-        display: none;
-      }
+
     }
+  }
+
+  .social-wrap a[href*=personal-data] {
+    display: none;
   }
 }
 

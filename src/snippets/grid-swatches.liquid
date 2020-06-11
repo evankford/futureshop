@@ -1,13 +1,15 @@
+{% assign file_extension = 'jpg' %}
+
  {% for option in product.options %}
     {% assign option_name = false %}
-    
-    {% if option == 'Color' or option == 'Colour' %}
+    {% assign downcased_option = option | downcase %}
+    {% if downcased_option contains 'color' or downcased_option == 'colour' %}
       {% if product.options_by_name[option].values.size > 1%}
-      <div class="grid-swatches swatches"  data-option-index="{{option}}"> 
+      <div class="grid-swatches swatches"  data-option-index="{{option}}">
       <div class="swatch" data-module="grid-swatch">
           {% for color_option in product.options_by_name[option].values %}
-          
-          
+
+
           {%comment %}
               getting a variant link
             {%endcomment %}
@@ -22,20 +24,19 @@
                   {% if variant.image  %}
                     {% assign foundvariantimage = variant.image | img_url: '700x' %}
                   {%endif%}
-                {%endif%}      
+                {%endif%}
               {%endif%}
             {%endfor%}{%comment%}End variant loop{%endcomment%}
-            
-            
+
+
               <div data-image="{{foundvariantimage}}" data-url="{{collection.url}}{{foundvarianturl}}" data-value="{{ color_option | escape }}" class="swatch-element grid-swatch__element color swatch--{{ color_option | handle }} {% if forloop.index == 1%} selected {%endif%} {% if foundvarianturl %}available{% else %}soldout{% endif %}">
                 <div class="tooltip">{{ color_option }}</div>
-                
-                
-                {% capture filename %}{{value | handle }}.{{file_extension}}{%endcapture%}
+
+                {% capture filename %}{{color_option | handle }}.{{file_extension}}{%endcapture%}
                 <label style="background-color: {{ color_option | split: ' ' | last | handle }}; background-image: url({{ filename | asset_url }})">
                   <img class="crossed-out" src="{{ 'soldout.png' | asset_url }}" />
                 </label>
-              
+
               </div>
             {% if foundvarianturl %}
               <script>
@@ -44,12 +45,12 @@
                 element.classList.add('available');
               </script>
             {% endif %}
-            
+
           {%endfor%}{%comment%}End color_option loop{%endcomment%}
             </div>
         </div>
       {%endif%}{%comment%}End size check{%endcomment%}
     {%endif%}{%comment%}End check for color/colour{%endcomment%}
-  
-    
+
+
   {%endfor%}{%comment%}End option loop{%endcomment%}

@@ -89,7 +89,7 @@ ul.product-thumbnails {
   padding: calc(12px + 1vw) calc(10px + 2.2vw) ;
 
   @include media-query($small) {
-    padding: 0;
+    padding: 0 10px;
   }
 
   // margin-top:6vmin;

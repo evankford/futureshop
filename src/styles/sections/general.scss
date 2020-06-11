@@ -3,7 +3,7 @@ body {
   height: auto;
 }
 
-. {
+.shopify-section {
 
   .section-bg {
     @extend %psuedoish;
@@ -169,16 +169,16 @@ body {
   text-align: center;
 }
 
-.text--small {
+.size--small {
   font-size: 1.3rem;
 }
-.text--standard {
+.size--standard {
   font-size: 1.6rem;
 }
-.text--large {
+.size--large {
   font-size: 2rem;
 }
-.text--mega {
+.size--mega {
   font-size: 2.6rem;
 }
 

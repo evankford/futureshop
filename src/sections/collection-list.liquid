@@ -61,7 +61,7 @@
   {% endif %}
   </div>
 
-{% if section.settings.button_text != blank %}
+{% if section.settings.button_text != blank && section.settings.button_url !+ blank %}
   <div class="button-wrap center">
     <a href="{{section.settings.button_url | default: '/collections/all'}}" class="button">{{section.settings.button_text}}</a>
   </div>
@@ -185,7 +185,7 @@
         "id" : "list_button",
         "info" : "If you input a value here, all the collection boxes will have a button on them with this text!"
        },
-        {
+      {
         "type" : "text",
         "id" : "button_text",
         "label" : "All Button Text",
@@ -195,8 +195,7 @@
       {
         "type" : "url",
         "id" : "button_url",
-        "label" : "All Button url",
-        "info" : "Leave Blank to use collection link"
+        "label" : "Button Url"
       },
       {
         "type" : "select",

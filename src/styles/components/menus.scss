@@ -20,6 +20,9 @@ nav.main-nav {
   }
   &.align--right {
     justify-content: flex-end;
+    .has-socials ul.main-menu {
+      margin-left: auto;
+    }
     ul.main-menu,
     .nav-inner {
       justify-content: flex-end;

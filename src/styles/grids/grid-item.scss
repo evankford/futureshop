@@ -114,7 +114,7 @@
       width: 100%;
       font-size: calc(1.5rem + .15vw);
       text-transform: none;
-      font-weight: normal;
+      // font-weight: normal;
       margin: 0.34em 0;
     }
     .swatch {
@@ -225,7 +225,7 @@
   }
   &.sold-out {
     .price-outer {
-      color: $color-accent-darker;
+      opacity: 0.6
     }
   }
   .sold-out-text {
