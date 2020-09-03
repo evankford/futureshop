@@ -45,7 +45,7 @@
     "es6-promise": "^4.2.8",
     "headroom.js": "^0.9.4",
     "js-cookie": "^2.2.1",
-    "lazysizes": "^4.1.1",
+    "lazysizes": "^5.2.1",
     "mustache": "^4.0.0",
     "normalize.css": "^8.0.1",
     "normalize.js": "^0.0.1",
